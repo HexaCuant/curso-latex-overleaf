@@ -163,16 +163,25 @@ git config --global user.email "tu@email.com"
     <img src="git.png" alt="Diagrama de flujo de trabajo de Git" style="max-width: 100%; height: auto;">
 
 
-    <h3>Comandos básicos de Git desde el terminal</h3>
+    <h3>Comandos básicos de Git en el contexto de Overleaf</h3>
+    
+    <p><strong>Nota importante:</strong> Si usas Overleaf con licencia Campus, Git está integrado y no necesitas usar la terminal. Sin embargo, si usas la versión gratuita o quieres trabajar localmente, estos comandos te serán útiles.</p>
+
+    <h4>Contexto: ¿Cuándo usas Git desde terminal?</h4>
+    <p>Si descargas tu proyecto desde Overleaf y quieres subirlo a GitHub (u otro repositorio), usarás estos comandos en tu terminal local:</p>
 
     <h4>git init</h4>
     <p>El comando <code>git init</code> se utiliza para inicializar un nuevo repositorio Git en el directorio actual.
         Esto crea un subdirectorio oculto <code>.git</code> que contiene toda la estructura necesaria para el control de
         versiones.</p>
+    <p><strong>Ejemplo:</strong> Si descargas un proyecto desde Overleaf como ZIP, descomprímelo y ejecuta:</p>
+    <pre><code>cd /ruta/a/tu/proyecto
+git init</code></pre>
 
     <h4>git status</h4>
     <p><code>git status</code> muestra el estado actual del repositorio, incluyendo los archivos modificados, añadidos o
         eliminados que aún no se han confirmado.</p>
+    <pre><code>git status</code></pre>
 
     <h4>git add</h4>
     <p>El comando <code>git add</code> se usa para agregar archivos al área de preparación (staging area). Por ejemplo:
@@ -216,13 +225,22 @@ git config --global user.email "tu@email.com"
         </ol>
 
     <h4>git push</h4>
-    <p>El comando <code>git push</code> se utiliza para enviar los commits locales a un repositorio remoto. La sintaxis
+    <p>El comando <code>git push</code> se utiliza para enviar los commits locales a un repositorio remoto (GitHub). La sintaxis
         básica es:</p>
     <pre><code>git push &lt;remoto&gt; &lt;rama&gt;</code></pre>
+    <p><strong>Ejemplo típico:</strong></p>
+    <pre><code>git push origin main</code></pre>
+    <p><strong>¿Cuándo lo usas en Overleaf?</strong> Si descargas tu proyecto desde Overleaf, lo modificas localmente y quieres subirlo a GitHub:</p>
+    <pre><code>git add .
+git commit -m "Actualización desde local después de descargar de Overleaf"
+git push origin main</code></pre>
 
     <h4>git pull</h4>
     <p><code>git pull</code> se usa para descargar y fusionar los cambios desde un repositorio remoto a tu repositorio
         local. Es una combinación de <code>git fetch</code> y <code>git merge</code>.</p>
+    <p><strong>Ejemplo:</strong></p>
+    <pre><code>git pull origin main</code></pre>
+    <p><strong>¿Cuándo lo usas en Overleaf?</strong> Si un compañero subió cambios a GitHub y quieres descargarlos localmente antes de abrir el proyecto en Overleaf nuevamente.</p>
 
     <h4>Creación y manejo del archivo .gitignore</h4>
     <p>El archivo <code>.gitignore</code> es crucial para especificar qué archivos y directorios Git debe ignorar. Para
@@ -231,22 +249,31 @@ git config --global user.email "tu@email.com"
         <li>Crea el archivo en la raíz del proyecto.
 
         </li>
-        <li>Edita el archivo añadiendo patrones de archivos o directorios a ignorar. Por ejemplo:
+        <li>Edita el archivo añadiendo patrones de archivos o directorios a ignorar. <strong>Para proyectos LaTeX, es importante ignorar archivos compilados:</strong>
             <pre><code>
+    # Ignorar archivos compilados de LaTeX
+    *.aux
+    *.bbl
+    *.blg
+    *.log
+    *.pdf
+    *.synctex.gz
+    *.fls
+    *.fdb_latexmk
+    
     # Ignorar archivos del sistema
     .DS_Store
-
-    # Ignorar carpeta node_modules
-    node_modules/
-
-    # Ignorar todos los archivos .log
-    *.log
+    Thumbs.db
+    
+    # Ignorar carpetas de editor
+    .vscode/
+    .idea/
             </code></pre>
         </li>
         <li>Añade y confirma el archivo <code>.gitignore</code>:
             <pre><code>
     git add .gitignore
-    git commit -m "Añadir archivo .gitignore"
+    git commit -m "Añadir archivo .gitignore para proyecto LaTeX"
             </code></pre>
         </li>
     </ol>
@@ -282,234 +309,446 @@ git config --global user.email "tu@email.com"
     </ol>
     
     <h3>Recursos adicionales</h3>
-    <p>Para más información sobre LaTeX, puedes visitar los siguiente enlaces:</p>
-    <p><a href="http://cervantex.es/manuales" target="_blank" rel="noopener">http://cervantex.es/manuales</a></p>
+    <p>Para más información sobre LaTeX, puedes visitar los siguientes enlaces:</p>
+    <p><a href="https://www.latex-project.org/" target="_blank" rel="noopener">https://www.latex-project.org/</a></p>
     <p><a href="https://www.ctan.org/" target="_blank" rel="noopener">https://www.ctan.org/</a></p>
+    <p><a href="http://cervantex.es/manuales" target="_blank" rel="noopener">http://cervantex.es/manuales</a></p>
     
-    <h3>Instalación de LaTeX</h3>
+    <h3>Crear tu Cuenta en Overleaf (Recomendado para este curso)</h3>
     
-    <p>La instalación de LaTeX varía según el sistema operativo:</p>
+    <p><strong>En lugar de instalar LaTeX localmente, usaremos Overleaf, una plataforma online colaborativa que te permite escribir documentos LaTeX sin necesidad de instalación.</strong></p>
     
-    <h4>Windows:</h4>
-    <ol>
-        <li>Descarga e instala MiKTeX desde <a href="https://miktex.org/download" target="_blank" rel="noopener">https://miktex.org/download</a></li>
-        <li>Durante la instalación, elige la opción de instalar paquetes bajo demanda.</li>
-    </ol>
-    
-    <h4>macOS:</h4>
-    <ol>
-        <li>Descarga e instala MacTeX desde <a href="https://tug.org/mactex/" target="_blank" rel="noopener">https://tug.org/mactex/</a></li>
-        <li>Este es un paquete grande que incluye todo lo necesario para trabajar con LaTeX.</li>
-    </ol>
-    
-    <h4>Linux:</h4>
+    <h4>¿Por qué Overleaf en lugar de instalar LaTeX localmente?</h4>
     <ul>
-        <li>Ubuntu/Debian:
-            <pre><code>sudo apt-get install texlive-full</code></pre>
+        <li><strong>✅ Sin instalación complicada</strong>: Solo necesitas un navegador web y una conexión a internet.</li>
+        <li><strong>✅ Compilación automática</strong>: Los documentos se compilan automáticamente en los servidores de Overleaf mientras escribes.</li>
+        <li><strong>✅ Vista previa en tiempo real</strong>: Ve los cambios en el PDF mientras editas el código LaTeX.</li>
+        <li><strong>✅ Colaboración integrada</strong>: Trabaja con otros estudiantes en el mismo documento simultáneamente.</li>
+        <li><strong>✅ Plantillas profesionales</strong>: Acceso a más de 6,000 plantillas preconfiguradas.</li>
+        <li><strong>✅ Compatible con cualquier dispositivo</strong>: Funciona en Windows, macOS, Linux, tablets y móviles.</li>
+        <li><strong>✅ Integración con GitHub</strong>: Sincroniza automáticamente tu proyecto con GitHub (si tu universidad tiene licencia de campus).</li>
+    </ul>
+
+    <h4>Crear tu cuenta en Overleaf:</h4>
+    <ol>
+        <li>Visita <a href="https://www.overleaf.com" target="_blank" rel="noopener">https://www.overleaf.com</a></li>
+        <li>Haz clic en el botón <strong>"Sign up"</strong> en la esquina superior derecha.</li>
+        <li>Elige uno de estos métodos:
+            <ul>
+                <li><strong>Opción 1 (Recomendado):</strong> Haz clic en <strong>"Sign up with Google"</strong> o <strong>"Sign up with GitHub"</strong> y autoriza con tu cuenta Google o GitHub.</li>
+                <li><strong>Opción 2:</strong> Introduce tu correo institucional, elige una contraseña segura y haz clic en <strong>"Create account"</strong>.</li>
+            </ul>
         </li>
-        <li>Fedora:
-            <pre><code>sudo dnf install texlive-scheme-full</code></pre>
+        <li>Verifica tu dirección de correo electrónico haciendo clic en el enlace que recibirás en tu bandeja de entrada.</li>
+        <li>¡Tu cuenta en Overleaf está lista! Ahora tendrás acceso al panel de proyectos.</li>
+    </ol>
+
+    <h4>Primer acceso a Overleaf:</h4>
+    <p>Después de crear tu cuenta, verás el panel de proyectos de Overleaf. Desde aquí puedes:</p>
+    <ul>
+        <li><strong>Crear un nuevo proyecto en blanco:</strong> Haz clic en <strong>"New Project"</strong> > <strong>"Blank Project"</strong>.</li>
+        <li><strong>Usar una plantilla:</strong> Haz clic en <strong>"New Project"</strong> > <strong>"From Template"</strong> para elegir entre miles de plantillas profesionales.</li>
+        <li><strong>Cargar un proyecto existente:</strong> Si tienes archivos LaTeX locales, haz clic en <strong>"New Project"</strong> > <strong>"Upload Project"</strong>.</li>
+    </ul>
+    
+    <h3>Interfaz de Overleaf - Guía Visual</h3>
+    
+    <p>Cuando abras un proyecto en Overleaf, verás la siguiente estructura:</p>
+    
+    <ul>
+        <li><strong>Panel izquierdo (Project panel):</strong> 
+            <ul>
+                <li>Lista de todos los archivos del proyecto.</li>
+                <li>Puedes crear nuevos archivos, carpetas y subir imágenes.</li>
+                <li>Acceso rápido a archivo <code>main.tex</code> (archivo principal).</li>
+            </ul>
         </li>
-        <li>Arch Linux:
-            <pre><code>sudo pacman -S texlive-most texlive-lang</code></pre>
+        <li><strong>Panel central (Editor):</strong> 
+            <ul>
+                <li>Aquí escribes el código LaTeX.</li>
+                <li>Incluye numeración de líneas, colores de sintaxis y auto-indentación.</li>
+                <li>Busca y reemplaza con <code>Ctrl+H</code> (o <code>Cmd+H</code> en Mac).</li>
+            </ul>
+        </li>
+        <li><strong>Panel derecho (PDF Preview):</strong> 
+            <ul>
+                <li>Vista previa del documento compilado en tiempo real.</li>
+                <li>Actualiza automáticamente conforme escribes.</li>
+                <li>Puedes descargar el PDF final.</li>
+            </ul>
         </li>
     </ul>
     
-    <h3>Instalación de TeXstudio</h3>
+    <h4>Botones principales:</h4>
+    <ul>
+        <li><strong>Compile (verde)</strong>: Compila el documento y muestra el PDF. Se ejecuta automáticamente.</li>
+        <li><strong>Share</strong>: Comparte el proyecto con otros estudiantes mediante un enlace o email.</li>
+        <li><strong>History</strong>: Ver el historial de cambios (versiones anteriores del documento).</li>
+        <li><strong>Menu</strong>: Acceso a opciones avanzadas como descargar proyecto, sincronización con GitHub, etc.</li>
+    </ul>
     
-    <p>TeXstudio es un editor de LaTeX multiplataforma, fácil de usar y con muchas características útiles.</p>
+    <h3>Crear tu Primer Proyecto en Overleaf</h3>
     
-    <h4>Windows:</h4>
+    <h4>Paso 1: Crear un proyecto en blanco</h4>
     <ol>
-        <li>Visita <a href="https://www.texstudio.org/" target="_blank" rel="noopener">https://www.texstudio.org/</a></li>
-        <li>Descarga e instala la versión para Windows.</li>
+        <li>En el panel de proyectos, haz clic en <strong>"New Project"</strong>.</li>
+        <li>Selecciona <strong>"Blank Project"</strong>.</li>
+        <li>Asigna un nombre al proyecto (ej: "MiPrimerDocumento").</li>
+        <li>Haz clic en <strong>"Create"</strong>.</li>
     </ol>
     
-    <h4>macOS:</h4>
+    <h4>Paso 2: Estructura básica de un documento</h4>
+    <p>Overleaf crea automáticamente un archivo <code>main.tex</code> con esta estructura básica:</p>
+    <pre><code>\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{Mi Primer Documento}
+\author{Tu Nombre}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Introducción}
+Este es mi primer documento en LaTeX usando Overleaf.
+
+\end{document}</code></pre>
+    
+    <h4>Paso 3: Editar y compilar</h4>
     <ol>
-        <li>Visita <a href="https://www.texstudio.org/" target="_blank" rel="noopener">https://www.texstudio.org/</a></li>
-        <li>Descarga e instala la versión para macOS.</li>
-        <li>Alternativamente, si tienes Homebrew instalado, puedes usar:
-            <pre><code>brew install --cask texstudio</code></pre>
-        </li>
+        <li>Modifica el contenido en el panel central (editor).</li>
+        <li>Haz clic en el botón <strong>"Compile"</strong> (verde) o presiona <code>Ctrl+Enter</code>.</li>
+        <li>Ve el resultado en el panel derecho (PDF Preview).</li>
+        <li>¡Felicidades! Has compilado tu primer documento LaTeX en Overleaf.</li>
     </ol>
     
-    <h4>Linux:</h4>
-    <ul>
-        <li>Ubuntu/Debian:
-            <pre><code>sudo apt-get install texstudio</code></pre>
-        </li>
-        <li>Fedora:
-            <pre><code>sudo dnf install texstudio</code></pre>
-        </li>
-        <li>Arch Linux:
-            <pre><code>sudo pacman -S texstudio</code></pre>
-        </li>
-    </ul>
-    
-    <p>Después de la instalación, abre TeXstudio y configúralo para que use la distribución de LaTeX que has instalado. En la mayoría de los casos, TeXstudio detectará automáticamente la instalación de LaTeX.</p>
-    
-    <p>Con LaTeX y TeXstudio instalados, estarás listo para comenzar a crear documentos académicos de alta calidad.</p>
-
-    <h2>Alternativas a la instalación local de LaTeX</h2>
-
-    <p>Además de las instalaciones locales, existen opciones en la nube y editores alternativos que simplifican el trabajo con LaTeX:</p>
-
-    <h3>1. Overleaf: La solución en la nube</h3>
-    <p>Plataforma colaborativa online que <strong>elimina la necesidad de instalaciones locales</strong>.</p>
-    <p><strong>Características clave</strong>:</p>
-    <ul>
-        <li>Editor dual (código/visual) con previsualización en tiempo real</li>
-        <li>+6,000 plantillas preconfiguradas</li>
-        <li>Colaboración simultánea con control de cambios</li>
-        <li>Integración con GitHub, Zotero y Mendeley</li>
-        <li>Compilación automática en sus servidores</li>
-    </ul>
-
-    <p>Ideal para: Trabajo en equipo, estudiantes principiantes, y acceso desde cualquier dispositivo.</p>
-
-    <h3>2. Otras alternativas online</h3>
-
-    <p>Overleaf, Authorea y Papeeria son plataformas populares para la escritura y colaboración en documentos académicos, cada una con características únicas que las hacen adecuadas para diferentes necesidades.</p>
-
-    <p>Overleaf es un editor colaborativo basado en LaTeX que destaca por su amplia biblioteca de plantillas y su integración con revistas científicas, permitiendo a los usuarios enviar documentos directamente a estas. Ofrece un editor visual y de código, facilitando el trabajo tanto a principiantes como a expertos en LaTeX. Sus herramientas de colaboración incluyen edición en tiempo real, control de versiones y un historial completo de cambios, aunque algunas funciones avanzadas están reservadas para planes de pago.</p>
-
-    <p>Authorea, por otro lado, se presenta como una herramienta integral para la escritura científica que permite a los investigadores redactar, citar y publicar documentos. Su enfoque es más amplio que el de Overleaf, ya que no solo se centra en LaTeX, sino que también admite otros formatos como Markdown. Authorea permite la colaboración en tiempo real y la creación de preprints con DOI, lo que facilita la citación y el acceso a los trabajos.</p>
-
-    <p>Papeeria es otra opción que se caracteriza por su simplicidad y accesibilidad. Ofrece un entorno de escritura colaborativa en LaTeX sin necesidad de instalación, y permite la edición desde cualquier dispositivo con un navegador moderno. Aunque tiene menos plantillas que Overleaf y Authorea, proporciona características útiles como autocompletado, revisión ortográfica y sincronización con servicios de almacenamiento en la nube. Sin embargo, su historial de ediciones es más limitado en el plan gratuito.</p>
-
-    <h3>3. Editores locales</h3>
-    <ul>
-        <li><strong>TeXstudio</strong>: Autocompletado inteligente, visor PDF integrado</li>
-        <li><strong>LyX</strong>: Interfaz WYSIWYM para enfoque en contenido (formato no compatible)</li>
-        <li><strong>VS Code + LaTeX Workshop</strong>: Personalización extrema, integración con Git</li>
-    </ul>
-    
-    <p>En cuanto a la comparación entre soluciones online y offline: Las herramientas online ofrecen acceso universal y no requieren instalación, aunque dependen de una conexión estable a internet. Por otro lado, las soluciones offline proporcionan mayor control sobre el entorno y permiten trabajar sin conexión a internet, pero requieren una configuración inicial más compleja.</p>
-    Para cursos universitarios, Overleaf suele ser la opción más práctica por su curva de aprendizaje suave, mientras que las soluciones locales ofrecen mayor flexibilidad para proyectos complejos[12][14].
-    
-    <h3>Limitaciones de Overleaf en cuentas gratuitas</h3>
-
-    <p>Las cuentas gratuitas de Overleaf tienen varias limitaciones en comparación con los planes de pago. Las principales restricciones son:</p>
-
+    <h4>Paso 4: Compartir tu proyecto</h4>
     <ol>
-        <li><strong>Tiempo de compilación:</strong> El límite de tiempo de compilación para cuentas gratuitas es de 20 segundos, mientras que los planes premium tienen un límite de 240 segundos.</li>
-        
-        <li><strong>Colaboradores:</strong> Las cuentas gratuitas están limitadas a un solo colaborador por proyecto, mientras que los planes premium permiten más colaboradores.</li>
-        
-        <li><strong>Tamaño de material editable:</strong> El tamaño máximo de material editable por proyecto es de 7 MB, tanto para cuentas gratuitas como para planes premium.</li>
-        
-        <li><strong>Tamaño de archivo individual editable:</strong> El tamaño máximo de un archivo de texto editable individual es de 2 MB.</li>
-        
-        <li><strong>Tamaño de carga individual:</strong> El tamaño máximo de una carga individual es de 50 MB.</li>
-        
-        <li><strong>Tamaño total del proyecto:</strong> Aunque técnicamente es ilimitado, se recomienda un tamaño máximo de proyecto de 500 MB, o menos de 100 MB si se utiliza la sincronización con GitHub o la integración con Git.</li>
+        <li>Haz clic en el botón <strong>"Share"</strong> (arriba a la derecha).</li>
+        <li>Elige una de estas opciones:
+            <ul>
+                <li><strong>Edit link:</strong> Los colaboradores pueden editar el documento.</li>
+                <li><strong>View only link:</strong> Los colaboradores solo pueden ver (lectura).</li>
+            </ul>
+        </li>
+        <li>Copia el enlace y comparte con tus compañeros o profesor.</li>
     </ol>
 
-    <p>Además, las cuentas gratuitas no tienen acceso a ciertas características premium, como:</p>
+    <h2>Workflow de este Curso: Git + GitHub + Overleaf</h2>
+
+    <h3>¿Cómo trabajan juntas estas herramientas?</h3>
+    
+    <p>En este curso, aprenderás a usar tres herramientas complementarias:</p>
+    
+    <ol>
+        <li><strong>Git</strong>: Sistema de control de versiones (rastrear cambios en tus archivos).</li>
+        <li><strong>GitHub</strong>: Plataforma online para alojar repositorios Git (colaboración y respaldos).</li>
+        <li><strong>Overleaf</strong>: Editor online de LaTeX (escribir y compilar documentos).</li>
+    </ol>
+    
+    <h4>Flujo de trabajo recomendado:</h4>
+    
+    <p><strong>Opción A: Overleaf + GitHub (Recomendado si tu universidad tiene licencia de campus)</strong></p>
+    <ul>
+        <li>✅ Escribes en el editor de Overleaf.</li>
+        <li>✅ Overleaf sincroniza automáticamente con tu repositorio GitHub.</li>
+        <li>✅ Tú y tus compañeros ven los cambios en tiempo real en Overleaf.</li>
+        <li>✅ El historial de cambios está respaldado en GitHub.</li>
+        <li>✅ Trabajar desde cualquier dispositivo con el mismo proyecto.</li>
+    </ul>
+    
+    <p><strong>Opción B: Overleaf (Local) + Descargas + GitHub (Para usuarios sin licencia de campus)</strong></p>
+    <ul>
+        <li>✅ Escribes en el editor de Overleaf.</li>
+        <li>✅ Descarga el proyecto completo desde Overleaf (formato ZIP).</li>
+        <li>✅ Sube los cambios a GitHub usando Git desde tu terminal local.</li>
+        <li>✅ Pasos: Descargar → Descomprimir → Git add/commit/push</li>
+    </ul>
+    
+    <h3>Información importante sobre Overleaf</h3>
+    
+    <p><strong>Buenas noticias:</strong> Si tu universidad tiene una licencia de Overleaf Campus (que es muy probable), tendrás acceso a todas las características premium de Overleaf de forma gratuita:
 
     <ul>
-        <li>Control de cambios en tiempo real</li>
-        <li>Historial completo de documentos</li>
-        <li>Búsqueda avanzada de referencias</li>
-        <li>Paleta de símbolos</li>
-        <li>Integraciones con Git, GitHub, Dropbox, Mendeley y Zotero</li>
-        <li>Soporte prioritario</li>
-        <li>Servidores de compilación más rápidos</li>
+        <li>✅ Compilación rápida (240 segundos vs 20 segundos en versión gratuita).</li>
+        <li>✅ Acceso a integraciones con GitHub, Zotero y Mendeley.</li>
+        <li>✅ Hasta 10 colaboradores por proyecto (ilimitado en algunos casos).</li>
+        <li>✅ Historial completo de cambios.</li>
+        <li>✅ Soporte prioritario.</li>
     </ul>
+    
+    <p>Para activar tu cuenta de campus, en Overleaf ve a <strong>Account Settings</strong> y busca la opción de <strong>Campus License</strong>.</p>
+    
+    <h3>Limitaciones de Overleaf (versión gratuita sin licencia)</h3>
 
-    <p>Es importante tener en cuenta que, a pesar de estas limitaciones, si se utiliza Overleaf/LaTeX de manera razonable, es poco probable que se alcancen los límites de tamaño de archivo establecidos en la mayoría de los casos.</p>
+    <p>Si no accedes a través de la licencia de campus, la versión gratuita de Overleaf tiene estas limitaciones:</p>
+
+    <ol>
+        <li><strong>Tiempo de compilación:</strong> Máximo 20 segundos por compilación.</li>
+        
+        <li><strong>Colaboradores:</strong> Solo 1 colaborador por proyecto (otros pueden ver con enlace compartido).</li>
+        
+        <li><strong>Tamaño de material editable:</strong> Máximo 7 MB por proyecto.</li>
+        
+        <li><strong>Tamaño de archivo individual:</strong> Máximo 2 MB por archivo.</li>
+        
+        <li><strong>Sincronización con GitHub:</strong> No disponible en versión gratuita (sí con licencia campus).</li>
+    </ol>
+
+    <p><strong>Nota:</strong> Para este curso, estas limitaciones NO son un problema. Trabajaremos con documentos razonables en tamaño.</p>
+    
+    <h3>Integraciones útiles de Overleaf</h3>
+    
+    <h4>1. Integración con Zotero (para bibliografía)</h4>
+    <p>Zotero es un gestor de referencias que puede integrarse con Overleaf. Aprenderemos esto en la Clase 4.</p>
+    
+    <h4>2. Integración con Mendeley (alternativa)</h4>
+    <p>Similar a Zotero, es otra opción popular en universidades. También se integra con Overleaf.</p>
+    
+    <h4>3. Sincronización con GitHub (Licencia Campus)</h4>
+    <p>Si tu institución proporciona licencia Campus, puedes sincronizar tu proyecto Overleaf directamente con GitHub:
+    <ul>
+        <li>Cambios en Overleaf se sincronizan automáticamente a GitHub.</li>
+        <li>Puedes hacer pull/push desde terminal local sin descargar proyectos.</li>
+        <li>Los colaboradores ven los cambios en tiempo real.</li>
+    </ul>
+    
+    <h3>Comparación: Herramientas Locales vs. Overleaf</h3>
+    
+    <table border="1" cellpadding="10">
+        <tr>
+            <th>Característica</th>
+            <th>Instalación Local (TeXstudio + Git Terminal)</th>
+            <th>Overleaf + GitHub</th>
+        </tr>
+        <tr>
+            <td><strong>Instalación</strong></td>
+            <td>❌ Complicada (LaTeX + TeXstudio + Git)</td>
+            <td>✅ Ninguna (solo navegador web)</td>
+        </tr>
+        <tr>
+            <td><strong>Compilación</strong></td>
+            <td>Manual (presionar botón)</td>
+            <td>✅ Automática en tiempo real</td>
+        </tr>
+        <tr>
+            <td><strong>Colaboración</strong></td>
+            <td>Complicada (resolver conflictos de Git)</td>
+            <td>✅ Integrada y fácil</td>
+        </tr>
+        <tr>
+            <td><strong>Acceso remoto</strong></td>
+            <td>Solo en tu ordenador</td>
+            <td>✅ Desde cualquier dispositivo</td>
+        </tr>
+        <tr>
+            <td><strong>Plantillas</strong></td>
+            <td>Buscar/descargar manualmente</td>
+            <td>✅ 6,000+ plantillas integradas</td>
+        </tr>
+        <tr>
+            <td><strong>Control de versiones</strong></td>
+            <td>Git (línea de comandos)</td>
+            <td>✅ GitHub + Overleaf History</td>
+        </tr>
+        <tr>
+            <td><strong>Compatibilidad</strong></td>
+            <td>Posibles incompatibilidades entre SO</td>
+            <td>✅ Compatible con todos los SO</td>
+        </tr>
+    </table>
+    
+    <h3>¿Y las herramientas locales? ¿Cuándo usarlas?</h3>
+    
+    <p>Aunque Overleaf es la herramienta principal del curso, existen casos donde herramientas locales son útiles:</p>
+    
+    <ul>
+        <li><strong>TeXstudio</strong>: Útil si trabajas sin conexión a internet o prefieres máximo control local.</li>
+        <li><strong>VS Code + LaTeX Workshop</strong>: Para desarrolladores que ya usan VS Code. Personalización extrema.</li>
+        <li><strong>LyX</strong>: Si prefieres una interfaz visual en lugar de escribir código LaTeX.</li>
+    </ul>
+    
+    <p><strong>Para este curso:</strong> Usaremos exclusivamente Overleaf. Si después quieres aprender herramientas locales, el conocimiento de LaTeX que adquieras aquí te servirá.</p>
 
     <p><a href="index.html" class="back-to-index">Volver al índice</a></p>
+    
+    <h2>Ejercicios Prácticos - Clase 1</h2>
+    
+    <p><strong>Realiza estos ejercicios en orden. Son esenciales para dominar Git, GitHub y Overleaf.</strong></p>
+    
+    <h3>✏️ Ejercicio 1: Configurar Git (15 minutos)</h3>
+    <ol>
+        <li>Abre tu terminal (Command Prompt en Windows, Terminal en Mac/Linux).</li>
+        <li>Configura tu nombre y email en Git:
+            <pre><code>git config --global user.name "Tu Nombre Completo"
+git config --global user.email "tu@email.com"</code></pre>
+        </li>
+        <li>Verifica la configuración:
+            <pre><code>git config --global --list</code></pre>
+        </li>
+    </ol>
+    
+    <h3>✏️ Ejercicio 2: Crear Cuenta en GitHub (10 minutos)</h3>
+    <ol>
+        <li>Ve a <a href="https://github.com" target="_blank" rel="noopener">https://github.com</a> y crea tu cuenta.</li>
+        <li>Configura tu perfil con:
+            <ul>
+                <li>Foto de perfil</li>
+                <li>Nombre completo</li>
+                <li>Biografía breve</li>
+            </ul>
+        </li>
+        <li>Crea tu primer repositorio:
+            <ul>
+                <li>Nombre: <code>2025TuApellido</code></li>
+                <li>Descripción: "Repositorio del curso de LaTeX y Git"</li>
+                <li>Privado: Sí</li>
+                <li>Inicializar con README: Sí</li>
+            </ul>
+        </li>
+    </ol>
+    
+    <h3>✏️ Ejercicio 3: Crear Cuenta en Overleaf (10 minutos)</h3>
+    <ol>
+        <li>Ve a <a href="https://www.overleaf.com" target="_blank" rel="noopener">https://www.overleaf.com</a></li>
+        <li>Crea tu cuenta usando tu correo institucional (recomendado).</li>
+        <li>Busca la opción de "Campus License" en Settings y actívala si está disponible.</li>
+        <li>Accede al panel de proyectos.</li>
+    </ol>
+    
+    <h3>✏️ Ejercicio 4: Crear tu Primer Proyecto en Overleaf (20 minutos)</h3>
+    <ol>
+        <li>En Overleaf, haz clic en "New Project" > "Blank Project".</li>
+        <li>Asigna el nombre: "Mi_Primer_Documento".</li>
+        <li>En el editor central, edita el archivo main.tex para que diga:
+            <pre><code>\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+
+\title{Mi Primer Documento en Overleaf}
+\author{Tu Nombre}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Introducción}
+Este es mi primer documento compilado en Overleaf. 
+No necesité instalar nada en mi ordenador.
+
+\section{Ventajas de Overleaf}
+\begin{itemize}
+    \item Acceso desde cualquier navegador
+    \item Compilación automática
+    \item Colaboración en tiempo real
+\end{itemize}
+
+\end{document}</code></pre>
+        </li>
+        <li>Haz clic en el botón "Compile" (verde).</li>
+        <li>Observa cómo aparece el PDF compilado en el panel derecho.</li>
+    </ol>
+    
+    <h3>✏️ Ejercicio 5: Compartir tu Proyecto en Overleaf (10 minutos)</h3>
+    <ol>
+        <li>En tu proyecto, haz clic en "Share" (arriba a la derecha).</li>
+        <li>En la opción "Edit link", copia el enlace.</li>
+        <li>Envía este enlace a un compañero (o a ti mismo desde otra ventana).</li>
+        <li>Verifica que tu compañero puede hacer cambios en tiempo real.</li>
+        <li>Pide a tu compañero que agregue una nueva sección con su nombre.</li>
+    </ol>
+    
+    <h3>✏️ Ejercicio 6: Descargar tu Proyecto y Subirlo a GitHub (25 minutos)</h3>
+    <ol>
+        <li>En Overleaf, haz clic en "Menu" > "Download" > "Source".</li>
+        <li>Se descargará un archivo ZIP. Descomprímelo en tu ordenador.</li>
+        <li>Abre una terminal en ese directorio y ejecuta:
+            <pre><code>git init
+git add .
+git commit -m "Primer proyecto Overleaf compilado"</code></pre>
+        </li>
+        <li>En GitHub, ve a tu repositorio y copia la URL HTTPS.</li>
+        <li>En tu terminal, ejecuta:
+            <pre><code>git remote add origin https://github.com/tu-usuario/2025TuApellido.git
+git branch -M main
+git push -u origin main</code></pre>
+        </li>
+        <li>Actualiza tu navegador en GitHub. ¡Deberías ver tus archivos LaTeX!</li>
+    </ol>
+    
+    <h3>✏️ Ejercicio 7: Editar en Local y Subirlo a GitHub (20 minutos)</h3>
+    <ol>
+        <li>En tu ordenador, abre el archivo main.tex con un editor de texto (Notepad, VS Code, etc.).</li>
+        <li>Haz un cambio pequeño (ej: cambia el título).</li>
+        <li>En la terminal, ejecuta:
+            <pre><code>git status</code></pre>
+        </li>
+        <li>Verás que main.tex fue modificado.</li>
+        <li>Haz commit de los cambios:
+            <pre><code>git add .
+git commit -m "Actualización del título desde editor local"</code></pre>
+        </li>
+        <li>Sube a GitHub:
+            <pre><code>git push origin main</code></pre>
+        </li>
+        <li>Ve a tu repositorio en GitHub y verifica que el cambio está ahí.</li>
+    </ol>
+    
+    <h3>✏️ Ejercicio 8: Clonar tu Repositorio de GitHub (10 minutos)</h3>
+    <ol>
+        <li>En una carpeta nueva en tu ordenador, abre una terminal.</li>
+        <li>Clona tu repositorio:
+            <pre><code>git clone https://github.com/tu-usuario/2025TuApellido.git</code></pre>
+        </li>
+        <li>Entra en el directorio:
+            <pre><code>cd 2025TuApellido</code></pre>
+        </li>
+        <li>Abre main.tex y verifica que está el contenido correcto.</li>
+    </ol>
+    
+    <h3>Resumen de lo que aprendiste en esta clase:</h3>
+    <ul>
+        <li>✅ Entiendes qué es Git y por qué es importante.</li>
+        <li>✅ Creaste una cuenta en GitHub y un primer repositorio.</li>
+        <li>✅ Comprendes básicamente cómo funciona Git (add, commit, push).</li>
+        <li>✅ Creaste una cuenta en Overleaf.</li>
+        <li>✅ Compilaste tu primer documento LaTeX en Overleaf sin instalar nada.</li>
+        <li>✅ Compartiste un proyecto con compañeros en Overleaf.</li>
+        <li>✅ Sincronizaste un proyecto entre Overleaf y GitHub.</li>
+        <li>✅ Clonaste un repositorio desde GitHub.</li>
+    </ul>
+    
+    <h3>Próxima clase: Clase 2 - Fundamentos de LaTeX</h3>
+    <p>En la siguiente clase aprenderás:</p>
+    <ul>
+        <li>Estructura completa de un documento LaTeX.</li>
+        <li>Comandos y entornos básicos.</li>
+        <li>Crear documentos profesionales con secciones, subsecciones, etc.</li>
+        <li>Todo esto usando Overleaf, sin instalaciones locales.</li>
+    </ul>
+    
     <h3>Más información</h3>
     <ul>
         <li><a href="https://www.geeksforgeeks.org/git-vs-other-version-control-systems-why-git-stands-out/"
                 target="_blank"
-                rel="noopener">https://www.geeksforgeeks.org/git-vs-other-version-control-systems-why-git-stands-out/</a>
+                rel="noopener">Git vs Other Version Control Systems</a>
         </li>
         <li><a href="https://www.toolsqa.com/git/what-is-git/" target="_blank"
-                rel="noopener">https://www.toolsqa.com/git/what-is-git/</a></li>
-        <li><a href="https://www.atlassian.com/git" target="_blank" rel="noopener">https://www.atlassian.com/git</a>
-        </li>
-        <li><a href="https://www.geeksforgeeks.org/install-git-on-windows/" target="_blank"
-                rel="noopener">https://www.geeksforgeeks.org/install-git-on-windows/</a></li>
-        <li><a href="https://macpaw.com/how-to/install-git-tool-mac" target="_blank"
-                rel="noopener">https://macpaw.com/how-to/install-git-tool-mac</a></li>
-        <li><a href="https://graphite.dev/guides/how-to-install-git-on-linux" target="_blank"
-                rel="noopener">https://graphite.dev/guides/how-to-install-git-on-linux</a></li>
-        <li><a href="https://phoenixnap.com/kb/how-to-install-git-windows" target="_blank"
-                rel="noopener">https://phoenixnap.com/kb/how-to-install-git-windows</a></li>
-        <li><a href="https://medium.devlander.com/how-to-install-git-on-your-mac-and-windows-1dc13b49e42e?gi=a81c9280447d"
-                target="_blank"
-                rel="noopener">https://medium.devlander.com/how-to-install-git-on-your-mac-and-windows-1dc13b49e42e?gi=a81c9280447d</a>
-        </li>
-        <li><a href="https://git-scm.com/downloads/linux" target="_blank"
-                rel="noopener">https://git-scm.com/downloads/linux</a></li>
-        <li><a href="https://github.com/git-guides/install-git?WT.mc_id=github-azuredevtips-azureappsdev"
-                target="_blank"
-                rel="noopener">https://github.com/git-guides/install-git?WT.mc_id=github-azuredevtips-azureappsdev</a>
-        </li>
-        <li><a href="https://git-scm.com/downloads/mac" target="_blank"
-                rel="noopener">https://git-scm.com/downloads/mac</a></li>
-        <li><a href="https://www.simplilearn.com/tutorials/git-tutorial/git-installation-on-windows" target="_blank"
-                rel="noopener">https://www.simplilearn.com/tutorials/git-tutorial/git-installation-on-windows</a></li>
-        <li><a href="https://phoenixnap.com/kb/install-git-on-mac" target="_blank"
-                rel="noopener">https://phoenixnap.com/kb/install-git-on-mac</a></li>
-        <li><a href="https://www.youtube.com/watch?v=iYkLrXobBbA" target="_blank"
-                rel="noopener">https://www.youtube.com/watch?v=iYkLrXobBbA</a></li>
-        <li><a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git" target="_blank"
-                rel="noopener">https://git-scm.com/book/en/v2/Getting-Started-Installing-Git</a></li>
-        <li><a href="https://www.nobledesktop.com/learn/git/what-is-git" target="_blank"
-                rel="noopener">https://www.nobledesktop.com/learn/git/what-is-git</a></li>
-        <li><a href="https://about.gitlab.com/topics/version-control/what-is-git-version-control/" target="_blank"
-                rel="noopener">https://about.gitlab.com/topics/version-control/what-is-git-version-control/</a></li>
-        <li><a href="https://www.w3schools.com/git/" target="_blank" rel="noopener">https://www.w3schools.com/git/</a>
+                rel="noopener">¿Qué es Git?</a></li>
+        <li><a href="https://www.atlassian.com/git" target="_blank" rel="noopener">Tutoriales de Git - Atlassian</a>
         </li>
         <li><a href="https://docs.github.com/en/get-started/using-git/about-git" target="_blank"
-                rel="noopener">https://docs.github.com/en/get-started/using-git/about-git</a></li>
-        <li><a href="https://about.gitlab.com/topics/version-control/" target="_blank"
-                rel="noopener">https://about.gitlab.com/topics/version-control/</a></li>
-        <li><a href="https://www.w3schools.com/git/git_intro.asp?remote=github" target="_blank"
-                rel="noopener">https://www.w3schools.com/git/git_intro.asp?remote=github</a></li>
-        <li><a href="https://www.atlassian.com/git/tutorials/what-is-version-control" target="_blank"
-                rel="noopener">https://www.atlassian.com/git/tutorials/what-is-version-control</a></li>
-        <li><a href="https://www.youtube.com/watch?v=8JJ101D3knE" target="_blank"
-                rel="noopener">https://www.youtube.com/watch?v=8JJ101D3knE</a></li>
-        <li><a href="https://developers.redhat.com/articles/2023/08/02/beginners-guide-git-version-control"
-                target="_blank"
-                rel="noopener">https://developers.redhat.com/articles/2023/08/02/beginners-guide-git-version-control</a>
+                rel="noopener">About Git - GitHub Docs</a></li>
+        <li><a href="https://www.overleaf.com/learn" target="_blank"
+                rel="noopener">Overleaf Learn - Documentación completa</a></li>
+        <li><a href="https://www.overleaf.com/learn/how-to/Sharing_a_project" target="_blank"
+                rel="noopener">Cómo compartir proyectos en Overleaf</a></li>
+        <li><a href="https://www.w3schools.com/git/" target="_blank" rel="noopener">W3Schools Git Tutorial</a>
         </li>
-        <li><a href="https://www.youtube.com/watch?v=CvUiKWv2-C0" target="_blank"
-                rel="noopener">https://www.youtube.com/watch?v=CvUiKWv2-C0</a></li>
         <li><a href="https://www.freecodecamp.org/news/what-is-git-learn-git-version-control/" target="_blank"
-                rel="noopener">https://www.freecodecamp.org/news/what-is-git-learn-git-version-control/</a></li>
-        <li><a href="https://product.hubspot.com/blog/git-and-github-tutorial-for-beginners" target="_blank"
-                rel="noopener">https://product.hubspot.com/blog/git-and-github-tutorial-for-beginners</a></li>
-
-
-        <li><a href="https://www.hostinger.es/tutoriales/comandos-de-git" target="_blank"
-                rel="noopener">https://www.hostinger.es/tutoriales/comandos-de-git</a></li>
-        <li><a href="https://www.freecodecamp.org/espanol/news/gitignore-que-es-gitignore-y-como-anadirlo-a-tu-repositorio/"
-                target="_blank"
-                rel="noopener">https://www.freecodecamp.org/espanol/news/gitignore-que-es-gitignore-y-como-anadirlo-a-tu-repositorio/</a>
-        </li>
-        <li><a href="https://blog.hubspot.es/website/comandos-github" target="_blank"
-                rel="noopener">https://blog.hubspot.es/website/comandos-github</a></li>
-        <li><a href="https://keepcoding.io/blog/fichero-gitignore/" target="_blank"
-                rel="noopener">https://keepcoding.io/blog/fichero-gitignore/</a></li>
-        <li><a href="https://gist.github.com/dasdo/9ff71c5c0efa037441b6" target="_blank"
-                rel="noopener">https://gist.github.com/dasdo/9ff71c5c0efa037441b6</a></li>
-        <li><a href="https://www.freecodecamp.org/espanol/news/gitignore-explicado-que-es-y-como-agregar-a-tu-repositorio/"
-                target="_blank"
-                rel="noopener">https://www.freecodecamp.org/espanol/news/gitignore-explicado-que-es-y-como-agregar-a-tu-repositorio/</a>
-        </li>
-        <li><a href="https://www.dreamhost.com/blog/es/comandos-git-ejemplos-aplicados/" target="_blank"
-                rel="noopener">https://www.dreamhost.com/blog/es/comandos-git-ejemplos-aplicados/</a></li>
-        <li><a href="https://desarrolloweb.com/articulos/archivo-gitignore.html" target="_blank"
-                rel="noopener">https://desarrolloweb.com/articulos/archivo-gitignore.html</a></li>
-
-
-
+                rel="noopener">What is Git? Learn Git Version Control - freeCodeCamp</a></li>
     </ul>
 </body>
 
