@@ -1,0 +1,58 @@
+# LaTeX temporary files
+*.aux
+*.bbl
+*.blg
+*.dvi
+*.fdb_latexmk
+*.fls
+*.fmt
+*.log
+*.nav
+*.out
+*.pdf
+*.snm
+*.synctex
+*.synctex.gz
+*.toc
+*.vrb
+
+# Generated files
+*.ps
+*.eps
+
+# TeXstudio project files
+*.txss
+*.texpadtmp
+
+# Bibliography files (if using local bib cache)
+*.bcf
+*.xml
+
+# Editor backups
+*~
+*.swp
+*.swo
+*.bak
+
+# IDE files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# OS files
+.DS_Store
+Thumbs.db
+.directory
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Node modules (if needed for any build system)
+node_modules/
+
+# Build directories
+build/
+dist/
+.out/

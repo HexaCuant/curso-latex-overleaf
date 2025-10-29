@@ -1,0 +1,63 @@
+%        File: membrete.tex
+%     Created: lun nov 10 11:00  2003 C
+% Last Change: lun nov 10 11:00  2003 C
+%
+\documentclass[a4paper,12pt]{article}
+\usepackage{graphicx}
+\usepackage[top=4cm,headheight=4cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage[spanish]{babel}
+\pagestyle{fancy}
+\usepackage[utf8]{inputenc}
+\usepackage{setspace}
+\newsavebox{\mylogo}
+\savebox{\mylogo}{\includegraphics[width=2cm]{membrete_univ}}
+\newcommand{\tlf}{}
+\newcommand{\pais}{}
+\newcommand{\nombre}{}
+\newcommand{\fax}{}
+\newcommand{\email}{}
+\lhead{
+\hspace*{-2cm}
+\vspace*{-1cm}
+\begin{minipage}[t]{4cm}
+  \begin{center}
+\usebox{\mylogo}\\
+\tiny{\textbf{\emph{Máster en Genética y Evolución\\Departamento de Genética} \\
+Facultad de Ciencias\\
+Universidad de Granada \\}}
+\end {center}
+\end{minipage}
+}
+  \cfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\begin{document}
+\doublespace
+
+\vspace*{2cm}   
+Miguel Burgos Poyatos, Catedrático de Genética del Departamento de Genética de la Universidad de Granada,
+
+\begin{description}
+	\item[INFORMA:]Que Dª fulanita de Tal ha completado un total de 140 horas de estancia en mi laboratorio para la realización de un periodo de prácticas dentro el programa \emph{Erasmus}.
+\end{description}
+
+A petición de la interesada y para que surta los efectos oportunos donde convenga firmo el presente INFORME en 
+
+Granada, a \today
+
+\begin{center}
+\singlespace
+
+\includegraphics[width=7cm]{firma}
+%\vspace{3cm}
+
+\vspace{-1.2cm}
+
+Fdo. Miguel Burgos Poyatos
+
+Coordinador del Máter en
+
+Genética y Evolución
+\end{center}
+\end{document}
+ 

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LaTeX+Git</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="container">
+    <p><a href="index.html" class="back-to-index">Volver al índice</a></p>
+    <h2>Clase 4: Fórmulas matemáticas y bibliografía</h2>
+
+    <h3>1. Escritura de fórmulas matemáticas (1.5h)</h3>
+    <h4>1.1 Modo inline y modo display</h4>
+    <p><strong>Inline</strong>: Fórmulas dentro del texto, usando <code>$...$</code> o <code>\(...\)</code>.</p>
+    <pre><code>La energía $E = mc^2$ es fundamental en física moderna.
+La integral \(\int_a^b f(x)dx\) representa el área bajo la curva.
+</code></pre>
+
+    <p><strong>Display</strong>: Fórmulas centradas y destacadas, con <code>\[...\]</code> o <code>equation*</code>.</p>
+    <pre><code>La ecuación de onda es:
+\[
+\nabla^2 \psi = \frac{1}{v^2} \frac{\partial^2 \psi}{\partial t^2}
+\]
+</code></pre>
+
+    <h4>1.2 Símbolos matemáticos comunes</h4>
+    <p><strong>Letras griegas</strong>: <code>\alpha</code>, <code>\beta</code>, <code>\Gamma</code>, <code>\Omega</code>.</p>
+    <p><strong>Operadores</strong>: <code>\times</code>, <code>\div</code>, <code>\pm</code>, <code>\sum</code>, <code>\int</code>.</p>
+    <p><strong>Fracciones y raíces</strong>:</p>
+    <pre><code>\(\frac{a}{b}\), \(\sqrt{x}\), \(\sqrt[n]{x}\).
+\[
+\sum_{i=1}^n \frac{\sqrt{x_i}}{2} \times \alpha
+\]
+</code></pre>
+
+    <h4>1.3 Ecuaciones numeradas y referencias</h4>
+    <p>Entorno <code>equation</code> para numeración automática:</p>
+    <pre><code>\begin{equation}
+    \label{eq:onda}
+    \frac{\partial^2 u}{\partial t^2} = c^2 \nabla^2 u
+\end{equation}
+Como se ve en la ecuación \eqref{eq:onda}, la velocidad es crítica.
+</code></pre>
+
+<p>Consultar la <em>Comprehensive LaTeX Symbol list</em> y <a href="https://detexify.kirelabs.org/" target="_blank" rel="noopener">Detexify</a> para encontrar símbolos matemáticos.</p>
+
+<h3>2. Introducción a BibTeX y JabRef (1.5h)</h3>
+<h4>2.1 Crear una base de datos bibliográfica</h4>
+<p><strong>Estructura de un archivo <code>.bib</code></strong>:</p>
+<pre><code>@book{einstein1916relativity,
+    title     = {Relativity: The Special and General Theory},
+    author    = {Einstein, Albert},
+    year      = {1916},
+    publisher = {Methuen & Co.}
+}
+</code></pre>
+</code></pre>
+
+    <h4>2.2 Uso de JabRef</h4>
+    <p><strong>Pasos básicos</strong>:</p>
+    <ol>
+        <li>Crear nueva entrada (<code>Ctrl + N</code>).</li>
+        <li>Seleccionar tipo (libro, artículo, etc.).</li>
+        <li>Rellenar campos: autor, título, año, DOI (si existe).</li>
+        <li>Guardar como <code>referencias.bib</code>.</li>
+        <li>Búsquedas en bases de dados (ej. PubMed)</li>
+        <li>Inserción automática de citas en el documento</li>
+    </ol>
+    
+
+    <h4>2.3 Citas y bibliografía en LaTeX</h4>
+    <p><strong>Preámbulo</strong>:</p>
+    <pre><code>\usepackage{natbib}  % Para estilos de citas
+\bibliographystyle{plainnat}  % Estilo APA, IEEE, etc.
+</code></pre>
+
+    <p><strong>Citar en el texto</strong>:</p>
+    <pre><code>Según \citet{einstein1916relativity}, la teoría...
+Estudios recientes \citep{hawking1973large} confirman...
+</code></pre>
+
+    <p><strong>Generar la bibliografía</strong>:</p>
+    <pre><code>\bibliography{referencias}  % Sin extensión .bib
+</code></pre>
+
+    <h4>2.4 Compilación con BibTeX</h4>
+    <p>Flujo de comandos (en orden):</p>
+    <ol>
+        <li><code>pdflatex documento.tex</code></li>
+        <li><code>bibtex documento.aux</code></li>
+        <li><code>pdflatex documento.tex</code> (2 veces).</li>
+    </ol>
+
+    <h3>3. Ejercicios prácticos (1h)</h3>
+    <h4>Ejercicio 1: Fórmulas matemáticas</h4>
+    <p>Crea un documento LaTeX que incluya:</p>
+    <ul>
+        <li>Una ecuación numerada con integral y fracciones:</li>
+        <pre><code>\begin{equation}
+    \label{eq:integral}
+    \int_0^1 \frac{x^2}{\sqrt{1 - x^2}} dx = \frac{\pi}{8}
+\end{equation}
+</code></pre>
+        <li>Una fórmula en línea con una matriz:</li>
+        <pre><code>La matriz identidad: \(
+I = \begin{pmatrix}
+  1 & 0 \\
+  0 & 1
+\end{pmatrix}
+\)
+</code></pre>
+    </ul>
+
+    <h4>Ejercicio 2: Bibliografía con JabRef</h4>
+    <ol>
+        <li>Añade 2 entradas a <code>referencias.bib</code> usando JabRef (un libro y un artículo).</li>
+        <li>Cita ambas fuentes en el texto.</li>
+        <li>Compila el documento y verifica que la bibliografía se genera correctamente.</li>
+    </ol>
+
+    <h3>Errores comunes y soluciones</h3>
+    <ul>
+        <li><strong>¡La bibliografía no aparece!</strong>:
+            <ul>
+                <li>Asegúrate de ejecutar <code>bibtex</code> y compilar 2 veces con <code>pdflatex</code>.</li>
+            </ul>
+        </li>
+        <li><strong>Citas con <code>?</code></strong>:
+            <ul>
+                <li>Verifica que la clave en <code>\cite</code> coincida con la entrada en <code>.bib</code>.</li>
+            </ul>
+        </li>
+        <li><strong>JabRef no guarda campos</strong>:
+            <ul>
+                <li>Usa <code>Ctrl + S</code> después de editar cada entrada.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h3>Recursos adicionales</h3>
+    <ul>
+        <li><strong>Lista completa de símbolos matemáticos</strong>: <a href="https://detexify.kirelabs.org/" target="_blank" rel="noopener">Detexify</a>.</li>
+        <li><strong>Estilos bibliográficos</strong>: <a href="https://es.overleaf.com/learn/latex/Bibliography_management_with_bibtex" target="_blank" rel="noopener">Overleaf - BibTeX</a>.</li>
+    </ul>
+
+    <h4>Otros estilos de bibliografía</h4>
+    <div>
+        <p>Además de <code>natbib</code>, LaTeX ofrece múltiples paquetes y estilos para gestionar citas y bibliografía. Aquí tienes una lista de los más relevantes, con ejemplos y casos de uso:</p>
+
+        <hr>
+
+        <h3><strong>1. <code>biblatex</code></strong></h3>
+        <p><strong>Ventaja</strong>: Es el paquete más moderno y flexible, compatible con BibLaTeX (sucesor de BibTeX).</p>
+        <p><strong>Estilos populares</strong>:</p>
+        <ul>
+            <li><code>style=authoryear</code>: Citas como (Autor, Año).</li>
+        </ul>
+        <pre><code>\usepackage[style=authoryear]{biblatex}
+\addbibresource{referencias.bib} % Cargar base de datos
+\cite{einstein1916} → (Einstein, 1916)</code></pre>
+        <ul>
+            <li><code>style=numeric</code>: Citas numéricas [1].</li>
+            <li><code>style=apa</code>: Estilo APA (requiere <code>biblatex-apa</code>).</li>
+        </ul>
+
+        <p><strong>Ejemplo completo</strong>:</p>
+        <pre><code>\usepackage[backend=biber, style=authoryear]{biblatex}
+...
+\printbibliography % Generar bibliografía</code></pre>
+
+        <hr>
+
+        <h3><strong>2. Estilos clásicos de BibTeX</strong></h3>
+        <p>Funcionan con <code>\bibliographystyle{...}</code> (sin paquetes adicionales):</p>
+        <ul>
+            <li><strong><code>plain</code></strong>: Citas numéricas y autores en orden alfabético.</li>
+            <li><strong><code>unsrt</code></strong>: Como <code>plain</code>, pero ordenadas por aparición en el texto.</li>
+            <li><strong><code>alpha</code></strong>: Citas con abreviaturas (ej: [Ein16]).</li>
+            <li><strong><code>abbrv</code></strong>: Versión abreviada de <code>plain</code> (nombres cortos).</li>
+        </ul>
+
+        <p><strong>Ejemplo</strong>:</p>
+        <pre><code>\bibliographystyle{plain}
+\bibliography{referencias}</code></pre>
+
+        <hr>
+
+        <h3><strong>3. <code>apacite</code> (APA)</strong></h3>
+        <p><strong>Para trabajos en ciencias sociales</strong>:</p>
+        <pre><code>\usepackage{apacite}
+\bibliographystyle{apacite}
+...
+\citeA{einstein1916} → Einstein (1916)
+\cite{hawking1973} → (Hawking, 1973)</code></pre>
+
+        <hr>
+
+        <h3><strong>Recomendaciones según disciplina</strong></h3>
+        <ul>
+            <li><strong>Ciencias naturales</strong>: <code>natbib</code> o <code>biblatex</code> (estilo <code>authoryear</code>).</li>
+            <li><strong>Ingeniería</strong>: <code>IEEEtran</code>.</li>
+            <li><strong>Ciencias Sociales</strong>: <code>apacite</code> o <code>biblatex-apa</code>.</li>
+            <li><strong>Humanidades</strong>: <code>chicago</code> o <code>oxford</code>.</li>
+        </ul>
+
+        <hr>
+
+        <p><strong>Nota</strong>: Si usas <code>biblatex</code>, compila con <code>biber</code> en lugar de <code>bibtex</code> (en TeXStudio: <em>Herramientas > Comandos > Biber</em>).</p>
+    </div>
+
+
+
+    <p><a href="index.html" class="back-to-index">Volver al índice</a></p>
+</body>
+
+</html>

@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LaTeX+Git</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="container">
+    <p><a href="index.html" class="back-to-index">Volver al índice</a></p>
+    <h2>Clase 2: Fundamentos de LaTeX</h2>
+
+<h3>Estructura básica de un documento LaTeX</h3>
+
+<p>La estructura básica de un documento LaTeX consta de un preámbulo y el cuerpo del documento.</p>
+
+<p>Ejemplo:</p>
+<pre><code>\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\title{Mi Primer Documento LaTeX}
+\author{Tu Nombre}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Introducción}
+Este es un ejemplo básico de un documento LaTeX.
+
+\end{document}
+</code></pre>
+
+<p>Ejercicio: Crea un documento con esta estructura y compílalo para ver el resultado.</p>
+
+<h3>El preámbulo: paquetes y configuraciones iniciales</h3>
+
+<p>El preámbulo es donde se definen las configuraciones globales del documento y se cargan los paquetes necesarios.</p>
+
+<p>Ejemplo:</p>
+<pre><code>\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+
+\title{Documento con Paquetes}
+\author{Tu Nombre}
+
+\begin{document}
+\maketitle
+
+\section{Contenido}
+Este documento utiliza varios paquetes comunes.
+
+\end{document}
+</code></pre>
+
+<p>Ejercicio: Añade el paquete `babel` con la opción `spanish` para indicarle a LaTeX que estás escribiendo en español.</p>
+
+<h3>Tipos de documentos: article, report, book</h3>
+
+<p>LaTeX ofrece diferentes clases de documentos para distintos propósitos.</p>
+
+<p>Ejemplo (usando la clase `report`):</p>
+<pre><code>\documentclass{report}
+\usepackage[utf8]{inputenc}
+
+\title{Mi Informe}
+\author{Tu Nombre}
+
+\begin{document}
+
+\maketitle
+
+\chapter{Primer Capítulo}
+Este es el contenido del primer capítulo.
+
+\chapter{Segundo Capítulo}
+Este es el contenido del segundo capítulo.
+
+\end{document}
+</code></pre>
+
+<p>Ejercicio: Cambia la clase del documento a `book` y añade una `\part{}` antes de los capítulos. Prueba la opción `openany`.</p>
+
+<h3>Tipos de letra y fuentes</h3>
+
+<p>LaTeX permite cambiar fácilmente entre diferentes estilos de fuente.</p>
+
+<p>Ejemplo:</p>
+<pre><code>\documentclass{article}
+\documentclass{article}
+
+\usepackage{ifluatex}
+
+\ifluatex
+  \usepackage{fontspec}
+  \setmainfont{CMU Serif}
+  %\setmainfont{Fira Sans Compressed}
+  %\setmainfont{DejaVue Sans}
+\else
+  \usepackage[utf8]{inputenc}
+  \usepackage[T1]{fontenc}
+  \usepackage{lmodern}
+  %\usepackage{mathptmx} %times
+\fi
+
+\begin{document}
+
+% prueba a cambiar las indentaciones con \noindent y con \setlength{\parindent}{espacio}
+
+% prueba a cambiar el espaciado entre párrafos con \setlength{\parskip}{espacio}
+
+Texto normal
+
+\textbf{Texto en negrita}
+
+\textit{Texto en cursiva}
+
+\textsc{Texto en versalitas}
+
+{\Large Texto grande}
+
+{\footnotesize Texto pequeño}
+
+\end{document}
+
+</code></pre>
+
+<p>Ejercicio: Usa `\fontfamily{phv}\selectfont` para cambiar a una fuente sans-serif (como Helvetica) en una parte del documento.</p>
+
+<p>Además de <code>phv</code> (que corresponde a Helvetica), hay varias otras familias de fuentes disponibles en LaTeX. Algunas de las más comunes son:</p>
+
+<ol>
+    <li><code>ptm</code> - Times</li>
+    <li><code>ppl</code> - Palatino</li>
+    <li><code>pbk</code> - Bookman</li>
+    <li><code>pcr</code> - Courier</li>
+    <li><code>pnc</code> - New Century Schoolbook</li>
+    <li><code>put</code> - Utopia</li>
+    <li><code>bch</code> - Charter</li>
+    <li><code>qbk</code> - TeX Gyre Bonum (similar a Bookman)</li>
+    <li><code>qpl</code> - TeX Gyre Pagella (similar a Palatino)</li>
+    <li><code>qtm</code> - TeX Gyre Termes (similar a Times)</li>
+    <li><code>qcr</code> - TeX Gyre Cursor (similar a Courier)</li>
+    <li><code>lmr</code> - Latin Modern Roman</li>
+    <li><code>lmss</code> - Latin Modern Sans Serif</li>
+    <li><code>lmtt</code> - Latin Modern Typewriter</li>
+</ol>
+
+<p>Para usar cualquiera de estas fuentes, puedes emplear la misma sintaxis que en tu ejemplo:</p>
+
+<pre><code>\fontfamily{código_de_la_fuente}\selectfont</code></pre>
+
+<p>Por ejemplo, para cambiar a Times:</p>
+
+<pre><code>\fontfamily{ptm}\selectfont</code></pre>
+
+<p>Recuerda que la disponibilidad de estas fuentes puede depender de tu instalación de LaTeX y de los paquetes que tengas instalados</p>
+
+
+<h3>Cambio de Fuentes en LaTeX</h3>
+
+<p>Para usar una fuente específica en todo el documento en LaTeX, tienes varias opciones. Aquí te presento las formas más comunes y efectivas:</p>
+
+<h4>1. Usando el paquete fontspec (recomendado para XeLaTeX o LuaLaTeX)</h4>
+
+<p>Si estás usando XeLaTeX o LuaLaTeX, el método más flexible y moderno es usar el paquete fontspec:</p>
+
+<pre><code>\documentclass{article}
+\usepackage{fontspec}
+\setmainfont{Nombre de la Fuente}
+\begin{document}
+Tu texto aquí
+\end{document}</code></pre>
+
+<p>Por ejemplo, para usar Helvetica:</p>
+
+<pre><code>\setmainfont{Helvetica}</code></pre>
+
+<h4>2. Usando paquetes específicos de fuentes</h4>
+
+<p>Muchas fuentes tienen paquetes dedicados que puedes usar en el preámbulo:</p>
+
+<pre><code>\documentclass{article}
+\usepackage{helvet} % Para Helvetica
+\renewcommand{\familydefault}{\sfdefault}
+\begin{document}
+Tu texto aquí
+\end{document}</code></pre>
+
+<p>Otros ejemplos:</p>
+<ul>
+    <li>Para Times: <code>\usepackage{times}</code></li>
+    <li>Para Palatino: <code>\usepackage{palatino}</code></li>
+</ul>
+
+<h4>3. Usando \renewcommand{\familydefault}</h4>
+
+<p>Puedes cambiar la fuente predeterminada para todo el documento así:</p>
+
+<pre><code>\documentclass{article}
+\usepackage[T1]{fontenc}
+\renewcommand{\familydefault}{\sfdefault} % Para sans-serif
+\begin{document}
+Tu texto aquí
+\end{document}</code></pre>
+
+<p>Para otras familias:</p>
+<ul>
+    <li><code>\rmdefault</code> para Roman (serif)</li>
+    <li><code>\ttdefault</code> para monoespaciada</li>
+</ul>
+
+<h4>4. Usando \usepackage{...}</h4>
+
+<p>Algunos paquetes de fuentes cambian automáticamente la fuente del documento:</p>
+
+<pre><code>\documentclass{article}
+\usepackage{lmodern} % Usa Latin Modern
+\begin{document}
+Tu texto aquí
+\end{document}</code></pre>
+
+<h4>Consideraciones importantes</h4>
+
+<ul>
+    <li>Asegúrate de que las fuentes que quieres usar estén instaladas en tu sistema.</li>
+    <li>Si usas pdfLaTeX, estás limitado a las fuentes disponibles en el sistema TeX. XeLaTeX y LuaLaTeX te permiten usar cualquier fuente instalada en tu sistema operativo.</li>
+    <li>Algunas fuentes pueden requerir paquetes adicionales o configuraciones específicas.</li>
+    <li>Considera la legibilidad y el propósito de tu documento al elegir una fuente.</li>
+</ul>
+
+<h3>Paquetes comunes de fuentes en LaTeX</h3>
+
+<p>Varios tipos de fuentes en LaTeX tienen paquetes dedicados que se pueden cargar fácilmente con el comando \usepackage.</p>
+
+<h4>Fuentes serif</h4>
+<ul>
+    <li><strong>Times</strong>: <code>\usepackage{mathptmx}</code> (reemplaza el obsoleto \usepackage{times})</li>
+    <li><strong>Palatino</strong>: <code>\usepackage{mathpazo}</code></li>
+    <li><strong>Bookman</strong>: <code>\usepackage{bookman}</code></li>
+    <li><strong>Charter</strong>: <code>\usepackage{charter}</code></li>
+    <li><strong>Utopia</strong>: <code>\usepackage{fourier}</code></li>
+    <li><strong>Libertine</strong>: <code>\usepackage{libertine}</code></li>
+</ul>
+
+<h4>Fuentes sans-serif</h4>
+<ul>
+    <li><strong>Helvetica</strong>: <code>\usepackage{helvet}</code></li>
+    <li><strong>Avant Garde</strong>: <code>\usepackage{avant}</code></li>
+    <li><strong>Bera Sans</strong>: <code>\usepackage{berasans}</code></li>
+</ul>
+
+<h4>Fuentes monoespaciadas</h4>
+<ul>
+    <li><strong>Courier</strong>: <code>\usepackage{courier}</code></li>
+    <li><strong>Inconsolata</strong>: <code>\usepackage{inconsolata}</code></li>
+</ul>
+
+<h4>Otras fuentes notables</h4>
+<ul>
+    <li><strong>Computer Modern</strong> (predeterminada de LaTeX): No requiere paquete adicional</li>
+    <li><strong>Latin Modern</strong>: <code>\usepackage{lmodern}</code></li>
+    <li><strong>Kp-fonts</strong>: <code>\usepackage{kpfonts}</code></li>
+    <li><strong>Garamond</strong>: <code>\usepackage{garamond}</code></li>
+</ul>
+
+<p>Es importante notar que algunos de estos paquetes pueden estar obsoletos o tener versiones más recientes. Por ejemplo, para Times se recomienda usar mathptmx en lugar del antiguo paquete times. Además, muchas de estas fuentes tienen versiones mejoradas o alternativas en los paquetes TeX Gyre, que ofrecen un soporte más completo y actualizado.</p>
+
+<p>Para una mayor flexibilidad y acceso a más fuentes, especialmente si se usa XeLaTeX o LuaLaTeX, se recomienda el uso del paquete fontspec, que permite utilizar fuentes del sistema operativo directamente.</p>
+
+
+<p>Recuerda que cambiar la fuente para todo el documento puede afectar significativamente su apariencia, así que elige sabiamente según el contexto y los requisitos de tu proyecto.</p>
+
+<h3>Cajas de texto en LaTeX</h3>
+
+<p>LaTeX ofrece varias formas de manipular el texto utilizando diferentes tipos de cajas. Estas permiten rotar texto, desplazar letras, y crear efectos visuales interesantes. Vamos a explorar algunas de las opciones más útiles:</p>
+
+
+
+<h4>1. Rotación de texto con \rotatebox</h4>
+
+<p>El paquete <code>graphicx</code> proporciona el comando <code>\rotatebox</code> para rotar texto:</p>
+
+<pre><code>\usepackage{graphicx}
+
+\rotatebox[origin=c]{90}{Texto rotado}
+</code></pre>
+
+<p>Este comando rota el texto 90 grados en sentido antihorario. Puedes ajustar el ángulo según necesites.</p>
+
+<p>El comando \rotatebox del paquete graphicx permite rotar texto u otros elementos en LaTeX. La opción <code>origin</code> especifica el punto alrededor del cual se realiza la rotación. Las opciones disponibles para <code>origin</code> son:</p>
+
+<h5>Opciones de origin</h5>
+
+<ul>
+    <li><code>l</code>: izquierda (left)</li>
+    <li><code>r</code>: derecha (right)</li>
+    <li><code>t</code>: arriba (top)</li>
+    <li><code>c</code>: centro (center)</li>
+    <li><code>b</code>: abajo (bottom)</li>
+    <li><code>B</code>: línea base (baseline)</li>
+</ul>
+
+<p>Estas opciones se pueden combinar para especificar un punto preciso, por ejemplo:</p>
+
+<ul>
+    <li><code>origin=lc</code>: centro izquierdo</li>
+    <li><code>origin=rt</code>: esquina superior derecha</li>
+    <li><code>origin=cB</code>: centro de la línea base</li>
+</ul>
+
+<p>El valor predeterminado es <code>origin=lB</code> (esquina inferior izquierda en la línea base).</p>
+
+<h5>Propósito de origin</h5>
+
+<p>La opción <code>origin</code> sirve para controlar el punto alrededor del cual gira el texto. Esto afecta la posición final del texto rotado en relación con el resto del contenido.</p>
+
+<h5>Otras opciones disponibles</h5>
+
+<p>Además de <code>origin</code>, \rotatebox acepta otras opciones:</p>
+
+<ol>
+    <li><code>x</code> y <code>y</code>: Permiten especificar coordenadas precisas para el punto de rotación.</li>
+    <li><code>units</code>: Cambia las unidades del ángulo de rotación. Por defecto son grados contrarios a las agujas del reloj. Por ejemplo, <code>units=-360</code> cambiaría a grados en sentido horario.</li>
+</ol>
+
+<p>Ejemplo de uso:</p>
+
+<pre><code>\rotatebox[origin=c,x=10pt,y=5pt,units=-360]{45}{Texto rotado}</code></pre>
+
+<p>Este comando rotaría "Texto rotado" 45 grados en sentido horario alrededor de un punto 10pt a la derecha y 5pt arriba del centro del texto.</p>
+
+<div class="highlight-box"><p>Para obtener información detallada sobre todas las opciones disponibles de cualquier comando mencionado aquí, puedes consultar la documentación oficial del paquete correspondiente en el <a href="https://ctan.org/">CTAN (Comprehensive TeX Archive Network)</a>. La documentación del CTAN es la fuente más completa y actualizada de información sobre LaTeX y sus paquetes.</p></div>
+
+<h4>2. Desplazamiento vertical con \raisebox</h4>
+
+<p>Para desplazar texto verticalmente:</p>
+
+<pre><code>Texto normal \raisebox{1ex}{elevado} \raisebox{-1ex}{bajado}
+</code></pre>
+
+<p>El valor <code>1ex</code> es aproximadamente la altura de una 'x' minúscula en la fuente actual.</p>
+
+<h4>3. Cajas de ancho fijo con \makebox</h4>
+
+<p>Para crear una caja de ancho fijo:</p>
+
+<pre><code>\makebox[5cm][s]{Texto estirado}
+\makebox[5cm][c]{Texto centrado}
+\makebox[5cm][r]{Texto a la derecha}
+</code></pre>
+
+<p>Las opciones <code>[s]</code>, <code>[c]</code>, y <code>[r]</code> indican estirado, centrado, y alineado a la derecha respectivamente.</p>
+
+<h4>4. Cajas con fondo coloreado usando \colorbox</h4>
+
+<p>Requiere el paquete <code>color</code> o <code>xcolor</code>:</p>
+
+<pre><code>\usepackage{xcolor}
+
+\colorbox{yellow}{Texto con fondo amarillo}
+</code></pre>
+
+<h4>Ejercicio de colores</h4>
+
+<p>Consulta la documentación del paquete xcolor en CTAN para encontrar los nombres de colores predefinidos. Crea un documento LaTeX que contenga varios ejemplos de \colorbox con diferentes colores como olive, cyan, magenta, violet, teal y brown. Prueba también a crear tus propios colores usando la sintaxis RGB (por ejemplo, \definecolor{micolor}{RGB}{200,150,100}) y úsalos en el texto.</p>
+
+<h4>5. Cajas con marco usando \fbox</h4>
+
+<p>Para crear una caja con marco:</p>
+
+<pre><code>\fbox{Texto enmarcado}
+</code></pre>
+
+<h4>6. Combinación de efectos</h4>
+
+<p>Puedes combinar estos comandos para efectos más complejos:</p>
+
+<pre><code>\rotatebox{45}{\colorbox{lightgray}{\makebox[3cm][c]{Texto rotado y con fondo}}}
+</code></pre>
+
+<h4>Ejemplo completo</h4>
+
+<p>Aquí tienes un ejemplo que muestra varias de estas técnicas:</p>
+
+<pre><code>\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{xcolor}
+
+\begin{document}
+
+Texto normal 
+\rotatebox[origin=c]{90}{Rotado} 
+\raisebox{2ex}{Elevado} 
+\raisebox{-1ex}{Bajado}
+
+\makebox[5cm][s]{Estirado horizontalmente}
+
+\colorbox{yellow}{\makebox[5cm][c]{Centrado con fondo}}
+
+\fbox{\rotatebox{-45}{\textbf{Enmarcado y rotado}}}
+
+\end{document}
+</code></pre>
+
+<h4>Ejercicio</h4>
+
+<p>Crea un documento LaTeX que incluya:</p>
+
+<ol>
+    <li>Tu nombre rotado 90 grados.</li>
+    <li>Una palabra con cada letra en una altura diferente (como una onda).</li>
+    <li>Una caja de texto con fondo de color y borde.</li>
+    <li>Una frase donde algunas palabras estén rotadas en diferentes ángulos.</li>
+</ol>
+
+<p>Experimenta con diferentes combinaciones de estos comandos para crear efectos visuales interesantes.</p>
+
+
+<h3>Párrafos enmarcados y coloreados</h3>
+
+<p>Hay que incluir el paquete <code>framed</code></p>
+
+<pre><code>\usepackage{framed}
+
+\begin{framed}
+Este es un párrafo enmarcado...agregar más texto.
+\end{framed}
+</code></pre>
+
+<h4>Párrafo coloreado</h4>
+
+<pre><code>\definecolor{shadecolor}{rgb}{1,0.9,0.9}
+\begin{shaded}
+Este es un párrafo coloreado...agregar más texto.
+\end{shaded}
+</code></pre>
+
+
+<h3>Texto en Color</h3>
+
+<p>Para cambiar el color del texto en LaTeX, puedes usar el comando <code>\textcolor{color}{texto}</code> del paquete xcolor. Aquí tienes un ejemplo básico:</p>
+
+<pre><code>
+
+este es un texto \textcolor{red}{rojo} y este es \textcolor{blue}{azul}.
+
+</code></pre>
+
+<h3>Seccionado del documento: capítulos, secciones, subsecciones</h3>
+
+<p>LaTeX ofrece una jerarquía clara para estructurar documentos.</p>
+
+<p>Ejemplo:</p>
+<pre><code>\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\begin{document}
+
+\section{Primera Sección}
+Contenido de la primera sección.
+
+\subsection{Una Subsección}
+Contenido de la subsección.
+
+\subsubsection{Una Sub-subsección}
+Contenido más detallado.
+
+\paragraph{Un Párrafo}
+Esto es un párrafo con título.
+
+\end{document}
+</code></pre>
+
+<p>Ejercicio: Crea un documento usando la clase `book` con un `\chapter{}`, dos `\section{}` y al menos una `\subsection{}` en cada sección.</p>
+
+<h3>Generación de índice automático y enlaces activos</h3>
+
+<p>LaTeX puede generar automáticamente un índice (tabla de contenidos) y crear enlaces activos en el PDF resultante, lo que mejora significativamente la navegabilidad del documento.</p>
+
+<h4>Generación del índice</h4>
+
+<p>Para generar un índice automático, se utiliza el comando <code>\tableofcontents</code>. LaTeX recopila automáticamente todas las secciones, subsecciones, etc., y crea un índice basado en ellas.</p>
+
+<p>Ejemplo básico:</p>
+<pre><code>\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\begin{document}
+
+\tableofcontents
+
+\section{Introducción}
+Contenido de la introducción...
+
+\section{Metodología}
+Descripción de la metodología...
+
+\subsection{Recolección de datos}
+Detalles sobre la recolección de datos...
+
+\section{Resultados}
+Presentación de los resultados...
+
+\end{document}
+</code></pre>
+
+<p>Para que el índice se genere correctamente, es necesario compilar el documento dos veces.</p>
+
+
+En LaTeX, es posible especificar versiones cortas de los títulos de secciones, capítulos, y otros elementos de seccionado para que aparezcan en el índice (tabla de contenidos) mientras se mantiene un título más largo en el cuerpo del documento. Esto es particularmente útil cuando se tienen títulos largos que podrían hacer que el índice sea demasiado extenso o difícil de leer.
+
+<h3>Uso de títulos cortos para el índice</h3>
+
+<p>Para especificar una versión corta de un título, se utiliza un argumento opcional en el comando de seccionado. La sintaxis general es:</p>
+
+<pre><code>\section[Título corto para el índice]{Título completo en el documento}</code></pre>
+
+<p>Este método se puede aplicar a varios niveles de seccionado, incluyendo <code>\chapter</code>, <code>\section</code>, <code>\subsection</code>, etc.</p>
+
+<p>Ejemplo:</p>
+
+<pre><code>\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\begin{document}
+
+\tableofcontents
+
+\section[Intro]{Una introducción detallada al tema de estudio}
+
+Este es el contenido de la introducción...
+
+\section[Métodos]{Metodología utilizada en la investigación y análisis de datos}
+
+Aquí se describen los métodos...
+
+\subsection[Recolección]{Proceso de recolección y preparación de datos experimentales}
+
+Detalles sobre la recolección de datos...
+
+\section[Resultados]{Presentación y análisis de los resultados obtenidos}
+
+Los resultados muestran que...
+
+\end{document}
+</code></pre>
+
+<p>En este ejemplo:</p>
+
+<ul>
+    <li>El índice mostrará títulos cortos como "Intro", "Métodos", "Recolección", y "Resultados".</li>
+    <li>En el cuerpo del documento, aparecerán los títulos completos más descriptivos.</li>
+</ul>
+
+<h3>Consideraciones adicionales</h3>
+
+<ol>
+    <li><strong>Consistencia</strong>: Mantén una consistencia en el estilo y la longitud de los títulos cortos para que el índice sea uniforme y fácil de leer.</li>
+    <li><strong>Claridad</strong>: Asegúrate de que los títulos cortos sean lo suficientemente descriptivos para entender el contenido de la sección.</li>
+    <li><strong>Uso con hyperref</strong>: Si estás usando el paquete <code>hyperref</code>, los títulos cortos también se utilizarán en los marcadores del PDF.</li>
+    <li><strong>Capítulos en documentos book o report</strong>: Para la clase <code>book</code> o <code>report</code>, puedes usar la misma técnica con <code>\chapter</code>:</li>
+</ol>
+
+<pre><code>\chapter[Título corto]{Título largo del capítulo}</code></pre>
+
+<p><strong>Ejercicio:</strong> Crea un documento con al menos cinco secciones y varias subsecciones. Utiliza títulos largos y descriptivos para cada sección en el cuerpo del documento, pero proporciona versiones cortas para el índice. Incluye un <code>\tableofcontents</code> al principio y compila el documento dos veces para ver el resultado final. Asegúrate de que los títulos cortos sean concisos pero informativos.</p>
+
+
+
+<h4>Uso de hyperref para enlaces activos</h4>
+
+<p>El paquete <code>hyperref</code> permite crear enlaces activos en el PDF, incluyendo enlaces en el índice, referencias cruzadas y URLs.</p>
+
+<p>Ejemplo con hyperref:</p>
+<pre><code>\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\begin{document}
+
+\tableofcontents
+
+\section{Introducción}
+\label{sec:intro}
+Esta es la introducción. Puedes volver aquí haciendo clic en este número de sección.
+
+\section{Metodología}
+Vea la \hyperref[sec:intro]{Introducción} para más contexto.
+
+\section{Enlaces externos}
+Visita \href{https://www.latex-project.org/}{la página oficial de LaTeX}.
+
+\end{document}
+</code></pre>
+
+<p>En este ejemplo:</p>
+<ul>
+    <li><code>colorlinks=true</code> hace que los enlaces sean de color en lugar de estar encuadrados.</li>
+    <li><code>allcolors=blue</code> establece todos los enlaces en color azul.</li>
+    <li><code>\label{}</code> y <code>\hyperref[]{}</code> se usan para crear y referenciar etiquetas dentro del documento.</li>
+    <li><code>\href{}{}</code> se usa para crear enlaces a URLs externas.</li>
+</ul>
+
+<p>Ejercicio: Crea un documento con al menos tres secciones y varias subsecciones. Incluye un índice al principio, usa <code>\label{}</code> para etiquetar cada sección y crea al menos una referencia cruzada usando <code>\hyperref[]{}</code>. Asegúrate de incluir el paquete hyperref con opciones para personalizar el color de los enlaces.</p>
+
+El paquete <code>hyperref</code> ofrece una amplia gama de opciones para personalizar los enlaces en documentos PDF. Vamos a explorar algunas de las opciones más útiles, especialmente las relacionadas con los colores de diferentes tipos de enlaces.
+
+<h3>Opciones avanzadas de hyperref</h3>
+
+<p>El paquete <code>hyperref</code> permite una personalización detallada de los enlaces en tu documento PDF. Aquí tienes algunas opciones importantes:</p>
+
+<ol>
+    <li><strong>Colores para diferentes tipos de enlaces</strong>:
+        <ul>
+            <li><code>linkcolor</code>: Color para enlaces internos (por ejemplo, en el índice).</li>
+            <li><code>citecolor</code>: Color para citas bibliográficas.</li>
+            <li><code>urlcolor</code>: Color para URLs.</li>
+            <li><code>filecolor</code>: Color para enlaces a archivos locales.</li>
+        </ul>
+    </li>
+    <li><strong>Estilo de los enlaces</strong>:
+        <ul>
+            <li><code>colorlinks=true</code>: Hace que los enlaces sean de color en lugar de estar encuadrados.</li>
+            <li><code>breaklinks=true</code>: Permite que los enlaces se dividan en varias líneas.</li>
+        </ul>
+    </li>
+    <li><strong>Información del PDF</strong>:
+        <ul>
+            <li><code>pdftitle</code>: Título del documento PDF.</li>
+            <li><code>pdfauthor</code>: Autor del documento.</li>
+            <li><code>pdfsubject</code>: Asunto del documento.</li>
+            <li><code>pdfkeywords</code>: Palabras clave para metadatos.</li>
+        </ul>
+    </li>
+    <li><strong>Opciones de visualización</strong>:
+        <ul>
+            <li><code>pdfstartview</code>: Define cómo se abre el PDF (por ejemplo, <code>FitH</code> para ajustar al ancho).</li>
+            <li><code>pdfpagemode</code>: Controla si se muestran miniaturas o el índice al abrir el PDF.</li>
+        </ul>
+    </li>
+</ol>
+
+<p>Ejemplo con opciones avanzadas:</p>
+
+<pre><code>\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[
+    colorlinks=true,
+    linkcolor=red,
+    citecolor=green,
+    urlcolor=blue,
+    filecolor=magenta,
+    pdftitle={Mi Documento LaTeX},
+    pdfauthor={Tu Nombre},
+    pdfsubject={Ejemplo de hyperref},
+    pdfkeywords={LaTeX, hyperref, PDF},
+    pdfstartview={FitH},
+    pdfpagemode=UseOutlines
+]{hyperref}
+
+\begin{document}
+
+\tableofcontents
+
+\section{Introducción}
+\label{sec:intro}
+Esta es la introducción con un \hyperref[sec:conclusion]{enlace a la conclusión}.
+
+\section{Referencias}
+Citamos un artículo \cite{ejemplo2023}.
+
+\section{Enlaces externos}
+Visita la \href{https://www.latex-project.org/}{página oficial de LaTeX}.
+
+\section{Archivos locales}
+Ver \href{run:archivo_local.pdf}{archivo PDF local}.
+
+\section{Conclusión}
+\label{sec:conclusion}
+Esta es la conclusión.
+
+\begin{thebibliography}{9}
+\bibitem{ejemplo2023} Autor, A. (2023). Título del artículo. Revista, 1(1), 1-10.
+\end{thebibliography}
+
+\end{document}
+</code></pre>
+
+<p>En este ejemplo:</p>
+<ul>
+    <li>Los enlaces internos (como en el índice y referencias cruzadas) serán rojos.</li>
+    <li>Las citas bibliográficas serán verdes.</li>
+    <li>Las URLs serán azules.</li>
+    <li>Los enlaces a archivos locales serán magenta.</li>
+    <li>Se han añadido metadatos al PDF (título, autor, etc.).</li>
+    <li>El PDF se abrirá ajustado al ancho de la ventana (<code>FitH</code>).</li>
+    <li>Se mostrará el panel de marcadores al abrir el PDF (<code>UseOutlines</code>).</li>
+</ul>
+
+<p><strong>Ejercicio:</strong> Modifica el ejemplo anterior para usar diferentes tonos de azul para los distintos tipos de enlaces. Por ejemplo, usa azul claro para enlaces internos, azul oscuro para URLs, y azul medio para citas. Además, añade un enlace a un archivo local (puede ser ficticio) y asegúrate de que tenga un color diferente.</p>
+
+<h3>Uso de colores de xcolor en hyperref</h3>
+
+<p>En hyperref se pueden usar los colores definidos por xcolor, pero hay algunos requisitos y consideraciones importantes:</p>
+
+<h4>1. Orden de carga de paquetes</h4>
+<p>Es crucial cargar xcolor antes de hyperref para poder utilizar los colores definidos por xcolor en las opciones de hyperref.</p>
+
+<h4>2. Compatibilidad de opciones</h4>
+<p>Al cargar xcolor con opciones como dvipsnames, es necesario pasarlas también a hyperref para evitar conflictos. Por ejemplo:</p>
+
+<pre><code>\usepackage[dvipsnames]{xcolor}
+\usepackage[dvipsnames]{hyperref}</code></pre>
+
+<h4>3. Definición de colores</h4>
+<p>Puedes definir tus propios colores con xcolor y luego usarlos en hyperref. Por ejemplo:</p>
+
+<pre><code>\definecolor{winered}{rgb}{0.5,0,0}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=winered,
+    urlcolor=winered,
+    filecolor=winered
+}</code></pre>
+
+<h4>4. Uso de colores predefinidos</h4>
+<p>Puedes usar los colores predefinidos de xcolor, incluyendo los que se cargan con opciones como dvipsnames. Sin embargo, asegúrate de que estas opciones estén habilitadas al cargar xcolor.</p>
+
+<h4>5. Modelos de color</h4>
+<p>Hyperref es compatible con los diferentes modelos de color que ofrece xcolor (rgb, cmyk, HTML, etc.).</p>
+
+<h4>6. Sintaxis</h4>
+<p>Al especificar colores en hyperref, usa el nombre del color directamente, sin necesidad de comandos adicionales de xcolor.</p>
+
+<p>Puedes usar prácticamente cualquier color definido o predefinido por xcolor en hyperref, siempre que sigas estas pautas y cargues los paquetes en el orden correcto con las opciones adecuadas.</p>
+
+
+
+    <p><a href="index.html" class="back-to-index">Volver al índice</a></p>
+</body>
+</html>

@@ -1,0 +1,454 @@
+\documentclass[a4paper,twoside,12pt]{book}
+\usepackage{natbib}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{newcent}
+\usepackage[spanish]{babel}
+
+\addto{\captionsspanish}{\def\chaptername{}}
+% para que no aparezaca la palabra capítulo.
+\usepackage{rotating}
+\usepackage{xspace}
+%\usepackage{xy}
+\usepackage{amsmath}
+\usepackage{framed}
+\usepackage{type1cm}
+\usepackage{textcomp} %para \textcelsius
+\usepackage[indent,small,it,bf]{caption}
+%formato de los captions (pies de tablas y figuras): ``using imported graphics in latex (pág 50).
+\usepackage[tight]{minitoc}
+\setcounter{minitocdepth}{2}
+% tablas de contenidos en cada capitulo.
+\bibliographystyle{fany}
+\usepackage[nottoc,notlot,notlof]{tocbibind}
+% para que la bibliografía salga en el índice y no lo haga el lot y el lof.
+\usepackage{multicol}
+% para juntar columnas en las tablas.
+\usepackage{marvosym,amssymb,url}
+% para insertar símbolos como \Male y \Female.
+\usepackage{setspace,paralist,mdwlist,graphicx}
+%paquetes para insertar imágenes.
+\usepackage{afterpage}
+%para colocar un float en la pagina siguiente
+\usepackage[table]{xcolor}
+%permite poner colores en las tablas
+\usepackage{multirow}
+%para juntar filas en las tablas
+\usepackage{rotating}
+%para rotar texto
+
+\usepackage{texshade}
+\usepackage{longtable}
+%\usepackage[paperwidth=17.5cm,paperheight=25cm,top=3cm,bottom=2.75cm,inner=3cm,outer=2.5cm,dvips=false,pdftex=false,vtex=false]{geometry}
+\usepackage[]{geometry}
+\geometry{
+%paperwidth=17.5cm,
+%paperheight=25cm,
+top=3cm,
+bottom=3.25cm,
+inner=3.25cm,
+outer=2.5cm
+}
+
+%\usepackage[frame,a4,center,dvips]{crop} %ejes
+\usepackage[a4,center,dvips]{crop} %centrada
+%\usepackage{crop} %esquina
+
+
+\definecolor{blacklinkcolor}{rgb}{0,0,0}
+\definecolor{azul}{rgb}{0,0,1}
+\definecolor{verde}{rgb}{0,0.6,0}
+\definecolor{rojo}{rgb}{1,0,0}
+%\usepackage[dvips,ps2pdf,breaklinks,citecolor=azul,linkcolor=verde]{hyperref}
+\usepackage[dvips,ps2pdf,breaklinks,citecolor=blacklinkcolor,linkcolor=blacklinkcolor]{hyperref}
+\hypersetup{%
+colorlinks=true,%
+urlcolor=black%
+}
+
+
+
+%\usepackage{tocloft}
+%para personalizar la toc.
+
+\usepackage{epsfig}
+%para que latex pueda rotular las figuras.
+\usepackage{texshade}
+%(para crear los alineamientos de secuencias)
+\usepackage{hhline}
+%\usepackage{xcolor}
+% colorear texto.
+
+\usepackage{fancyvrb}
+
+\date{17 Julio de 2013}
+\newcommand{\titulo}{Caracterización de un ratón \emph{CreERT2} para la inactivación de alelos condicionales \emph{flox} en células de Sertoli adultas}
+
+\title{\titulo}
+
+\author{Alicia Hurtado Madrid}
+%\setlength{\parskip}{.7ex}
+\setlength\parskip{.5\baselineskip
+	plus .1\baselineskip
+		minus .4\baselineskip
+		}
+
+
+% sepaqración entre párrafos.
+\setcounter{tocdepth}{2}
+% profundidad en la tabla de contenidos.
+
+% \setcounter{secnumdepth}{5}
+% numera todos los epígrafes hasta nivel \subparagraph en el cuerpo del documento
+
+\usepackage{rotating}
+
+\makeatletter
+\def\@makechapterhead#1{%
+  \vspace*{1\p@}%
+  {\parindent \z@ \raggedright \normalfont
+    \ifnum \c@secnumdepth >\m@ne
+%        \huge\bfseries \@chapapp\space \thechapter
+        \par\nobreak
+        \vskip 20\p@
+    \fi
+    \interlinepenalty\@M
+    \Huge \bfseries \thechapter.\space#1\par\nobreak
+    \vskip 40\p@
+}}
+\makeatother
+% Cambia el formato de los títulos de los capítulos.
+
+\renewcommand{\mtctitle}{Contenidos}
+% Cambia Contents por Contenidos en las minitocs.
+
+%serie de tamaños de fuente: \tiny, \scriptsize, \footnotesize, \small, \normalsize, \large, \Large, \LARGE, \huge, \Huge
+
+\addtolength{\headheight}{12pt}
+\usepackage{fancyhdr}
+%\pagestyle{plain} 
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+
+%\usepackage{glosstex}
+%genera el glosario.
+
+%\sloppy
+%suaviza las rupturas de línea.
+
+%The \flushbottom declaration makes all text pages the same height,adding extra vertical space when necessary to fill out the page. This is the standard for the book style.
+
+% The \raggedbottom declaration makes all pages the height of the text on that page. No extra vertical space is added.
+
+\pretolerance=1000
+\tolerance=2000
+%(para que no corte muchas palabras)
+
+%\usepackage{titlesec}
+%\titleformat*{\section}{\bfseries \Large}
+%\titleformat*{\subsection}{\bfseries \large}
+
+
+\newcommand{\um}{\ensuremath{\mu m}}
+
+\newcommand{\subsubsubsection}[1]{\textbf{\vspace{1ex}#1\vspace{1ex}}}
+
+
+%\newcommand{\figura}[3]{%
+%				\begin{figure}{htp}
+%								\begin{center}
+%												\includegraphics[width=\textwidth]{#3}
+%								\end{center}
+%								\caption[#1]{#2}
+%								\label{fig:eyfp}
+%				\end{figure}
+%}
+
+
+
+\newcommand{\apartado}[1]{\vspace{1ex}\noindent\textbf{\emph{#1}}}
+\newcommand{\titulillo}[1]{\vspace{1ex}\textbf{\Large #1}\vspace{1ex}}
+\newcommand{\GC}{\textcelsius\xspace}
+\newcommand{\ul}{\ $\mu$l\xspace}
+\newcommand{\ug}{\ $\mu$g\xspace}
+\newcommand{\infi}{$\infty$}
+\newcommand{\uM}{$\mu$M}
+
+\newcommand{\gris}[2]{\multicolumn{1}{>{\columncolor[gray]{0.9}}#1}{#2}}
+%\newcommand{\gris}[2]{\multicolumn{1}{#1}{#2}}
+\newcommand{\mirnam}{$\mu$iRNAM\xspace}
+
+\newcommand{\epigrafe}[1]{\textbf{\emph{#1}}}
+
+%\setlength{\extrarowheight}{-.5cm}
+
+
+%para poner las figuras con solo \figura{nombre archivo sin extensión}{tamaño .8}{titulo corto xa el índice}{pie figura}
+\usepackage{float}
+\newcommand{\figura}[4]{%
+   \begin{figure}[htbp]
+    \begin{center}
+     \includegraphics[width=#4\textwidth]{figuras/#3}
+    \end{center}
+		\caption[#1]{\textbf{#1: }#2}
+     \label{fig:#3}
+    \end{figure}}
+
+
+%\usepackage[none]{hyphenat}
+%		\hyphenation{mRNA mRNAs re-gu-la-do e-sen-ci-al te-ner re-fi-rién-do-nos me-ca-nis-mos di-fe-ren-cia-ción mo-le-cu-lar tes-ti-cu-lar re-gu-la-ción dis-mi-nu-ye ex-pe-ri-men-tos re-pri-mien-do ma-yor trans-crip-cio-nal se-xual Rspondin microRNAs co-re-gu-la-do-res li-gan-dos spli-cing ha-cer li-mi-ta-da a-pro-xi-ma-da-men-te miRNAs a-que-llas ma-mí-fe-ros ha-cer em-brio-na-rias des-co-no-ci-da  ma-es-tros re-tro-a-li-men-ta-ción de-sar-ro-llo su-gi-ri-ó e-jem-plo e-li-mi-na-ción me-ca-nis-mo sub-fa-mi-lia dia-na ne-ga-ti-va me-dian-te si-len-cia-mien-to exo-nu-cleo-lí-ti-ca a-ni-males rá-pi-da-men-te sen-si-bi-li-dad re-gu-la-do-res dia-nas u-san-do ad-mi-nis-tra-do te-ra-péu-ti-cas te-ra-péu-ti-co ad-mi-nis-tra-ción}
+
+\hyphenation{mRNA miRNA miRNAs mRNAs Barrionuevo Jiménez}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                 %
+%                BEGIN DOCUMENT                   %
+%                                                 %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%\maketitle
+
+
+\frontmatter
+
+\renewcommand{\labelitemi}{$\bullet$}
+\renewcommand{\labelitemii}{---}
+\renewcommand{\labelitemiii}{--}
+
+
+\pagestyle{empty}
+\begin{center}
+\LARGE
+\titulo
+\end{center}
+\vspace{20ex}
+\begin{figure}[h]
+\centering
+\includegraphics[width=.5\textwidth]{escudo_ugr_portada}
+\end{figure}
+\vspace{25ex}
+
+\begin{center}
+\large
+Alicia Hurtado Madrid
+\end{center}
+\begin{center}
+\large
+Trabajo Fin de Máster
+
+17 de Julio de 2013
+\end{center}
+%\newpage
+\cleardoublepage
+\thispagestyle{empty}
+\begin{minipage}[t]{.23\textwidth}
+\centering
+\includegraphics[width=.8\textwidth]{logo_ib}
+Instituto de Biotecnolog\'ia 
+\end{minipage}
+\hfill
+\begin{minipage}[t]{.23\textwidth}
+\centering
+\includegraphics[width=.7\textwidth]{logo_ciencias}
+Facultad de Ciencias
+\end{minipage}
+\hfill
+\begin{minipage}[t]{.23\textwidth}
+\centering
+\includegraphics[width=.83\textwidth]{escudo_ugr_portada}
+ Universidad de Granada
+\end{minipage}
+
+
+\begin{minipage}[b]{.23\textwidth}
+\centering
+\includegraphics[width=.7\textwidth]{biologia}
+Estudios de Biolog\'ia
+\end{minipage}
+\hfill
+\begin{minipage}[b]{.23\textwidth}
+\centering
+\includegraphics[width=.7\textwidth]{genetica}
+Departamento de Gen\'etica
+\end{minipage}
+\hfill
+\begin{minipage}[b]{.23\textwidth}
+\centering
+\includegraphics[width=.7\textwidth]{cibm}
+Centro de Investigaci\'on Biom\'edica
+\end{minipage}
+\vfill
+\begin{center}
+\LARGE
+ \titulo
+\end{center}
+\vfill
+
+\begin{minipage}[t]{.35\textwidth}
+Dirigida por el Doctor:
+
+\vspace{15ex}
+
+Dr. Francisco Barrionuevo Jiménez 
+
+\end{minipage}
+\hfill
+\begin{minipage}[t]{.5\textwidth}
+Memoria de Trabajo fin de Máter de la Licenciada Alicia Hurtado Madrid para la obtención del Máster en Genética y Evolución de la Universidad de Granada.
+
+\vspace{29.7ex}
+
+\centering 17 de Julio de 2013
+
+\end{minipage}
+
+
+\newpage
+\cleardoublepage
+\thispagestyle{empty}
+
+{\rule{0pt}{85ex} El presente trabajo se ha desarrollado en los laboratorios del Departamento de Gen\'etica y del Instituto de Biotecnolog\'ia en la Facultad de Ciencias y en el Centro de Investigaci\'on Biom\'edica (CIBM) de la Universidad de Granada.
+ 
+ 
+\newpage
+\cleardoublepage
+\input{agradecimientos.tex}
+\newpage
+\cleardoublepage
+\null\vspace{\stretch{2}}
+{
+\begin{flushright}
+ Dedicado a mi madre
+
+\end{flushright}
+}
+\vspace{\stretch{1}}
+\newpage
+\cleardoublepage
+
+
+
+
+\null\vspace{\stretch{2}}
+{
+\hfill \begin{minipage}{8cm}
+\textsl{Comprender significa ser capaz de hacer.}
+
+\begin{flushright}
+Johann Wolfgang von Goethe  
+\end{flushright}
+
+\end{minipage}
+}
+\vspace{\stretch{1}}
+\newpage
+\cleardoublepage
+
+
+
+
+
+
+\dominitoc
+\dominilof
+\dominilot
+\tableofcontents
+\listoffigures
+\listoftables
+\clearpage
+%\input{abreviaturas-utf.tex}
+
+%\input{agradecimientos.tex}
+%\input{resumen.tex}
+\pagestyle{fancy}
+
+
+\mainmatter
+
+
+
+\pagestyle{fancy}
+\lhead{\nouppercase{\bfseries{\leftmark}}}
+\rhead{\nouppercase{\bfseries{\rightmark}}}
+\fancyhead[LO]{\bfseries{}}
+\fancyhead[RE]{\bfseries{}}
+%\fancyfoot[RO]{\thepage}
+%\fancyfoot[LE]{\thepage}
+\cfoot{\thepage}
+\renewcommand{\headrulewidth}{0.5pt}
+%estilo de las cabeceras y los pies: L=left, R=right, E=even, O=odd (impares).
+
+
+%##################
+
+
+\chapter{Resumen}
+\input{abstract.tex}
+
+\chapter{Introducción}
+\input{determinacion-sexo_final.tex}
+%\minitoc
+%\input{introduccion/objetivos.tex}
+%\newpage
+
+
+
+
+\chapter{Objetivos}
+\minitoc
+%\newpage
+\input{objetivos.tex}
+
+
+\chapter{Material y Métodos}
+\minitoc
+\input{metodos_alicia.tex}
+%\input{mat-met/materialYmetodos.tex}
+\input{soluciones_alicia.tex}
+%\newpage
+
+\chapter{Resultados}
+\minitoc
+\input{resultados.tex}
+%\newpage
+
+%\input{resultados-utf.tex}
+
+\chapter{Discusión}
+\minitoc
+\input{discusion.tex}
+%\newpage
+
+%\input{discusion-utf8.texs
+
+\backmatter
+
+\chapter{Conclusiones}
+\minitoc
+\input{conclusiones.tex}
+%\newpage
+
+%\chapter{Perspectivas Futuras}
+
+%\input{conclusiones-utf8.tex}
+%\input{Introduction.tex}
+%\input{Aims_and_Objectives.tex}
+%\input{Material_and_Methods.tex}
+%\input{Results.tex}
+%\input{Discussion.tex}
+%\pagestyle{empty}
+%\input{Conclusion.tex}
+%\addcontentslineA{toc}{chapter}{Bibliography}
+%\newpage
+%\pagestyle{fancy}
+%\bibliography{bib_manual,Bibliographydatabase}
+\begin{singlespace}
+	\begin{footnotesize}
+		\begin{twocolumn}
+\bibliography{tfm-alicia}
+\end{twocolumn}
+\end{footnotesize}
+\end{singlespace}
+
+%\addcontentsline{toc}{chapter}{Bibliography}
+\end{document}

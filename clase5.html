@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LaTeX+Git</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="container">
+    <p><a href="index.html" class="back-to-index">Volver al índice</a></p>
+    <h2>Clase 5: Elementos avanzados y personalización</h2>
+
+    <h3>1. Inclusión de código fuente</h3>
+    <p>LaTeX permite mostrar fragmentos de código con resaltado y numeración de líneas, especialmente útil para documentación técnica.</p>
+
+    <h4>1.1 Paquete listings</h4>
+    <p>El paquete <code>listings</code> facilita la inclusión de código fuente con resaltado de sintaxis:</p>
+    <pre><code>\usepackage{listings}
+\lstset{
+    basicstyle=\small\ttfamily,
+    keywordstyle=\color{blue}\bfseries,
+    commentstyle=\color{gray},
+    stringstyle=\color{red},
+    numbers=left,
+    frame=single,
+    breaklines=true
+}
+</code></pre>
+
+    <h4>1.2 Resaltado de sintaxis</h4>
+    <pre><code>\begin{lstlisting}[language=Python,caption={Ejemplo en Python},label={code:python}]
+def factorial(n):
+    if n <= 1:
+        return 1
+    else:
+        return n * factorial(n - 1)
+\end{lstlisting}
+</code></pre>
+    <ul>
+        <li><code>language=Python</code> determina el lenguaje.</li>
+        <li><code>caption={...}</code> añade un título descriptivo.</li>
+        <li><code>label={...}</code> asigna una etiqueta para referencias en el documento.</li>
+    </ul>
+
+    <h3>2. Creación de entornos personalizados</h3>
+    <p>Puedes definir tus propios entornos para dar un estilo específico a ciertos contenidos. Por ejemplo:</p>
+    <pre><code>\newenvironment{miResumen}
+{%
+  \begin{quote}
+  \bfseries Resumen:\quad
+}
+{%
+  \end{quote}
+}
+</code></pre>
+    <p>Uso:</p>
+    <pre><code>\begin{miResumen}
+Este es el resumen de la sección.
+\end{miResumen}
+</code></pre>
+
+    <h3>3. Diseño de página: márgenes, encabezados y pies de página</h3>
+
+    <h4>3.1 Márgenes con geometry</h4>
+    <pre><code>\usepackage[a4paper, margin=2cm]{geometry}
+</code></pre>
+    <p>Ajusta la hoja A4 con un margen de 2 cm en cada lado.</p>
+
+    <h4>3.2 Encabezados y pies de página con fancyhdr</h4>
+    <pre><code>\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\fancyhead{}    % Limpia encabezados
+\fancyfoot{}    % Limpia pies de página
+
+\fancyhead[L]{Nombre del Documento}
+\fancyhead[R]{\leftmark}
+\fancyfoot[C]{\thepage}
+</code></pre>
+    <ul>
+        <li><code>\leftmark</code> mostrará el título de la sección o capítulo actual.</li>
+        <li><code>\thepage</code> indica el número de página.</li>
+    </ul>
+
+    <h3>4. Uso de colores</h3>
+    <p>Para usar colores, se carga el paquete <code>xcolor</code> o <code>color</code>:</p>
+    <pre><code>\usepackage{xcolor}
+</code></pre>
+
+    <h4>4.1 Texto y fondo coloreados</h4>
+    <pre><code>\textcolor{blue}{Texto en azul.}
+\colorbox{yellow}{Fondo amarillo para este texto.}
+</code></pre>
+
+    <h4>4.2 Definir colores personalizados</h4>
+    <pre><code>\definecolor{miverde}{RGB}{0,128,0}
+\textcolor{miverde}{Texto en un verde personalizado.}
+</code></pre>
+
+    <h4>4.3 tcolorbox para recuadros de colores</h4>
+    <p><code>tcolorbox</code> permite crear recuadros con gran flexibilidad:</p>
+    <pre><code>\usepackage{tcolorbox}
+
+\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,title=Ejemplo de tcolorbox]
+Este es un texto de ejemplo dentro de un recuadro de color personalizado.  
+Puedes ajustar opacidad, bordes y mucho más.
+\end{tcolorbox}
+</code></pre>
+
+<h4>4.4 Parámetros de tcolorbox</h4>
+<p>En el ejemplo anterior:</p>
+
+<p>Aparecen tres parámetros que configuran el aspecto y el título del recuadro:</p>
+
+<ol>
+    <li><strong>colback=blue!5!white</strong>
+        <ul>
+            <li>Indica el color de fondo (background) del recuadro.</li>
+            <li>blue!5!white significa que se mezcla el color azul con un 5% de intensidad y el resto con blanco (95%).</li>
+            <li>Este esquema produce un tono muy claro de azul.</li>
+        </ul>
+    </li>
+    
+    <li><strong>colframe=blue!75!black</strong>
+        <ul>
+            <li>Determina el color del borde (frame) del recuadro.</li>
+            <li>blue!75!black significa que se combina un 75% de azul con un 25% de negro, dando como resultado un azul oscuro.</li>
+        </ul>
+    </li>
+    
+    <li><strong>title=Ejemplo de tcolorbox</strong>
+        <ul>
+            <li>Muestra un título en la parte superior del recuadro.</li>
+            <li>El texto "Ejemplo de tcolorbox" aparece centrado sobre la caja.</li>
+        </ul>
+    </li>
+</ol>
+
+<p>Estos parámetros pueden personalizarse libremente para ajustar el color de fondo y de borde, así como etiquetar el recuadro con un título apropiado.</p>
+
+
+
+
+    <h3>5. Ejemplo de colortbl en tablas</h3>
+    <p>El paquete <code>colortbl</code> añade color a filas y celdas de tablas:</p>
+    <pre><code>\usepackage{colortbl}
+\usepackage{booktabs}
+
+\begin{table}[ht]
+\centering
+\rowcolors{1}{blue!10}{white}
+\begin{tabular}{l c c}
+\toprule
+\rowcolor{blue!30}
+\textbf{Producto} & \textbf{Precio} & \textbf{Stock} \\
+Manzanas  & \$2.00 & 50 \\
+Peras     & \$1.80 & 30 \\
+Naranjas  & \$2.20 & 40 \\
+\bottomrule
+\end{tabular}
+\caption{Ejemplo de tabla con colortbl}
+\label{tab:coloreada}
+</end{table}
+</code></pre>
+    <ul>
+        <li><code>\rowcolors{1}{blue!10}{white}</code> alterna el color de fondo en las filas, iniciando desde la fila 1.</li>
+        <li><code>\rowcolor{blue!30}</code> ajusta el color de la fila del encabezado.</li>
+        <li><code>booktabs</code> aporta comandos como <code>\toprule</code>, <code>\midrule</code> y <code>\bottomrule</code>.</li>
+    </ul>
+
+    <h3>6. Ejercicios prácticos</h3>
+    <ol>
+        <li><strong>Listados de código</strong>: Crea un fragmento con <code>lstlisting</code> donde incluyas un pequeño script en C, Python o cualquier otro lenguaje.</li>
+        <li><strong>Entornos personalizados</strong>: Define un entorno llamado <code>aviso</code> que muestre un recuadro con un texto resaltado.</li>
+        <li><strong>Diseño de página</strong>: Ajusta los márgenes a 3 cm y agrega tu nombre en el lado izquierdo del encabezado, el título de la clase en el lado derecho, y centra el número de página en el pie.</li>
+        <li><strong>Uso de colores</strong>:
+            <ul>
+                <li>Crea un <code>tcolorbox</code> de fondo gris con borde negro.</li>
+                <li>Añade una tabla con filas alternadas en color usando <code>colortbl</code>.</li>
+            </ul>
+        </li>
+        <li><strong>Revisión de Git</strong>: Realiza algunos cambios en un archivo, pídele a un compañero de clase que haga cambios en el mismo archivo en una rama diferente, y luego practica la resolución de conflictos al hacer <code>git pull</code>.</li>
+    </ol>
+
+    <h3>7. Repaso de Git: resolución de conflictos simples</h3>
+    <p>Cuando realizas <code>git pull</code>, si tu rama local y la remota tienen cambios en la misma línea, se genera un conflicto.</p>
+    <ol>
+        <li><strong>Pull</strong>:
+            <pre><code>git pull
+</code></pre>
+        </li>
+        <li><strong>Buscar y resolver el conflicto</strong> en el archivo marcado por:
+            <pre><code><<<<< HEAD
+...
+=======
+...
+>>>>>> remote/branch
+</code></pre>
+        </li>
+        <li><strong>Guardar y hacer commit</strong>:
+            <pre><code>git add archivo_conflictivo
+git commit -m "Resolver conflicto"
+</code></pre>
+        </li>
+        <li><strong>Push</strong> para actualizar el repositorio remoto:
+            <pre><code>git push
+</code></pre>
+        </li>
+    </ol>
+    <p>Este proceso enseña a manejar cambios simultáneos y fusionar esfuerzos en un equipo de trabajo.</p>
+
+    <p><a href="index.html" class="back-to-index">Volver al índice</a></p>
+</body>
+
+</html>

@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LaTeX+Git</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="container">
+    <p><a href="index.html" class="back-to-index">Volver al índice</a></p>
+    <h2>Introducción a Git</h2>
+    <h3>¿Qué es Git y por qué es útil para el control de versiones?</h3>
+    <p>Git es un sistema de control de versiones distribuido, creado por Linus Torvalds en 2005. Es una herramienta
+        esencial para el desarrollo de software moderno, que permite a los desarrolladores rastrear cambios en el
+        código, colaborar eficientemente y gestionar diferentes versiones de un proyecto.</p>
+    <p>Git destaca por varias razones:</p>
+    <ol>
+        <li><strong>Historial completo</strong>: Git mantiene un registro detallado de todos los cambios realizados en
+            un proyecto, permitiendo ver quién hizo qué cambios y cuándo.</li>
+        <li><strong>Trabajo distribuido</strong>: Cada desarrollador tiene una copia completa del repositorio, lo que
+            facilita el trabajo sin conexión y mejora la redundancia.</li>
+        <li><strong>Branching y merging</strong>: Git permite crear ramas para trabajar en diferentes características o
+            versiones del proyecto de forma aislada, y luego fusionarlas fácilmente.</li>
+        <li><strong>Velocidad y eficiencia</strong>: Git es notablemente rápido en comparación con otros sistemas de
+            control de versiones, especialmente para operaciones locales.</li>
+        <li><strong>Flexibilidad de flujo de trabajo</strong>: Git se adapta a diversos estilos de desarrollo y tamaños
+            de equipo.</li>
+    </ol>
+    <h3>Instalación de Git</h3>
+    <p>La instalación de Git varía según el sistema operativo:</p>
+    <h4>Windows</h4>
+    <ol>
+        <li>Visita la página oficial de Git (<a href="https://git-scm.com/download/win" target="_blank"
+                rel="noopener">https://git-scm.com/download/win</a>) y descarga el instalador.</li>
+        <li>Ejecuta el archivo descargado y sigue las instrucciones del asistente de instalación.</li>
+        <li>Durante la instalación, asegúrate de seleccionar la opción para añadir Git al PATH del sistema.</li>
+        <li> En la pantalla "Select Components", asegúrate de que la opción "Git Bash Here" esté marcada. Esto instalará
+            Git Bash, que es el terminal que queremos usar.
+        <li>En la pantalla "Adjusting your PATH environment", selecciona la opción "Use Git from Git Bash only".</li>
+        <li>Cuando llegues a la pantalla "Configuring the line ending conversions", es crucial que selecciones la
+            siguiente opción:
+            <pre><code>Checkout Windows-style, commit Unix-style line endings</code></pre>
+        <li>Deja las demás opciones por defecto.
+            instalación.</li>
+    </ol>
+    <h4>macOS</h4>
+    <ol>
+        <li>La forma más sencilla es usar Homebrew. Si no lo tienes instalado, visita <a href="https://brew.sh"
+                target="_blank" rel="noopener">brew.sh</a> para instrucciones.</li>
+        <li>Abre la Terminal y ejecuta: <code>brew install git</code>.</li>
+        <li>Alternativamente, puedes descargar el instalador desde la página oficial de Git: <a
+                href="https://git-scm.com/downloads/mac" target="_blank"
+                rel="noopener">https://git-scm.com/downloads/mac</a></li>
+        <li>Verifica la instalación con <code>git --version</code> en la Terminal.</li>
+    </ol>
+    <h4>Linux</h4>
+    <ol>
+        <li>La mayoría de las distribuciones Linux incluyen Git preinstalado. Para verificar, abre una terminal y
+            ejecuta <code>git --version</code>.</li>
+        <li>Si no está instalado:
+            <ul>
+                <li>En distribuciones basadas en Debian/Ubuntu: <code>sudo apt-get install git-all</code></li>
+                <li>En sistemas basados en Fedora: <code>sudo dnf install git-all</code></li>
+                <li>En sistemas basados en ArchLinux: <code>sudo pacman -S git</code></li>
+                <li>Para otras distribuciones, consulta la documentación específica o usa el gestor de paquetes
+                    correspondiente.</li>
+            </ul>
+        </li>
+    </ol>
+    <p>Después de la instalación, es recomendable configurar tu nombre de usuario y correo electrónico en Git usando los
+        comandos:</p>
+    <pre>
+        <code>
+git config --global user.name "Tu Nombre"
+git config --global user.email "tu@email.com"
+</code>
+</pre><!---->
+    <p>Esta configuración es importante para identificar tus contribuciones en los proyectos.</p>
+
+
+    <h3>Crear una cuenta en GitHub</h3>
+    <ol>
+        <li>Visita <a href="https://github.com/" target="_blank" rel="noopener">https://github.com/</a></li>
+        <li>Haz clic en "Sign up" en la esquina superior derecha</li>
+        <li>Ingresa tu <strong>correo electrónico (Institucional)</strong>, crea una contraseña y elige un nombre de
+            usuario</li>
+        <li>Completa el proceso de verificación</li>
+        <li>Selecciona el plan gratuito</li>
+    </ol>
+
+    <h3>Configurar el perfil (opcional)</h3>
+    <ol>
+        <li>Accede a tu cuenta</li>
+        <li>Ve a "Settings" > "Profile"</li>
+        <li>Añade una foto de perfil y una breve biografía</li>
+        <li>Completa información adicional como tu ubicación y sitio web</li>
+    </ol>
+
+    <h3>Crear tu primer repositorio</h3>
+    <ol>
+        <li>En GitHub, haz clic en el botón "+" en la esquina superior derecha</li>
+        <li>Selecciona "New repository"</li>
+        <li>Nombra tu repositorio empezando por <strong>2025Apellido</strong>
+            <li>Añade tus apellidos y nombre en la descripción</li>
+        <li>Elige que el sea repositorio privado</li>
+        <li>Marca "Initialize this repository with a README"</li>
+        <li>Haz clic en "Create repository"</li>
+    </ol>
+
+    <h3>Añadir al profesor como colaborador (evaluación)</h3>
+    <ol>
+        <li>En tu repositorio, ve a <strong>Settings</strong> (pestaña superior derecha).</li>
+        <li>En el menú izquierdo, selecciona <strong>Collaborators</strong> > <strong>Add people</strong>.</li>
+        <li>Escribe el nombre de usuario de GitHub del curso (latex-git).</li>
+        <li>Haz clic en <strong>Add to this repository.</strong></li>
+        <li>Recibirá una notificación en GitHub y una invitación por correo y deberá aceptarla.</li>
+    </ol>
+
+    <h3>Clonar el repositorio usando HTTPS y token</h3>
+    <ol>
+        <li>Generar un token de acceso personal (PAT)</li>
+        <ol>
+            <li>En GitHub, haz clic en tu foto de perfil (esquina superior derecha) > <strong>Settings</strong>.</li>
+            <li>En el menú izquierdo, ve a <strong>Developer settings</strong> > <strong>Personal access tokens</strong>
+                > <strong>Tokens (classic)</strong>.</li>
+            <li>Haz clic en <strong>Generate new token</strong> > <strong>Generate new token (classic)</strong>.</li>
+            <li>Configura el token:</li>
+            <ul>
+                <li><strong>Note</strong>: Acceso a repositorios desde Git (descripción útil).</li>
+                <li><strong>Expiration</strong>: Elige una fecha (ej: 30 días para el curso).</li>
+                <li><strong>Scopes</strong>: Marca <strong>repo</strong> (para acceso completo a repositorios).</li>
+            </ul>
+            <li>Haz clic en <strong>Generate token</strong>.</li>
+            <li>¡Copia el token inmediatamente! No podrás verlo nuevamente.</li>
+            <li>En el terminal ejecuta el siguiente comando:
+                <pre><code>git config --global credential.helper store</code></pre>
+            </li>
+            <li><strong>Opcional</strong>:
+
+                Crea o edita el archivo <code>~/.git-credentials</code> (en Linux/macOS) o
+                <code>\Users\YourUsername\.git-credentials</code> (en Windows) y añade una línea con este formato:
+                <pre><code>https://{username}:{personal_access_token}@github.com</code></pre>
+            
+
+            Reemplaza <code>{username}</code> con tu nombre de usuario de GitHub y <code>{personal_access_token}</code>
+            con el token que generaste.
+            </li>
+<li>Ve al repositorio: <strong>Perfil</strong> > <strong>your repositories</strong> > <strong>2025Apellido</strong></li>
+            <li>En la página del repositorio, haz clic en <strong>Code</strong> > <strong>HTTPS</strong> y copia el
+                enlace (ej: https://github.com/usuario/repo.git).</li>
+            <li>Abre Git Bash/Terminal en el directorio donde lo quieras clonar y ejecuta:</li>
+            <pre><code>git clone https://github.com/usuario/repo.git</code></pre>
+            <li>Cuando te pida <strong>Username</strong>: Escribe tu nombre de usuario de GitHub.</li>
+            <li>Cuando te pida <strong>Password</strong>: Pega el token generado (no verás caracteres al pegarlo).</li>
+            <li>Pulsa <code>Enter</code>. El repositorio se clonará correctamente.</li>
+        </ol>
+    </ol>
+
+    <h3>Diagrama de flujo de trabajo de Git</h3>
+    <p>A continuación se muestra un diagrama de flujo de trabajo básico de Git:</p>
+    <img src="git.png" alt="Diagrama de flujo de trabajo de Git" style="max-width: 100%; height: auto;">
+
+
+    <h3>Comandos básicos de Git desde el terminal</h3>
+
+    <h4>git init</h4>
+    <p>El comando <code>git init</code> se utiliza para inicializar un nuevo repositorio Git en el directorio actual.
+        Esto crea un subdirectorio oculto <code>.git</code> que contiene toda la estructura necesaria para el control de
+        versiones.</p>
+
+    <h4>git status</h4>
+    <p><code>git status</code> muestra el estado actual del repositorio, incluyendo los archivos modificados, añadidos o
+        eliminados que aún no se han confirmado.</p>
+
+    <h4>git add</h4>
+    <p>El comando <code>git add</code> se usa para agregar archivos al área de preparación (staging area). Por ejemplo:
+    </p>
+    <pre><code>git add &lt;archivo&gt;</code></pre>
+    <p>Para añadir todos los archivos nuevos y modificados, puedes usar:</p>
+    <pre><code>git add .</code></pre>
+
+    <p>Para añadir todos los archivos nuevos y modificados y eliminar los borrados, puedes usar:</p>
+    <pre><code>git add -A</code> o <code>git add --all</code></pre>
+
+    <h4>git commit</h4>
+    <p><code>git commit</code> crea una instantánea de los cambios en el área de preparación y la guarda en el historial
+        del repositorio. Es recomendable incluir un mensaje descriptivo:</p>
+    <pre><code>git commit -a -m "Descripción breve de los cambios realizados"</code></pre>
+
+    <p>La opción <code>-a</code> en el comando <code>git commit -a -m "mensaje"</code> le indica a Git que incluya
+        automáticamente todos los archivos modificados y eliminados en el commit, sin necesidad de usar
+        <code>git add</code> para cada archivo. Sin embargo, no incluye nuevos archivos que no hayan sido previamente
+        rastreados por Git.</p>
+
+        <h4>Creación del repositorio remoto en GitHub</h4>
+        <p>Antes de subir tu proyecto a GitHub, debes crear un nuevo repositorio remoto:</p>
+        <h5>Crear un nuevo repositorio en GitHub:</h5>
+        <ol>
+            <li>Ve a GitHub y haz clic en el botón <strong>New repository</strong> en la esquina superior derecha.</li>
+            <li>Ingresa un nombre para tu repositorio y una descripción opcional.</li>
+            <li>Selecciona la visibilidad del repositorio (público, privado o interno).</li>
+            <li>Haz clic en <strong>Create repository</strong> sin inicializar el repositorio con un README, licencia o archivo .gitignore, ya que puedes agregar estos archivos después de subir tu proyecto.</li>
+        </ol>
+        <h5>Conectar el repositorio local con el remoto:</h5>
+        <ol>
+            <li>En el repositorio de GitHub, copia la URL del repositorio que aparece en la página de configuración rápida.</li>
+            <li>En tu terminal, navega al directorio de tu proyecto local.</li>
+            <li>Agrega el repositorio remoto usando el comando:
+                <pre><code>git remote add origin https://github.com/tu-usuario/tu-repositorio.git</code></pre>
+            </li>
+            <li>Verifica que el remoto se haya agregado correctamente con:
+                <pre><code>git remote -v</code></pre>
+            </li>
+        </ol>
+
+    <h4>git push</h4>
+    <p>El comando <code>git push</code> se utiliza para enviar los commits locales a un repositorio remoto. La sintaxis
+        básica es:</p>
+    <pre><code>git push &lt;remoto&gt; &lt;rama&gt;</code></pre>
+
+    <h4>git pull</h4>
+    <p><code>git pull</code> se usa para descargar y fusionar los cambios desde un repositorio remoto a tu repositorio
+        local. Es una combinación de <code>git fetch</code> y <code>git merge</code>.</p>
+
+    <h4>Creación y manejo del archivo .gitignore</h4>
+    <p>El archivo <code>.gitignore</code> es crucial para especificar qué archivos y directorios Git debe ignorar. Para
+        crear y manejar un <code>.gitignore</code>:</p>
+    <ol>
+        <li>Crea el archivo en la raíz del proyecto.
+
+        </li>
+        <li>Edita el archivo añadiendo patrones de archivos o directorios a ignorar. Por ejemplo:
+            <pre><code>
+    # Ignorar archivos del sistema
+    .DS_Store
+
+    # Ignorar carpeta node_modules
+    node_modules/
+
+    # Ignorar todos los archivos .log
+    *.log
+            </code></pre>
+        </li>
+        <li>Añade y confirma el archivo <code>.gitignore</code>:
+            <pre><code>
+    git add .gitignore
+    git commit -m "Añadir archivo .gitignore"
+            </code></pre>
+        </li>
+    </ol>
+    <p>El uso efectivo de <code>.gitignore</code> ayuda a mantener tu repositorio limpio y evita el seguimiento de
+        archivos innecesarios o sensibles.</p>
+    </ol>
+
+    
+
+    <h3>Alternativas a GitHub</h3>
+    <p>Aunque GitHub es la plataforma más popular para alojar repositorios Git, existen alternativas notables:</p>
+    <ul>
+        <li><strong>GitLab</strong>: Ofrece repositorios privados ilimitados en su plan gratuito y puede instalarse en servidores propios. Destaca por su sistema integrado de CI/CD.</li>
+        <li><strong>Bitbucket</strong>: Desarrollado por Atlassian, se integra bien con Jira y otras herramientas de la suite. Ideal para equipos pequeños que necesitan repositorios privados.</li>
+    </ul>
+
+
+    <h2>Introducción a LaTeX</h2>
+
+    <h3>¿Qué es LaTeX y por qué es útil para la escritura académica?</h3>
+    
+    <p>LaTeX es un sistema de composición de textos de alta calidad, especialmente diseñado para la producción de documentos técnicos y científicos. Creado por Leslie Lamport en 1984, LaTeX es una capa de macros construida sobre el motor de composición tipográfica TeX, desarrollado por Donald Knuth.</p>
+    
+    <p>LaTeX es particularmente útil para la escritura académica por varias razones:</p>
+    
+    <ol>
+        <li><strong>Calidad tipográfica superior</strong>: LaTeX produce documentos con una apariencia profesional y consistente.</li>
+        <li><strong>Gestión de referencias y bibliografías</strong>: Facilita la creación y manejo de citas y bibliografías extensas.</li>
+        <li><strong>Escritura de fórmulas matemáticas</strong>: Ofrece un sistema robusto para la composición de ecuaciones complejas.</li>
+        <li><strong>Separación de contenido y formato</strong>: Permite a los autores centrarse en el contenido, dejando el formato al sistema.</li>
+        <li><strong>Control preciso sobre la estructura del documento</strong>: Ideal para documentos largos como tesis o libros.</li>
+        <li><strong>Estabilidad y portabilidad</strong>: Los documentos LaTeX son archivos de texto plano, fáciles de versionar y compartir.</li>
+    </ol>
+    
+    <h3>Recursos adicionales</h3>
+    <p>Para más información sobre LaTeX, puedes visitar los siguiente enlaces:</p>
+    <p><a href="http://cervantex.es/manuales" target="_blank" rel="noopener">http://cervantex.es/manuales</a></p>
+    <p><a href="https://www.ctan.org/" target="_blank" rel="noopener">https://www.ctan.org/</a></p>
+    
+    <h3>Instalación de LaTeX</h3>
+    
+    <p>La instalación de LaTeX varía según el sistema operativo:</p>
+    
+    <h4>Windows:</h4>
+    <ol>
+        <li>Descarga e instala MiKTeX desde <a href="https://miktex.org/download" target="_blank" rel="noopener">https://miktex.org/download</a></li>
+        <li>Durante la instalación, elige la opción de instalar paquetes bajo demanda.</li>
+    </ol>
+    
+    <h4>macOS:</h4>
+    <ol>
+        <li>Descarga e instala MacTeX desde <a href="https://tug.org/mactex/" target="_blank" rel="noopener">https://tug.org/mactex/</a></li>
+        <li>Este es un paquete grande que incluye todo lo necesario para trabajar con LaTeX.</li>
+    </ol>
+    
+    <h4>Linux:</h4>
+    <ul>
+        <li>Ubuntu/Debian:
+            <pre><code>sudo apt-get install texlive-full</code></pre>
+        </li>
+        <li>Fedora:
+            <pre><code>sudo dnf install texlive-scheme-full</code></pre>
+        </li>
+        <li>Arch Linux:
+            <pre><code>sudo pacman -S texlive-most texlive-lang</code></pre>
+        </li>
+    </ul>
+    
+    <h3>Instalación de TeXstudio</h3>
+    
+    <p>TeXstudio es un editor de LaTeX multiplataforma, fácil de usar y con muchas características útiles.</p>
+    
+    <h4>Windows:</h4>
+    <ol>
+        <li>Visita <a href="https://www.texstudio.org/" target="_blank" rel="noopener">https://www.texstudio.org/</a></li>
+        <li>Descarga e instala la versión para Windows.</li>
+    </ol>
+    
+    <h4>macOS:</h4>
+    <ol>
+        <li>Visita <a href="https://www.texstudio.org/" target="_blank" rel="noopener">https://www.texstudio.org/</a></li>
+        <li>Descarga e instala la versión para macOS.</li>
+        <li>Alternativamente, si tienes Homebrew instalado, puedes usar:
+            <pre><code>brew install --cask texstudio</code></pre>
+        </li>
+    </ol>
+    
+    <h4>Linux:</h4>
+    <ul>
+        <li>Ubuntu/Debian:
+            <pre><code>sudo apt-get install texstudio</code></pre>
+        </li>
+        <li>Fedora:
+            <pre><code>sudo dnf install texstudio</code></pre>
+        </li>
+        <li>Arch Linux:
+            <pre><code>sudo pacman -S texstudio</code></pre>
+        </li>
+    </ul>
+    
+    <p>Después de la instalación, abre TeXstudio y configúralo para que use la distribución de LaTeX que has instalado. En la mayoría de los casos, TeXstudio detectará automáticamente la instalación de LaTeX.</p>
+    
+    <p>Con LaTeX y TeXstudio instalados, estarás listo para comenzar a crear documentos académicos de alta calidad.</p>
+
+    <h2>Alternativas a la instalación local de LaTeX</h2>
+
+    <p>Además de las instalaciones locales, existen opciones en la nube y editores alternativos que simplifican el trabajo con LaTeX:</p>
+
+    <h3>1. Overleaf: La solución en la nube</h3>
+    <p>Plataforma colaborativa online que <strong>elimina la necesidad de instalaciones locales</strong>.</p>
+    <p><strong>Características clave</strong>:</p>
+    <ul>
+        <li>Editor dual (código/visual) con previsualización en tiempo real</li>
+        <li>+6,000 plantillas preconfiguradas</li>
+        <li>Colaboración simultánea con control de cambios</li>
+        <li>Integración con GitHub, Zotero y Mendeley</li>
+        <li>Compilación automática en sus servidores</li>
+    </ul>
+
+    <p>Ideal para: Trabajo en equipo, estudiantes principiantes, y acceso desde cualquier dispositivo.</p>
+
+    <h3>2. Otras alternativas online</h3>
+
+    <p>Overleaf, Authorea y Papeeria son plataformas populares para la escritura y colaboración en documentos académicos, cada una con características únicas que las hacen adecuadas para diferentes necesidades.</p>
+
+    <p>Overleaf es un editor colaborativo basado en LaTeX que destaca por su amplia biblioteca de plantillas y su integración con revistas científicas, permitiendo a los usuarios enviar documentos directamente a estas. Ofrece un editor visual y de código, facilitando el trabajo tanto a principiantes como a expertos en LaTeX. Sus herramientas de colaboración incluyen edición en tiempo real, control de versiones y un historial completo de cambios, aunque algunas funciones avanzadas están reservadas para planes de pago.</p>
+
+    <p>Authorea, por otro lado, se presenta como una herramienta integral para la escritura científica que permite a los investigadores redactar, citar y publicar documentos. Su enfoque es más amplio que el de Overleaf, ya que no solo se centra en LaTeX, sino que también admite otros formatos como Markdown. Authorea permite la colaboración en tiempo real y la creación de preprints con DOI, lo que facilita la citación y el acceso a los trabajos.</p>
+
+    <p>Papeeria es otra opción que se caracteriza por su simplicidad y accesibilidad. Ofrece un entorno de escritura colaborativa en LaTeX sin necesidad de instalación, y permite la edición desde cualquier dispositivo con un navegador moderno. Aunque tiene menos plantillas que Overleaf y Authorea, proporciona características útiles como autocompletado, revisión ortográfica y sincronización con servicios de almacenamiento en la nube. Sin embargo, su historial de ediciones es más limitado en el plan gratuito.</p>
+
+    <h3>3. Editores locales</h3>
+    <ul>
+        <li><strong>TeXstudio</strong>: Autocompletado inteligente, visor PDF integrado</li>
+        <li><strong>LyX</strong>: Interfaz WYSIWYM para enfoque en contenido (formato no compatible)</li>
+        <li><strong>VS Code + LaTeX Workshop</strong>: Personalización extrema, integración con Git</li>
+    </ul>
+    
+    <p>En cuanto a la comparación entre soluciones online y offline: Las herramientas online ofrecen acceso universal y no requieren instalación, aunque dependen de una conexión estable a internet. Por otro lado, las soluciones offline proporcionan mayor control sobre el entorno y permiten trabajar sin conexión a internet, pero requieren una configuración inicial más compleja.</p>
+    Para cursos universitarios, Overleaf suele ser la opción más práctica por su curva de aprendizaje suave, mientras que las soluciones locales ofrecen mayor flexibilidad para proyectos complejos[12][14].
+    
+    <h3>Limitaciones de Overleaf en cuentas gratuitas</h3>
+
+    <p>Las cuentas gratuitas de Overleaf tienen varias limitaciones en comparación con los planes de pago. Las principales restricciones son:</p>
+
+    <ol>
+        <li><strong>Tiempo de compilación:</strong> El límite de tiempo de compilación para cuentas gratuitas es de 20 segundos, mientras que los planes premium tienen un límite de 240 segundos.</li>
+        
+        <li><strong>Colaboradores:</strong> Las cuentas gratuitas están limitadas a un solo colaborador por proyecto, mientras que los planes premium permiten más colaboradores.</li>
+        
+        <li><strong>Tamaño de material editable:</strong> El tamaño máximo de material editable por proyecto es de 7 MB, tanto para cuentas gratuitas como para planes premium.</li>
+        
+        <li><strong>Tamaño de archivo individual editable:</strong> El tamaño máximo de un archivo de texto editable individual es de 2 MB.</li>
+        
+        <li><strong>Tamaño de carga individual:</strong> El tamaño máximo de una carga individual es de 50 MB.</li>
+        
+        <li><strong>Tamaño total del proyecto:</strong> Aunque técnicamente es ilimitado, se recomienda un tamaño máximo de proyecto de 500 MB, o menos de 100 MB si se utiliza la sincronización con GitHub o la integración con Git.</li>
+    </ol>
+
+    <p>Además, las cuentas gratuitas no tienen acceso a ciertas características premium, como:</p>
+
+    <ul>
+        <li>Control de cambios en tiempo real</li>
+        <li>Historial completo de documentos</li>
+        <li>Búsqueda avanzada de referencias</li>
+        <li>Paleta de símbolos</li>
+        <li>Integraciones con Git, GitHub, Dropbox, Mendeley y Zotero</li>
+        <li>Soporte prioritario</li>
+        <li>Servidores de compilación más rápidos</li>
+    </ul>
+
+    <p>Es importante tener en cuenta que, a pesar de estas limitaciones, si se utiliza Overleaf/LaTeX de manera razonable, es poco probable que se alcancen los límites de tamaño de archivo establecidos en la mayoría de los casos.</p>
+
+    <p><a href="index.html" class="back-to-index">Volver al índice</a></p>
+    <h3>Más información</h3>
+    <ul>
+        <li><a href="https://www.geeksforgeeks.org/git-vs-other-version-control-systems-why-git-stands-out/"
+                target="_blank"
+                rel="noopener">https://www.geeksforgeeks.org/git-vs-other-version-control-systems-why-git-stands-out/</a>
+        </li>
+        <li><a href="https://www.toolsqa.com/git/what-is-git/" target="_blank"
+                rel="noopener">https://www.toolsqa.com/git/what-is-git/</a></li>
+        <li><a href="https://www.atlassian.com/git" target="_blank" rel="noopener">https://www.atlassian.com/git</a>
+        </li>
+        <li><a href="https://www.geeksforgeeks.org/install-git-on-windows/" target="_blank"
+                rel="noopener">https://www.geeksforgeeks.org/install-git-on-windows/</a></li>
+        <li><a href="https://macpaw.com/how-to/install-git-tool-mac" target="_blank"
+                rel="noopener">https://macpaw.com/how-to/install-git-tool-mac</a></li>
+        <li><a href="https://graphite.dev/guides/how-to-install-git-on-linux" target="_blank"
+                rel="noopener">https://graphite.dev/guides/how-to-install-git-on-linux</a></li>
+        <li><a href="https://phoenixnap.com/kb/how-to-install-git-windows" target="_blank"
+                rel="noopener">https://phoenixnap.com/kb/how-to-install-git-windows</a></li>
+        <li><a href="https://medium.devlander.com/how-to-install-git-on-your-mac-and-windows-1dc13b49e42e?gi=a81c9280447d"
+                target="_blank"
+                rel="noopener">https://medium.devlander.com/how-to-install-git-on-your-mac-and-windows-1dc13b49e42e?gi=a81c9280447d</a>
+        </li>
+        <li><a href="https://git-scm.com/downloads/linux" target="_blank"
+                rel="noopener">https://git-scm.com/downloads/linux</a></li>
+        <li><a href="https://github.com/git-guides/install-git?WT.mc_id=github-azuredevtips-azureappsdev"
+                target="_blank"
+                rel="noopener">https://github.com/git-guides/install-git?WT.mc_id=github-azuredevtips-azureappsdev</a>
+        </li>
+        <li><a href="https://git-scm.com/downloads/mac" target="_blank"
+                rel="noopener">https://git-scm.com/downloads/mac</a></li>
+        <li><a href="https://www.simplilearn.com/tutorials/git-tutorial/git-installation-on-windows" target="_blank"
+                rel="noopener">https://www.simplilearn.com/tutorials/git-tutorial/git-installation-on-windows</a></li>
+        <li><a href="https://phoenixnap.com/kb/install-git-on-mac" target="_blank"
+                rel="noopener">https://phoenixnap.com/kb/install-git-on-mac</a></li>
+        <li><a href="https://www.youtube.com/watch?v=iYkLrXobBbA" target="_blank"
+                rel="noopener">https://www.youtube.com/watch?v=iYkLrXobBbA</a></li>
+        <li><a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git" target="_blank"
+                rel="noopener">https://git-scm.com/book/en/v2/Getting-Started-Installing-Git</a></li>
+        <li><a href="https://www.nobledesktop.com/learn/git/what-is-git" target="_blank"
+                rel="noopener">https://www.nobledesktop.com/learn/git/what-is-git</a></li>
+        <li><a href="https://about.gitlab.com/topics/version-control/what-is-git-version-control/" target="_blank"
+                rel="noopener">https://about.gitlab.com/topics/version-control/what-is-git-version-control/</a></li>
+        <li><a href="https://www.w3schools.com/git/" target="_blank" rel="noopener">https://www.w3schools.com/git/</a>
+        </li>
+        <li><a href="https://docs.github.com/en/get-started/using-git/about-git" target="_blank"
+                rel="noopener">https://docs.github.com/en/get-started/using-git/about-git</a></li>
+        <li><a href="https://about.gitlab.com/topics/version-control/" target="_blank"
+                rel="noopener">https://about.gitlab.com/topics/version-control/</a></li>
+        <li><a href="https://www.w3schools.com/git/git_intro.asp?remote=github" target="_blank"
+                rel="noopener">https://www.w3schools.com/git/git_intro.asp?remote=github</a></li>
+        <li><a href="https://www.atlassian.com/git/tutorials/what-is-version-control" target="_blank"
+                rel="noopener">https://www.atlassian.com/git/tutorials/what-is-version-control</a></li>
+        <li><a href="https://www.youtube.com/watch?v=8JJ101D3knE" target="_blank"
+                rel="noopener">https://www.youtube.com/watch?v=8JJ101D3knE</a></li>
+        <li><a href="https://developers.redhat.com/articles/2023/08/02/beginners-guide-git-version-control"
+                target="_blank"
+                rel="noopener">https://developers.redhat.com/articles/2023/08/02/beginners-guide-git-version-control</a>
+        </li>
+        <li><a href="https://www.youtube.com/watch?v=CvUiKWv2-C0" target="_blank"
+                rel="noopener">https://www.youtube.com/watch?v=CvUiKWv2-C0</a></li>
+        <li><a href="https://www.freecodecamp.org/news/what-is-git-learn-git-version-control/" target="_blank"
+                rel="noopener">https://www.freecodecamp.org/news/what-is-git-learn-git-version-control/</a></li>
+        <li><a href="https://product.hubspot.com/blog/git-and-github-tutorial-for-beginners" target="_blank"
+                rel="noopener">https://product.hubspot.com/blog/git-and-github-tutorial-for-beginners</a></li>
+
+
+        <li><a href="https://www.hostinger.es/tutoriales/comandos-de-git" target="_blank"
+                rel="noopener">https://www.hostinger.es/tutoriales/comandos-de-git</a></li>
+        <li><a href="https://www.freecodecamp.org/espanol/news/gitignore-que-es-gitignore-y-como-anadirlo-a-tu-repositorio/"
+                target="_blank"
+                rel="noopener">https://www.freecodecamp.org/espanol/news/gitignore-que-es-gitignore-y-como-anadirlo-a-tu-repositorio/</a>
+        </li>
+        <li><a href="https://blog.hubspot.es/website/comandos-github" target="_blank"
+                rel="noopener">https://blog.hubspot.es/website/comandos-github</a></li>
+        <li><a href="https://keepcoding.io/blog/fichero-gitignore/" target="_blank"
+                rel="noopener">https://keepcoding.io/blog/fichero-gitignore/</a></li>
+        <li><a href="https://gist.github.com/dasdo/9ff71c5c0efa037441b6" target="_blank"
+                rel="noopener">https://gist.github.com/dasdo/9ff71c5c0efa037441b6</a></li>
+        <li><a href="https://www.freecodecamp.org/espanol/news/gitignore-explicado-que-es-y-como-agregar-a-tu-repositorio/"
+                target="_blank"
+                rel="noopener">https://www.freecodecamp.org/espanol/news/gitignore-explicado-que-es-y-como-agregar-a-tu-repositorio/</a>
+        </li>
+        <li><a href="https://www.dreamhost.com/blog/es/comandos-git-ejemplos-aplicados/" target="_blank"
+                rel="noopener">https://www.dreamhost.com/blog/es/comandos-git-ejemplos-aplicados/</a></li>
+        <li><a href="https://desarrolloweb.com/articulos/archivo-gitignore.html" target="_blank"
+                rel="noopener">https://desarrolloweb.com/articulos/archivo-gitignore.html</a></li>
+
+
+
+    </ul>
+</body>
+
+</html>

@@ -1,0 +1,90 @@
+/* General resets */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f8fa;
+    color: #333333;
+    line-height: 1.6;
+    margin: 20px;
+}
+
+/* Headings */
+h1, h2, h3, h4 {
+    color: #2b2b2b;
+    margin-bottom: 10px;
+}
+
+h1 {
+    color: #4646bd;
+}
+h2 {
+    color: #5f5fdd;
+}
+h3 {
+    color: #7d7dff;
+}
+h4 {
+    color: #9595e8;
+}
+
+h5 {
+    color: #4A90E2; /* A suitable blue color */
+}
+
+/* Lists */
+ul, ol {
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+
+/* Links */
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Code blocks */
+code, pre {
+    background-color: #e6edf3;
+    padding: 3px 5px;
+    border-radius: 3px;
+}
+
+/* Container elements */
+.container {
+    max-width: 900px;
+    margin: auto;
+}
+
+.back-to-index {
+    display: inline-block;
+    padding: 8px 12px;
+    border-radius: 4px;
+    background-color: #5f5fdd;
+    color: #ffffff;
+    font-weight: bold;
+    text-decoration: none;
+    margin: 10px 0;
+}
+
+.back-to-index:hover {
+    background-color: #4646bd;
+}
+
+.highlight-box {
+    border: 2px solid #4A90E2; /* Border color */
+    padding: 10px;
+    background-color: #e6f7ff; /* Light blue background */
+    border-radius: 5px;
+    margin: 10px 0;
+}

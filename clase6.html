@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LaTeX+Git</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="container">
+    <p><a href="index.html" class="back-to-index">Volver al índice</a></p>
+    <h2>Clase 6: Creación de una Plantilla para Tesis Doctoral en LaTeX</h2>
+
+    <h3>Clonar el repositorio</h3>
+    <p> La plantilla completa se puede clonar con: 
+        <a href="https://github.com/latex-git/plantilla-tesis.git" target="_blank">
+           git clone https://github.com/latex-git/plantilla-tesis.git
+        </a>
+    </p>
+
+    <h3>Paquetes y Configuración Inicial</h3>
+    <p>El preámbulo del documento contiene una serie de paquetes que proporcionan funcionalidades específicas:</p>
+
+    <h4>Paquetes Básicos</h4>
+    <ul>
+        <li><code>natbib</code>: Gestiona citas bibliográficas.</li>
+        <li><code>inputenc</code> y <code>fontenc</code>: Manejan la codificación de caracteres y fuentes.</li>
+        <li><code>babel</code>: Adapta el documento al idioma español.</li>
+        <li><code>amsmath</code>: Proporciona funcionalidades matemáticas avanzadas.</li>
+    </ul>
+
+    <h4>Formato y Diseño</h4>
+    <ul>
+        <li><code>geometry</code>: Configura los márgenes y el tamaño del papel.</li>
+        <li><code>fancyhdr</code>: Personaliza encabezados y pies de página.</li>
+        <li><code>graphicx</code>: Permite la inserción de imágenes.</li>
+        <li><code>hyperref</code>: Crea enlaces interactivos en el documento PDF.</li>
+    </ul>
+
+    <h4>Tablas y Figuras</h4>
+    <ul>
+        <li><code>longtable</code>: Permite tablas que se extienden por varias páginas.</li>
+        <li><code>xcolor</code>: Añade color a las tablas.</li>
+        <li><code>caption</code>: Personaliza el formato de los pies de figura y tabla.</li>
+    </ul>
+
+    <h3>Estructura del Documento</h3>
+    <p>La estructura de la tesis se organiza en secciones principales:</p>
+    <ol>
+        <li><strong>Portada</strong>: Se crea utilizando comandos personalizados y el entorno <code>center</code>.</li>
+        <li><strong>Páginas Preliminares</strong>: Incluyen agradecimientos, dedicatoria y citas.</li>
+        <li><strong>Índices</strong>: Se generan automáticamente con <code>\tableofcontents</code>, <code>\listoffigures</code>, y <code>\listoftables</code>.</li>
+        <li><strong>Cuerpo Principal</strong>: Dividido en capítulos como Introducción, Material y Métodos, Resultados, etc.</li>
+    </ol>
+
+    <h3>Comandos Personalizados</h3>
+    <p>El archivo define varios comandos personalizados para facilitar el formateo:</p>
+    <pre><code>\newcommand{\figura}[4]{
+  \begin{figure}[htbp]
+    \begin{center}
+      \includegraphics[width=#2\textwidth]{figuras/#1}
+    \end{center>
+    <caption>[#3]{#4}
+    <label>{#1}
+  </figure>
+}
+</code></pre>
+    <p>Este comando simplifica la inserción de figuras, permitiendo especificar el nombre del archivo, tamaño, título corto y pie de figura en una sola línea.</p>
+
+    <h3>Formato de Capítulos</h3>
+    <p>El formato de los títulos de capítulos se personaliza utilizando <code>\@makechapterhead</code>:</p>
+    <pre><code>\makeatletter
+\def\@makechapterhead#1{
+  \vspace*{1\p@}%
+  {\parindent \z@ \raggedright \normalfont
+    \ifnum \c@secnumdepth >\m@ne
+      \par\nobreak
+      \vskip 20\p@
+    \fi
+    \interlinepenalty\@M
+    \Huge \bfseries \thechapter.\space#1\par\nobreak
+    \vskip 40\p@
+  }
+}
+\makeatother
+</code></pre>
+    <p>Este código modifica la apariencia de los títulos de capítulos, ajustando espaciado y formato.</p>
+
+    <h3>Configuración de Páginas</h3>
+    <p>La plantilla utiliza <code>fancyhdr</code> para personalizar encabezados y pies de página:</p>
+    <pre><code>\pagestyle{fancy}
+\lhead{\uppercase{\bfseries{\leftmark}}}
+\rhead{\uppercase{\bfseries{\rightmark}}}
+\cfoot{\thepage}
+</code></pre>
+    <p>Esto configura los encabezados con el nombre del capítulo y la sección actual, y coloca el número de página en el centro del pie.</p>
+
+    <h3>Bibliografía</h3>
+    <p>La bibliografía se configura para ser presentada en dos columnas y con un tamaño de fuente reducido:</p>
+    <pre><code>\begin{singlespace}
+\begin{footnotesize}
+\begin{twocolumn}
+\bibliography{biblio}
+\end{twocolumn}
+\end{footnotesize}
+\end{singlespace}
+</code></pre>
+    <p>Esta configuración optimiza el espacio y mejora la legibilidad de las referencias.</p>
+
+    <p>En conclusión, esta plantilla proporciona una base sólida para la creación de tesis doctorales en LaTeX, ofreciendo una estructura clara y herramientas para un formateo consistente y profesional.</p>
+
+
+    <h3>Creación de las Páginas del "frontmatter"</h3>
+
+    <p>El "frontmatter" en LaTeX contiene las páginas preliminares de la tesis, como portada, dedicatorias, agradecimientos e índices. Estas páginas suelen tener un formato distinto al cuerpo principal (por ejemplo, números de página en romanos y sin encabezados). A continuación, se explica cómo se construye cada una en la plantilla adjunta:</p>
+
+    <h3>1. Portada Inicial</h3>
+    <p><strong>Objetivo</strong>: Mostrar título, autor, logos institucionales y fecha.<br>
+    <strong>Código clave</strong>:</p>
+    <pre><code>\begin{center}
+        \LARGE \titulo \\ % Título definido con \newcommand
+        \vspace{\stretch{2}} % Espacio flexible
+        \includegraphics[width=.6\textwidth]{escudo_ugr_portada} % Logo
+        \vspace{\stretch{2}} 
+        \large Nombre Apellidos \\ % Autor
+        Tesis Doctoral \\ % Grado
+        \fecha % Fecha definida con \newcommand
+    \end{center}</code></pre>
+    <ul>
+            <li><code>\vspace{\stretch{n}}</code>: Distribuye el espacio verticalmente de forma proporcional.</li>
+            <li><code>\titulo</code> y <code>\fecha</code>: Comandos personalizados definidos con <code>\newcommand</code> para reutilizar valores.</li>
+    </ul>
+
+    <h3>2. Página Institucional</h3>
+    <p><strong>Objetivo</strong>: Mostrar logos de instituciones y departamentos.<br>
+    <strong>Técnica</strong>: Uso de <code>minipage</code> para alinear múltiples elementos en filas:</p>
+    <pre><code>\begin{minipage}[t]{.23\textwidth}
+        \centering
+        \includegraphics[width=.8\textwidth]{logo_ib} % Logo 1
+        Instituto de Biotecnología 
+    \end{minipage}
+    \hfill % Espacio horizontal
+    \begin{minipage}[t]{.23\textwidth}
+        \centering
+        \includegraphics[width=.7\textwidth]{logo_ciencias} % Logo 2
+        Facultad de Ciencias
+    \end{minipage}</code></pre>
+
+    <h3>3. Página de Directores y Financiación</h3>
+    <p><strong>Objetivo</strong>: Detallar directores, programa de financiación y declaración institucional.</p>
+    <pre><code>\begin{minipage}[t]{.4\textwidth}
+        Dirigida por: \\ 
+        \vspace{15ex} % Espacio fijo
+        Dr. Fulanito de tal \\ % Director 1
+        Dr. Menganito de cual % Director 2
+    \end{minipage}</code></pre>
+
+    <h3>4. Dedicatoria y Cita</h3>
+    <p><strong>Objetivo</strong>: Añadir elementos personales o inspiradores.</p>
+    <pre><code>\begin{flushright}
+        \begin{minipage}{8cm}
+            \textit{Siembra un pensamiento...} \\
+            \begin{flushright} 
+                Charles Reade
+            \end{flushright>
+        </end{minipage>
+    </end{flushright></code></pre>
+
+    <h3>5. Agradecimientos</h3>
+    <p><strong>Objetivo</strong>: Incluir un archivo externo con los agradecimientos.</p>
+    <pre><code>\cleardoublepage % Asegura que empiece en página impar
+    \input{agradecimientos.tex} % Archivo externo</code></pre>
+
+    <h3>6. Índices Generales</h3>
+    <p><strong>Objetivo</strong>: Listar capítulos, figuras y tablas.</p>
+    <pre><code>\tableofcontents % Índice de capítulos
+    \listoffigures   % Lista de figuras
+    \listoftables    % Lista de tablas
+    \clearpage       % Limpia la página
+    \input{abreviaturas-utf.tex} % Lista de abreviaturas</code></pre>
+
+    <h3>7. Estilos de Página en "frontmatter"</h3>
+    <ul>
+            <li><code>\pagestyle{empty}</code>: Elimina encabezados y pies de página.</li>
+            <li><code>\cleardoublepage</code>: Fuerza una página nueva.</li>
+            <li><code>\thispagestyle{empty}</code>: Aplica el estilo solo a la página actual.</li>
+    </ul>
+
+
+<h3>Texto en columnas</h3>
+<h4>Uso de la opción twocolumn en la clase de documento</h4>
+<p>Para generar un documento completo con formato de columnas, es posible utilizar la opción twocolumn al declarar la clase del documento. El siguiente ejemplo muestra cómo se aplica este formato a todo el documento:</p>
+
+<pre><code>\documentclass[twocolumn]{article}
+\usepackage{graphicx}
+\begin{document}
+
+\section*{Documento en Dos Columnas}
+Este documento se muestra en dos columnas de forma automática, lo que resulta útil para artículos, 
+resúmenes o publicaciones científicas.
+\includegraphics[width=\linewidth]{example-image}
+Más texto de ejemplo se incluirá en ambas columnas, manteniendo un formato uniforme.
+
+\end{document}</code></pre>
+<h4>Uso del paquete multicol para columnas iguales</h4>
+<p>El paquete multicol permite dividir el contenido en varias columnas de igual ancho de forma sencilla. En el siguiente ejemplo se crea un entorno con dos columnas que contiene párrafos de texto y una lista:</p>
+
+<pre><code>\documentclass{article}
+\usepackage{multicol}
+\usepackage{lipsum} % Para texto de relleno
+\begin{document}
+
+\begin{multicols}{2}
+\section*{Ejemplo de Dos Columnas}
+\lipsum[1]
+
+\begin{itemize}
+    \item Elemento 1
+    \item Elemento 2
+    \item Elemento 3
+\end{itemize}
+
+\lipsum[2]
+\end{multicols}
+
+\end{document}</code></pre>
+
+<p>En este código, el entorno multicols divide automáticamente el contenido en dos columnas de igual ancho, permitiendo incluir secciones, párrafos y listas</p>
+
+<h4>Uso de entornos minipage para columnas de anchos distintos</h4>
+<p>Si se requiere disponer columnas de diferentes anchos o integrar elementos heterogéneos (como imágenes y tablas junto con texto), el entorno minipage resulta muy útil. En el siguiente ejemplo se crean dos columnas con anchos personalizados:</p>
+
+<pre><code>\documentclass{article}
+\usepackage{graphicx}
+\begin{document}
+
+\noindent
+\begin{minipage}[t]{0.4\linewidth}
+\textbf{Columna 1: Texto}\\[5pt]
+Este es un ejemplo de texto en la primera columna. Se pueden incluir párrafos, fórmulas y otros elementos.
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.55\linewidth}
+\textbf{Columna 2: Imagen y Tabla}\\[5pt]
+\includegraphics[width=\linewidth]{example-image-a}
+\vskip10pt
+\begin{tabular}{|c|c|}
+\hline
+A & B \\
+\hline
+1 & 2 \\
+\hline
+\end{tabular}
+\end{minipage}
+
+\end{document}</code></pre>
+
+<p>Aquí se han definido dos minipage con anchos del 40% y 55% respectivamente, separando el contenido en función de las necesidades: en la primera columna se muestra texto y en la segunda, una imagen seguida de una tabla.</p>
+
+
+<h3>Integración de elementos mixtos en múltiples columnas</h3>
+<p>El entorno multicols también es adecuado para distribuir diferentes tipos de contenido en columnas múltiples. En el siguiente ejemplo se demuestra una disposición en tres columnas, donde cada una contiene elementos distintos: texto e imagen, una tabla y una lista:</p>
+
+<pre><code>\documentclass{article}
+\usepackage{multicol}
+\usepackage{graphicx}
+\usepackage{lipsum}
+\begin{document}
+
+\begin{multicols}{3}
+\section*{Columna 1: Texto e Imagen}
+\lipsum[1]
+\includegraphics[width=\linewidth]{example-image}
+\columnbreak
+
+\section*{Columna 2: Tabla}
+\begin{tabular}{|c|c|}
+\hline
+\textbf{Item} & \textbf{Valor} \\
+\hline
+Uno & 10 \\
+Dos & 20 \\
+\hline
+\end{tabular}
+
+\columnbreak
+
+\section*{Columna 3: Lista}
+\begin{itemize}
+    \item Elemento A
+    \item Elemento B
+    \item Elemento C
+\end{itemize}
+\end{multicols}
+
+\end{document}</code></pre>
+
+<p>Cada columna se encarga de un tipo de contenido distinto y, gracias al entorno multicols, se consigue una distribución equilibrada en el espacio disponible.</p>
+<h3>Separación entre columnas</h3>
+
+<h4>Espacio entre columnas</h4>
+<p>Se define mediante la longitud <code>\columnsep</code>. Por ejemplo, si se requiere aumentar el espacio entre columnas, se puede usar:</p>
+<pre><code>\setlength{\columnsep}{3em}</code></pre>
+<p>Este comando establece la distancia horizontal entre el contenido de cada columna.</p>
+
+<h4>Línea divisoria entre columnas</h4>
+<p>La presencia (y grosor) de una línea vertical se controla con la longitud <code>\columnseprule</code>. Por defecto, tiene un valor de 0pt (es decir, no aparece ninguna línea). Para hacer visible la separación, se puede configurar, por ejemplo:</p>
+<pre><code>\setlength{\columnseprule}{0.4pt}</code></pre>
+<p>Con este ajuste, LaTeX dibuja una línea de 0.4pt de grosor entre las columnas.</p>
+
+    <h3>Consejos Clave</h3>
+    <ol>
+            <li><strong>Flexibilidad con <code>\vspace{\stretch{n}}</code></strong>: Permite ajustar el espacio vertical sin valores fijos.</li>
+            <li><strong>Logos con <code>includegraphics</code></strong>: Usa rutas relativas y ajusta el ancho con <code>width=.7\textwidth</code>.</li>
+            <li><strong>Mantenimiento Modular</strong>: Separa contenido en archivos <code>.tex</code> independientes.</li>
+    </ol>
+
+    <h3>Uso del paquete balance</h3>
+    <p>Para equilibrar la última página puedes incluir el paquete en el preámbulo de tu documento:</p>
+
+    <pre><code>\documentclass[twocolumn]{article}
+    \usepackage{balance}
+    \begin{document}
+    % Contenido del documento
+
+    % … texto, secciones, etc.
+
+    % Coloca el comando \balance en algún punto de la última página,
+    % preferiblemente en la columna izquierda:
+    \balance
+
+    % Contenido final, por ejemplo:
+    \bibliographystyle{plain}
+    \bibliography{miBibliografia}
+    \end{document}</code></pre>
+
+    <p>El comando <code>\balance</code> indica a LaTeX que a partir de ese punto se debe intentar repartir el contenido de la última página de manera equitativa entre ambas columnas. Es fundamental asegurarse de insertar el comando lo suficientemente temprano en la primera columna de la última página; de lo contrario, LaTeX podría ya haber fijado el contenido, y el balanceo no surtiría efecto.</p>
+
+
+
+    <p><a href="index.html" class="back-to-index">Volver al índice</a></p>
+</body>
+
+</html>

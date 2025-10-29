@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LaTeX+Git</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="container">
+    <p><a href="index.html" class="back-to-index">Volver al índice</a></p>
+    <h2>Clase 3: Elementos básicos en LaTeX</h2>
+
+<h3>Definir comandos propios</h3>
+<p>Se pueden crear comandos para escribir, por ejemplo, texto que se repite en el documento:</p>
+<pre><code>\newcommand{\mycommand}{Texto que se repite}</code></pre>
+<p>Se puede usar el paquete <code>xspace</code> para que el comando añada un espacio después de él si es necesario:</p>
+<pre><code>\usepackage{xspace}
+\newcommand{\mycommand}{Texto que se repite\xspace}</code></pre>
+
+    <h3>Listas: numeradas, con viñetas y de descripción</h3>
+    <p>LaTeX ofrece varios tipos de listas para organizar la información de manera estructurada.</p>
+
+    <h4>Tipos básicos de listas</h4>
+    <p><strong>Listas numeradas</strong> (entorno <code>enumerate</code>):</p>
+    <pre><code>\begin{enumerate}
+    \item Primer elemento
+    \item Segundo elemento
+    \item Tercer elemento
+\end{enumerate}
+</code></pre>
+
+    <p>Este código crea una lista numerada. Cada <code>\item</code> genera un nuevo elemento en la lista, automáticamente numerado. LaTeX se encarga de la numeración y el formato.</p>
+
+    <p><strong>Listas con viñetas</strong> (entorno <code>itemize</code>):</p>
+    <pre><code>\begin{itemize}
+    \item Elemento con viñeta
+    \item Otro elemento
+    \item Un elemento más
+\end{itemize}
+</code></pre>
+
+    <p>Similar a la lista numerada, pero usa viñetas en lugar de números. El estilo de la viñeta puede variar dependiendo del nivel de anidación de la lista.</p>
+
+    <p><strong>Listas de descripción</strong> (entorno <code>description</code>):</p>
+    <pre><code>\begin{description}
+    \item[Término 1] Descripción del primer término
+    \item[Término 2] Descripción del segundo término
+\end{description}
+</code></pre>
+
+    <p>Esta lista es útil para definiciones o explicaciones. El texto entre corchetes <code>[]</code> es el término a describir, y lo que sigue es la descripción.</p>
+
+    <h4>Personalización de listas</h4>
+    <pre><code>\usepackage{enumitem}
+
+% Lista más compacta
+\begin{itemize}[noitemsep,topsep=0pt]
+    \item Elemento 1
+    \item Elemento 2
+\end{itemize}
+
+% Cambiar el estilo de numeración
+\begin{enumerate}[label=\alph*)]
+    \item Elemento a)
+    \item Elemento b)
+\end{enumerate}
+
+% Lista de descripción con alineación
+\begin{description}[style=multiline,leftmargin=3cm]
+    \item[Término largo] Descripción
+    \item[Corto] Otra descripción
+\end{description}
+</code></pre>
+
+ <p>    <ul>
+        <li>El paquete <code>enumitem</code> ofrece opciones avanzadas para personalizar listas.</li>
+        <li><code>[noitemsep,topsep=0pt]</code> elimina el espacio entre ítems y en la parte superior de la lista.</li>
+        <li><code>[label=\alph*)]</code> cambia la numeración a letras minúsculas seguidas de un paréntesis.</li>
+        <li><code>[style=multiline,leftmargin=3cm]</code> en la lista de descripción alinea las descripciones y establece un margen izquierdo.</li>
+    </ul>
+</p>
+
+    <h3>Tablas simples y complejas</h3>
+
+    <h4>Tabla básica</h4>
+    <pre><code>\begin{table}
+    \centering
+    \begin{tabular}{|l|c|r|}
+        \hline
+        Izquierda & Centro & Derecha \\
+        \hline
+        1 & 2 & 3 \\
+        4 & 5 & 6 \\
+        \hline
+    \end{tabular}
+    \caption{Una tabla simple}
+    \label{tab:simple}
+\end{table}
+</code></pre>
+
+
+<p>
+<ul>
+    <li><code>\begin{table}</code> crea un entorno flotante para la tabla.</li>
+    <li><code>\centering</code> centra la tabla en la página.</li>
+    <li><code>{|l|c|r|}</code> define tres columnas: izquierda, centro y derecha, con líneas verticales.</li>
+    <li><code>\hline</code> crea líneas horizontales.</li>
+    <li><code>&</code> separa las columnas y <code>\\</code> termina una fila.</li>
+    <li><code>\caption{}</code> añade un título a la tabla.</li>
+    <li><code>\label{}</code> permite referenciar la tabla en el texto.</li>
+</ul>
+</p>
+
+<p>Para que aparezca <strong>tabla</strong> en lugar de <strong>cuadro</strong> se puede usar la opción <strong>es-tabla</strong> en <strong>babel</strong> con el idioma <strong>spanish</strong></p>
+
+
+<h4>Tabla compleja con fusión de celdas y colores</h4>
+<pre><code>\usepackage{multirow}
+\usepackage{colortbl}
+
+\begin{table}
+    \centering
+    \begin{tabular}{|l|c|c|c|}
+        \hline
+        \rowcolor{lightgray}
+        \multicolumn{2}{|c|}{\textbf{Encabezado fusionado}} & \textbf{Col 3} & \textbf{Col 4} \\
+        \hline
+        \multirow{2}{*}{Fila 1-2} & A & B & C \\
+        \cline{2-4}
+        & D & E & F \\
+        \hline
+        Fila 3 & \multicolumn{3}{c|}{Celda fusionada horizontalmente} \\
+        \hline
+    \end{tabular}
+    \caption[Versión corta]{Tabla compleja con fusión de celdas y colores}
+    \label{tab:compleja}
+\end{table}
+</code></pre>
+
+    <p>
+    <ul>
+        <li><code>\usepackage{multirow}</code> y <code>\usepackage{colortbl}</code> permiten fusionar filas y añadir colores.</li>
+        <li><code>\rowcolor{lightgray}</code> colorea una fila completa.</li>
+        <li><code>\multicolumn{2}{|c|}{...}</code> fusiona dos columnas horizontalmente.</li>
+        <li><code>\multirow{2}{*}{...}</code> fusiona dos filas verticalmente.</li>
+        <li><code>\cline{2-4}</code> crea una línea horizontal parcial.</li>
+        <li><code>\caption[Versión corta]{...}</code> proporciona una versión corta del título para el índice de tablas.</li>
+    </ul>
+    </p>
+
+
+    <h3>Colores alternos en filas</h3>
+    <p>Para aplicar colores alternos en las filas de una tabla en LaTeX, puedes usar el paquete <code>xcolor</code> con la opción <code>table</code>. Aquí tienes un ejemplo:</p>
+
+    <pre><code>\usepackage[table]{xcolor}
+    \definecolor{lightgray}{gray}{0.9}
+
+  
+        \begin{table}[ht]
+            \centering
+            \rowcolors{1}{white}{lightgray} % Comienza desde la primera fila
+            \begin{tabular}{r|rrrrr}
+                \hline
+                & 1 & 2 & 3 & 4 & 5 \\
+                \hline
+                1 & 2.36 & 1.08 & -0.49 & -0.82 & -0.65 \\
+                2 & -0.68 & -1.13 & -0.42 & -0.72 & 1.51 \\
+                3 & -1.00 & 0.02 & -0.54 & 0.31 & 1.28 \\
+                4 & -0.99 & -0.54 & 0.97 & -1.12 & 0.59 \\
+                5 & -2.35 & -0.29 & -0.53 & 0.30 & -0.30 \\
+                6 & -0.10 & 0.06 & -0.85 & 0.10 & -0.60 \\
+                7 & 1.28 & -0.46 & 1.33 & -0.66 & -1.80 \\
+                8 & 0.80 & 0.46 & 1.37 & 1.73 & 1.93 \\
+                9 & -0.75 & 0.28 & 0.51 & 0.19 & 0.58 \\
+                10 & -1.64 & -0.12 & -1.17 & -0.10 & -0.04 \\
+                \hline
+            \end{tabular}
+        \end{table}
+    </code></pre>
+
+    <p>En este ejemplo:</p>
+    <ul>
+        <li><code>\usepackage[table]{xcolor}</code> carga el paquete <code>xcolor</code> con soporte para tablas.</li>
+        <li><code>\definecolor{lightgray}{gray}{0.9}</code> define un color gris claro.</li>
+        <li><code>\rowcolors{1}{white}{lightgray}</code> aplica colores alternos a las filas, comenzando desde la primera fila.</li>
+    </ul>
+
+    <h4>Alineación en tablas</h4>
+    <pre><code>\usepackage{siunitx}
+\begin{tabular}{S[table-format=2.2]}
+    10.33 \\
+    5.1 \\
+    100.0 \\
+\end{tabular}
+</code></pre>
+
+ <p>
+    <ul>
+        <li>El paquete <code>siunitx</code> ofrece la columna <code>S</code> para alineación decimal.</li>
+        <li><code>[table-format=2.2]</code> especifica dos dígitos antes y dos después del punto decimal.</li>
+    </ul>
+ </p>
+
+
+
+<h3>Ejemplo de tabla con columnas <code>p</code> y <code>m</code></h3>
+
+<pre><code>\documentclass{article}
+\usepackage{array}
+
+\begin{document}
+\begin{table}[ht]
+	\begin{center}
+		\begin{tabular}{|p{4cm}|m{6cm}|}
+			\hline
+			\centering Texto centrado & 
+			Este es un texto que se ajusta al ancho de la columna.
+			Puede contener varias líneas y se alinea a la izquierda por defecto. \\
+			\hline
+			\centering Otra fila centrada &
+			Aquí tienes más texto que se ajusta al ancho de la columna 
+			y puede contener varias líneas. \\
+			\hline
+		\end{tabular}
+	\end{center}
+\end{table}
+\end{document}
+</code></pre>
+
+<h3>Diferencias entre columnas <code>p</code> y <code>m</code></h3>
+
+<h4>Columnas <code>p</code></h4>
+
+<ul>
+    <li><strong>Definición</strong>: Las columnas del tipo <code>p</code> se definen con el comando <code>p{ancho}</code>, donde <code>ancho</code> es el ancho fijo que tendrá la columna.</li>
+    <li><strong>Alineación</strong>: Por defecto, el texto en columnas <code>p</code> se alinea a la izquierda. Puedes usar comandos como <code>\centering</code> o <code>\raggedright</code> para cambiar la alineación horizontal.</li>
+    <li><strong>Saltos de línea</strong>: Las columnas <code>p</code> permiten saltos de línea dentro de la celda. Puedes usar el comando <code>\\</code> para forzar un salto de línea.</li>
+    <li><strong>Alineación vertical</strong>: El texto en columnas <code>p</code> se alinea al inicio de la celda, es decir, alineado a la parte superior.</li>
+</ul>
+
+<h4>Columnas <code>m</code></h4>
+
+<ul>
+    <li><strong>Definición</strong>: Las columnas del tipo <code>m</code> se definen con el comando <code>m{ancho}</code>, donde <code>ancho</code> es el ancho fijo que tendrá la columna. Para usar columnas <code>m</code>, debes incluir el paquete <code>array</code>.</li>
+    <li><strong>Alineación</strong>: Al igual que las columnas <code>p</code>, el texto en columnas <code>m</code> se alinea a la izquierda por defecto. Puedes cambiar la alineación horizontal usando comandos como <code>\centering</code>.</li>
+    <li><strong>Saltos de línea</strong>: Las columnas <code>m</code> también permiten saltos de línea dentro de la celda.</li>
+    <li><strong>Alineación vertical</strong>: La principal diferencia con las columnas <code>p</code> es que el texto en columnas <code>m</code> se alinea verticalmente al centro de la celda. Esto es especialmente útil cuando necesitas que el texto esté centrado verticalmente en filas con diferentes alturas.</li>
+</ul>
+
+<p>En resumen, la principal diferencia entre columnas <code>p</code> y <code>m</code> es la alineación vertical del texto. Las columnas <code>p</code> alinean el texto a la parte superior de la celda, mientras que las columnas <code>m</code> lo alinean al centro verticalmente.</p>
+
+
+
+<h3>Uso de adjustbox para ajustar tablas</h3>
+
+<p>Primero, necesitas cargar el paquete <code>adjustbox</code>:</p>
+
+<pre><code>\usepackage{adjustbox}
+</code></pre>
+
+<p>Luego, puedes usar <code>adjustbox</code> para envolver tu tabla y ajustarla al ancho de la página. Aquí tienes un ejemplo:</p>
+
+<pre><code>\begin{table}
+    \centering
+    \caption{Una tabla ajustada al ancho de la página}
+    \begin{adjustbox}{width=\textwidth}
+    \begin{tabular}{|c|c|c|c|c|c|}
+        \hline
+        Columna 1 & Columna 2 & Columna 3 & Columna 4 & Columna 5 & Columna 6 \\
+        \hline
+        Dato 1 & Dato 2 & Dato 3 & Dato 4 & Dato 5 & Dato 6 \\
+        Dato 7 & Dato 8 & Dato 9 & Dato 10 & Dato 11 & Dato 12 \\
+        \hline
+    \end{tabular}
+    \end{adjustbox}
+    \label{tab:ajustada}
+\end{table}
+</code></pre>
+
+<p>Explicación:</p>
+<ul>
+    <li><code>\begin{adjustbox}{width=\textwidth}</code> ajusta el contenido al ancho total de la página (<code>\textwidth</code>).</li>
+    <li>La tabla completa se coloca dentro del entorno <code>adjustbox</code>.</li>
+    <li>Esto escalará la tabla proporcionalmente para que se ajuste al ancho especificado.</li>
+</ul>
+
+<h4>Opciones adicionales de adjustbox</h4>
+
+<p>1. Ajustar a un porcentaje del ancho de la página:</p>
+<pre><code>\begin{adjustbox}{width=0.9\textwidth}
+</code></pre>
+
+<p>2. Establecer un ancho máximo:</p>
+<pre><code>\begin{adjustbox}{max width=\textwidth}
+</code></pre>
+<p>Esto ajustará la tabla solo si es más ancha que <code>\textwidth</code>.</p>
+
+<p>3. Ajustar la altura y el ancho:</p>
+<pre><code>\begin{adjustbox}{max width=\textwidth, max height=0.3\textheight}
+</code></pre>
+
+<p>4. Centrar la tabla si es más pequeña que el ancho especificado:</p>
+<pre><code>\begin{adjustbox}{max width=\textwidth, center}
+</code></pre>
+
+<h4>Consideraciones importantes</h4>
+
+<ul>
+    <li><strong>Legibilidad</strong>: Al reducir el tamaño de una tabla, asegúrate de que el contenido siga siendo legible.</li>
+    <li><strong>Proporcionalidad</strong>: <code>adjustbox</code> mantiene las proporciones de la tabla, lo que puede resultar en texto muy pequeño si la tabla es muy ancha.</li>
+    <li><strong>Alternativas</strong>: Para tablas muy grandes, considera otras opciones como dividir la tabla, usar un diseño apaisado para esa página, o usar paquetes como <code>longtable</code> para tablas que se extienden por varias páginas.</li>
+</ul>
+
+<h4>Ejemplo práctico</h4>
+
+<pre><code>\documentclass{article}
+\usepackage{adjustbox}
+\usepackage{booktabs}
+
+\begin{document}
+
+\begin{table}
+    \centering
+    \caption{Comparación de métodos}
+    \begin{adjustbox}{max width=\textwidth, center}
+    \begin{tabular}{lcccccc}
+        \toprule
+        Método & Precisión & Recall & F1-Score & Tiempo (s) & Memoria (MB) & Complejidad \\
+        \midrule
+        Método A & 0.95 & 0.92 & 0.93 & 120 & 500 & O(n log n) \\
+        Método B & 0.88 & 0.90 & 0.89 & 80 & 300 & O(n) \\
+        Método C & 0.92 & 0.94 & 0.93 & 150 & 700 & O($n^2$) \\
+        Método D & 0.97 & 0.96 & 0.96 & 200 & 1000 & O($n^3$) \\
+        \bottomrule
+    \end{tabular}
+    \end{adjustbox}
+    \label{tab:comparacion}
+\end{table}
+
+La Tabla \ref{tab:comparacion} muestra una comparación detallada de diferentes métodos.
+
+\end{document}
+</code></pre>
+
+<p>Este ejemplo crea una tabla que se ajustará automáticamente al ancho de la página si es necesario, manteniendo su legibilidad y estructura.</p>
+
+<div class="explanation"></div>
+    <p>Los comandos <code>\toprule</code>, <code>\midrule</code>, y <code>\bottomrule</code> son parte del paquete <code>booktabs</code>, que se utiliza para crear tablas con un aspecto profesional y tipográficamente agradable en LaTeX. Estos comandos reemplazan las líneas horizontales estándar (<code>\hline</code>) con líneas de diferentes grosores y espaciados, diseñadas para mejorar la legibilidad y el aspecto de las tablas.</p>
+
+    <h4>Explicación detallada de cada comando:</h4>
+    <ol>
+        <li><strong><code>\toprule</code></strong>:
+            <ul>
+                <li>Se usa para crear una línea gruesa en la parte superior de la tabla.</li>
+                <li>Típicamente se coloca justo después de comenzar el entorno <code>tabular</code> o después del encabezado de la tabla.</li>
+            </ul>
+        </li>
+        <li><strong><code>\midrule</code></strong>:
+            <ul>
+                <li>Crea una línea de grosor medio en el cuerpo de la tabla.</li>
+                <li>Se usa comúnmente para separar el encabezado del cuerpo de la tabla, o para dividir secciones dentro de la tabla.</li>
+            </ul>
+        </li>
+        <li><strong><code>\bottomrule</code></strong>:
+            <ul>
+                <li>Genera una línea gruesa en la parte inferior de la tabla.</li>
+                <li>Se coloca generalmente justo antes de cerrar el entorno <code>tabular</code>.</li>
+            </ul>
+        </li>
+    </ol>
+
+    <h4>Características de estas líneas:</h4>
+    <ul>
+        <li>Tienen un espaciado vertical automático para evitar que el texto quede demasiado cerca de las líneas.</li>
+        <li>Son más delgadas que las líneas estándar de LaTeX, lo que da un aspecto más refinado a la tabla.</li>
+        <li><code>\toprule</code> y <code>\bottomrule</code> son ligeramente más gruesas que <code>\midrule</code>.</li>
+    </ul>
+
+    <h4>Ejemplo de uso:</h4>
+    <pre><code>\usepackage{booktabs}
+
+\begin{table}
+    \centering
+    \begin{tabular}{lcc}
+    \toprule
+    Elemento & Cantidad & Precio \\
+    \midrule
+    Manzanas & 5 & $2.50 \\
+    Peras    & 3 & $1.80 \\
+    Naranjas & 4 & $2.00 \\
+    \midrule
+    Total    & 12 & $6.30 \\
+    \bottomrule
+    \end{tabular}
+    \caption{Ejemplo de tabla con booktabs}
+\end{table}</code></pre>
+
+    <h4>En este ejemplo:</h4>
+    <ul>
+        <li><code>\toprule</code> crea una línea gruesa encima del encabezado.</li>
+        <li>El primer <code>\midrule</code> separa el encabezado del cuerpo de la tabla.</li>
+        <li>El segundo <code>\midrule</code> separa el cuerpo del total.</li>
+        <li><code>\bottomrule</code> cierra la tabla con una línea gruesa en la parte inferior.</li>
+    </ul>
+
+    <p>El uso de estos comandos en lugar de <code>\hline</code> resulta en tablas más profesionales y fáciles de leer, siguiendo las mejores prácticas tipográficas para la presentación de datos tabulares.</p>
+</div>
+
+
+<h3>Crear una tabla apaisada</h3>
+
+<p>Utilizaremos el paquete <code>pdflscape</code> junto con el entorno <code>landscape</code>. Este método es muy útil para tablas grandes que necesitan más espacio horizontal. Aquí te explico cómo hacerlo paso a paso:</p>
+
+<h4>Paso 1: Cargar los paquetes necesarios</h4>
+
+<p>En el preámbulo de tu documento, incluye los siguientes paquetes:</p>
+
+<pre><code>\usepackage{pdflscape}  % Para crear páginas apaisadas
+\usepackage{booktabs}   % Para líneas de tabla mejoradas (opcional, pero recomendado)
+</code></pre>
+
+<h4>Paso 2: Crear la tabla apaisada</h4>
+
+<p>Dentro del cuerpo del documento, usa el entorno <code>landscape</code> para crear una página apaisada:</p>
+
+<pre><code>
+    \documentclass{article}
+    \usepackage{pdflscape}
+    \usepackage{booktabs}
+    \usepackage{array}
+    
+    \begin{document}
+    
+    Texto normal en orientación vertical.
+    
+    \begin{landscape}
+    \begin{table}
+        \centering
+        \caption{Tabla grande apaisada}
+        \label{tab:apaisada}
+        \begin{tabular}{l*{6}{c}}
+        \toprule
+        Método & Precisión & Recall & F1-Score & Tiempo (s) & Memoria (MB) & Complejidad \\
+        \midrule
+        Método A & 0.95 & 0.92 & 0.93 & 120 & 500 & O(n log n) \\
+        Método B & 0.88 & 0.90 & 0.89 & 80 & 300 & O(n) \\
+        Método C & 0.92 & 0.94 & 0.93 & 150 & 700 & O($n^2$) \\
+        Método D & 0.97 & 0.96 & 0.96 & 200 & 1000 & O($n^3$) \\
+        Método E & 0.91 & 0.93 & 0.92 & 100 & 450 & O(n log n) \\
+        Método F & 0.89 & 0.91 & 0.90 & 90 & 350 & O(n) \\
+        \bottomrule
+        \end{tabular}
+    \end{table}
+    \end{landscape}
+    
+    Volvemos a la orientación vertical normal.
+    
+    \end{document}
+    
+</code></pre>
+
+<h4>Explicación del código:</h4>
+
+<ul>
+    <li><code>\begin{landscape}</code> ... <code>\end{landscape}</code>: Crea una página apaisada.</li>
+    <li><code>\caption{} \label{}</code>: Agrega un título y una etiqueta a la tabla.</li>
+    <li><code>\toprule</code>, <code>\midrule</code>, <code>\bottomrule</code>: Crea líneas horizontales mejoradas (requiere el paquete <code>booktabs</code>).</li>
+    <li><code>\endfirsthead</code> ... <code>\endhead</code>: Define el encabezado para la primera página y las siguientes.</li>
+    <li><code>\endfoot</code>: Define el pie de página para todas las páginas excepto la última.</li>
+    <li><code>\endlastfoot</code>: Define el pie de página para la última página de la tabla.</li>
+</ul>
+
+<h4>Consideraciones importantes:</h4>
+
+<ul>
+    <li><strong>Posicionamiento</strong>: La tabla apaisada siempre comenzará en una nueva página.</li>
+    <li><strong>Longitud</strong>: Si la tabla es más larga que una página, se extenderá automáticamente a las siguientes páginas, manteniendo la orientación apaisada.</li>
+    <li><strong>Numeración de páginas</strong>: Las páginas apaisadas mantendrán la numeración consecutiva del documento.</li>
+    <li><strong>Márgenes</strong>: Los márgenes se ajustarán automáticamente para la orientación apaisada.</li>
+</ul>
+
+<h4>Ejemplo completo:</h4>
+
+<pre><code>\documentclass{article}
+\usepackage{pdflscape}
+\usepackage{longtable}
+\usepackage{booktabs}
+
+\begin{document}
+
+Texto normal en orientación vertical.
+
+\begin{landscape}
+\begin{longtable}{lcccccc}
+    \caption{Tabla grande apaisada}\label{tab:apaisada} \\
+    
+    \toprule
+    Método & Precisión & Recall & F1-Score & Tiempo (s) & Memoria (MB) & Complejidad \\
+    \midrule
+    \endfirsthead
+    
+    \multicolumn{7}{c}{Continuación de la Tabla \ref{tab:apaisada}} \\
+    \toprule
+    Método & Precisión & Recall & F1-Score & Tiempo (s) & Memoria (MB) & Complejidad \\
+    \midrule
+    \endhead
+    
+    \midrule
+    \multicolumn{7}{r}{Continúa en la siguiente página} \\
+    \endfoot
+    
+    \bottomrule
+    \endlastfoot
+    
+    Método A & 0.95 & 0.92 & 0.93 & 120 & 500 & O(n log n) \\
+    Método B & 0.88 & 0.90 & 0.89 & 80 & 300 & O(n) \\
+    Método C & 0.92 & 0.94 & 0.93 & 150 & 700 & O($n^2$) \\
+    Método D & 0.97 & 0.96 & 0.96 & 200 & 1000 & O($n^3$) \\
+    % ... Repite estas filas varias veces para crear una tabla larga
+\end{longtable}
+\end{landscape}
+
+Volvemos a la orientación vertical normal.
+
+\end{document}
+</code></pre>
+
+<p>El siguiente ejemplo creará una tabla apaisada que comenzará en una nueva página, se extenderá por múltiples páginas si es necesario, y luego volverá a la orientación normal del documento.</p>
+
+
+<h3>Tablas largas de varias páginas</h3>
+
+<p><code>longtable</code> es un paquete LaTeX muy útil que permite crear tablas que se extienden a lo largo de múltiples páginas. Es especialmente valioso cuando se trabaja con tablas largas que no caben en una sola página. Vamos a explorar cómo funciona <code>longtable</code> en detalle:</p>
+
+<h4>Características principales de longtable</h4>
+<ol>
+    <li><strong>Múltiples páginas</strong>: Puede dividir automáticamente una tabla en varias páginas.</li>
+    <li><strong>Encabezados y pies de página repetitivos</strong>: Permite definir encabezados y pies que se repiten en cada página.</li>
+    <li><strong>Leyendas</strong>: Soporta leyendas que aparecen en la primera página de la tabla.</li>
+    <li><strong>Compatibilidad</strong>: Funciona bien con otros paquetes de LaTeX y en diferentes clases de documentos.</li>
+</ol>
+
+<h4>Estructura básica de una longtable</h4>
+
+<pre><code>\begin{longtable}{ccc}
+    % Encabezado de la primera página
+    \caption{Título de la tabla}\label{tab:ejemplo} \\
+    \toprule
+    Columna 1 & Columna 2 & Columna 3 \\
+    \midrule
+    \endfirsthead
+
+    % Encabezado de las páginas siguientes
+    \multicolumn{3}{c}{Continuación de la Tabla \ref{tab:ejemplo}} \\
+    \toprule
+    Columna 1 & Columna 2 & Columna 3 \\
+    \midrule
+    \endhead
+
+    % Pie de página para todas las páginas excepto la última
+    \midrule
+    \multicolumn{3}{r}{Continúa en la siguiente página} \\
+    \endfoot
+
+    % Pie de página para la última página
+    \bottomrule
+    \endlastfoot
+
+    % Contenido de la tabla
+    Dato 1 & Dato 2 & Dato 3 \\
+    Dato 4 & Dato 5 & Dato 6 \\
+    % ... más filas ...
+\end{longtable}</code></pre>
+
+<h4>Explicación detallada</h4>
+
+<ol></ol>
+    <li><strong>Inicio de la tabla</strong>:
+        <pre><code>\begin{longtable}{columnas}</code></pre>
+        Donde <code>{ccc}</code> define el formato de las columnas, similar a <code>tabular</code>.
+    </li>
+    <li><strong>Encabezado de la primera página</strong>:
+        <ul>
+            <li><code>\caption{}</code> y <code>\label{}</code>: Define el título y la etiqueta de la tabla.</li>
+            <li><code>\endfirsthead</code>: Marca el final del encabezado de la primera página.</li>
+        </ul>
+    </li>
+    <li><strong>Encabezado de las páginas siguientes</strong>:
+        <ul>
+            <li>Definido entre <code>\endfirsthead</code> y <code>\endhead</code>.</li>
+            <li>Típicamente incluye una referencia al número de tabla.</li>
+        </ul>
+    </li>
+    <li><strong>Pie de página estándar</strong>:
+        <ul>
+            <li>Definido entre <code>\endhead</code> y <code>\endfoot</code>.</li>
+            <li>Aparece en todas las páginas excepto la última.</li>
+        </ul>
+    </li>
+</ol>
+
+<h4>Ejemplo práctico</h4>
+
+<pre><code>\documentclass{article}
+\usepackage{longtable}
+\usepackage{booktabs}
+
+\begin{document}
+
+\begin{longtable}{lcc}
+    \caption{Resultados del experimento a largo plazo}\label{tab:resultados} \\
+    
+    \toprule
+    Día & Temperatura (°C) & Presión (kPa) \\
+    \midrule
+    \endfirsthead
+    
+    \multicolumn{3}{c}{Continuación de la Tabla \ref{tab:resultados}} \\
+    \toprule
+    Día & Temperatura (°C) & Presión (kPa) \\
+    \midrule
+    \endhead
+    
+    \midrule
+    \multicolumn{3}{r}{Continúa en la siguiente página} \\
+    \endfoot
+    
+    \bottomrule
+    \endlastfoot
+    
+    1 & 25.0 & 101.3 \\
+    2 & 25.5 & 101.2 \\
+    3 & 24.8 & 101.4 \\
+    % ... Repite estas filas muchas veces para crear una tabla larga ...
+    30 & 26.1 & 101.1 \\
+\end{longtable}
+
+\end{document}</code></pre>
+
+<h4>Consejos adicionales</h4>
+
+<ol>
+    <li><strong>Ancho de columnas</strong>: Usa <code>p{width}</code> en la definición de columnas para controlar el ancho.</li>
+    <li><strong>Saltos de página</strong>: <code>longtable</code> decide automáticamente dónde dividir la tabla, pero puedes forzar un salto con <code>\newpage</code> dentro de la tabla.</li>
+    <li><strong>Personalización</strong>: Puedes personalizar aún más usando paquetes como <code>array</code> para más opciones de formato de columnas.</li>
+</ol>
+
+<p><code>longtable</code> es una herramienta poderosa para manejar tablas extensas en LaTeX, ofreciendo flexibilidad y control sobre cómo se presentan los datos a lo largo de múltiples páginas.</p>
+
+
+<h3>Alineación vertical</h3>
+
+<h4>1. Utilizar el paquete array y el tipo de columna m</h4>
+
+<p>El tipo de columna m permite alinear el contenido verticalmente en el centro. Primero, debes incluir el paquete array en el preámbulo de tu documento LaTeX:</p>
+
+<pre><code>\documentclass{article}
+    \begin{tabular}{|m{5cm}|m{5cm}|}
+    \hline
+    Celda 1 & Celda 2 con más texto para que ocupe varias líneas \\ \hline
+    Celda 3 & Celda 4 prueba a añadir un texto más largo... \\ \hline
+\end{tabular}
+</code></pre>
+
+
+<h4>2. Alineación vertical con multirow</h4>
+<p>Si estás utilizando multirow, puedes alinear verticalmente el contenido de las celdas multirow ajustando el parámetro de desplazamiento vertical:</p>
+
+<pre><code>	\begin{tabular}{| c |m{5cm}|}
+    \hline
+    \multirow{1}{*}[0ex]{Texto multirow} & Celda 2 con mucho texto para que ocupe más de una línea\\ \hline
+    \multirow{1}{*}[0ex]{Otro texto} & Celda 4 prueba a añadir un texto más largo... \\ \hline
+    \end{tabular}
+</code></pre>
+
+<h4>3. Alineación vertical con w</h4>
+<p>El tipo de columna w permite especificar un ancho y alinear tanto horizontal como verticalmente:</p>
+
+<pre><code>\begin{tabular}{|w{r}{3cm}|m{5cm}|}
+    \hline
+    Celda 1  & Celda 2  con mucho texto para que ocupe más de una línea\\ \hline
+    Celda 3 & Celda 4 prueba a añadir un texto más largo... \\ \hline
+\end{tabular}
+</code></pre>
+
+    <h3>Figuras: inserción y posicionamiento</h3>
+    <pre><code>\usepackage{graphicx}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{nombre_imagen.jpg}
+    \caption[Versión corta]{Descripción detallada de la imagen}
+    \label{fig:mi_imagen}
+\end{figure}
+</code></pre>
+
+    <p>
+    <ul>
+        <li><code>\usepackage{graphicx}</code> permite incluir imágenes.</li>
+        <li><code>[htbp]</code> son opciones de posicionamiento: here, top, bottom, page.</li>
+        <li><code>\includegraphics[width=0.8\textwidth]{...}</code> inserta la imagen y ajusta su ancho.</li>
+        <li>La versión corta del caption se usa en el índice de figuras.</li>
+        <li>Considerar el tamaño de las imágenes en función del medio de visualización.</li>
+    </ul>
+    </p>
+
+    <h3>Leyendas para figuras y tablas</h3>
+    <pre><code>\usepackage[font=small,labelfont=bf]{caption}
+
+\captionsetup[table]{name=Cuadro}  % Cambia "Tabla" por "Cuadro"
+
+\begin{table}
+    \centering
+    \begin{tabular}{cc}
+        A & B \\
+        C & D \\
+    \{tabular}
+    \caption[Versión corta]{Una tabla con leyenda personalizada}
+    \label{tab:ejemplo}
+\end{table}
+</code></pre>
+
+    <p>
+    <ul>
+        <li><code>\usepackage[font=small,labelfont=bf]{caption}</code> personaliza el estilo de las leyendas.</li>
+        <li><code>\captionsetup[table]{name=Cuadro}</code> cambia el nombre predeterminado de las tablas.</li>
+        <li>La versión corta del caption se usa en el índice de tablas.</li>
+    </ul>
+    </p>
+
+    <h3>Referencias cruzadas</h3>
+    <pre><code>Como se muestra en la Tabla~\ref{tab:ejemplo} en la página~\pageref{tab:ejemplo}...
+
+La Figura~\ref{fig:mi_imagen} ilustra...
+</code></pre>
+
+    <p>
+    <ul>
+        <li><code>\ref{}</code> inserta el número de la tabla o figura.</li>
+        <li><code>\pageref{}</code> inserta el número de página donde se encuentra el elemento referenciado.</li>
+        <li>El <code>~</code> evita saltos de línea entre la palabra y el número.</li>
+    </ul>
+    </p>
+
+    <h3>Índices de tablas y figuras</h3>
+    <pre><code>\listoftables
+\listoffigures
+</code></pre>
+
+    <p>
+    <ul>
+        <li>Estos comandos generan índices automáticos de tablas y figuras, respectivamente.</li>
+        <li>Utilizan las versiones cortas de los captions si están disponibles.</li>
+    </ul>
+    </p>
+
+    <h3>Ejercicios prácticos</h3>
+    <ol>
+        <li>Crea un documento con los tres tipos de listas, incluyendo personalización con <code>enumitem</code>.</li>
+        <li>Diseña una tabla compleja que incluya fusión de celdas, colores y diferentes alineaciones.</li>
+        <li>Inserta una figura con una leyenda personalizada y crea una referencia cruzada a ella.</li>
+        <li>Genera índices de tablas y figuras en tu documento.</li>
+    </ol>
+
+    <h3>Comandos para terminar una página</h3>
+
+    <ol>
+        <li><strong><code>\newpage</code></strong>
+            <ul>
+                <li>Termina la página actual y comienza una nueva.</li>
+                <li>No afecta a los elementos flotantes (figuras, tablas) pendientes.</li>
+            </ul>
+        </li>
+
+        <li><strong><code>\clearpage</code></strong>
+            <ul>
+                <li>Termina la página actual, coloca todos los elementos flotantes pendientes y luego comienza una nueva página.</li>
+                <li>Útil para asegurar que todos los flotantes se han colocado antes de continuar.</li>
+            </ul>
+        </li>
+
+        <li><strong><code>\cleardoublepage</code></strong>
+            <ul>
+                <li>Similar a <code>\clearpage</code>, pero asegura que la siguiente página sea una página impar (derecha en impresión a doble cara).</li>
+                <li>Útil en documentos a doble cara donde los capítulos deben comenzar en páginas impares.</li>
+            </ul>
+        </li>
+
+        <li><strong><code>\pagebreak</code></strong>
+            <ul>
+                <li>Fuerza un salto de página, pero intenta llenar la página actual lo mejor posible.</li>
+                <li>Puede resultar en espacios adicionales entre párrafos en la página actual.</li>
+            </ul>
+        </li>
+
+        <li><strong><code>\break</code></strong>
+            <ul>
+                <li>Fuerza un salto de línea o página inmediato.</li>
+                <li>Puede dejar grandes espacios en blanco y generalmente se evita su uso.</li>
+            </ul>
+        </li>
+    </ol>
+
+    <h3>Uso de \FloatBarrier</h3>
+
+    <p>El comando <code>\FloatBarrier</code> es proporcionado por el paquete <code>placeins</code>. Su función es evitar que los elementos flotantes (figuras y tablas) se muevan más allá del punto donde se coloca el comando.</p>
+
+    <p>Para usar <code>\FloatBarrier</code>:</p>
+
+    <ol>
+        <li>Incluye el paquete en el preámbulo:
+            <pre><code>\usepackage{placeins}</code></pre>
+        </li>
+
+        <li>Coloca <code>\FloatBarrier</code> donde quieras que todos los flotantes anteriores sean colocados:
+            <pre><code>\section{Primera Sección}
+    ... contenido y flotantes ...
+    \FloatBarrier
+    \section{Segunda Sección}</code></pre>
+        </li>
+    </ol>
+
+    <p>Esto asegura que todos los flotantes de la "Primera Sección" se coloquen antes de comenzar la "Segunda Sección".</p>
+
+    <h3>Ejemplo práctico</h3>
+
+    <pre><code>\documentclass{article}
+    \usepackage{graphicx}
+    \usepackage{placeins}
+
+    \begin{document}
+
+    \section{Introducción}
+    Texto de introducción...
+
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.5\textwidth]{imagen1.jpg}
+        \caption{Figura 1}
+    \end{figure}
+
+    Más texto...
+
+    \FloatBarrier  % Asegura que la Figura 1 se coloque antes de la siguiente sección
+
+    \section{Metodología}
+    Descripción de la metodología...
+
+    \begin{table}
+        \centering
+        \begin{tabular}{cc}
+            A & B \\
+            C & D
+        \end{tabular}
+        \caption{Tabla 1}
+    \end{table}
+
+    \clearpage  % Coloca la Tabla 1 y comienza una nueva página
+
+    \section{Resultados}
+    Discusión de resultados...
+
+    \end{document}</code></pre>
+
+    <p>En este ejemplo:</p>
+    <ul>
+        <li><code>\FloatBarrier</code> asegura que la Figura 1 se coloque antes de la sección "Metodología".</li>
+        <li><code>\clearpage</code> coloca la Tabla 1 y cualquier otro flotante pendiente antes de comenzar la sección "Resultados" en una nueva página.</li>
+    </ul>
+
+    <p>El uso estratégico de estos comandos ayuda a controlar la colocación de elementos flotantes y la estructura de tu documento, mejorando su organización y legibilidad.</p>
+    <p><a href="index.html" class="back-to-index">Volver al índice</a></p>
+</body>
+
+</html>

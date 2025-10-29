@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LaTeX+Git</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="container">
+  <p><a href="index.html" class="back-to-index">Volver al índice</a></p>
+  <h2>Clase 7: Temas especiales</h2>
+
+
+  <h3>Creación de una carta con membrete en LaTeX</h3>
+
+  <h3>Usando la clase letter:</h3>
+
+  <p>Ejemplo básico de una carta formal en LaTeX:</p>
+
+  <pre><code>\documentclass[a4paper,12pt]{letter}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage[T1]{fontenc}
+
+% Definición de la dirección del remitente
+\address{Calle Falsa 123\\ Ciudad de México, CP 01000}
+
+% Definición de la firma del remitente
+\signature{Juan Pérez}
+
+% Opcionalmente, se puede definir la fecha
+\date{\today}
+
+\begin{document}
+
+% Inicio del entorno de la carta
+\begin{letter}{Lic. María López\\ Departamento de Comunicaciones\\ 
+Empresa XYZ\\ Calle Real 456\\ Otra Ciudad, CP 02000}
+
+% Declaración de apertura
+\opening{Estimada Lic. López:}
+
+Me permito escribirle la presente carta con el propósito de informarle 
+sobre la nueva estrategia de comunicación que implementaremos en la empresa. 
+La iniciativa está orientada a mejorar la interacción con nuestros clientes 
+mediante el uso de medios digitales y herramientas innovadoras.
+
+Agradezco de antemano su atención y quedo a su disposición para ampliar 
+cualquier información adicional que requiera.
+
+% Declaración de cierre
+\closing{Atentamente,}
+
+% Inclusión de una posdata
+\ps{PD: Adjunto el documento con el plan de acción para su revisión.}
+
+% Inclusión de documentos adjuntos
+\encl{Plan de Acción\\ Cronograma de Actividades}
+
+% Inclusión de destinatarios en copia
+\cc{Dr. Carlos Gómez\\ Ing. Marta Díaz}
+
+\end{letter}
+
+\end{document}</code></pre>
+
+  <p><strong>Elementos principales:</strong></p>
+  <ul>
+    <li>Clase <code>letter</code> específica para cartas</li>
+    <li>Dirección del remitente con <code>\address</code></li>
+    <li>Firma con <code>\signature</code></li>
+    <li>Fecha automática con <code>\date{\today}</code></li>
+    <li>Entorno <code>letter</code> para el contenido</li>
+    <li>Elementos opcionales: PS, adjuntos y copias</li>
+  </ul>
+
+  <h4>Ejemplo de código para insertar logos en las esquinas superiores:</h4>
+
+  <pre><code>\documentclass[a4paper]{letter}
+  \usepackage[margin=1in]{geometry}       % Define márgenes estándar
+  \usepackage{eso-pic}                    % Permite añadir imágenes en posiciones absolutas
+  \usepackage{graphicx}                   % Necesario para la inclusión de gráficos
+  
+  \newsavebox{\mylogo}
+  \savebox{\mylogo}{%
+    \parbox{4cm}{%
+      \centering%
+      \includegraphics[width=2cm]{logo_ib}\\
+      {\scriptsize\textbf{\emph{Instituto de Biotecnología}\\ Universidad de Granada}}%
+    }%
+  }
+  
+  
+  \newcommand{\AtPageUpperRight}[1]{%
+    \AtPageUpperLeft{%
+      \makebox[1.2\textwidth][r]{#1}%
+    }%
+  }
+  
+  
+  % Comando para agregar un logo en la esquina superior izquierda
+  \newcommand{\AddLeftLogo}{
+    \AddToShipoutPictureBG*{%
+      \AtPageUpperLeft{%
+        \hspace{1.5cm}%
+        \raisebox{-3cm}{\centering\includegraphics[height=2cm]{escudougr.png}}%
+      }%
+    }%
+  }
+  
+  % Comando para agregar un logo en la esquina superior derecha
+  \newcommand{\AddRightLogo}{
+    \AddToShipoutPictureBG*{%
+      \AtPageUpperRight{%
+        \raisebox{-3cm}{\usebox{\mylogo}}%
+      }%
+    }%
+  }
+  
+  %\includegraphics[height=2cm]{logo_ib.png}
+  
+  \signature{Fulanito de Tal}
+  
+  \begin{document}
+    % Añadimos ambos logos a cada página (o solo a la primera según la implementación)
+    \AddLeftLogo
+    \AddRightLogo
+    
+    \begin{letter}{Nombre del destinatario \\ Dirección \\ Ciudad}
+      \opening{Estimado/a,}
+      
+      Contenido de la carta. Aquí se pueden incluir párrafos, listas y cualquier otro elemento de LaTeX.
+      
+      \closing{Atentamente,}
+    \end{letter}
+  \end{document}</code></pre>
+
+  <p>Este ejemplo muestra cómo utilizar <code>eso-pic</code> para incorporar imágenes fuera de los márgenes, ajustando
+    la posición horizontal (con <code>\hspace</code>) y vertical (con <code>\raisebox</code>) para evitar que los logos
+    queden demasiado pegados a los bordes.</p>
+
+
+  <h3>Usando la clase article:</h3>
+
+  <p>Utilizar article en lugar de letter es viable y puede ser una opción atractiva si se necesita incorporar elementos
+    que no están disponibles en la clase letter o si se prefiere una mayor flexibilidad en el diseño, a costa de
+    implementar algunos detalles manualmente para recrear la estructura estándar de una carta.</p>
+
+
+  <h4>Paso 1: Configuración inicial del documento</h4>
+  <p><strong>Código:</strong></p>
+  <pre><code>\documentclass[a4paper,12pt]{article}
+    \usepackage[utf8]{inputenc}
+    \usepackage[spanish]{babel}</code></pre>
+  <p><strong>Explicación:</strong></p>
+  <ul>
+    <li><code>\documentclass[a4paper,12pt]{article}</code>: Define el tipo de documento (artículo) con tamaño de hoja A4
+      y fuente de 12pt.</li>
+    <li><code>inputenc</code> y <code>babel</code>: Permiten escribir en español con codificación UTF-8 (acentos, ñ,
+      etc.).</li>
+  </ul>
+
+  <h4>Paso 2: Paquetes esenciales y márgenes</h4>
+  <p><strong>Código:</strong></p>
+  <pre><code>\usepackage{graphicx}
+    \usepackage[top=4cm,headheight=4cm]{geometry}
+    \usepackage{fancyhdr}
+    \usepackage{setspace}</code></pre>
+  <p><strong>Explicación:</strong></p>
+  <ul>
+    <li><code>graphicx</code>: Para insertar imágenes (logo, firma).</li>
+    <li><code>geometry</code>: Configura márgenes. <code>top=4cm</code> deja espacio para el membrete.</li>
+    <li><code>fancyhdr</code>: Personaliza encabezados/pies de página.</li>
+    <li><code>setspace</code>: Controla el interlineado.</li>
+  </ul>
+
+  <h4>Paso 3: Definir el membrete en el encabezado</h4>
+  <p><strong>Código:</strong></p>
+  <pre><code>\newsavebox{\mylogo}
+    \newsavebox{\mylogo}
+    \savebox{\mylogo}{\includegraphics[width=2cm]{escudougr}}
+    
+    \newsavebox{\logoderecha}
+    \savebox{\logoderecha}{\includegraphics[width=2cm]{logo_ib}}
+    
+    \lhead{
+
+      \begin{minipage}[t]{4cm}
+      \vspace{1cm}\hspace{-2cm}\parbox[t]{4cm}{
+        \begin{center}
+          \usebox{\mylogo} \\
+          \tiny{\textbf{Facultad de Ciencias\\Universidad de Granada}}
+        \end{center}
+        }
+      \end{minipage}
+    }
+    
+    
+    \rhead{
+    \begin{minipage}[t]{4cm}
+    \vspace{1cm}\hspace*{2cm}\parbox[t]{4cm}{
+    \begin{center}
+    \usebox{\logoderecha} \\
+    \tiny{\textbf{\emph{Intituto de Biotecnología}}}
+    \end{center}
+    }
+    \end{minipage}
+    }
+    
+    \renewcommand{\headrulewidth}{0pt}
+  </code></pre>
+
+  <h4>Paso 4: Comandos personalizables</h4>
+  <pre><code>\newcommand{\tlf}{} % Teléfono
+    \newcommand{\pais}{} % País
+    \newcommand{\nombre}{} % Nombre del destinatario
+    \newcommand{\fax}{} % Fax
+    \newcommand{\email}{} % Correo</code></pre>
+
+  <h4>Paso 5: Estructura del cuerpo de la carta</h4>
+  <pre><code>
+    \pagestyle{fancy}
+    
+    \begin{document}
+    \doublespace
+    \vspace*{2cm}
+
+    Fulanito de Tal, aquí va el texto de la carta...
+
+    \begin{description}
+      \item[INFORMA:] Que Dª fulanita de Cual ha completado...
+    \end{description}
+
+    Granada, a \today
+
+    \begin{center}
+      \singlespace
+      %\includegraphics[width=7cm]{firma}
+      %\vspace{-1.2cm}
+      \vspace{2cm}
+      Fdo. Fulanito de Tal \\ Director del...
+    \end{center}
+    \end{document}</code></pre>
+
+  <h4>Paso 6: Compilación y requisitos</h4>
+  <ol>
+    <li><strong>Archivos necesarios:</strong>
+      <ul>
+        <li><code>membrete_univ.png</code>: Logo de la universidad</li>
+        <li><code>firma.png</code>: Imagen de la firma escaneada</li>
+      </ul>
+    </li>
+    <li><strong>Compilar con PDFLaTeX:</strong>
+      <pre><code>pdflatex carta.tex</code></pre>
+    </li>
+  </ol>
+
+  <h4>Posibles personalizaciones</h4>
+  <ul>
+    <li>Cambiar el logo: Modificar la ruta en <code>\includegraphics</code></li>
+    <li>Añadir datos de contacto: Rellenar los comandos <code>\tlf</code>, <code>\email</code>, etc.</li>
+    <li>Ajustar márgenes: Modificar valores en <code>geometry</code></li>
+  </ul>
+
+
+
+  <h3>Clase: Creación de Pósters en LaTeX</h3>
+
+  <h4>Paso 1: Configuración inicial del documento</h4>
+  <p><strong>Objetivo:</strong> Definir la clase del documento y paquetes esenciales.</p>
+
+  <pre><code>\documentclass[a0,portrait]{a0poster}
+    \usepackage[utf8]{inputenc}
+    \usepackage[USenglish]{babel}</code></pre>
+
+  <ul>
+    <li><strong>Explicación:</strong>
+      <ul>
+        <li><code>a0poster</code>: Clase específica para pósteres tamaño A0 en orientación vertical
+          (<code>portrait</code>).</li>
+        <li><code>inputenc</code> y <code>babel</code>: Manejan codificación UTF-8 y traducciones al inglés
+          estadounidense.</li>
+      </ul>
+    </li>
+  </ul>
+
+  <h4>Paso 2: Paquetes adicionales y personalizaciones</h4>
+  <p><strong>Objetivo:</strong> Añadir funcionalidades gráficas, de texto y estructura.</p>
+
+  <pre><code>\usepackage{marvosym, multirow, rotating, setspace, multicol, color, type1cm, colortbl}
+    \usepackage{shapepar, pstricks, eso-pic}</code></pre>
+
+  <ul>
+    <li><strong>Paquetes clave:</strong>
+      <ul>
+        <li><code>multicol</code>: Divide el contenido en columnas.</li>
+        <li><code>color</code> y <code>colortbl</code>: Permiten usar colores en texto y tablas.</li>
+        <li><code>eso-pic</code>: Para insertar imágenes de fondo.</li>
+        <li><code>pstricks</code>: Herramientas gráficas avanzadas.</li>
+      </ul>
+    </li>
+  </ul>
+
+  <h4>Paso 3: Configuración del fondo del póster</h4>
+  <p><strong>Objetivo:</strong> Insertar una imagen como fondo.</p>
+
+  <pre><code>\newcommand\BackgroundPicture{%
+     \put(0,0){%
+     \parbox[b][\paperheight]{\paperwidth}{%
+     \vfill
+     \centering
+     \includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{esc-ugr-claro}%
+     \vfill
+     }}}
+    \AddToShipoutPicture{\BackgroundPicture}</code></pre>
+
+  <ul>
+    <li><strong>Funcionamiento:</strong>
+      <ul>
+        <li><code>\BackgroundPicture</code> centra la imagen <code>esc-ugr-claro</code> en todo el póster.</li>
+        <li><code>\AddToShipoutPicture</code> aplica este fondo a todas las páginas.</li>
+      </ul>
+    </li>
+  </ul>
+
+  <h4>Paso 4: Definición de comandos personalizados</h4>
+  <p><strong>Objetivo:</strong> Simplificar la escritura de títulos, secciones y texto.</p>
+
+  <h5>4.1 Título principal</h5>
+  <pre><code>\newcommand{\titulo}[4]{
+     \begin{minipage}[c]{10cm}
+     \includegraphics[width=10cm]{#1}
+     \end{minipage}
+     \hfill
+     \begin{minipage}[c]{65cm}
+     \fontsize{2.2cm}{2.6cm}\selectfont 
+     \centering \textbf{\textcolor[rgb]{.5,0,0}{#2}}
+     \begin{center}
+     \fontsize{1.8cm}{1.8cm}\selectfont
+     \textbf{\textcolor[rgb]{0,0,.5}{#3}}
+     \vspace{.5cm}
+     \textbf{\textcolor[rgb]{0,.5,0}{#4}}
+     \end{center}
+     \end{minipage}
+     \vspace{1cm}
+     \rule{\textwidth}{.2cm}
+    }</code></pre>
+
+  <p><strong>Uso:</strong> <code>\titulo{logo.png}{Título}{Autores}{Institución}</code></p>
+  <ul>
+    <li><code>#1</code>: Ruta del logo.</li>
+    <li><code>#2</code>, <code>#3</code>, <code>#4</code>: Título, autores e institución con colores predefinidos.</li>
+  </ul>
+
+  <h4>Paso 5: Estructura del contenido</h4>
+  <p><strong>Objetivo:</strong> Organizar el texto en columnas y añadir figuras.</p>
+
+  <h5>5.1 Columnas</h5>
+  <pre><code>\begin{multicols*}{2}
+    ...
+    \end{multicols*}</code></pre>
+
+  <p>Divide el contenido en 2 columnas. El asterisco (<code>*</code>) evita equilibrar alturas automáticamente.</p>
+
+  <h4>Paso 6: Ajustes finales</h4>
+  <p><strong>Objetivo:</strong> Personalizar espaciados y reglas visuales.</p>
+
+  <pre><code>\setlength{\parindent}{3cm}
+    \setlength{\parskip}{.5em}
+    \renewcommand{\columnseprule}{3pt}
+    \setlength{\columnsep}{3cm}</code></pre>
+
+  <h4>Paso 7: Compilación</h4>
+  <p><strong>Recomendaciones:</strong></p>
+  <ul>
+    <li>Usar un compilador que soporte <code>pstricks</code> (ej: XeLaTeX o LuaLaTeX).</li>
+    <li>Verificar rutas de imágenes y fuentes.</li>
+  </ul>
+
+  <h4>Resumen de flujo de trabajo:</h4>
+  <ol>
+    <li>Configurar clase y paquetes.</li>
+    <li>Definir imagen de fondo.</li>
+    <li>Crear comandos personalizados para títulos/secciones.</li>
+    <li>Usar <code>multicols*</code> para dividir en columnas.</li>
+    <li>Insertar figuras con <code>minipage</code> y <code>framed</code>.</li>
+    <li>Ajustar espaciados y reglas visuales.</li>
+    <li>Compilar y revisar formato final.</li>
+  </ol>
+
+  <h3>Otras opciones</h3>
+
+  <p><strong>beamerposter:</strong><br>
+  Se basa en la clase <em>beamer</em> habitual para presentaciones, pero incorpora estilos y formatos pensados para posters de gran tamaño. Su estructura te permite definir bloques de contenido y distribuir la información en columnas. Un ejemplo básico es:</p>
+  
+  <pre><code>\documentclass{beamer}
+  \usepackage[orientation=portrait,size=a0,scale=1.4]{beamerposter}
+  \usetheme{Warsaw}
+  \usepackage[utf8]{inputenc}
+  \usepackage[spanish]{babel}
+  
+  \title{Título del Póster}
+  \author{Nombre del Autor}
+  \institute{Institución}
+  \date{Fecha}
+  
+  \begin{document}
+  \begin{frame}[plain]
+    \maketitle
+    \block{Introducción}{
+      Aquí se introduce el tema del póster.
+    }
+    \block{Métodos}{
+      Descripción de la metodología.
+    }
+    \block{Resultados}{
+      Presentación de datos y gráficos.
+    }
+  \end{frame}
+  \end{document}</code></pre>
+  
+  <p>Este método es especialmente útil si ya estás familiarizado con <em>beamer</em> y deseas aprovechar sus comandos para estructurar el contenido de forma sencilla.</p>
+  
+  <p><strong>tikzposter:</strong><br>
+  Si buscas una mayor flexibilidad en la disposición gráfica, la clase <em>tikzposter</em> te permite diseñar pósters con estructuras muy personalizables usando comandos del paquete <em>TikZ</em>. Un ejemplo básico sería:</p>
+  
+  <pre><code>\documentclass[25pt, a0paper, portrait]{tikzposter}
+  \title{Título del Póster}
+  \author{Nombre del Autor}
+  \date{Fecha}
+  \usetheme{Basic}
+  
+  \begin{document}
+  \maketitle
+  \block{Sección 1}{
+    Contenido de la sección.
+  }
+  \block{Sección 2}{
+    Más información.
+  }
+  \end{document}</code></pre>
+  
+  <p>Esta opción es ideal para diseños creativos, donde la disposición de elementos y el uso de colores personalizables son primordiales.</p>
+  
+  <h3>Diferencias Clave</h3>
+  
+  <table style="font-size: smaller; border-collapse: collapse; border: 1px solid black;">
+    <tr>
+      <th style="border: 1px solid black; border-bottom: 1px solid black; padding: 5px;">Característica</th>
+      <th style="border: 1px solid black; border-bottom: 1px solid black; padding: 5px;">beamerposter</th>
+      <th style="border: 1px solid black; border-bottom: 1px solid black; padding: 5px;">tikzposter</th>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; border-bottom: 1px solid black; padding: 5px;"><strong>Enfoque</strong></td>
+      <td style="border: 1px solid black; border-bottom: 1px solid black; padding: 5px;">Basado en la estructura de <em>beamer</em></td>
+      <td style="border: 1px solid black; border-bottom: 1px solid black; padding: 5px;">Basado en <em>TikZ</em>, permitiendo diseños gráficos complejos</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; border-bottom: 1px solid black; padding: 5px;"><strong>Facilidad de uso</strong></td>
+      <td style="border: 1px solid black; border-bottom: 1px solid black; padding: 5px;">Adecuado para quienes ya usan <em>beamer</em></td>
+      <td style="border: 1px solid black; border-bottom: 1px solid black; padding: 5px;">Mayor flexibilidad pero requiere familiaridad con <em>TikZ</em></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 5px;"><strong>Estructuración</strong></td>
+      <td style="border: 1px solid black; padding: 5px;">Usa bloques y columnas prediseñados</td>
+      <td style="border: 1px solid black; padding: 5px;">Permite layouts completamente personalizados</td>
+    </tr>
+  </table>
+  
+  <h3>Recomendaciones Adicionales</h3>
+  
+  <ul>
+    <li><strong>Plantillas predefinidas:</strong><br>
+    Plataformas como Overleaf ofrecen numerosos ejemplos y plantillas que te ayudan a iniciar tu proyecto sin tener que diseñar un póster desde cero. Puedes explorar la galería de plantillas de pósteres para encontrar una que se ajuste a las especificaciones de tu congreso.</li>
+  
+    <li><strong>Adaptación a Normas del Congreso:</strong><br>
+    Algunos congresos proporcionan sus propias plantillas (por ejemplo, "Plantilla-CASEIB-2024") que debes seguir para el envío de trabajos.</li>
+  </ul>
+  
+  <h3>Creación de presentaciones en LaTeX</h3>
+
+  <h3>Estructura Básica de una Presentación Beamer</h3>
+  <p>Estructura básica del código:</p>
+
+  <pre><code>\documentclass[11pt]{beamer}
+    \usepackage[utf8]{inputenc}
+    \usepackage[T1]{fontenc}
+    \usepackage{lmodern}
+    \usetheme{default}
+    \begin{document}
+      \author{Título de mi tesis}
+      \title{yo mismo}
+      %\subtitle{}
+      %\logo{}
+      %\institute{}
+      %\date{}
+      %\subject{}
+      %\setbeamercovered{transparent}
+      %\setbeamertemplate{navigation symbols}{}
+      \begin{frame}[plain]
+        \maketitle
+      \end{frame}
+      
+      \begin{frame}
+        \frametitle{Titulo de la diapositiva}
+        Contenido
+      \end{frame}
+    \end{document}</code></pre>
+
+  <p><strong>Ejercicios: Descomentar los comandos para ver su uso y cambiar de tema.</strong></p>
+
+  <h3>Personalización de Colores y Fuentes</h3>
+  <p>Beamer permite personalizar los colores y fuentes de tu presentación. Puedes cambiar el tema de colores con
+    <code>\usecolortheme{nombre}</code> y el tema de fuentes con <code>\usefonttheme{nombre}</code>.</p>
+
+  <pre><code>\documentclass{beamer}
+  \usecolortheme{seahorse}
+  \usefonttheme{serif}
+
+  \begin{document}
+    \begin{frame}
+      \frametitle{Slide con Tema de Color y Fuente}
+      Este slide utiliza el tema de color "seahorse" y fuente "serif".
+    \end{frame}
+  \end{document}</code></pre>
+
+  <h3>Creación de Diapositivas con Elementos Visuales</h3>
+
+  <h4>1. Columnas</h4>
+  <p>Puedes dividir un slide en columnas para presentar información de manera organizada:</p>
+
+  <pre><code>\begin{frame}
+    \frametitle{Columnas}
+    \begin{columns}
+      \begin{column}{0.5\linewidth}
+        Contenido en la columna izquierda.
+      \end{column}
+      \begin{column}{0.5\linewidth}
+        Contenido en la columna derecha.
+      \end{column}
+    \end{columns}
+  \end{frame}</code></pre>
+
+  <h4>2. Listas y Enumeraciones</h4>
+  <p>Las listas y enumeraciones funcionan igual que en LaTeX estándar:</p>
+
+  <pre><code>\begin{frame}
+    \frametitle{Listas y Enumeraciones}
+    \begin{itemize}
+      \item Elemento 1
+      \item Elemento 2
+    \end{itemize}
+    
+    \begin{enumerate}
+      \item Elemento enumerado 1
+      \item Elemento enumerado 2
+    \end{enumerate}
+  \end{frame}</code></pre>
+
+  <h4>3. Imágenes</h4>
+  <p>Incluye imágenes en tus diapositivas con <code>\includegraphics</code>:</p>
+
+  <pre><code>\begin{frame}
+    \frametitle{Imágenes}
+    \includegraphics[width=0.5\linewidth]{nombre_imagen.jpg}
+  \end{frame}</code></pre>
+
+  <h3>Transiciones y Animaciones</h3>
+
+  <h4>1. Transiciones entre Diapositivas</h4>
+  <p>Puedes establecer transiciones entre diapositivas con <code>\transduration</code> y <code>\transwipe</code>:</p>
+
+  <pre><code>\begin{frame}
+    \frametitle{Transición entre Diapositivas}
+    \transduration{0.5}
+    \transwipe
+    Contenido del slide.
+  \end{frame}</code></pre>
+
+  <h4>Tipos de Transiciones</h4>
+  <p>Beamer ofrece varios tipos de transiciones que puedes usar:</p>
+  <ul>
+    <li><code>\transfade</code>: Desvanecimiento.</li>
+    <li><code>\transdissolve</code>: Disolución.</li>
+    <li><code>\transglitter</code>: Brillantez.</li>
+    <li><code>\transwipe</code>: Barrido.</li>
+    <li><code>\transsplit</code>: División.</li>
+    <li><code>\transboxout</code>: Caja que sale.</li>
+    <li><code>\transboxin</code>: Caja que entra.</li>
+  </ul>
+  <p>Puedes probar diferentes tipos de transiciones para ver cuál se adapta mejor a tus necesidades.</p>
+
+  <h4>2. Animaciones con Overlays</h4>
+  <p>Utiliza <code>\pause</code> o <code>&lt;+-&gt;</code> para crear animaciones dentro de una diapositiva:</p>
+
+  <pre><code>\begin{frame}
+    \frametitle{Animación con Overlays}
+    \begin{itemize}
+      \item Elemento 1
+      \pause
+      \item Elemento 2
+      \pause
+      \item Elemento 3
+    \end{itemize}
+  \end{frame}</code></pre>
+
+  <h3>Creación de un Índice</h3>
+  <p>Puedes crear un índice para tu presentación con <code>\tableofcontents</code>.</p>
+
+  <pre><code>\begin{frame}
+    \frametitle{Índice}
+    \tableofcontents
+  \end{frame}</code></pre>
+
+  Añadir comandos de seccionado para que aparezcan en el índice.
+
+  <h3>Ejemplo Completo</h3>
+  <p>Aquí tienes un ejemplo completo que combina varios elementos:</p>
+
+  <pre><code>\documentclass{beamer}
+  \usetheme{Madrid}
+  \usecolortheme{seahorse}
+  \usefonttheme{serif}
+
+  \title{Mi Presentación Completa}
+  \author{Tu Nombre}
+  \institute{Tu Institución}
+  \date{\today}
+
+  \begin{document}
+    \begin{frame}
+      \titlepage
+    \end{frame}
+    
+    \begin{frame}
+      \frametitle{Índice}
+      \tableofcontents
+    \end{frame}
+    
+    \section{Introducción}
+    \begin{frame}
+      \frametitle{Introducción}
+      Este es el contenido de la introducción.
+    \end{frame}
+    
+    \section{Sección 1}
+    \begin{frame}
+      \frametitle{Sección 1}
+      \begin{columns}
+        \begin{column}{0.5\linewidth}
+          Contenido en la columna izquierda.
+        \end{column}
+        \begin{column}{0.5\linewidth}
+          Contenido en la columna derecha.
+        \end{column}
+      \end{columns}
+    \end{frame}
+    
+    \section{Sección 2}
+    \begin{frame}
+      \frametitle{Sección 2}
+      \begin{itemize}
+        \item Elemento 1
+        \pause
+        \item Elemento 2
+        \pause
+        \item Elemento 3
+      \end{itemize}
+    \end{frame}
+    
+    \begin{frame}
+      \frametitle{Imágenes}
+      \includegraphics[width=0.5\linewidth]{nombre_imagen.jpg}
+    \end{frame}
+  \end{document}</code></pre>
+
+  <h3>Tipos de Cajas en Beamer</h3>
+
+  <p>Beamer ofrece varios tipos de cajas que puedes utilizar para resaltar información en tus diapositivas. Estos
+    incluyen:</p>
+
+  <ul>
+    <li><strong>Bloque Estándar (Standard Block)</strong></li>
+    <li><strong>Bloque de Alerta (Alert Block)</strong></li>
+    <li><strong>Bloque de Ejemplo (Example Block)</strong></li>
+    <li><strong>Bloques Matemáticos (Theorem, Definition, Proof, etc.)</strong></li>
+  </ul>
+
+  <h4>Ejemplo de Código</h4>
+  <p>Aquí tienes un ejemplo que muestra cómo usar estos bloques:</p>
+
+  <pre><code>\documentclass{beamer}
+  \usetheme{Madrid}
+
+  \begin{document}
+
+  \begin{frame}
+    \frametitle{Tipos de Bloques}
+    
+    % Bloque Estándar
+    \begin{block}{Bloque Estándar}
+      Este es un bloque estándar.
+    \end{block}
+    
+    % Bloque de Alerta
+    \begin{alertblock}{Bloque de Alerta}
+      Este es un bloque de alerta.
+    \end{alertblock}
+    
+    % Bloque de Ejemplo
+    \begin{exampleblock}{Bloque de Ejemplo}
+      Este es un bloque de ejemplo.
+    \end{exampleblock}
+    
+    % Bloque Matemático: Teorema
+    \begin{theorem}
+      Este es un teorema.
+    \end{theorem}
+    
+    % Bloque Matemático: Definición
+    \begin{definition}
+      Esta es una definición.
+    \end{definition}
+    
+    % Bloque Matemático: Prueba
+    \begin{proof}
+      Esta es una prueba.
+    \end{proof}
+  \end{frame}
+
+  \end{document}</code></pre>
+
+  <h3>Personalización de Bloques</h3>
+
+  <p>Puedes personalizar el estilo de los bloques utilizando los siguientes comandos:</p>
+
+  <h4>Rodear los bloques con sombra y bordes redondeados:</h4>
+  <pre><code>\setbeamertemplate{blocks}[rounded][shadow=true]</code></pre>
+
+  <h4>Cambiar los colores de los bloques:</h4>
+
+  <p>Cada tipo de bloque tiene su propi definición y unos pueden estar basados en otros, por lo que la forma de cambiar
+    los colores depende de como esté definido cada tipo de bloque</p>
+  <p>Utiliza <code>\setbeamercolor</code> para cambiar los colores de los bloques. Por ejemplo:</p>
+  <pre><code>\setbeamercolor{block title}{fg=white,bg=blue}
+  \setbeamercolor{block body}{fg=black,bg=white}</code></pre>
+
+  <p>para alertblock</p>
+
+  <pre><code>\setbeamercolor{block title alerted}{fg=white,bg=red}
+  \setbeamercolor{block body alerted}{bg=orange!25}</code></pre>
+
+  <p>para exampleblock</p>
+
+  <pre><code>\setbeamercolor{block title example}{fg=white, bg=teal}
+  \setbeamercolor{block body example}{bg=teal!25}</code></pre>
+
+  <p>Para theorem y proof hay que añadir los colores a la sección de begin</p>
+
+  <pre><code>\addtobeamertemplate{theorem begin}{%
+    \setbeamercolor{block title}{fg=white,bg=gray}%
+    \setbeamercolor{block body}{fg=red,bg=white}%
+    }{}
+    
+      \addtobeamertemplate{proof begin}{%
+    \setbeamercolor{block title}{fg=white,bg=red}%
+    \setbeamercolor{block body}{fg=green,bg=white}%
+    }{}</code></pre>
+
+
+  <p>Estas personalizaciones te permiten adaptar los bloques a tu estilo de presentación.</p>
+
+  <h3>Otro tipo de cajas</h3>
+
+  <p>Los entornos «beamerboxesrounded» permiten crear recuadros con esquinas redondeadas y ofrecen algunas opciones de configuración que se pasan como claves en un formato key=value dentro de los corchetes. En concreto, las opciones conocidas y más utilizadas son:</p>
+
+  <ul>
+    <li><code>upper</code>: Define el color de fondo de la parte superior (la "cabeza") del recuadro, que suele contener el título.</li>
+    <li><code>lower</code>: Especifica el color de fondo de la parte inferior (el cuerpo) del recuadro, donde se muestra el contenido.</li>
+    <li><code>shadow</code>: Al establecer <code>shadow=true</code> se añade una sombra al recuadro, lo que aporta un efecto visual de profundidad.</li>
+  </ul>
+
+  <p>Por ejemplo, se puede usar de la siguiente manera:</p>
+
+    
+  <section>
+    
+
+
+    <pre><code>\setbeamercolor{upcol}{fg=white, bg=red}       % Para la parte superior (header)
+  \setbeamercolor{lowcol}{fg=black, bg=blue!20}    % Para la parte inferior (cuerpo)</code></pre>
+
+    <h5>Ejemplo de uso:</h5>
+    <pre><code>\begin{frame}{Ejemplo de recuadro personalizado}
+    \begin{beamerboxesrounded}[upper=upcol, lower=lowcol, shadow=true]{Título del Bloque}
+      Aquí va el contenido del recuadro.  
+      \begin{itemize}
+        \item Primer elemento
+        \item Segundo elemento
+      \end{itemize}
+    \end{beamerboxesrounded}
+  \end{frame}</code></pre>
+
+  <p>Es importante tener en cuenta que estas opciones pueden depender del tema o inner theme que esté utilizando la presentación. Algunos temas pueden forzar estilos de bloque particulares, de modo que en ocasiones puede ser necesario ajustar o redefinir la plantilla de bloques para ver reflejados los cambios.</p>
+
+    <p>Esta estrategia permite usar diferentes combinaciones de colores para distintas cajas:</p>
+
+    <h5>Definición de objetos de color personalizados:</h5>
+    <pre><code>% Definición de objetos de color personalizados
+  \setbeamercolor{blueHeader}{fg=white, bg=Blue}
+  \setbeamercolor{redBody}{fg=black, bg=Red!20}
+  \setbeamercolor{greenHeader}{fg=white, bg=Green}
+  \setbeamercolor{yellowBody}{fg=black, bg=Yellow!50}</code></pre>
+
+    <h5>Ejemplo de uso con diferentes colores:</h5>
+    <pre><code>\begin{frame}{Cajas de Diferentes Colores}
+    \begin{beamerboxesrounded}[upper=blueHeader, lower=redBody, shadow=true]{Caja 1: Azul - Rojo}
+      Contenido de una caja con cabecera azul y cuerpo rojo claro.
+    \end{beamerboxesrounded}
+
+    \vskip2ex
+
+    \begin{beamerboxesrounded}[upper=greenHeader, lower=yellowBody, shadow=true]{Caja 2: Verde - Amarilla}
+      Contenido de otra caja con cabecera verde y cuerpo amarillo.
+    \end{beamerboxesrounded}
+  \end{frame}</code></pre>
+
+<h4>Definición de cajas personalizadas basadas en beamerboxesrounded:</h4>
+
+<pre><code>\newenvironment{micaja}[1][]%
+{
+  \begin{beamerboxesrounded}[upper=blueHeader, lower=redBody, shadow=true]{#1}%
+}%
+{%
+  \end{beamerboxesrounded}%
+}
+
+\begin{frame}
+\frametitle{mi caja}
+\begin{micaja}[Título]
+  Contenido
+  \end{micaja}
+\end{frame}</code></pre>
+
+  </section>
+
+  <h3>Alertar o resaltar items en una lista:</h3>
+
+  <h3>Usar <code>\alert</code> para Resaltar Texto</h3>
+
+  <p>Puedes usar el comando <code>\alert{}</code> para resaltar partes específicas del texto dentro de los items:</p>
+
+  <pre><code>\begin{frame}
+    \frametitle{Resaltar Texto con \alert}
+    \begin{itemize}
+      \item Este item contiene texto \alert{importante}.
+      \item Este item contiene texto \alert{crucial}.
+    \end{itemize}
+  \end{frame}</code></pre>
+
+  <h3>Alertar Items con <code>&lt;alert@+&gt;</code></h3>
+
+  <p>Puedes utilizar el comando <code>&lt;alert@+&gt;</code> para resaltar los items de una lista uno a uno:</p>
+
+  <pre><code>\begin{frame}
+    \frametitle{Alertar Items}
+    \begin{itemize}[<+-| alert@+>]
+      \item Este item se muestra y resalta en la primera diapositiva.
+      \item Este item se muestra y resalta en la segunda diapositiva.
+      \item Este item se muestra y resalta en la tercera diapositiva.
+    \end{itemize}
+  \end{frame}</code></pre>
+
+  
+
+  <h3>Resaltar Items con <code>&lt;alert@1&gt;</code>, <code>&lt;alert@2&gt;</code>, etc.</h3>
+
+  <p>Puedes especificar qué item resaltar en cada diapositiva utilizando <code>&lt;alert@1&gt;</code>, <code>&lt;alert@2&gt;</code>, etc.:</p>
+
+  <pre><code>\begin{frame}
+    \frametitle{Resaltar Items Específicos}
+    \begin{itemize}
+      \item&lt;alert@1&gt; Este item se resalta en la primera diapositiva.
+      \item&lt;alert@2&gt; Este item se resalta en la segunda diapositiva.
+      \item&lt;alert@3&gt; Este item se resalta en la tercera diapositiva.
+    \end{itemize}
+  \end{frame}</code></pre>
+
+  <h3>4. Combinar Reveal y Alert</h3>
+
+  <p>Puedes combinar el revelado de items con su resaltado:</p>
+
+  <pre><code>\begin{frame}
+    \frametitle{Combinar Reveal y Alert}
+    \begin{itemize}[<+->]
+      \item<1-| alert@1> Este item se muestra y resalta en la primera diapositiva.
+      \item<2-| alert@2> Este item se muestra y resalta en la segunda diapositiva.
+      \item<3-| alert@3> Este item se muestra y resalta en la tercera diapositiva.
+    \end{itemize}
+  \end{frame}</code></pre>
+
+<h3>Personalizar el color de alerta</h3>
+
+<p>Para personalizar el color de alerta en Beamer, puedes utilizar el comando <code>\setbeamercolor{alerted text}{fg=color}</code> para cambiar el color del texto resaltado por <code>\alert</code>. Aquí tienes un ejemplo de cómo hacerlo:</p>
+
+<h3>Cambiar el Color de Alerta</h3>
+
+<pre><code>\documentclass{beamer}
+
+% Cambia el color de alerta a verde
+\setbeamercolor{alerted text}{fg=green}
+
+\begin{document}
+
+\begin{frame}
+  \frametitle{Alerta Personalizada}
+  Este texto es \alert{importante}.
+\end{frame}
+
+\end{document}</code></pre>
+
+<p>En este ejemplo, el texto dentro de <code>\alert{}</code> se mostrará en verde.</p>
+
+<h2>Imágenes animadas</h2>
+
+<h3>1. Convertir un Video en una Secuencia de Imágenes</h3>
+
+<p>Puedes utilizar herramientas como <strong>Photoshop</strong>, <strong>Filmora</strong>, <strong>VLC</strong>, o <strong>FFmpeg</strong> para convertir un video en una secuencia de imágenes. Por ejemplo, con FFmpeg puedes usar el siguiente comando:</p>
+
+<pre><code>ffmpeg -i input.mp4 output-%03d.png</code></pre>
+
+<p>Esto generará una serie de imágenes numeradas (<code>output-001.png</code>, <code>output-002.png</code>, etc.).</p>
+
+<h3>2. Crear una Animación en LaTeX Beamer</h3>
+
+<p>Una vez que tengas la secuencia de imágenes, puedes usar el paquete <code>animate</code> en LaTeX Beamer para crear una animación. Aquí tienes un ejemplo:</p>
+
+<pre><code>\documentclass{beamer}
+\usepackage{animate}
+
+\begin{document}
+
+\begin{frame}
+  \frametitle{Animación}
+  \centering
+  \animategraphics[autoplay,loop,width=\textwidth]{10}{output-}{001}{100}
+\end{frame}
+
+\end{document}</code></pre>
+
+<p>En este ejemplo, se reproduce una animación que muestra las imágenes <code>output-001.png</code> a <code>output-100.png</code> en un bucle.</p>
+
+<h3>Ventajas y Limitaciones</h3>
+
+<ul>
+  <li><strong>Ventajas</strong>: Esta técnica permite crear animaciones en PDFs sin necesidad de Flash.</li>
+  <li><strong>Limitaciones</strong>: El tamaño del PDF puede aumentar significativamente si la animación tiene muchos frames. Además, no todos los visores de PDF pueden reproducir animaciones.</li>
+</ul>
+
+<h3>Herramientas para Convertir Videos a Imágenes</h3>
+
+<ul>
+  <li><strong>Photoshop</strong>: Puedes abrir un video en Photoshop y exportar cada frame como una imagen.</li>
+  <li><strong>Filmora</strong>: Ofrece una forma sencilla de convertir videos a secuencias de imágenes.</li>
+  <li><strong>VLC</strong>: Puedes usar VLC para extraer imágenes de un video.</li>
+  <li><strong>FFmpeg</strong>: Una herramienta de línea de comandos poderosa para convertir videos a imágenes.</li>
+  <li><strong>Blender</strong>: es Un software de modelado 3D pero su editor de video permite cargar un vídeo y renderizar fotogramas individuales</li>
+</ul>
+
+<p>Con estas herramientas y técnicas, puedes crear animaciones en tus presentaciones Beamer utilizando secuencias de imágenes extraídas de videos.</p>
+
+<h3>Reproductor externo</h3>
+
+<p>También podemos usar un reproductor externo:</p>
+
+<pre><code>\usepackage{multimedia}
+
+\begin{frame}
+  \centering
+  \movie[externalviewer]{\includegraphics[width=.25\textwidth]{escudougr}}{video.mp4}
+\end{frame}</code></pre>
+
+  <p><a href="index.html" class="back-to-index">Volver al índice</a></p>
+</body>
+
+</html>
