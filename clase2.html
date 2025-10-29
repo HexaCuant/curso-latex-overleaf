@@ -9,6 +9,13 @@
 </head>
 <body class="container">
     <p><a href="index.html" class="back-to-index">Volver al índice</a></p>
+    
+    <div style="background-color: #e8f4f8; border-left: 4px solid #0066cc; padding: 15px; margin: 20px 0; border-radius: 4px;">
+        <h4 style="margin-top: 0; color: #0066cc;">📌 Nota Importante</h4>
+        <p><strong>Esta clase utiliza Overleaf (herramienta cloud).</strong> Todos los ejemplos y ejercicios se realizan en el navegador web sin instalar nada.</p>
+        <p>Si prefieres trabajar con herramientas locales (TeXstudio, Git desde terminal), consulta la versión anterior del curso en: <a href="https://105.ugr.es/latex" target="_blank" rel="noopener"><strong>https://105.ugr.es/latex</strong></a></p>
+    </div>
+    
     <h2>Clase 2: Fundamentos de LaTeX</h2>
 
 <h3>Estructura básica de un documento LaTeX</h3>
@@ -34,7 +41,7 @@ Este es un ejemplo básico de un documento LaTeX.
 \end{document}
 </code></pre>
 
-<p>Ejercicio: Crea un documento con esta estructura y compílalo para ver el resultado.</p>
+<p><strong>✏️ Ejercicio:</strong> En Overleaf, crea un nuevo proyecto con esta estructura. Cópiala en el editor (archivo main.tex), haz clic en "Compile" y observa el PDF compilado en tiempo real.</p>
 
 <h3>El preámbulo: paquetes y configuraciones iniciales</h3>
 
@@ -60,7 +67,9 @@ Este documento utiliza varios paquetes comunes.
 \end{document}
 </code></pre>
 
-<p>Ejercicio: Añade el paquete `babel` con la opción `spanish` para indicarle a LaTeX que estás escribiendo en español.</p>
+<p><strong>✏️ Ejercicio:</strong> En tu proyecto Overleaf, reemplaza el main.tex con este código. Luego añade esta línea después de \usepackage{graphicx}:</p>
+<pre><code>\usepackage[spanish]{babel}</code></pre>
+<p>Compila y verifica que los textos generados por LaTeX (como "Contenido") ahora aparecen en español.</p>
 
 <h3>Tipos de documentos: article, report, book</h3>
 
@@ -86,7 +95,7 @@ Este es el contenido del segundo capítulo.
 \end{document}
 </code></pre>
 
-<p>Ejercicio: Cambia la clase del documento a `book` y añade una `\part{}` antes de los capítulos. Prueba la opción `openany`.</p>
+<p><strong>✏️ Ejercicio:</strong> En Overleaf, cambia <code>\documentclass{report}</code> a <code>\documentclass{book}</code> y compila. Observa los cambios en la estructura del documento. Luego prueba añadiendo <code>\part{Primera Parte}</code> antes del primer capítulo.</p>
 
 <h3>Tipos de letra y fuentes</h3>
 
@@ -480,7 +489,7 @@ Esto es un párrafo con título.
 \end{document}
 </code></pre>
 
-<p>Ejercicio: Crea un documento usando la clase `book` con un `\chapter{}`, dos `\section{}` y al menos una `\subsection{}` en cada sección.</p>
+<p><strong>✏️ Ejercicio:</strong> En Overleaf, crea un nuevo proyecto. En el archivo main.tex, añade la clase `book` con un capítulo que contenga dos secciones, cada una con al menos una subsección. Compila y observa cómo cambia la estructura con respecto a la clase `article`.</p>
 
 <h3>Generación de índice automático y enlaces activos</h3>
 
@@ -572,7 +581,7 @@ Los resultados muestran que...
 
 <pre><code>\chapter[Título corto]{Título largo del capítulo}</code></pre>
 
-<p><strong>Ejercicio:</strong> Crea un documento con al menos cinco secciones y varias subsecciones. Utiliza títulos largos y descriptivos para cada sección en el cuerpo del documento, pero proporciona versiones cortas para el índice. Incluye un <code>\tableofcontents</code> al principio y compila el documento dos veces para ver el resultado final. Asegúrate de que los títulos cortos sean concisos pero informativos.</p>
+<p><strong>✏️ Ejercicio:</strong> En Overleaf, crea un proyecto con al menos 5 secciones y varias subsecciones. Usa títulos largos en el documento, pero proporciona versiones cortas en la sintaxis (ej: <code>\section[corto]{Título largo y descriptivo}</code>). Incluye <code>\tableofcontents</code> al principio. Compila dos veces para que el índice se genere correctamente y verifica que los títulos cortos aparecen en el índice.</p>
 
 
 
@@ -610,7 +619,7 @@ Visita \href{https://www.latex-project.org/}{la página oficial de LaTeX}.
     <li><code>\href{}{}</code> se usa para crear enlaces a URLs externas.</li>
 </ul>
 
-<p>Ejercicio: Crea un documento con al menos tres secciones y varias subsecciones. Incluye un índice al principio, usa <code>\label{}</code> para etiquetar cada sección y crea al menos una referencia cruzada usando <code>\hyperref[]{}</code>. Asegúrate de incluir el paquete hyperref con opciones para personalizar el color de los enlaces.</p>
+<p><strong>✏️ Ejercicio:</strong> En Overleaf, crea un proyecto con al menos 3 secciones y varias subsecciones. Incluye <code>\tableofcontents</code> al principio. Usa <code>\label{sec:nombre}</code> para etiquetar secciones y crea referencias cruzadas con <code>\hyperref[sec:nombre]{texto del enlace}</code>. Asegúrate de incluir el paquete <code>hyperref</code> en el preámbulo. Compila y verifica que los enlaces en el PDF son interactivos.</p>
 
 El paquete <code>hyperref</code> ofrece una amplia gama de opciones para personalizar los enlaces en documentos PDF. Vamos a explorar algunas de las opciones más útiles, especialmente las relacionadas con los colores de diferentes tipos de enlaces.
 
@@ -706,7 +715,14 @@ Esta es la conclusión.
     <li>Se mostrará el panel de marcadores al abrir el PDF (<code>UseOutlines</code>).</li>
 </ul>
 
-<p><strong>Ejercicio:</strong> Modifica el ejemplo anterior para usar diferentes tonos de azul para los distintos tipos de enlaces. Por ejemplo, usa azul claro para enlaces internos, azul oscuro para URLs, y azul medio para citas. Además, añade un enlace a un archivo local (puede ser ficticio) y asegúrate de que tenga un color diferente.</p>
+<p><strong>✏️ Ejercicio Avanzado:</strong> En Overleaf, crea un proyecto que demuestre personalización de colores en hyperref. Incluye:
+<ul>
+    <li>Enlaces internos (referencias cruzadas) en azul claro</li>
+    <li>URLs en azul oscuro</li>
+    <li>Citas bibliográficas en verde</li>
+    <li>Enlaces a archivos en magenta</li>
+</ul>
+Usa el paquete <code>xcolor</code> para definir colores personalizados. Compila y verifica que cada tipo de enlace tiene su color correspondiente en el PDF.</p>
 
 <h3>Uso de colores de xcolor en hyperref</h3>
 
