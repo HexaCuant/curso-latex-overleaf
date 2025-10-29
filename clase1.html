@@ -450,51 +450,60 @@ Este es mi primer documento en LaTeX usando Overleaf.
     
     <p><strong>Realiza estos ejercicios en orden. Son esenciales para dominar Git, GitHub y Overleaf.</strong></p>
     
-    <h3>✏️ Ejercicio 1: Configurar Git (15 minutos)</h3>
+    <h3>✏️ Ejercicio 1: Registrarse en GitHub (10 minutos)</h3>
     <ol>
-        <li>Abre tu terminal (Command Prompt en Windows, Terminal en Mac/Linux).</li>
-        <li>Configura tu nombre y email en Git:
-            <pre><code>git config --global user.name "Tu Nombre Completo"
-git config --global user.email "tu@email.com"</code></pre>
-        </li>
-        <li>Verifica la configuración:
-            <pre><code>git config --global --list</code></pre>
-        </li>
-    </ol>
-    
-    <h3>✏️ Ejercicio 2: Crear Cuenta en GitHub (10 minutos)</h3>
-    <ol>
-        <li>Ve a <a href="https://github.com" target="_blank" rel="noopener">https://github.com</a> y crea tu cuenta.</li>
-        <li>Configura tu perfil con:
+        <li>Ve a <a href="https://github.com" target="_blank" rel="noopener">https://github.com</a>.</li>
+        <li>Haz clic en "Sign up" (esquina superior derecha).</li>
+        <li>Completa el formulario con:
             <ul>
-                <li>Foto de perfil</li>
-                <li>Nombre completo</li>
-                <li>Biografía breve</li>
+                <li>Email: Tu correo institucional (recomendado)</li>
+                <li>Contraseña: Segura y memorable</li>
+                <li>Nombre de usuario: Formato sugerido: "2025TuApellido"</li>
             </ul>
         </li>
-        <li>Crea tu primer repositorio:
-            <ul>
-                <li>Nombre: <code>2025TuApellido</code></li>
-                <li>Descripción: "Repositorio del curso de LaTeX y Git"</li>
-                <li>Privado: Sí</li>
-                <li>Inicializar con README: Sí</li>
-            </ul>
-        </li>
+        <li>Verifica tu email.</li>
+        <li>Completa tu perfil con foto y biografía.</li>
     </ol>
     
-    <h3>✏️ Ejercicio 3: Crear Cuenta en Overleaf (10 minutos)</h3>
+    <h3>✏️ Ejercicio 2: Crear tu Primer Repositorio en GitHub (15 minutos)</h3>
+    <ol>
+        <li>Haz login en tu cuenta de GitHub.</li>
+        <li>Haz clic en el icono "+" (esquina superior derecha) > "New repository".</li>
+        <li>Completa la información:
+            <ul>
+                <li><strong>Repository name</strong>: "2025TuApellido"</li>
+                <li><strong>Description</strong>: "Repositorio del curso de LaTeX y Git"</li>
+                <li><strong>Privado</strong>: Marca "Private"</li>
+                <li><strong>Inicializar</strong>: Marca "Add a README file"</li>
+            </ul>
+        </li>
+        <li>Haz clic en "Create repository".</li>
+        <li>En tu repositorio, ve a <strong>Settings > Collaborators > Add people</strong>.</li>
+        <li>Añade al profesor (nombre de usuario del curso) como colaborador.</li>
+    </ol>
+    
+    <h3>✏️ Ejercicio 3: Registrarse en Overleaf (10 minutos)</h3>
     <ol>
         <li>Ve a <a href="https://www.overleaf.com" target="_blank" rel="noopener">https://www.overleaf.com</a></li>
-        <li>Crea tu cuenta usando tu correo institucional (recomendado).</li>
-        <li>Busca la opción de "Campus License" en Settings y actívala si está disponible.</li>
-        <li>Accede al panel de proyectos.</li>
+        <li>Haz clic en "Sign up" (esquina superior derecha).</li>
+        <li>Crea tu cuenta con tu correo institucional (recomendado).</li>
+        <li>Verifica tu email.</li>
+        <li>Inicia sesión y accede al dashboard.</li>
+        <li><strong>IMPORTANTE:</strong> Si tu institución tiene licencia Campus:
+            <ul>
+                <li>Ve a <strong>Account Settings > Campus License</strong></li>
+                <li>Ingresa el código de activación que te proporcionó la universidad</li>
+                <li>Activa tu licencia Campus para desbloquear todas las funciones</li>
+            </ul>
+        </li>
     </ol>
     
     <h3>✏️ Ejercicio 4: Crear tu Primer Proyecto en Overleaf (20 minutos)</h3>
     <ol>
-        <li>En Overleaf, haz clic en "New Project" > "Blank Project".</li>
-        <li>Asigna el nombre: "Mi_Primer_Documento".</li>
-        <li>En el editor central, edita el archivo main.tex para que diga:
+        <li>En Overleaf, haz clic en <strong>"New Project"</strong> (botón grande).</li>
+        <li>Selecciona <strong>"Blank Project"</strong> para empezar desde cero.</li>
+        <li>Asigna el nombre: <strong>"Mi_Primer_Documento"</strong></li>
+        <li>Se abrirá el editor. En el panel central, edita el archivo main.tex con este contenido:
             <pre><code>\documentclass{article}
 \usepackage[utf8]{inputenc}
 \usepackage[spanish]{babel}
@@ -507,21 +516,24 @@ git config --global user.email "tu@email.com"</code></pre>
 
 \maketitle
 
-\section{Introducción}
-Este es mi primer documento compilado en Overleaf. 
-No necesité instalar nada en mi ordenador.
+\section{¿Qué es Overleaf?}
+Overleaf es una plataforma cloud para escribir documentos LaTeX sin necesidad 
+de instalación local. Es colaborativo y tiene compilación automática.
 
 \section{Ventajas de Overleaf}
 \begin{itemize}
     \item Acceso desde cualquier navegador
-    \item Compilación automática
-    \item Colaboración en tiempo real
+    \item Compilación automática en tiempo real
+    \item Colaboración simultánea con otros usuarios
+    \item Integración con GitHub
+    \item 6000+ plantillas profesionales
 \end{itemize}
 
 \end{document}</code></pre>
         </li>
-        <li>Haz clic en el botón "Compile" (verde).</li>
-        <li>Observa cómo aparece el PDF compilado en el panel derecho.</li>
+        <li>Haz clic en el botón <strong>"Compile"</strong> (verde, arriba a la derecha).</li>
+        <li>Observa cómo aparece el PDF compilado en el panel derecho automáticamente.</li>
+        <li>¡Congratulations! Has creado y compilado tu primer documento LaTeX en Overleaf.</li>
     </ol>
     
     <h3>✏️ Ejercicio 5: Colaborar en Tiempo Real - Compartir tu Proyecto (15 minutos)</h3>
