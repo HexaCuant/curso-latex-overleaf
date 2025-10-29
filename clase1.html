@@ -13,71 +13,21 @@
     <h2>Introducción a Git</h2>
     <h3>¿Qué es Git y por qué es útil para el control de versiones?</h3>
     <p>Git es un sistema de control de versiones distribuido, creado por Linus Torvalds en 2005. Es una herramienta
-        esencial para el desarrollo de software moderno, que permite a los desarrolladores rastrear cambios en el
-        código, colaborar eficientemente y gestionar diferentes versiones de un proyecto.</p>
+        esencial para la colaboración académica y científica, que permite rastrear cambios en documentos, colaborar eficientemente y gestionar diferentes versiones de un proyecto.</p>
     <p>Git destaca por varias razones:</p>
     <ol>
         <li><strong>Historial completo</strong>: Git mantiene un registro detallado de todos los cambios realizados en
             un proyecto, permitiendo ver quién hizo qué cambios y cuándo.</li>
-        <li><strong>Trabajo distribuido</strong>: Cada desarrollador tiene una copia completa del repositorio, lo que
+        <li><strong>Trabajo distribuido</strong>: Cada colaborador tiene una copia completa del repositorio, lo que
             facilita el trabajo sin conexión y mejora la redundancia.</li>
         <li><strong>Branching y merging</strong>: Git permite crear ramas para trabajar en diferentes características o
             versiones del proyecto de forma aislada, y luego fusionarlas fácilmente.</li>
         <li><strong>Velocidad y eficiencia</strong>: Git es notablemente rápido en comparación con otros sistemas de
-            control de versiones, especialmente para operaciones locales.</li>
+            control de versiones.</li>
         <li><strong>Flexibilidad de flujo de trabajo</strong>: Git se adapta a diversos estilos de desarrollo y tamaños
             de equipo.</li>
+        <li><strong>Integración con GitHub y Overleaf</strong>: Git se integra perfectamente con GitHub para respaldos en la nube y con Overleaf para sincronización automática.</li>
     </ol>
-    <h3>Instalación de Git</h3>
-    <p>La instalación de Git varía según el sistema operativo:</p>
-    <h4>Windows</h4>
-    <ol>
-        <li>Visita la página oficial de Git (<a href="https://git-scm.com/download/win" target="_blank"
-                rel="noopener">https://git-scm.com/download/win</a>) y descarga el instalador.</li>
-        <li>Ejecuta el archivo descargado y sigue las instrucciones del asistente de instalación.</li>
-        <li>Durante la instalación, asegúrate de seleccionar la opción para añadir Git al PATH del sistema.</li>
-        <li> En la pantalla "Select Components", asegúrate de que la opción "Git Bash Here" esté marcada. Esto instalará
-            Git Bash, que es el terminal que queremos usar.
-        <li>En la pantalla "Adjusting your PATH environment", selecciona la opción "Use Git from Git Bash only".</li>
-        <li>Cuando llegues a la pantalla "Configuring the line ending conversions", es crucial que selecciones la
-            siguiente opción:
-            <pre><code>Checkout Windows-style, commit Unix-style line endings</code></pre>
-        <li>Deja las demás opciones por defecto.
-            instalación.</li>
-    </ol>
-    <h4>macOS</h4>
-    <ol>
-        <li>La forma más sencilla es usar Homebrew. Si no lo tienes instalado, visita <a href="https://brew.sh"
-                target="_blank" rel="noopener">brew.sh</a> para instrucciones.</li>
-        <li>Abre la Terminal y ejecuta: <code>brew install git</code>.</li>
-        <li>Alternativamente, puedes descargar el instalador desde la página oficial de Git: <a
-                href="https://git-scm.com/downloads/mac" target="_blank"
-                rel="noopener">https://git-scm.com/downloads/mac</a></li>
-        <li>Verifica la instalación con <code>git --version</code> en la Terminal.</li>
-    </ol>
-    <h4>Linux</h4>
-    <ol>
-        <li>La mayoría de las distribuciones Linux incluyen Git preinstalado. Para verificar, abre una terminal y
-            ejecuta <code>git --version</code>.</li>
-        <li>Si no está instalado:
-            <ul>
-                <li>En distribuciones basadas en Debian/Ubuntu: <code>sudo apt-get install git-all</code></li>
-                <li>En sistemas basados en Fedora: <code>sudo dnf install git-all</code></li>
-                <li>En sistemas basados en ArchLinux: <code>sudo pacman -S git</code></li>
-                <li>Para otras distribuciones, consulta la documentación específica o usa el gestor de paquetes
-                    correspondiente.</li>
-            </ul>
-        </li>
-    </ol>
-    <p>Después de la instalación, es recomendable configurar tu nombre de usuario y correo electrónico en Git usando los
-        comandos:</p>
-    <pre>
-        <code>
-git config --global user.name "Tu Nombre"
-git config --global user.email "tu@email.com"
-</code>
-</pre><!---->
-    <p>Esta configuración es importante para identificar tus contribuciones en los proyectos.</p>
 
 
     <h3>Crear una cuenta en GitHub</h3>
@@ -163,122 +113,45 @@ git config --global user.email "tu@email.com"
     <img src="git.png" alt="Diagrama de flujo de trabajo de Git" style="max-width: 100%; height: auto;">
 
 
-    <h3>Comandos básicos de Git en el contexto de Overleaf</h3>
+    <h3>Git integrado en Overleaf (Usando la Licencia de Campus)</h3>
     
-    <p><strong>Nota importante:</strong> Si usas Overleaf con licencia Campus, Git está integrado y no necesitas usar la terminal. Sin embargo, si usas la versión gratuita o quieres trabajar localmente, estos comandos te serán útiles.</p>
-
-    <h4>Contexto: ¿Cuándo usas Git desde terminal?</h4>
-    <p>Si descargas tu proyecto desde Overleaf y quieres subirlo a GitHub (u otro repositorio), usarás estos comandos en tu terminal local:</p>
-
-    <h4>git init</h4>
-    <p>El comando <code>git init</code> se utiliza para inicializar un nuevo repositorio Git en el directorio actual.
-        Esto crea un subdirectorio oculto <code>.git</code> que contiene toda la estructura necesaria para el control de
-        versiones.</p>
-    <p><strong>Ejemplo:</strong> Si descargas un proyecto desde Overleaf como ZIP, descomprímelo y ejecuta:</p>
-    <pre><code>cd /ruta/a/tu/proyecto
-git init</code></pre>
-
-    <h4>git status</h4>
-    <p><code>git status</code> muestra el estado actual del repositorio, incluyendo los archivos modificados, añadidos o
-        eliminados que aún no se han confirmado.</p>
-    <pre><code>git status</code></pre>
-
-    <h4>git add</h4>
-    <p>El comando <code>git add</code> se usa para agregar archivos al área de preparación (staging area). Por ejemplo:
-    </p>
-    <pre><code>git add &lt;archivo&gt;</code></pre>
-    <p>Para añadir todos los archivos nuevos y modificados, puedes usar:</p>
-    <pre><code>git add .</code></pre>
-
-    <p>Para añadir todos los archivos nuevos y modificados y eliminar los borrados, puedes usar:</p>
-    <pre><code>git add -A</code> o <code>git add --all</code></pre>
-
-    <h4>git commit</h4>
-    <p><code>git commit</code> crea una instantánea de los cambios en el área de preparación y la guarda en el historial
-        del repositorio. Es recomendable incluir un mensaje descriptivo:</p>
-    <pre><code>git commit -a -m "Descripción breve de los cambios realizados"</code></pre>
-
-    <p>La opción <code>-a</code> en el comando <code>git commit -a -m "mensaje"</code> le indica a Git que incluya
-        automáticamente todos los archivos modificados y eliminados en el commit, sin necesidad de usar
-        <code>git add</code> para cada archivo. Sin embargo, no incluye nuevos archivos que no hayan sido previamente
-        rastreados por Git.</p>
-
-        <h4>Creación del repositorio remoto en GitHub</h4>
-        <p>Antes de subir tu proyecto a GitHub, debes crear un nuevo repositorio remoto:</p>
-        <h5>Crear un nuevo repositorio en GitHub:</h5>
-        <ol>
-            <li>Ve a GitHub y haz clic en el botón <strong>New repository</strong> en la esquina superior derecha.</li>
-            <li>Ingresa un nombre para tu repositorio y una descripción opcional.</li>
-            <li>Selecciona la visibilidad del repositorio (público, privado o interno).</li>
-            <li>Haz clic en <strong>Create repository</strong> sin inicializar el repositorio con un README, licencia o archivo .gitignore, ya que puedes agregar estos archivos después de subir tu proyecto.</li>
-        </ol>
-        <h5>Conectar el repositorio local con el remoto:</h5>
-        <ol>
-            <li>En el repositorio de GitHub, copia la URL del repositorio que aparece en la página de configuración rápida.</li>
-            <li>En tu terminal, navega al directorio de tu proyecto local.</li>
-            <li>Agrega el repositorio remoto usando el comando:
-                <pre><code>git remote add origin https://github.com/tu-usuario/tu-repositorio.git</code></pre>
-            </li>
-            <li>Verifica que el remoto se haya agregado correctamente con:
-                <pre><code>git remote -v</code></pre>
-            </li>
-        </ol>
-
-    <h4>git push</h4>
-    <p>El comando <code>git push</code> se utiliza para enviar los commits locales a un repositorio remoto (GitHub). La sintaxis
-        básica es:</p>
-    <pre><code>git push &lt;remoto&gt; &lt;rama&gt;</code></pre>
-    <p><strong>Ejemplo típico:</strong></p>
-    <pre><code>git push origin main</code></pre>
-    <p><strong>¿Cuándo lo usas en Overleaf?</strong> Si descargas tu proyecto desde Overleaf, lo modificas localmente y quieres subirlo a GitHub:</p>
-    <pre><code>git add .
-git commit -m "Actualización desde local después de descargar de Overleaf"
-git push origin main</code></pre>
-
-    <h4>git pull</h4>
-    <p><code>git pull</code> se usa para descargar y fusionar los cambios desde un repositorio remoto a tu repositorio
-        local. Es una combinación de <code>git fetch</code> y <code>git merge</code>.</p>
-    <p><strong>Ejemplo:</strong></p>
-    <pre><code>git pull origin main</code></pre>
-    <p><strong>¿Cuándo lo usas en Overleaf?</strong> Si un compañero subió cambios a GitHub y quieres descargarlos localmente antes de abrir el proyecto en Overleaf nuevamente.</p>
-
-    <h4>Creación y manejo del archivo .gitignore</h4>
-    <p>El archivo <code>.gitignore</code> es crucial para especificar qué archivos y directorios Git debe ignorar. Para
-        crear y manejar un <code>.gitignore</code>:</p>
+    <p><strong>En Overleaf, Git está completamente integrado.</strong> No necesitas instalar Git en tu ordenador ni usar la terminal. Todo se hace desde la interfaz de Overleaf.</p>
+    
+    <h4>Activar la sincronización con GitHub en Overleaf</h4>
     <ol>
-        <li>Crea el archivo en la raíz del proyecto.
-
+        <li>En tu proyecto Overleaf, haz clic en <strong>"Menu"</strong> (arriba a la izquierda).</li>
+        <li>Busca la opción <strong>"Git"</strong> en el menú.</li>
+        <li>Se abrirá un panel mostrando la URL para clonar desde GitHub:
+            <pre><code>git clone https://git.overleaf.com/[project-id]</code></pre>
         </li>
-        <li>Edita el archivo añadiendo patrones de archivos o directorios a ignorar. <strong>Para proyectos LaTeX, es importante ignorar archivos compilados:</strong>
-            <pre><code>
-    # Ignorar archivos compilados de LaTeX
-    *.aux
-    *.bbl
-    *.blg
-    *.log
-    *.pdf
-    *.synctex.gz
-    *.fls
-    *.fdb_latexmk
-    
-    # Ignorar archivos del sistema
-    .DS_Store
-    Thumbs.db
-    
-    # Ignorar carpetas de editor
-    .vscode/
-    .idea/
-            </code></pre>
-        </li>
-        <li>Añade y confirma el archivo <code>.gitignore</code>:
-            <pre><code>
-    git add .gitignore
-    git commit -m "Añadir archivo .gitignore para proyecto LaTeX"
-            </code></pre>
-        </li>
+        <li>Si tu repositorio GitHub está conectado, verás la opción <strong>"Link to GitHub"</strong>.</li>
+        <li>Sigue los pasos para autorizar a Overleaf a acceder a tu GitHub.</li>
     </ol>
-    <p>El uso efectivo de <code>.gitignore</code> ayuda a mantener tu repositorio limpio y evita el seguimiento de
-        archivos innecesarios o sensibles.</p>
+    
+    <h4>Sincronización automática Overleaf-GitHub</h4>
+    <p>Una vez vinculado tu proyecto Overleaf con un repositorio de GitHub:</p>
+    <ul>
+        <li>✅ <strong>Cambios en Overleaf</strong> se sincronizan automáticamente a GitHub.</li>
+        <li>✅ <strong>Cambios en GitHub</strong> se pueden traer a Overleaf (pull).</li>
+        <li>✅ <strong>Historial completo</strong> está disponible en GitHub.</li>
+        <li>✅ <strong>Control de versiones</strong> sin necesidad de usar la terminal.</li>
+    </ul>
+    
+    <h4>Clonar un proyecto desde GitHub a Overleaf</h4>
+    <ol>
+        <li>En Overleaf, ve a "New Project".</li>
+        <li>Selecciona <strong>"Import from GitHub"</strong>.</li>
+        <li>Autoriza a Overleaf si es la primera vez.</li>
+        <li>Selecciona el repositorio que deseas clonar.</li>
+        <li>¡Listo! Tu proyecto ahora está en Overleaf con sincronización automática.</li>
+    </ol>
+    
+    <h4>Ver cambios y commits en Overleaf</h4>
+    <p>En Overleaf puedes ver el historial de cambios de dos formas:</p>
+    <ul>
+        <li><strong>Historial de Overleaf:</strong> Haz clic en <strong>"History"</strong> en la barra superior. Ves todos los cambios realizados en Overleaf con timestamp y colaborador.</li>
+        <li><strong>Historial de Git/GitHub:</strong> Haz clic en <strong>"Menu"</strong> > <strong>"Git"</strong>. Ves los commits de tu repositorio GitHub.</li>
+    </ul>
     </ol>
 
     
@@ -651,61 +524,57 @@ No necesité instalar nada en mi ordenador.
         <li>Observa cómo aparece el PDF compilado en el panel derecho.</li>
     </ol>
     
-    <h3>✏️ Ejercicio 5: Compartir tu Proyecto en Overleaf (10 minutos)</h3>
+    <h3>✏️ Ejercicio 5: Colaborar en Tiempo Real - Compartir tu Proyecto (15 minutos)</h3>
     <ol>
-        <li>En tu proyecto, haz clic en "Share" (arriba a la derecha).</li>
-        <li>En la opción "Edit link", copia el enlace.</li>
-        <li>Envía este enlace a un compañero (o a ti mismo desde otra ventana).</li>
-        <li>Verifica que tu compañero puede hacer cambios en tiempo real.</li>
-        <li>Pide a tu compañero que agregue una nueva sección con su nombre.</li>
+        <li>En tu proyecto "Mi_Primer_Documento", haz clic en el botón <strong>"Share"</strong> (arriba a la derecha).</li>
+        <li>Verás dos opciones:
+            <ul>
+                <li><strong>"Edit as owner"</strong>: Para dar acceso de edición a otros usuarios de Overleaf registrados.</li>
+                <li><strong>"Edit link"</strong>: Copia el enlace para compartir con cualquiera.</li>
+            </ul>
+        </li>
+        <li>Copia el enlace "Edit link" y envíalo a un compañero (o a ti mismo desde otra ventana).</li>
+        <li>Accede desde otra pestaña usando ese enlace.</li>
+        <li>Ambos editores haced cambios simultáneamente y observa cómo se actualizan en tiempo real.</li>
+        <li>Pide a tu compañero que agregue una nueva sección con su nombre (ej: \section{Contribución de Compañero}).</li>
+        <li>Observa cómo el PDF se compila automáticamente con los cambios de ambos.</li>
     </ol>
     
-    <h3>✏️ Ejercicio 6: Descargar tu Proyecto y Subirlo a GitHub (25 minutos)</h3>
+    <h3>✏️ Ejercicio 6: Conectar tu Proyecto Overleaf con GitHub (20 minutos)</h3>
     <ol>
-        <li>En Overleaf, haz clic en "Menu" > "Download" > "Source".</li>
-        <li>Se descargará un archivo ZIP. Descomprímelo en tu ordenador.</li>
-        <li>Abre una terminal en ese directorio y ejecuta:
-            <pre><code>git init
-git add .
-git commit -m "Primer proyecto Overleaf compilado"</code></pre>
-        </li>
-        <li>En GitHub, ve a tu repositorio y copia la URL HTTPS.</li>
-        <li>En tu terminal, ejecuta:
-            <pre><code>git remote add origin https://github.com/tu-usuario/2025TuApellido.git
-git branch -M main
-git push -u origin main</code></pre>
-        </li>
-        <li>Actualiza tu navegador en GitHub. ¡Deberías ver tus archivos LaTeX!</li>
+        <li>Asegúrate de haber creado un repositorio en GitHub (Ejercicio 2).</li>
+        <li>En Overleaf, abre tu proyecto "Mi_Primer_Documento".</li>
+        <li>Haz clic en <strong>"Menu"</strong> (arriba a la izquierda).</li>
+        <li>Busca y haz clic en <strong>"Sync with GitHub"</strong> (o "GitHub" dependiendo de tu versión).</li>
+        <li>Se abrirá una ventana solicitando autorización. Haz clic en <strong>"Authorize with GitHub"</strong>.</li>
+        <li>Inicia sesión en GitHub si es necesario.</li>
+        <li>Selecciona tu repositorio <code>2025TuApellido</code>.</li>
+        <li>Confirma la conexión. Ahora tu proyecto está sincronizado.</li>
     </ol>
     
-    <h3>✏️ Ejercicio 7: Editar en Local y Subirlo a GitHub (20 minutos)</h3>
+    <h3>✏️ Ejercicio 7: Ver Cambios Sincronizados en GitHub (10 minutos)</h3>
     <ol>
-        <li>En tu ordenador, abre el archivo main.tex con un editor de texto (Notepad, VS Code, etc.).</li>
-        <li>Haz un cambio pequeño (ej: cambia el título).</li>
-        <li>En la terminal, ejecuta:
-            <pre><code>git status</code></pre>
-        </li>
-        <li>Verás que main.tex fue modificado.</li>
-        <li>Haz commit de los cambios:
-            <pre><code>git add .
-git commit -m "Actualización del título desde editor local"</code></pre>
-        </li>
-        <li>Sube a GitHub:
-            <pre><code>git push origin main</code></pre>
-        </li>
-        <li>Ve a tu repositorio en GitHub y verifica que el cambio está ahí.</li>
+        <li>En Overleaf, haz un pequeño cambio en main.tex (ej: cambia el título).</li>
+        <li>Overleaf compilará automáticamente (verás el PDF actualizado).</li>
+        <li>Espera unos segundos para que sincronice con GitHub.</li>
+        <li>Ve a tu repositorio en GitHub y actualiza la página.</li>
+        <li>¡Verás que main.tex ha sido modificado! El cambio se sincronizó automáticamente.</li>
+        <li>Haz clic en el archivo main.tex en GitHub para ver el cambio resaltado.</li>
     </ol>
     
-    <h3>✏️ Ejercicio 8: Clonar tu Repositorio de GitHub (10 minutos)</h3>
+    <h3>✏️ Ejercicio 8: Historial de Cambios en Overleaf (10 minutos)</h3>
     <ol>
-        <li>En una carpeta nueva en tu ordenador, abre una terminal.</li>
-        <li>Clona tu repositorio:
-            <pre><code>git clone https://github.com/tu-usuario/2025TuApellido.git</code></pre>
+        <li>En tu proyecto Overleaf, haz clic en <strong>"History"</strong> (arriba a la derecha).</li>
+        <li>Verás una línea de tiempo con todos los cambios realizados.</li>
+        <li>Cada cambio muestra:
+            <ul>
+                <li>Quién lo hizo (autor)</li>
+                <li>Cuándo se realizó</li>
+                <li>Qué cambió (resaltado en colores)</li>
+            </ul>
         </li>
-        <li>Entra en el directorio:
-            <pre><code>cd 2025TuApellido</code></pre>
-        </li>
-        <li>Abre main.tex y verifica que está el contenido correcto.</li>
+        <li>Haz clic en un cambio anterior para verlo.</li>
+        <li>Haz clic en <strong>"Restore"</strong> si quieres volver a esa versión anterior.</li>
     </ol>
     
     <h3>Resumen de lo que aprendiste en esta clase:</h3>
