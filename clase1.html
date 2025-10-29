@@ -37,6 +37,69 @@
         <li><strong>Integración con GitHub y Overleaf</strong>: Git se integra perfectamente con GitHub para respaldos en la nube y con Overleaf para sincronización automática.</li>
     </ol>
 
+    <h3>Conceptos Fundamentales de Git</h3>
+    <p>Para entender cómo funciona Git, es importante conocer estos conceptos clave:</p>
+    
+    <h4>📁 Repositorio</h4>
+    <p>Un repositorio es una carpeta que contiene todos tus archivos y su historial de cambios. En Git, cada repositorio es independiente y completo.</p>
+    
+    <h4>📝 Commit</h4>
+    <p>Un commit es una "captura de pantalla" de tu proyecto en un momento específico. Cada commit guarda:</p>
+    <ul>
+        <li>Los cambios realizados en los archivos</li>
+        <li>Quién hizo los cambios (autor)</li>
+        <li>Cuándo se realizaron (fecha/hora)</li>
+        <li>Un mensaje descriptivo explicando qué se cambió</li>
+    </ul>
+    <p><strong>Ejemplo:</strong> "Agregué introducción a la Clase 1" o "Corregí ecuación en la sección 2"</p>
+    
+    <h4>🌿 Branch (Rama)</h4>
+    <p>Una rama es una línea de desarrollo independiente. Por ejemplo:</p>
+    <ul>
+        <li><strong>main</strong>: La versión oficial y estable</li>
+        <li><strong>experimental</strong>: Rama para probar ideas nuevas</li>
+        <li><strong>feature/capitulo-3</strong>: Rama para trabajar en el capítulo 3</li>
+    </ul>
+    <p>Las ramas permiten trabajar en paralelo sin afectar la versión principal.</p>
+    
+    <h4>☁️ Repositorio Remoto (GitHub)</h4>
+    <p>Un repositorio remoto es una copia de tu proyecto alojada en un servidor (como GitHub). Es tu respaldo en la nube y permite colaboración con otros.</p>
+    
+    <h4>🔄 Pull y Push</h4>
+    <ul>
+        <li><strong>Push:</strong> Subir cambios locales al repositorio remoto (GitHub)</li>
+        <li><strong>Pull:</strong> Descargar cambios del repositorio remoto a tu proyecto local</li>
+    </ul>
+    
+    <h3>Diagrama de Flujo de Trabajo de Git</h3>
+    <p>Aquí se muestra el ciclo de vida típico de un cambio en Git:</p>
+    
+    <div style="background-color: #f0f0f0; padding: 20px; border-radius: 8px; margin: 20px 0; font-family: monospace; text-align: center;">
+        <pre style="margin: 0;">
+Tu Ordenador (LOCAL)              GitHub/Repositorio Remoto (REMOTO)
+═══════════════════               ════════════════════════════════════
+
+    1. Editar Archivos
+       ↓
+    2. git add .
+       (Preparar cambios)
+       ↓
+    3. git commit
+       (Capturar cambios con mensaje)
+       ↓
+    4. git push
+       ───────────────────────────→  Cambios respaldados en GitHub
+       
+    
+    Para traer cambios de otros:
+       
+    5. git pull
+       ←───────────────────────────  Descargar cambios de GitHub
+       (Actualizar tu proyecto local)
+        </pre>
+    </div>
+    
+    <p><strong>En Overleaf + GitHub, este proceso es automático:</strong> No necesitas ejecutar comandos. Overleaf sincroniza automáticamente tus cambios con GitHub.</p>
 
     <h3>Crear una cuenta en GitHub</h3>
     <ol>
