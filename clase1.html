@@ -10,6 +10,14 @@
 
 <body class="container">
     <p><a href="index.html" class="back-to-index">Volver al índice</a></p>
+    
+    <div style="background-color: #e8f4f8; border-left: 4px solid #0066cc; padding: 15px; margin: 20px 0; border-radius: 4px;">
+        <h4 style="margin-top: 0; color: #0066cc;">📌 Nota Importante</h4>
+        <p><strong>Este curso utiliza Overleaf (herramienta cloud).</strong> Todo lo que necesitas está en el navegador web.</p>
+        <p>Si prefieres trabajar con herramientas locales (TeXstudio, Git desde terminal, JabRef), consulta la versión anterior del curso en: <a href="https://105.ugr.es/latex" target="_blank" rel="noopener"><strong>https://105.ugr.es/latex</strong></a></p>
+        <p><em>Ambas versiones enseñan los mismos conceptos de LaTeX y Git. La única diferencia es dónde ejecutas las herramientas (cloud vs. local).</em></p>
+    </div>
+    
     <h2>Introducción a Git</h2>
     <h3>¿Qué es Git y por qué es útil para el control de versiones?</h3>
     <p>Git es un sistema de control de versiones distribuido, creado por Linus Torvalds en 2005. Es una herramienta
@@ -67,51 +75,6 @@
         <li>Haz clic en <strong>Add to this repository.</strong></li>
         <li>Recibirá una notificación en GitHub y una invitación por correo y deberá aceptarla.</li>
     </ol>
-
-    <h3>Clonar el repositorio usando HTTPS y token</h3>
-    <ol>
-        <li>Generar un token de acceso personal (PAT)</li>
-        <ol>
-            <li>En GitHub, haz clic en tu foto de perfil (esquina superior derecha) > <strong>Settings</strong>.</li>
-            <li>En el menú izquierdo, ve a <strong>Developer settings</strong> > <strong>Personal access tokens</strong>
-                > <strong>Tokens (classic)</strong>.</li>
-            <li>Haz clic en <strong>Generate new token</strong> > <strong>Generate new token (classic)</strong>.</li>
-            <li>Configura el token:</li>
-            <ul>
-                <li><strong>Note</strong>: Acceso a repositorios desde Git (descripción útil).</li>
-                <li><strong>Expiration</strong>: Elige una fecha (ej: 30 días para el curso).</li>
-                <li><strong>Scopes</strong>: Marca <strong>repo</strong> (para acceso completo a repositorios).</li>
-            </ul>
-            <li>Haz clic en <strong>Generate token</strong>.</li>
-            <li>¡Copia el token inmediatamente! No podrás verlo nuevamente.</li>
-            <li>En el terminal ejecuta el siguiente comando:
-                <pre><code>git config --global credential.helper store</code></pre>
-            </li>
-            <li><strong>Opcional</strong>:
-
-                Crea o edita el archivo <code>~/.git-credentials</code> (en Linux/macOS) o
-                <code>\Users\YourUsername\.git-credentials</code> (en Windows) y añade una línea con este formato:
-                <pre><code>https://{username}:{personal_access_token}@github.com</code></pre>
-            
-
-            Reemplaza <code>{username}</code> con tu nombre de usuario de GitHub y <code>{personal_access_token}</code>
-            con el token que generaste.
-            </li>
-<li>Ve al repositorio: <strong>Perfil</strong> > <strong>your repositories</strong> > <strong>2025Apellido</strong></li>
-            <li>En la página del repositorio, haz clic en <strong>Code</strong> > <strong>HTTPS</strong> y copia el
-                enlace (ej: https://github.com/usuario/repo.git).</li>
-            <li>Abre Git Bash/Terminal en el directorio donde lo quieras clonar y ejecuta:</li>
-            <pre><code>git clone https://github.com/usuario/repo.git</code></pre>
-            <li>Cuando te pida <strong>Username</strong>: Escribe tu nombre de usuario de GitHub.</li>
-            <li>Cuando te pida <strong>Password</strong>: Pega el token generado (no verás caracteres al pegarlo).</li>
-            <li>Pulsa <code>Enter</code>. El repositorio se clonará correctamente.</li>
-        </ol>
-    </ol>
-
-    <h3>Diagrama de flujo de trabajo de Git</h3>
-    <p>A continuación se muestra un diagrama de flujo de trabajo básico de Git:</p>
-    <img src="git.png" alt="Diagrama de flujo de trabajo de Git" style="max-width: 100%; height: auto;">
-
 
     <h3>Git integrado en Overleaf (Usando la Licencia de Campus)</h3>
     
@@ -322,21 +285,14 @@ Este es mi primer documento en LaTeX usando Overleaf.
     
     <h4>Flujo de trabajo recomendado:</h4>
     
-    <p><strong>Opción A: Overleaf + GitHub (Recomendado si tu universidad tiene licencia de campus)</strong></p>
+    <p><strong>Overleaf + GitHub (Con licencia de campus)</strong></p>
     <ul>
         <li>✅ Escribes en el editor de Overleaf.</li>
         <li>✅ Overleaf sincroniza automáticamente con tu repositorio GitHub.</li>
         <li>✅ Tú y tus compañeros ven los cambios en tiempo real en Overleaf.</li>
         <li>✅ El historial de cambios está respaldado en GitHub.</li>
         <li>✅ Trabajar desde cualquier dispositivo con el mismo proyecto.</li>
-    </ul>
-    
-    <p><strong>Opción B: Overleaf (Local) + Descargas + GitHub (Para usuarios sin licencia de campus)</strong></p>
-    <ul>
-        <li>✅ Escribes en el editor de Overleaf.</li>
-        <li>✅ Descarga el proyecto completo desde Overleaf (formato ZIP).</li>
-        <li>✅ Sube los cambios a GitHub usando Git desde tu terminal local.</li>
-        <li>✅ Pasos: Descargar → Descomprimir → Git add/commit/push</li>
+        <li>✅ Sin necesidad de instalar nada en tu ordenador.</li>
     </ul>
     
     <h3>Información importante sobre Overleaf</h3>
@@ -383,66 +339,9 @@ Este es mi primer documento en LaTeX usando Overleaf.
     <p>Si tu institución proporciona licencia Campus, puedes sincronizar tu proyecto Overleaf directamente con GitHub:
     <ul>
         <li>Cambios en Overleaf se sincronizan automáticamente a GitHub.</li>
-        <li>Puedes hacer pull/push desde terminal local sin descargar proyectos.</li>
         <li>Los colaboradores ven los cambios en tiempo real.</li>
+        <li>Historial de versiones respaldado en la nube.</li>
     </ul>
-    
-    <h3>Comparación: Herramientas Locales vs. Overleaf</h3>
-    
-    <table border="1" cellpadding="10">
-        <tr>
-            <th>Característica</th>
-            <th>Instalación Local (TeXstudio + Git Terminal)</th>
-            <th>Overleaf + GitHub</th>
-        </tr>
-        <tr>
-            <td><strong>Instalación</strong></td>
-            <td>❌ Complicada (LaTeX + TeXstudio + Git)</td>
-            <td>✅ Ninguna (solo navegador web)</td>
-        </tr>
-        <tr>
-            <td><strong>Compilación</strong></td>
-            <td>Manual (presionar botón)</td>
-            <td>✅ Automática en tiempo real</td>
-        </tr>
-        <tr>
-            <td><strong>Colaboración</strong></td>
-            <td>Complicada (resolver conflictos de Git)</td>
-            <td>✅ Integrada y fácil</td>
-        </tr>
-        <tr>
-            <td><strong>Acceso remoto</strong></td>
-            <td>Solo en tu ordenador</td>
-            <td>✅ Desde cualquier dispositivo</td>
-        </tr>
-        <tr>
-            <td><strong>Plantillas</strong></td>
-            <td>Buscar/descargar manualmente</td>
-            <td>✅ 6,000+ plantillas integradas</td>
-        </tr>
-        <tr>
-            <td><strong>Control de versiones</strong></td>
-            <td>Git (línea de comandos)</td>
-            <td>✅ GitHub + Overleaf History</td>
-        </tr>
-        <tr>
-            <td><strong>Compatibilidad</strong></td>
-            <td>Posibles incompatibilidades entre SO</td>
-            <td>✅ Compatible con todos los SO</td>
-        </tr>
-    </table>
-    
-    <h3>¿Y las herramientas locales? ¿Cuándo usarlas?</h3>
-    
-    <p>Aunque Overleaf es la herramienta principal del curso, existen casos donde herramientas locales son útiles:</p>
-    
-    <ul>
-        <li><strong>TeXstudio</strong>: Útil si trabajas sin conexión a internet o prefieres máximo control local.</li>
-        <li><strong>VS Code + LaTeX Workshop</strong>: Para desarrolladores que ya usan VS Code. Personalización extrema.</li>
-        <li><strong>LyX</strong>: Si prefieres una interfaz visual en lugar de escribir código LaTeX.</li>
-    </ul>
-    
-    <p><strong>Para este curso:</strong> Usaremos exclusivamente Overleaf. Si después quieres aprender herramientas locales, el conocimiento de LaTeX que adquieras aquí te servirá.</p>
 
     <p><a href="index.html" class="back-to-index">Volver al índice</a></p>
     
