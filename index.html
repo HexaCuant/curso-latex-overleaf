@@ -7,35 +7,38 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="container">
-    <h1 id="índice-del-curso-latex-y-git">LaTeX y Git</h1>
-    <p><strong><a href="quickstart.html">Quickstart: Instalación de LaTeX y Git</a></strong></p>
-    <p><strong><a href="clase1.html">Clase 1 (3 horas): Introducción a Git y LaTeX</a></strong></p>
-    <ul>
+    <div style="background-color: #e3f2fd; border-left: 4px solid #1976d2; padding: 12px; margin-bottom: 20px; border-radius: 4px;">
+        <p style="margin: 0; font-size: 0.95em; color: #0d47a1;">
+            <strong>📌 Sobre este curso:</strong> Este es el curso de LaTeX adaptado para <strong>Overleaf</strong> (herramienta cloud). 
+            Si prefieres trabajar con herramientas locales (TeXstudio, Git en terminal, etc.), 
+            consulta la <a href="https://105.ugr.es/latex" target="_blank" style="color: #1976d2; text-decoration: underline;">versión local del curso</a>.
+        </p>
+    </div>
 
+    <h1 id="índice-del-curso-latex-y-git">LaTeX y Git en Overleaf</h1>
+    <p><strong><a href="quickstart.html">Quickstart: Primeros pasos en Overleaf</a></strong></p>
+    <p><strong><a href="clase1.html">Clase 1 (3 horas): Introducción a Git y LaTeX en Overleaf</a></strong></p>
+    <ul>
         <li>Introducción a Git
             <ul>
                 <li>¿Qué es Git y por qué es útil para el control de versiones?</li>
-                <li>Instalación de Git</li>
+                <li>Conceptos Fundamentales: Repositorio, Commit, Branch, Remoto, Pull/Push</li>
             </ul>
         </li>
         <li>Crear una cuenta en GitHub</li>
-        <li>Configurar el perfil (opcional)</li>
-        <li>Crear tu primer repositorio</li>
+        <li>Crear tu primer repositorio en GitHub</li>
         <li>Añadir al profesor como colaborador (evaluación)</li>
-        <li>Clonar el repositorio usando HTTPS y token</li>
-        <li>Comandos básicos de Git desde el terminal
-            <ul>
-                <li>git init, git status, git add, git commit, git push, git pull</li>
-                <li>Creación y manejo del archivo .gitignore</li>
-            </ul>
-        </li>
+        <li>Git integrado en Overleaf (Usando la Licencia de Campus)</li>
         <li>Introducción a LaTeX
             <ul>
                 <li>¿Qué es LaTeX y por qué es útil para la escritura académica?</li>
-                <li>Instalación de LaTeX</li>
-                <li>Instalación de TeXstudio</li>
             </ul>
         </li>
+        <li>Crear tu Cuenta en Overleaf (Recomendado para este curso)</li>
+        <li>Interfaz de Overleaf - Guía Visual</li>
+        <li>Crear tu Primer Proyecto en Overleaf</li>
+        <li>¿Cómo trabajan juntas Git y Overleaf?</li>
+        <li>Ejercicios prácticos (todos en Overleaf)</li>
     </ul>
     <p><strong><a href="clase2.html">Clase 2 (3 horas): Fundamentos de LaTeX</a></strong></p>
     <ul>
@@ -55,7 +58,7 @@
         <li>Ejercicios prácticos</li>
         
     </ul>
-    <p><strong><a href="clase4.html">Clase 4 (3 horas): Fórmulas matemáticas y bibliografía</a></strong></p>
+    <p><strong><a href="clase4.html">Clase 4 (3 horas): Fórmulas matemáticas y bibliografía con Zotero + Overleaf</a></strong></p>
     <ul>
         <li>Escritura de fórmulas matemáticas
             <ul>
@@ -64,10 +67,16 @@
                 <li>Ecuaciones numeradas</li>
             </ul>
         </li>
-        <li>Introducción a BibTeX</li>
-        <li>Uso de JabRef para gestionar la base de datos bibliográfica</li>
-        <li>Citas y referencias en el texto</li>
-        <li>Generación de la bibliografía</li>
+        <li>Gestión de Bibliografía con Zotero + Overleaf
+            <ul>
+                <li>¿Qué es Zotero? (Gestor de referencias en la nube)</li>
+                <li>Integración Zotero + Overleaf</li>
+                <li>Crear colecciones y gestionar referencias</li>
+                <li>Usar referencias en el documento con \cite{}</li>
+                <li>Estilos bibliográficos: authoryear, numeric, apa, ieee</li>
+            </ul>
+        </li>
+        <li>Errores comunes con Zotero + Overleaf y soluciones</li>
         <li>Ejercicios prácticos</li>
     </ul>
     <p><strong><a href="clase5.html">Clase 5 (3 horas): Elementos avanzados y personalización</a></strong></p>
@@ -84,28 +93,59 @@
         <li>Ejercicios prácticos</li>
         <li>Repaso de Git: resolución de conflictos simples</li>
     </ul>
-    <p><strong><a href="clase6.html">Clase 6 (3 horas): Estructuración de la tesis y elementos adicionales</a></strong></p>
+    <p><strong><a href="clase6.html">Clase 6 (3 horas): Creación de una Plantilla para Tesis Doctoral en Overleaf</a></strong></p>
     <ul>
-        <li>Estructura típica de una tesis doctoral en LaTeX</li>
-        <li>Creación de la portada</li>
-        <li>Generación automática de índices
+        <li>Paquetes y configuración inicial en Overleaf</li>
+        <li>Estructura modular de un proyecto de tesis
             <ul>
-                <li>Tabla de contenidos</li>
-                <li>Lista de figuras y tablas</li>
+                <li>Archivo principal (main.tex)</li>
+                <li>Archivos por capítulo (separados y organizados)</li>
             </ul>
         </li>
-        <li>Apéndices</li>
-        <li>Glosarios y acrónimos</li>
+        <li>Creación del "Frontmatter" (páginas preliminares)
+            <ul>
+                <li>Portada inicial</li>
+                <li>Página institucional</li>
+                <li>Dedicatoria y citas</li>
+                <li>Agradecimientos</li>
+                <li>Índices automáticos (tabla de contenidos, figuras, tablas)</li>
+            </ul>
+        </li>
+        <li>Comandos personalizados para tesis</li>
+        <li>Diseño de página: márgenes, encabezados, pies de página</li>
+        <li>Texto en columnas para optimizar espacio</li>
+        <li>Consejos clave para trabajo colaborativo en Overleaf</li>
         <li>Ejercicios prácticos: comenzar la estructura de la propia tesis</li>
     </ul>
-    <p><strong><a href="clase7.html">Clase 7 (2 horas): Temas especiales y cierre del curso</a></strong></p>
+    <p><strong><a href="clase7.html">Clase 7 (2 horas): Temas especiales en Overleaf</a></strong></p>
     <ul>
-        <li>Creación de cartas con membrete</li>
-        <li>Diseño de pósters para congresos</li>
-        <li>Recursos adicionales y comunidades de LaTeX</li>
-        <li>Flujo de trabajo completo: desde la escritura hasta la versión final</li>
-        <li>Resolución de dudas y problemas específicos de los estudiantes</li>
-        <li>Cierre del curso y evaluación</li>
+        <li>Creación de cartas con membrete
+            <ul>
+                <li>Clase letter: cartas formales</li>
+                <li>Clase article: cartas personalizadas con logos</li>
+            </ul>
+        </li>
+        <li>Diseño de pósters para congresos
+            <ul>
+                <li>Clases: a0poster, beamerposter, tikzposter</li>
+                <li>Uso de plantillas de Overleaf</li>
+            </ul>
+        </li>
+        <li>Creación de presentaciones con Beamer
+            <ul>
+                <li>Estructura básica de una presentación</li>
+                <li>Personalización de temas y colores</li>
+                <li>Diapositivas con elementos visuales</li>
+                <li>Transiciones y overlays</li>
+            </ul>
+        </li>
+        <li>Imágenes animadas en Beamer
+            <ul>
+                <li>Convertir videos en secuencias de imágenes</li>
+                <li>Paquete animate para crear animaciones</li>
+                <li>Reproductor externo de videos</li>
+            </ul>
+        </li>
     </ul>
    
 
