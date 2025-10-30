@@ -9,15 +9,25 @@
 </head>
 
 <body class="container">
+  <div style="background-color: #e3f2fd; border-left: 4px solid #1976d2; padding: 12px; margin-bottom: 20px; border-radius: 4px;">
+      <p style="margin: 0; font-size: 0.95em; color: #0d47a1;">
+          <strong>📌 Nota importante:</strong> Este curso utiliza <strong>Overleaf</strong> como herramienta principal para LaTeX. 
+          Si prefieres trabajar con herramientas locales (TeXstudio, Git en terminal, etc.), 
+          consulta la <a href="https://105.ugr.es/latex" target="_blank" style="color: #1976d2; text-decoration: underline;">versión local del curso</a>.
+      </p>
+  </div>
+
   <p><a href="index.html" class="back-to-index">Volver al índice</a></p>
   <h2>Clase 7: Temas especiales</h2>
 
 
-  <h3>Creación de una carta con membrete en LaTeX</h3>
+  <h3>Creación de una carta con membrete en LaTeX en Overleaf</h3>
 
-  <h3>Usando la clase letter:</h3>
+  <p><strong>Nota Overleaf:</strong> En Overleaf, tienes múltiples opciones para crear cartas formales. La clase <code>letter</code> está completamente disponible. También puedes usar la clase <code>article</code> para mayor flexibilidad. A continuación, explicamos ambas opciones.</p>
 
-  <p>Ejemplo básico de una carta formal en LaTeX:</p>
+  <h3>Opción 1: Usando la clase letter en Overleaf</h3>
+
+  <p>Ejemplo básico de una carta formal en LaTeX usando la clase <code>letter</code>:</p>
 
   <pre><code>\documentclass[a4paper,12pt]{letter}
 \usepackage[utf8]{inputenc}
@@ -142,27 +152,22 @@ cualquier información adicional que requiera.
     queden demasiado pegados a los bordes.</p>
 
 
-  <h3>Usando la clase article:</h3>
+  <h3>Opción 2: Usando la clase article en Overleaf</h3>
 
-  <p>Utilizar article en lugar de letter es viable y puede ser una opción atractiva si se necesita incorporar elementos
-    que no están disponibles en la clase letter o si se prefiere una mayor flexibilidad en el diseño, a costa de
-    implementar algunos detalles manualmente para recrear la estructura estándar de una carta.</p>
-
+  <p><strong>Ventaja:</strong> La clase <code>article</code> ofrece mayor flexibilidad para diseñar cartas personalizadas con logos e imágenes. Utilizar <code>article</code> en lugar de <code>letter</code> es viable si necesitas incorporar elementos no disponibles en letter o si prefieres un diseño más personalizado.</p>
 
   <h4>Paso 1: Configuración inicial del documento</h4>
-  <p><strong>Código:</strong></p>
+  <p><strong>Código en Overleaf:</strong></p>
   <pre><code>\documentclass[a4paper,12pt]{article}
     \usepackage[utf8]{inputenc}
     \usepackage[spanish]{babel}</code></pre>
   <p><strong>Explicación:</strong></p>
   <ul>
-    <li><code>\documentclass[a4paper,12pt]{article}</code>: Define el tipo de documento (artículo) con tamaño de hoja A4
-      y fuente de 12pt.</li>
-    <li><code>inputenc</code> y <code>babel</code>: Permiten escribir en español con codificación UTF-8 (acentos, ñ,
-      etc.).</li>
+    <li><code>article</code>: Define el tipo de documento.</li>
+    <li><code>inputenc</code> y <code>babel</code>: Permiten escribir en español con codificación UTF-8.</li>
   </ul>
 
-  <h4>Paso 2: Paquetes esenciales y márgenes</h4>
+  <h4>Paso 2: Paquetes esenciales para cartas con membrete</h4>
   <p><strong>Código:</strong></p>
   <pre><code>\usepackage{graphicx}
     \usepackage[top=4cm,headheight=4cm]{geometry}
@@ -176,17 +181,15 @@ cualquier información adicional que requiera.
     <li><code>setspace</code>: Controla el interlineado.</li>
   </ul>
 
-  <h4>Paso 3: Definir el membrete en el encabezado</h4>
-  <p><strong>Código:</strong></p>
+  <h4>Paso 3: Definir el membrete con logos</h4>
+  <p><strong>En Overleaf:</strong> Primero, sube tus logos usando "Upload Files". Luego, define el membrete:</p>
   <pre><code>\newsavebox{\mylogo}
-    \newsavebox{\mylogo}
     \savebox{\mylogo}{\includegraphics[width=2cm]{escudougr}}
     
     \newsavebox{\logoderecha}
     \savebox{\logoderecha}{\includegraphics[width=2cm]{logo_ib}}
     
     \lhead{
-
       \begin{minipage}[t]{4cm}
       \vspace{1cm}\hspace{-2cm}\parbox[t]{4cm}{
         \begin{center}
@@ -197,13 +200,12 @@ cualquier información adicional que requiera.
       \end{minipage}
     }
     
-    
     \rhead{
     \begin{minipage}[t]{4cm}
     \vspace{1cm}\hspace*{2cm}\parbox[t]{4cm}{
     \begin{center}
     \usebox{\logoderecha} \\
-    \tiny{\textbf{\emph{Intituto de Biotecnología}}}
+    \tiny{\textbf{\emph{Instituto de Biotecnología}}}
     \end{center}
     }
     \end{minipage}
@@ -244,60 +246,66 @@ cualquier información adicional que requiera.
     \end{center}
     \end{document}</code></pre>
 
-  <h4>Paso 6: Compilación y requisitos</h4>
+  <h4>Paso 6: Compilación en Overleaf</h4>
   <ol>
-    <li><strong>Archivos necesarios:</strong>
+    <li><strong>Subir archivos:</strong> En Overleaf, usa "Upload Files" para añadir tus logos:
       <ul>
-        <li><code>membrete_univ.png</code>: Logo de la universidad</li>
-        <li><code>firma.png</code>: Imagen de la firma escaneada</li>
+        <li><code>escudougr.png</code>: Logo de la universidad (izquierda)</li>
+        <li><code>logo_ib.png</code>: Logo del instituto (derecha)</li>
+        <li><code>firma.png</code>: Imagen de la firma escaneada (opcional)</li>
       </ul>
     </li>
-    <li><strong>Compilar con PDFLaTeX:</strong>
-      <pre><code>pdflatex carta.tex</code></pre>
-    </li>
+    <li><strong>Compilación automática:</strong> Overleaf compila automáticamente al guardar. Solo necesitas hacer clic en "Recompile" si hay cambios.</li>
   </ol>
 
-  <h4>Posibles personalizaciones</h4>
+  <h4>Posibles personalizaciones en Overleaf</h4>
   <ul>
-    <li>Cambiar el logo: Modificar la ruta en <code>\includegraphics</code></li>
-    <li>Añadir datos de contacto: Rellenar los comandos <code>\tlf</code>, <code>\email</code>, etc.</li>
-    <li>Ajustar márgenes: Modificar valores en <code>geometry</code></li>
+    <li><strong>Cambiar el logo:</strong> Reemplaza el nombre del archivo en <code>\includegraphics{...}</code></li>
+    <li><strong>Añadir datos de contacto:</strong> Rellena los comandos <code>\tlf</code>, <code>\email</code>, etc.</li>
+    <li><strong>Ajustar márgenes:</strong> Modifica valores en <code>geometry</code> (top, left, right, bottom)</li>
+    <li><strong>Cambiar fuentes:</strong> Usa paquetes como <code>helvet</code> para cambiar a Helvetica, <code>times</code> para Times, etc.</li>
   </ul>
 
 
 
-  <h3>Clase: Creación de Pósters en LaTeX</h3>
+  <h3>Creación de Pósters en LaTeX con Overleaf</h3>
+
+  <p><strong>Nota Overleaf:</strong> Overleaf tiene soporte completo para crear pósters usando las clases <code>a0poster</code>, <code>beamerposter</code> o plantillas personalizadas. La galería de Overleaf incluye varias plantillas listas para usar. A continuación, explicamos cómo funcionan.</p>
 
   <h4>Paso 1: Configuración inicial del documento</h4>
   <p><strong>Objetivo:</strong> Definir la clase del documento y paquetes esenciales.</p>
 
   <pre><code>\documentclass[a0,portrait]{a0poster}
     \usepackage[utf8]{inputenc}
-    \usepackage[USenglish]{babel}</code></pre>
+    \usepackage[spanish]{babel}</code></pre>
 
   <ul>
     <li><strong>Explicación:</strong>
       <ul>
-        <li><code>a0poster</code>: Clase específica para pósteres tamaño A0 en orientación vertical
-          (<code>portrait</code>).</li>
-        <li><code>inputenc</code> y <code>babel</code>: Manejan codificación UTF-8 y traducciones al inglés
-          estadounidense.</li>
+        <li><code>a0poster</code>: Clase específica para pósters tamaño A0 en orientación vertical (<code>portrait</code>). También puedes usar <code>a1poster</code>, <code>a2poster</code>, etc.</li>
+        <li><code>inputenc</code> y <code>babel</code>: Manejan codificación UTF-8 y el idioma español.</li>
       </ul>
     </li>
   </ul>
 
-  <h4>Paso 2: Paquetes adicionales y personalizaciones</h4>
+  <h4>Paso 2: Paquetes adicionales para pósters</h4>
   <p><strong>Objetivo:</strong> Añadir funcionalidades gráficas, de texto y estructura.</p>
 
   <pre><code>\usepackage{marvosym, multirow, rotating, setspace, multicol, color, type1cm, colortbl}
-    \usepackage{shapepar, pstricks, eso-pic}</code></pre>
+    \usepackage{graphicx}</code></pre>
 
   <ul>
     <li><strong>Paquetes clave:</strong>
       <ul>
         <li><code>multicol</code>: Divide el contenido en columnas.</li>
         <li><code>color</code> y <code>colortbl</code>: Permiten usar colores en texto y tablas.</li>
-        <li><code>eso-pic</code>: Para insertar imágenes de fondo.</li>
+        <li><code>graphicx</code>: Para insertar imágenes.</li>
+        <li><code>rotating</code>: Permite rotar texto e imágenes.</li>
+      </ul>
+    </li>
+  </ul>
+
+  <p><strong>En Overleaf:</strong> Todos estos paquetes están disponibles por defecto. Solo necesitas añadirlos en el preámbulo.</p>
         <li><code>pstricks</code>: Herramientas gráficas avanzadas.</li>
       </ul>
     </li>
@@ -479,9 +487,12 @@ cualquier información adicional que requiera.
     Algunos congresos proporcionan sus propias plantillas (por ejemplo, "Plantilla-CASEIB-2024") que debes seguir para el envío de trabajos.</li>
   </ul>
   
-  <h3>Creación de presentaciones en LaTeX</h3>
+  
+  <h3>Creación de presentaciones en LaTeX con Overleaf</h3>
 
-  <h3>Estructura Básica de una Presentación Beamer</h3>
+  <p><strong>Nota Overleaf:</strong> Beamer es una clase LaTeX perfecta para crear presentaciones. En Overleaf, tienes soporte completo para Beamer, incluyendo compilación automática y una galería con muchas plantillas. A continuación, explicamos cómo crear presentaciones.</p>
+
+  <h3>Estructura Básica de una Presentación Beamer en Overleaf</h3>
   <p>Estructura básica del código:</p>
 
   <pre><code>\documentclass[11pt]{beamer}
@@ -923,19 +934,24 @@ cualquier información adicional que requiera.
 
 <p>En este ejemplo, el texto dentro de <code>\alert{}</code> se mostrará en verde.</p>
 
-<h2>Imágenes animadas</h2>
+<h2>Imágenes animadas en Overleaf</h2>
+
+<p><strong>Nota Overleaf:</strong> Para crear animaciones en Overleaf con Beamer, puedes usar el paquete <code>animate</code>, que funciona perfectamente en la plataforma.</p>
 
 <h3>1. Convertir un Video en una Secuencia de Imágenes</h3>
 
-<p>Puedes utilizar herramientas como <strong>Photoshop</strong>, <strong>Filmora</strong>, <strong>VLC</strong>, o <strong>FFmpeg</strong> para convertir un video en una secuencia de imágenes. Por ejemplo, con FFmpeg puedes usar el siguiente comando:</p>
-
-<pre><code>ffmpeg -i input.mp4 output-%03d.png</code></pre>
+<p>Primero, necesitas convertir tu video en una secuencia de imágenes. Puedes usar herramientas locales como:</p>
+<ul>
+  <li><strong>FFmpeg (línea de comandos):</strong> <code>ffmpeg -i input.mp4 output-%03d.png</code></li>
+  <li><strong>Photoshop, Filmora, VLC:</strong> Opciones gráficas para extraer frames</li>
+  <li><strong>Servicios online:</strong> Convertidores web de video a imágenes</li>
+</ul>
 
 <p>Esto generará una serie de imágenes numeradas (<code>output-001.png</code>, <code>output-002.png</code>, etc.).</p>
 
-<h3>2. Crear una Animación en LaTeX Beamer</h3>
+<h3>2. Crear una Animación en LaTeX Beamer en Overleaf</h3>
 
-<p>Una vez que tengas la secuencia de imágenes, puedes usar el paquete <code>animate</code> en LaTeX Beamer para crear una animación. Aquí tienes un ejemplo:</p>
+<p><strong>En Overleaf:</strong> Una vez que tengas la secuencia de imágenes, súbelas a tu proyecto con "Upload Files". Luego, usa el paquete <code>animate</code>:</p>
 
 <pre><code>\documentclass{beamer}
 \usepackage{animate}
@@ -950,39 +966,45 @@ cualquier información adicional que requiera.
 
 \end{document}</code></pre>
 
-<p>En este ejemplo, se reproduce una animación que muestra las imágenes <code>output-001.png</code> a <code>output-100.png</code> en un bucle.</p>
+<p>En este ejemplo, se reproduce una animación que muestra las imágenes <code>output-001.png</code> a <code>output-100.png</code> en un bucle continuamente.</p>
 
 <h3>Ventajas y Limitaciones</h3>
 
 <ul>
-  <li><strong>Ventajas</strong>: Esta técnica permite crear animaciones en PDFs sin necesidad de Flash.</li>
-  <li><strong>Limitaciones</strong>: El tamaño del PDF puede aumentar significativamente si la animación tiene muchos frames. Además, no todos los visores de PDF pueden reproducir animaciones.</li>
+  <li><strong>Ventajas</strong>: Creas animaciones en PDFs sin necesidad de plugins externos. La animación está completamente incrustada en el PDF.</li>
+  <li><strong>Limitaciones</strong>: El tamaño del PDF puede aumentar significativamente si la animación tiene muchos frames. No todos los lectores PDF soportan reproducir animaciones (principalmente Adobe Reader sí lo hace).</li>
 </ul>
 
-<h3>Herramientas para Convertir Videos a Imágenes</h3>
+<h3>Herramientas para Convertir Videos a Imágenes (fuera de Overleaf)</h3>
+
+<p><strong>Nota:</strong> Estas herramientas se ejecutan en tu computadora. Una vez generes la secuencia de imágenes, súbelas a Overleaf.</p>
 
 <ul>
-  <li><strong>Photoshop</strong>: Puedes abrir un video en Photoshop y exportar cada frame como una imagen.</li>
-  <li><strong>Filmora</strong>: Ofrece una forma sencilla de convertir videos a secuencias de imágenes.</li>
-  <li><strong>VLC</strong>: Puedes usar VLC para extraer imágenes de un video.</li>
-  <li><strong>FFmpeg</strong>: Una herramienta de línea de comandos poderosa para convertir videos a imágenes.</li>
-  <li><strong>Blender</strong>: es Un software de modelado 3D pero su editor de video permite cargar un vídeo y renderizar fotogramas individuales</li>
+  <li><strong>FFmpeg (recomendado):</strong> Herramienta de línea de comandos poderosa. Comando básico: <code>ffmpeg -i video.mp4 frame-%03d.png</code></li>
+  <li><strong>Photoshop:</strong> Abre el video y exporta cada frame como imagen.</li>
+  <li><strong>Filmora:</strong> Forma gráfica sencilla para convertir videos.</li>
+  <li><strong>VLC:</strong> Utiliza la función de extracción de fotogramas.</li>
+  <li><strong>Blender:</strong> Software 3D que también permite extraer fotogramas de videos.</li>
 </ul>
 
-<p>Con estas herramientas y técnicas, puedes crear animaciones en tus presentaciones Beamer utilizando secuencias de imágenes extraídas de videos.</p>
+<h3>Reproductor externo en Beamer</h3>
 
-<h3>Reproductor externo</h3>
-
-<p>También podemos usar un reproductor externo:</p>
+<p>Alternativamente, puedes incrustar un video dentro de una presentación Beamer usando el paquete <code>multimedia</code>:</p>
 
 <pre><code>\usepackage{multimedia}
 
 \begin{frame}
-  \centering
-  \movie[externalviewer]{\includegraphics[width=.25\textwidth]{escudougr}}{video.mp4}
-\end{frame}</code></pre>
+  \movie[width=8cm,height=6cm,autostart,loop]{Video}{video.mp4}
+\end{frame}
+</code></pre>
 
-  <p><a href="index.html" class="back-to-index">Volver al índice</a></p>
+<p><strong>En Overleaf:</strong> Sube tu archivo de video a "Upload Files" y refine​ncilo como se muestra arriba.</p>
+
+<p><strong>Nota:</strong> Este método permite reproducir videos externos. El usuario verá una imagen (miniatura) que, al hacer clic, abre el video en un reproductor externo.</p>
+
+    <p><a href="index.html" class="back-to-index">Volver al índice</a></p>
 </body>
+
+</html>
 
 </html>
