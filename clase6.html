@@ -9,24 +9,33 @@
 </head>
 
 <body class="container">
+    <div style="background-color: #e3f2fd; border-left: 4px solid #1976d2; padding: 12px; margin-bottom: 20px; border-radius: 4px;">
+        <p style="margin: 0; font-size: 0.95em; color: #0d47a1;">
+            <strong>📌 Nota importante:</strong> Este curso utiliza <strong>Overleaf</strong> como herramienta principal para LaTeX. 
+            Si prefieres trabajar con herramientas locales (TeXstudio, Git en terminal, etc.), 
+            consulta la <a href="https://105.ugr.es/latex" target="_blank" style="color: #1976d2; text-decoration: underline;">versión local del curso</a>.
+        </p>
+    </div>
+
     <p><a href="index.html" class="back-to-index">Volver al índice</a></p>
     <h2>Clase 6: Creación de una Plantilla para Tesis Doctoral en LaTeX</h2>
 
-    <h3>Clonar el repositorio</h3>
-    <p> La plantilla completa se puede clonar con: 
-        <a href="https://github.com/latex-git/plantilla-tesis.git" target="_blank">
-           git clone https://github.com/latex-git/plantilla-tesis.git
-        </a>
-    </p>
+    <h3>Acceder a la plantilla en Overleaf</h3>
+    <p>En Overleaf, tienes dos opciones para usar plantillas de tesis doctoral:</p>
+    <ol>
+        <li><strong>Desde la galería de Overleaf:</strong> Entra en tu dashboard de Overleaf, haz clic en "New Project", selecciona "Templates", y busca "thesis" o "doctorate". Encontrarás muchas plantillas disponibles.</li>
+        <li><strong>Desde GitHub con Overleaf:</strong> Si tienes una plantilla en un repositorio Git (como <a href="https://github.com/latex-git/plantilla-tesis.git" target="_blank">esta plantilla</a>), puedes importarla directamente a Overleaf usando el menu "New Project" &gt; "Import from GitHub". Necesitarás estar autenticado con tu cuenta de GitHub.</li>
+    </ol>
+    <p>Para este curso, recomendamos usar una de las plantillas oficiales de Overleaf, ya que están completamente integradas y funcionan sin necesidad de instalaciones locales.</p>
 
-    <h3>Paquetes y Configuración Inicial</h3>
-    <p>El preámbulo del documento contiene una serie de paquetes que proporcionan funcionalidades específicas:</p>
+    <h3>Paquetes y Configuración Inicial en Overleaf</h3>
+    <p>Cuando creas una plantilla de tesis en Overleaf (o importas una de la galería), el preámbulo ya contiene los paquetes necesarios. A continuación, explicamos los principales:</p>
 
     <h4>Paquetes Básicos</h4>
     <ul>
-        <li><code>natbib</code>: Gestiona citas bibliográficas.</li>
-        <li><code>inputenc</code> y <code>fontenc</code>: Manejan la codificación de caracteres y fuentes.</li>
-        <li><code>babel</code>: Adapta el documento al idioma español.</li>
+        <li><code>natbib</code>: Gestiona citas bibliográficas con estilos como plainnat, abbrvnat, etc.</li>
+        <li><code>inputenc</code> y <code>fontenc</code>: Manejan la codificación de caracteres y fuentes (en Overleaf, UTF-8 es automático).</li>
+        <li><code>babel</code>: Adapta el documento al idioma español (guiones, títulos automáticos, etc.).</li>
         <li><code>amsmath</code>: Proporciona funcionalidades matemáticas avanzadas.</li>
     </ul>
 
@@ -34,8 +43,8 @@
     <ul>
         <li><code>geometry</code>: Configura los márgenes y el tamaño del papel.</li>
         <li><code>fancyhdr</code>: Personaliza encabezados y pies de página.</li>
-        <li><code>graphicx</code>: Permite la inserción de imágenes.</li>
-        <li><code>hyperref</code>: Crea enlaces interactivos en el documento PDF.</li>
+        <li><code>graphicx</code>: Permite la inserción de imágenes (en Overleaf, usa "Upload Files" para añadir imágenes).</li>
+        <li><code>hyperref</code>: Crea enlaces interactivos en el PDF (tabla de contenidos, referencias, etc.).</li>
     </ul>
 
     <h4>Tablas y Figuras</h4>
@@ -45,31 +54,45 @@
         <li><code>caption</code>: Personaliza el formato de los pies de figura y tabla.</li>
     </ul>
 
-    <h3>Estructura del Documento</h3>
-    <p>La estructura de la tesis se organiza en secciones principales:</p>
+    <p><strong>En Overleaf:</strong> Para incluir estas funcionalidades, solo necesitas agregar <code>\usepackage{...}</code> en el preámbulo. Overleaf tiene acceso a la mayoría de paquetes LaTeX disponibles en CTAN.</p>
+
+    <h3>Estructura del Documento en Overleaf</h3>
+    <p>La estructura de una tesis en Overleaf se organiza típicamente en un archivo principal (<code>main.tex</code>) que incluye otros archivos mediante <code>\input{}</code> o <code>\include{}</code>. La estructura de la tesis incluye:</p>
     <ol>
-        <li><strong>Portada</strong>: Se crea utilizando comandos personalizados y el entorno <code>center</code>.</li>
-        <li><strong>Páginas Preliminares</strong>: Incluyen agradecimientos, dedicatoria y citas.</li>
+        <li><strong>Portada</strong>: Se crea utilizando comandos personalizados (definidos en el preámbulo) y el entorno <code>center</code>.</li>
+        <li><strong>Páginas Preliminares</strong>: Incluyen agradecimientos, dedicatoria y citas (en archivos separados).</li>
         <li><strong>Índices</strong>: Se generan automáticamente con <code>\tableofcontents</code>, <code>\listoffigures</code>, y <code>\listoftables</code>.</li>
         <li><strong>Cuerpo Principal</strong>: Dividido en capítulos como Introducción, Material y Métodos, Resultados, etc.</li>
+        <li><strong>Bibliografía</strong>: Gestionada con Zotero + Overleaf (como en clase 4) o con archivos .bib.</li>
     </ol>
 
-    <h3>Comandos Personalizados</h3>
-    <p>El archivo define varios comandos personalizados para facilitar el formateo:</p>
+    <p><strong>En Overleaf:</strong> Puedes organizar tus archivos en carpetas. Por ejemplo:
+    <ul>
+        <li><code>main.tex</code> (archivo principal)</li>
+        <li><code>capitulos/introduccion.tex</code></li>
+        <li><code>capitulos/metodos.tex</code></li>
+        <li><code>capitulos/resultados.tex</code></li>
+        <li><code>figuras/</code> (carpeta para imágenes)</li>
+        <li><code>biblio.bib</code> (bibliografía)</li>
+    </ul>
+    </p>
+
+    <h3>Comandos Personalizados en Overleaf</h3>
+    <p>Las plantillas de tesis suelen definir comandos personalizados en el preámbulo para facilitar el formateo consistente. Ejemplo:</p>
     <pre><code>\newcommand{\figura}[4]{
   \begin{figure}[htbp]
     \begin{center}
       \includegraphics[width=#2\textwidth]{figuras/#1}
-    \end{center>
-    <caption>[#3]{#4}
-    <label>{#1}
-  </figure>
+    \end{center}
+    \caption[#3]{#4}
+    \label{fig:#1}
+  \end{figure}
 }
 </code></pre>
-    <p>Este comando simplifica la inserción de figuras, permitiendo especificar el nombre del archivo, tamaño, título corto y pie de figura en una sola línea.</p>
+    <p>Este comando simplifica la inserción de figuras, permitiendo especificar el nombre del archivo, tamaño, título corto y pie de figura en una sola línea. <strong>En Overleaf:</strong> Puedes definir estos comandos en el preámbulo o en un archivo <code>preamble.tex</code> que incluyas con <code>\input{preamble}</code>.</p>
 
-    <h3>Formato de Capítulos</h3>
-    <p>El formato de los títulos de capítulos se personaliza utilizando <code>\@makechapterhead</code>:</p>
+    <h3>Formato de Capítulos en Overleaf</h3>
+    <p>Para personalizar la apariencia de los títulos de capítulos, se usa <code>\makeatletter</code> y <code>\makeatother</code> para acceder a comandos internos de LaTeX:</p>
     <pre><code>\makeatletter
 \def\@makechapterhead#1{
   \vspace*{1\p@}%
@@ -85,112 +108,151 @@
 }
 \makeatother
 </code></pre>
-    <p>Este código modifica la apariencia de los títulos de capítulos, ajustando espaciado y formato.</p>
+    <p>Este código modifica la apariencia de los títulos de capítulos, ajustando espaciado y formato. <strong>En Overleaf:</strong> Coloca este código en el preámbulo o en un archivo <code>preamble.tex</code> incluido.</p>
 
-    <h3>Configuración de Páginas</h3>
-    <p>La plantilla utiliza <code>fancyhdr</code> para personalizar encabezados y pies de página:</p>
+    <h3>Configuración de Páginas en Overleaf</h3>
+    <p>La plantilla utiliza <code>fancyhdr</code> para personalizar encabezados y pies de página. En Overleaf:</p>
     <pre><code>\pagestyle{fancy}
 \lhead{\uppercase{\bfseries{\leftmark}}}
 \rhead{\uppercase{\bfseries{\rightmark}}}
 \cfoot{\thepage}
 </code></pre>
-    <p>Esto configura los encabezados con el nombre del capítulo y la sección actual, y coloca el número de página en el centro del pie.</p>
+    <p>Esto configura:</p>
+    <ul>
+        <li><code>\lhead</code>: Encabezado izquierdo con el nombre del capítulo actual.</li>
+        <li><code>\rhead</code>: Encabezado derecho con el nombre de la sección actual.</li>
+        <li><code>\cfoot</code>: Pie de página centrado con el número de página.</li>
+    </ul>
+    <p><strong>En Overleaf:</strong> Después de hacer cambios en <code>\pagestyle</code>, el PDF se actualiza automáticamente al guardar o compilar.</p>
 
-    <h3>Bibliografía</h3>
-    <p>La bibliografía se configura para ser presentada en dos columnas y con un tamaño de fuente reducido:</p>
+    <h3>Bibliografía en Overleaf</h3>
+    <p>Para la bibliografía en Overleaf, tienes dos opciones (como viste en clase 4):</p>
+    <ol>
+        <li><strong>Zotero + Overleaf (recomendado):</strong> Conecta tu colección de Zotero con Overleaf. El archivo .bib se genera automáticamente y se sincroniza.</li>
+        <li><strong>Archivo .bib manual:</strong> Crea un archivo <code>biblio.bib</code> en tu proyecto Overleaf con las referencias.</li>
+    </ol>
+    <p>Luego, en el documento, configura la bibliografía con:</p>
+    <pre><code>\bibliographystyle{plainnat}  % o abbrvnat, unsrtnat, etc.
+\bibliography{biblio}  % archivo sin extensión .bib
+</code></pre>
+    <p><strong>Para dos columnas:</strong> Si quieres que la bibliografía aparezca en dos columnas con texto más pequeño:</p>
     <pre><code>\begin{singlespace}
 \begin{footnotesize}
 \begin{twocolumn}
+\bibliographystyle{plainnat}
 \bibliography{biblio}
 \end{twocolumn}
 \end{footnotesize}
 \end{singlespace}
 </code></pre>
-    <p>Esta configuración optimiza el espacio y mejora la legibilidad de las referencias.</p>
-
-    <p>En conclusión, esta plantilla proporciona una base sólida para la creación de tesis doctorales en LaTeX, ofreciendo una estructura clara y herramientas para un formateo consistente y profesional.</p>
 
 
-    <h3>Creación de las Páginas del "frontmatter"</h3>
 
-    <p>El "frontmatter" en LaTeX contiene las páginas preliminares de la tesis, como portada, dedicatorias, agradecimientos e índices. Estas páginas suelen tener un formato distinto al cuerpo principal (por ejemplo, números de página en romanos y sin encabezados). A continuación, se explica cómo se construye cada una en la plantilla adjunta:</p>
 
-    <h3>1. Portada Inicial</h3>
+    <h3>Creación del "Frontmatter" en Overleaf</h3>
+
+    <p>El "frontmatter" en LaTeX contiene las páginas preliminares de la tesis, como portada, dedicatorias, agradecimientos e índices. En Overleaf, estas páginas se crean fácilmente usando comandos LaTeX estándar. A continuación, se explica cómo se construye cada una:</p>
+
+    <h3>1. Portada Inicial en Overleaf</h3>
     <p><strong>Objetivo</strong>: Mostrar título, autor, logos institucionales y fecha.<br>
-    <strong>Código clave</strong>:</p>
+    <strong>En Overleaf:</strong> Crea un archivo <code>portada.tex</code> e inclúyelo en <code>main.tex</code> con <code>\input{portada}</code>.</p>
     <pre><code>\begin{center}
-        \LARGE \titulo \\ % Título definido con \newcommand
-        \vspace{\stretch{2}} % Espacio flexible
+        \LARGE \titulo \\ % Comando personalizado para el título
+        \vspace{\stretch{2}} % Espacio flexible proporcional
         \includegraphics[width=.6\textwidth]{escudo_ugr_portada} % Logo
         \vspace{\stretch{2}} 
         \large Nombre Apellidos \\ % Autor
         Tesis Doctoral \\ % Grado
-        \fecha % Fecha definida con \newcommand
+        \fecha % Comando personalizado para la fecha
     \end{center}</code></pre>
     <ul>
-            <li><code>\vspace{\stretch{n}}</code>: Distribuye el espacio verticalmente de forma proporcional.</li>
-            <li><code>\titulo</code> y <code>\fecha</code>: Comandos personalizados definidos con <code>\newcommand</code> para reutilizar valores.</li>
+            <li><code>\vspace{\stretch{n}}</code>: Distribuye el espacio verticalmente de forma proporcional (sin valores fijos).</li>
+            <li><code>\titulo</code> y <code>\fecha</code>: Comandos personalizados definidos en el preámbulo con <code>\newcommand</code>.</li>
+            <li><code>\includegraphics{...}</code>: Para incluir la imagen del logo, primero úpla a Overleaf con "Upload Files".</li>
     </ul>
 
-    <h3>2. Página Institucional</h3>
-    <p><strong>Objetivo</strong>: Mostrar logos de instituciones y departamentos.<br>
-    <strong>Técnica</strong>: Uso de <code>minipage</code> para alinear múltiples elementos en filas:</p>
+    <h3>2. Página Institucional en Overleaf</h3>
+    <p><strong>Objetivo</strong>: Mostrar logos de instituciones y departamentos lado a lado.<br>
+    <strong>Técnica en Overleaf:</strong> Usa <code>minipage</code> para alinear múltiples elementos en una fila:</p>
     <pre><code>\begin{minipage}[t]{.23\textwidth}
         \centering
         \includegraphics[width=.8\textwidth]{logo_ib} % Logo 1
         Instituto de Biotecnología 
     \end{minipage}
-    \hfill % Espacio horizontal
+    \hfill % Espacio horizontal flexible
     \begin{minipage}[t]{.23\textwidth}
         \centering
         \includegraphics[width=.7\textwidth]{logo_ciencias} % Logo 2
         Facultad de Ciencias
     \end{minipage}</code></pre>
+    <ul>
+        <li><code>minipage</code>: Crea una "mini página" con ancho específico (.23\textwidth = 23% del ancho de texto).</li>
+        <li><code>\hfill</code>: Espacio horizontal flexible que separa los elementos.</li>
+        <li><code>[t]</code>: Alinea el contenido al tope (top) de la minipage.</li>
+    </ul>
 
-    <h3>3. Página de Directores y Financiación</h3>
-    <p><strong>Objetivo</strong>: Detallar directores, programa de financiación y declaración institucional.</p>
+    <h3>3. Página de Directores y Financiación en Overleaf</h3>
+    <p><strong>Objetivo</strong>: Detallar directores, programa de financiación y declaración institucional.<br>
+    <strong>En Overleaf:</strong></p>
     <pre><code>\begin{minipage}[t]{.4\textwidth}
         Dirigida por: \\ 
-        \vspace{15ex} % Espacio fijo
+        \vspace{15ex} % Espacio vertical fijo
         Dr. Fulanito de tal \\ % Director 1
         Dr. Menganito de cual % Director 2
     \end{minipage}</code></pre>
+    <p>Puedes agregar más minipages lado a lado para mostrar otras instituciones o información de financiación.</p>
 
-    <h3>4. Dedicatoria y Cita</h3>
-    <p><strong>Objetivo</strong>: Añadir elementos personales o inspiradores.</p>
+    <h3>4. Dedicatoria y Cita en Overleaf</h3>
+    <p><strong>Objetivo</strong>: Añadir elementos personales o inspiradores.<br>
+    <strong>En Overleaf:</strong></p>
     <pre><code>\begin{flushright}
         \begin{minipage}{8cm}
-            \textit{Siembra un pensamiento...} \\
+            \textit{Siembra un pensamiento y cosecharás una acción...} \\
             \begin{flushright} 
                 Charles Reade
-            \end{flushright>
-        </end{minipage>
-    </end{flushright></code></pre>
+            \end{flushright}
+        \end{minipage}
+    \end{flushright}</code></pre>
+    <ul>
+        <li><code>flushright</code>: Alinea el contenido a la derecha.</li>
+        <li><code>textit</code>: Texto itálico para la cita.</li>
+    </ul>
 
-    <h3>5. Agradecimientos</h3>
-    <p><strong>Objetivo</strong>: Incluir un archivo externo con los agradecimientos.</p>
+    <h3>5. Agradecimientos en Overleaf</h3>
+    <p><strong>Objetivo</strong>: Incluir un archivo externo con los agradecimientos.<br>
+    <strong>En Overleaf:</strong> Crea un archivo <code>agradecimientos.tex</code> en tu proyecto, copia el contenido, y en <code>main.tex</code>, incluye:</p>
     <pre><code>\cleardoublepage % Asegura que empiece en página impar
-    \input{agradecimientos.tex} % Archivo externo</code></pre>
+\input{agradecimientos} % Incluye el archivo sin extensión .tex
+</code></pre>
+    <p><code>\cleardoublepage</code> fuerza una nueva página y, si estás en una página par, añade una página en blanco para que los agradecimientos empiecen en página impar (importante en documentos de dos caras).</p>
 
-    <h3>6. Índices Generales</h3>
-    <p><strong>Objetivo</strong>: Listar capítulos, figuras y tablas.</p>
+    <h3>6. Índices Generales en Overleaf</h3>
+    <p><strong>Objetivo</strong>: Listar capítulos, figuras y tablas automáticamente.<br>
+    <strong>En Overleaf:</strong></p>
     <pre><code>\tableofcontents % Índice de capítulos
     \listoffigures   % Lista de figuras
     \listoftables    % Lista de tablas
-    \clearpage       % Limpia la página
-    \input{abreviaturas-utf.tex} % Lista de abreviaturas</code></pre>
+    \clearpage       % Comienza la siguiente sección en nueva página
+    \input{abreviaturas}  % Archivo con abreviaturas (opcional)
+</code></pre>
+    <p>Estos comandos generan automáticamente los índices basándose en los <code>\chapter</code>, <code>\section</code>, <code>\figure</code> y <code>\table</code> que uses en tu documento. En Overleaf, necesitarás compilar dos veces para que los índices aparezcan correctamente (la primera compilación recopila la información, la segunda la dibuja).</p>
 
-    <h3>7. Estilos de Página en "frontmatter"</h3>
+    <h3>7. Estilos de Página en Frontmatter</h3>
+    <p>Para controlar el aspecto de las páginas preliminares en Overleaf:</p>
     <ul>
-            <li><code>\pagestyle{empty}</code>: Elimina encabezados y pies de página.</li>
-            <li><code>\cleardoublepage</code>: Fuerza una página nueva.</li>
-            <li><code>\thispagestyle{empty}</code>: Aplica el estilo solo a la página actual.</li>
+            <li><code>\pagestyle{empty}</code>: Elimina encabezados y pies de página de todas las páginas siguientes.</li>
+            <li><code>\thispagestyle{empty}</code>: Aplica el estilo solo a la página actual (útil para portadas).</li>
+            <li><code>\cleardoublepage</code>: Fuerza una página nueva y asegura que el siguiente contenido comience en página impar (en documentos de dos caras).</li>
+            <li><code>\pagenumbering{roman}</code>: Cambia la numeración a números romanos (i, ii, iii, ...). Útil para el frontmatter.</li>
+            <li><code>\pagenumbering{arabic}</code>: Vuelve a números arábigos (1, 2, 3, ...). Útil para el cuerpo principal.</li>
     </ul>
 
 
-<h3>Texto en columnas</h3>
-<h4>Uso de la opción twocolumn en la clase de documento</h4>
-<p>Para generar un documento completo con formato de columnas, es posible utilizar la opción twocolumn al declarar la clase del documento. El siguiente ejemplo muestra cómo se aplica este formato a todo el documento:</p>
+<h3>Texto en columnas en Overleaf</h3>
+<p>Overleaf soporta completamente los paquetes para crear columnas. Aquí se explican las tres principales opciones:</p>
+
+<h4>Opción 1: twocolumn en la clase de documento</h4>
+<p>Para un documento completo en dos columnas, usa la opción <code>twocolumn</code>:</p>
 
 <pre><code>\documentclass[twocolumn]{article}
 \usepackage{graphicx}
@@ -203,17 +265,17 @@ resúmenes o publicaciones científicas.
 Más texto de ejemplo se incluirá en ambas columnas, manteniendo un formato uniforme.
 
 \end{document}</code></pre>
-<h4>Uso del paquete multicol para columnas iguales</h4>
-<p>El paquete multicol permite dividir el contenido en varias columnas de igual ancho de forma sencilla. En el siguiente ejemplo se crea un entorno con dos columnas que contiene párrafos de texto y una lista:</p>
+
+<h4>Opción 2: multicol para columnas iguales</h4>
+<p>El paquete <code>multicol</code> permite dividir partes específicas del documento en varias columnas de igual ancho. En Overleaf, carga el paquete:</p>
 
 <pre><code>\documentclass{article}
 \usepackage{multicol}
-\usepackage{lipsum} % Para texto de relleno
 \begin{document}
 
 \begin{multicols}{2}
 \section*{Ejemplo de Dos Columnas}
-\lipsum[1]
+Este es el párrafo inicial en dos columnas.
 
 \begin{itemize}
     \item Elemento 1
@@ -221,15 +283,15 @@ Más texto de ejemplo se incluirá en ambas columnas, manteniendo un formato uni
     \item Elemento 3
 \end{itemize}
 
-\lipsum[2]
+Más párrafos que se distribuyen automáticamente entre columnas.
 \end{multicols}
 
 \end{document}</code></pre>
 
-<p>En este código, el entorno multicols divide automáticamente el contenido en dos columnas de igual ancho, permitiendo incluir secciones, párrafos y listas</p>
+<p>El entorno <code>multicols</code> con parámetro <code>{2}</code> divide automáticamente el contenido en dos columnas de igual ancho.</p>
 
-<h4>Uso de entornos minipage para columnas de anchos distintos</h4>
-<p>Si se requiere disponer columnas de diferentes anchos o integrar elementos heterogéneos (como imágenes y tablas junto con texto), el entorno minipage resulta muy útil. En el siguiente ejemplo se crean dos columnas con anchos personalizados:</p>
+<h4>Opción 3: minipage para columnas de anchos distintos</h4>
+<p>Si requieres columnas de diferentes anchos o integrar elementos heterogéneos (imágenes, tablas junto con texto), usa <code>minipage</code>:</p>
 
 <pre><code>\documentclass{article}
 \usepackage{graphicx}
@@ -256,22 +318,23 @@ A & B \\
 
 \end{document}</code></pre>
 
-<p>Aquí se han definido dos minipage con anchos del 40% y 55% respectivamente, separando el contenido en función de las necesidades: en la primera columna se muestra texto y en la segunda, una imagen seguida de una tabla.</p>
+<p>Dos <code>minipage</code> con anchos del 40% y 55% crean dos columnas personalizadas: la primera con texto, la segunda con imagen y tabla.</p>
 
 
-<h3>Integración de elementos mixtos en múltiples columnas</h3>
-<p>El entorno multicols también es adecuado para distribuir diferentes tipos de contenido en columnas múltiples. En el siguiente ejemplo se demuestra una disposición en tres columnas, donde cada una contiene elementos distintos: texto e imagen, una tabla y una lista:</p>
+<h3>Elementos mixtos en múltiples columnas en Overleaf</h3>
+<p>Puedes combinar diferentes tipos de contenido (texto, imágenes, tablas) en múltiples columnas. Aquí se demuestra una disposición en tres columnas:</p>
 
 <pre><code>\documentclass{article}
 \usepackage{multicol}
 \usepackage{graphicx}
-\usepackage{lipsum}
 \begin{document}
 
 \begin{multicols}{3}
+
 \section*{Columna 1: Texto e Imagen}
-\lipsum[1]
+Este es el párrafo inicial en la primera columna con texto y una imagen insertada.
 \includegraphics[width=\linewidth]{example-image}
+
 \columnbreak
 
 \section*{Columna 2: Tabla}
@@ -292,42 +355,43 @@ Dos & 20 \\
     \item Elemento B
     \item Elemento C
 \end{itemize}
+
 \end{multicols}
 
 \end{document}</code></pre>
 
-<p>Cada columna se encarga de un tipo de contenido distinto y, gracias al entorno multicols, se consigue una distribución equilibrada en el espacio disponible.</p>
-<h3>Separación entre columnas</h3>
+<p><code>\columnbreak</code> fuerza el salto a la siguiente columna. Cada columna contiene un tipo de contenido distinto, logrando una distribución equilibrada.</p>
+<h3>Separación entre columnas en Overleaf</h3>
 
 <h4>Espacio entre columnas</h4>
-<p>Se define mediante la longitud <code>\columnsep</code>. Por ejemplo, si se requiere aumentar el espacio entre columnas, se puede usar:</p>
+<p>En Overleaf, se define mediante la longitud <code>\columnsep</code>. Por ejemplo, para aumentar el espacio entre columnas:</p>
 <pre><code>\setlength{\columnsep}{3em}</code></pre>
-<p>Este comando establece la distancia horizontal entre el contenido de cada columna.</p>
+<p>Coloca este comando en el preámbulo. Esto establece la distancia horizontal entre el contenido de cada columna.</p>
 
 <h4>Línea divisoria entre columnas</h4>
-<p>La presencia (y grosor) de una línea vertical se controla con la longitud <code>\columnseprule</code>. Por defecto, tiene un valor de 0pt (es decir, no aparece ninguna línea). Para hacer visible la separación, se puede configurar, por ejemplo:</p>
+<p>La presencia y grosor de una línea vertical se controla con <code>\columnseprule</code>. Por defecto, tiene valor 0pt (sin línea). Para hacerla visible:</p>
 <pre><code>\setlength{\columnseprule}{0.4pt}</code></pre>
-<p>Con este ajuste, LaTeX dibuja una línea de 0.4pt de grosor entre las columnas.</p>
+<p>Esto dibuja una línea de 0.4pt entre las columnas. Experimenta con valores mayores o menores en Overleaf para ver el efecto.</p>
 
-    <h3>Consejos Clave</h3>
+    <h3>Consejos Clave para Tesis en Overleaf</h3>
     <ol>
-            <li><strong>Flexibilidad con <code>\vspace{\stretch{n}}</code></strong>: Permite ajustar el espacio vertical sin valores fijos.</li>
-            <li><strong>Logos con <code>includegraphics</code></strong>: Usa rutas relativas y ajusta el ancho con <code>width=.7\textwidth</code>.</li>
-            <li><strong>Mantenimiento Modular</strong>: Separa contenido en archivos <code>.tex</code> independientes.</li>
+            <li><strong>Flexibilidad con <code>\vspace{\stretch{n}}</code></strong>: Permite ajustar el espacio vertical sin valores fijos. Muy útil para portadas.</li>
+            <li><strong>Logos con <code>\includegraphics</code></strong>: Sube las imágenes a Overleaf usando "Upload Files" y usa rutas relativas. Ajusta el ancho con <code>width=.7\textwidth</code>.</li>
+            <li><strong>Mantenimiento Modular</strong>: Separa contenido en archivos <code>.tex</code> independientes (portada, introducción, capítulos, etc.) e inclúyelos con <code>\input{}</code> en <code>main.tex</code>.</li>
+            <li><strong>Compilación múltiple</strong>: Para que índices y referencias se actualicen correctamente en Overleaf, a veces necesitas compilar dos veces (Overleaf lo hace automáticamente).</li>
+            <li><strong>Colaboración en Overleaf</strong>: Usa la función "Share" de Overleaf para que otros compañeros editen la tesis colaborativamente. Si necesitas control de versiones, sincroniza con GitHub.</li>
     </ol>
 
-    <h3>Uso del paquete balance</h3>
-    <p>Para equilibrar la última página puedes incluir el paquete en el preámbulo de tu documento:</p>
+    <h3>Uso del paquete balance en Overleaf</h3>
+    <p>Para equilibrar la última página en un documento de dos columnas, incluye el paquete <code>balance</code> en el preámbulo:</p>
 
     <pre><code>\documentclass[twocolumn]{article}
     \usepackage{balance}
     \begin{document}
     % Contenido del documento
+    % … secciones, párrafos, etc.
 
-    % … texto, secciones, etc.
-
-    % Coloca el comando \balance en algún punto de la última página,
-    % preferiblemente en la columna izquierda:
+    % Coloca \balance en la última página, preferiblemente en la primera columna:
     \balance
 
     % Contenido final, por ejemplo:
@@ -335,7 +399,7 @@ Dos & 20 \\
     \bibliography{miBibliografia}
     \end{document}</code></pre>
 
-    <p>El comando <code>\balance</code> indica a LaTeX que a partir de ese punto se debe intentar repartir el contenido de la última página de manera equitativa entre ambas columnas. Es fundamental asegurarse de insertar el comando lo suficientemente temprano en la primera columna de la última página; de lo contrario, LaTeX podría ya haber fijado el contenido, y el balanceo no surtiría efecto.</p>
+    <p><strong>En Overleaf:</strong> El comando <code>\balance</code> indica a LaTeX que intente repartir el contenido de la última página de manera equitativa entre ambas columnas. Es importante insertar <code>\balance</code> lo suficientemente temprano en la primera columna de la última página; de lo contrario, LaTeX podría ya haber fijado el contenido y el balanceo no surtirá efecto.</p>
 
 
 
