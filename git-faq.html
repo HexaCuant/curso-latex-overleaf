@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ: Git Avanzado en Overleaf</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="container">
+    <p><a href="index.html" class="back-to-index">Volver al índice</a></p>
+    <h2>FAQ: Git Avanzado en Overleaf</h2>
+
+    <div style="background-color: #e8f5e9; border-left: 4px solid #4caf50; padding: 15px; margin: 20px 0; border-radius: 4px;">
+        <p><strong>💡 Nota sobre este FAQ:</strong></p>
+        <p>Overleaf tiene un "History" integrado muy fácil de usar. Este FAQ es para usuarios que quieren usar Git <strong>desde terminal</strong> para control de versiones más avanzado. Para la mayoría de usuarios, el History de Overleaf es suficiente.</p>
+    </div>
+
+    <h3>1. ¿Cómo clonar un proyecto de Overleaf a mi ordenador?</h3>
+    <p><strong>Pregunta:</strong> Quiero descargar mi proyecto de Overleaf y trabajar localmente con Git.</p>
+    <p><strong>Respuesta:</strong></p>
+    <ol>
+        <li>Abre tu proyecto en Overleaf</li>
+        <li>Haz clic en el menú (≡) a la izquierda</li>
+        <li>Busca la opción <strong>"Git"</strong> o <strong>"Git & GitHub"</strong></li>
+        <li>Copia la URL que genera (algo como: <code>https://git.overleaf.com/uniqueid/projectname</code>)</li>
+        <li>En tu terminal, ejecuta:</li>
+    </ol>
+    <pre><code>git clone https://git.overleaf.com/uniqueid/projectname
+cd projectname</code></pre>
+    <p>¡Ahora tienes una copia local de tu proyecto!</p>
+
+    <h3>2. ¿Cómo hacer push de cambios locales a Overleaf?</h3>
+    <p><strong>Pregunta:</strong> He trabajado en mi ordenador y quiero que los cambios aparezcan en Overleaf.</p>
+    <p><strong>Respuesta:</strong></p>
+    <pre><code>git add .
+git commit -m "Descripción de tus cambios"
+git push origin main</code></pre>
+    <p><strong>Explicación:</strong></p>
+    <ul>
+        <li><code>git add .</code> - Añade todos los archivos modificados</li>
+        <li><code>git commit -m "..."</code> - Crea un commit con descripción</li>
+        <li><code>git push origin main</code> - Sube los cambios a Overleaf</li>
+    </ul>
+    <p>Recarga Overleaf en el navegador y verás los cambios reflejados.</p>
+
+    <h3>3. ¿Cómo traer cambios de Overleaf a mi ordenador?</h3>
+    <p><strong>Pregunta:</strong> Mi compañero editó el documento en Overleaf y quiero bajar sus cambios.</p>
+    <p><strong>Respuesta:</strong></p>
+    <pre><code>git pull origin main</code></pre>
+    <p><strong>¿Qué hace?</strong></p>
+    <ul>
+        <li>Descarga los cambios más recientes desde Overleaf</li>
+        <li>Los integra en tu copia local</li>
+        <li>Si no hay conflictos, es automático</li>
+    </ul>
+
+    <h3>4. ¿Qué hago si hay un conflicto de Git?</h3>
+    <p><strong>Pregunta:</strong> Git me dice "merge conflict" cuando hago pull. ¿Qué hago?</p>
+    <p><strong>Respuesta:</strong></p>
+    <p>Un conflicto ocurre cuando tú y otro usuario editaron la misma línea. Pasos:</p>
+    <ol>
+        <li>Abre el archivo conflictivo en tu editor</li>
+        <li>Busca marcas como:</li>
+    </ol>
+    <pre><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+Tu código aquí
+=======
+Código de tu compañero aquí
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; origin/main</code></pre>
+    <ol>
+        <li>Decide qué código mantener, elimina las marcas</li>
+        <li>Guarda el archivo</li>
+        <li>Ejecuta:</li>
+    </ol>
+    <pre><code>git add .
+git commit -m "Resolvido conflicto de merge"
+git push origin main</code></pre>
+
+    <h3>5. ¿Cómo ver el historial de cambios desde terminal?</h3>
+    <p><strong>Pregunta:</strong> Quiero ver qué cambios se hicieron y cuándo.</p>
+    <p><strong>Respuesta:</strong></p>
+    <pre><code>git log --oneline</code></pre>
+    <p>Te mostrará algo como:</p>
+    <pre><code>3a5f2b1 Añadido capítulo 3
+2c4e1a2 Corregidas referencias
+1b3d2c1 Proyecto inicial</code></pre>
+
+    <p>Para ver detalles de un commit específico:</p>
+    <pre><code>git show 3a5f2b1</code></pre>
+
+    <h3>6. ¿Cómo restaurar una versión anterior de un archivo?</h3>
+    <p><strong>Pregunta:</strong> Metí la pata en un archivo. ¿Puedo volver a una versión anterior?</p>
+    <p><strong>Respuesta:</strong></p>
+    <pre><code>git log --oneline archivo.tex
+git checkout commit_id -- archivo.tex</code></pre>
+    <p><strong>Ejemplo real:</strong></p>
+    <pre><code>git checkout 3a5f2b1 -- main.tex</code></pre>
+    <p>Esto restaura main.tex a como estaba en el commit 3a5f2b1.</p>
+
+    <h3>7. ¿Puedo usar ramas (branches) en Overleaf?</h3>
+    <p><strong>Pregunta:</strong> ¿Cómo creo una rama para trabajar sin afectar el proyecto principal?</p>
+    <p><strong>Respuesta:</strong></p>
+    <p>Sí, pero es más útil si trabajas desde terminal. Pasos:</p>
+    <pre><code>git checkout -b feature/nueva-caracteristica</code></pre>
+    <p>Ahora trabajas en tu rama. Cuando termines:</p>
+    <pre><code>git add .
+git commit -m "Descripción del cambio"
+git push origin feature/nueva-caracteristica</code></pre>
+    <p>En GitHub (o tu plataforma), creas un Pull Request para fusionar con main.</p>
+    <p><strong>⚠️ Nota:</strong> En Overleaf Web, solo ves la rama main. Para ramas, necesitas terminal.</p>
+
+    <h3>8. ¿Cómo sincronizar mi proyecto local con GitHub?</h3>
+    <p><strong>Pregunta:</strong> Quiero que mi proyecto esté tanto en Overleaf como en GitHub.</p>
+    <p><strong>Respuesta:</strong></p>
+    <p>Primero, crea un repositorio en GitHub. Luego, en tu terminal:</p>
+    <pre><code>git remote add github https://github.com/usuario/nombre-repo.git
+git push github main</code></pre>
+    <p>Ahora tienes dos remotos:</p>
+    <ul>
+        <li><code>origin</code> → Overleaf</li>
+        <li><code>github</code> → GitHub</li>
+    </ul>
+    <p>Para sincronizar:</p>
+    <pre><code>git push origin main   # Sube a Overleaf
+git push github main   # Sube a GitHub</code></pre>
+
+    <h3>9. ¿Cómo ignorar archivos que no quiero versionar?</h3>
+    <p><strong>Pregunta:</strong> Hay archivos generados (PDFs, .aux) que no quiero que Git siga.</p>
+    <p><strong>Respuesta:</strong></p>
+    <p>Crea un archivo <code>.gitignore</code> en la raíz de tu proyecto:</p>
+    <pre><code>*.pdf
+*.aux
+*.log
+*.out
+*.synctex.gz
+.DS_Store
+build/</code></pre>
+    <p>Git ignorará automáticamente esos archivos en commits.</p>
+
+    <h3>10. ¿Cómo colaborar sin conflictos?</h3>
+    <p><strong>Pregunta:</strong> Trabajamos varios en el mismo documento. ¿Cómo evitar conflictos?</p>
+    <p><strong>Respuesta - Mejores prácticas:</strong></p>
+    <ol>
+        <li><strong>Comunica cambios:</strong> Avisa qué sección vas a editar</li>
+        <li><strong>Estructura modular:</strong> Cada persona en un archivo diferente:
+            <ul>
+                <li><code>cap1.tex</code> - Persona A</li>
+                <li><code>cap2.tex</code> - Persona B</li>
+                <li><code>cap3.tex</code> - Persona C</li>
+                <li><code>main.tex</code> - Importa todos con \input{cap1}</li>
+            </ul>
+        </li>
+        <li><strong>Frecuentes pulls:</strong> Actualízate a menudo: <code>git pull origin main</code></li>
+        <li><strong>Commits descriptivos:</strong> Di exactamente qué cambiaste</li>
+        <li><strong>Usa History de Overleaf:</strong> Para cambios pequeños, usa el History integrado</li>
+    </ol>
+
+    <h3>11. ¿Qué diferencia hay entre Git en Overleaf y en terminal?</h3>
+    <table border="1" style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+        <thead>
+            <tr style="background-color: #f5f5f5;">
+                <th style="padding: 10px;">Aspecto</th>
+                <th style="padding: 10px;">Overleaf History</th>
+                <th style="padding: 10px;">Git Terminal</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="padding: 10px;">Facilidad de uso</td>
+                <td style="padding: 10px;">✅ Muy fácil (clicks)</td>
+                <td style="padding: 10px;">⚠️ Requiere terminal</td>
+            </tr>
+            <tr style="background-color: #f9f9f9;">
+                <td style="padding: 10px;">Accesibilidad</td>
+                <td style="padding: 10px;">✅ Desde navegador</td>
+                <td style="padding: 10px;">✅ Terminal local</td>
+            </tr>
+            <tr>
+                <td style="padding: 10px;">Ramas (branches)</td>
+                <td style="padding: 10px;">❌ No disponible</td>
+                <td style="padding: 10px;">✅ Sí, múltiples</td>
+            </tr>
+            <tr style="background-color: #f9f9f9;">
+                <td style="padding: 10px;">Sincronización GitHub</td>
+                <td style="padding: 10px;">❌ No directa</td>
+                <td style="padding: 10px;">✅ Fácil</td>
+            </tr>
+            <tr>
+                <td style="padding: 10px;">Automático en tiempo real</td>
+                <td style="padding: 10px;">✅ Cada cambio se guarda</td>
+                <td style="padding: 10px;">❌ Manual (commits)</td>
+            </tr>
+            <tr style="background-color: #f9f9f9;">
+                <td style="padding: 10px;">Para equipos grandes</td>
+                <td style="padding: 10px;">✅ Bueno</td>
+                <td style="padding: 10px;">✅✅ Mejor</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>12. Decisión: ¿Cuándo usar qué?</h3>
+    <p><strong>Usa History de Overleaf cuando:</strong></p>
+    <ul>
+        <li>✅ Trabajas en equipo pequeño (1-3 personas)</li>
+        <li>✅ Todos editáis en Overleaf directamente</li>
+        <li>✅ No necesitas ramas ni flujo de trabajo complejo</li>
+        <li>✅ Quieres algo simple y rápido</li>
+    </ul>
+
+    <p><strong>Usa Git + Terminal cuando:</strong></p>
+    <ul>
+        <li>✅ Trabajas con equipo grande (4+ personas)</li>
+        <li>✅ Necesitas ramas y Pull Requests</li>
+        <li>✅ Quieres sincronizar con GitHub</li>
+        <li>✅ Trabajas localmente en editor diferente a Overleaf</li>
+        <li>✅ Necesitas control de versiones profesional</li>
+    </ul>
+
+    <h3>13. Errores comunes y cómo evitarlos</h3>
+    <p><strong>❌ Error: "Permission denied" al clonar</strong></p>
+    <ul>
+        <li>✅ Solución: Usa el enlace Git de Overleaf (https), no SSH</li>
+        <li>✅ O configura tu SSH key en Overleaf</li>
+    </ul>
+
+    <p><strong>❌ Error: "fatal: not a git repository"</strong></p>
+    <ul>
+        <li>✅ Solución: Asegúrate de estar en el directorio correcto</li>
+        <li>✅ Ejecuta: <code>pwd</code> para verificar ubicación</li>
+    </ul>
+
+    <p><strong>❌ Error: "merge conflict" sin salida clara</strong></p>
+    <ul>
+        <li>✅ Solución: Usa un editor con fusión visual (VS Code, Sublime)</li>
+        <li>✅ O contacta a tu compañero para resolver manualmente</li>
+    </ul>
+
+    <p><strong>❌ Error: "rejected - non-fast-forward"</strong></p>
+    <ul>
+        <li>✅ Solución: Primero haz <code>git pull origin main</code></li>
+        <li>✅ Resuelve conflictos si los hay</li>
+        <li>✅ Luego haz <code>git push origin main</code></li>
+    </ul>
+
+    <h3>14. Receta rápida: Flujo de trabajo estándar</h3>
+    <pre><code># Al empezar el día:
+git pull origin main
+
+# Haz cambios en tus archivos...
+
+# Al terminar:
+git status              # Ver qué cambió
+git add .               # Añadir cambios
+git commit -m "Tu mensaje"  # Guardar con descripción
+git push origin main    # Subir a Overleaf
+
+# Si hay problema:
+git log --oneline       # Ver historial
+git pull origin main    # Actualizar
+# (resolver conflictos si los hay)
+git push origin main</code></pre>
+
+    <h3>15. Recursos y documentación</h3>
+    <ul>
+        <li><a href="https://www.overleaf.com/learn/how-to/Using_Git_in_Overleaf" target="_blank" rel="noopener">Documentación oficial de Git en Overleaf</a></li>
+        <li><a href="https://git-scm.com/doc" target="_blank" rel="noopener">Documentación oficial de Git</a></li>
+        <li><a href="https://github.com/git-tips/tips" target="_blank" rel="noopener">Git Tips & Tricks</a></li>
+        <li><a href="clase1.html">Clase 1: Introducción a Git y LaTeX en Overleaf</a></li>
+    </ul>
+
+    <hr>
+    <p><strong>¿Preguntas?</strong> Revisa <a href="quickstart.html">Quickstart</a> o <a href="index.html">vuelve al índice</a></p>
+
+    <p><a href="index.html" class="back-to-index">Volver al índice</a></p>
+</body>
+
+</html>

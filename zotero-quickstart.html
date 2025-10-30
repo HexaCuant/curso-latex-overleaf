@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Primeros pasos en Zotero + Overleaf</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="container">
+    <p><a href="index.html" class="back-to-index">Volver al índice</a></p>
+    <h2>Guía: Primeros pasos en Zotero + Overleaf</h2>
+
+    <div style="background-color: #fff3e0; border-left: 4px solid #f57c00; padding: 15px; margin: 20px 0; border-radius: 4px;">
+        <p><strong>📚 ¿Qué es Zotero?</strong></p>
+        <p>Zotero es un gestor de referencias bibliográficas <strong>gratuito y de código abierto</strong>. A diferencia de JabRef (local), Zotero funciona en la nube y se integra fácilmente con Overleaf. Perfect para colaboración y tener tu bibliografía sincronizada en todos tus dispositivos.</p>
+    </div>
+
+    <h3>1. Crear cuenta en Zotero</h3>
+    <ol>
+        <li>Ve a <a href="https://www.zotero.org" target="_blank" rel="noopener">https://www.zotero.org</a></li>
+        <li>Haz clic en <strong>"Register"</strong> o <strong>"Sign Up"</strong></li>
+        <li>Completa el formulario:
+            <ul>
+                <li>Email (importante: usa el mismo que en Overleaf si es posible)</li>
+                <li>Username (para compartir bibliotecas públicamente)</li>
+                <li>Contraseña segura</li>
+            </ul>
+        </li>
+        <li>Verifica tu email</li>
+        <li>¡Tu biblioteca cloud está lista!</li>
+    </ol>
+
+    <h3>2. Instalar Zotero en tu ordenador</h3>
+    <p><strong>Opción A: Aplicación de escritorio (Recomendado)</strong></p>
+    <ol>
+        <li>Descarga desde <a href="https://www.zotero.org/download" target="_blank" rel="noopener">https://www.zotero.org/download</a></li>
+        <li>Instala según tu sistema operativo (Windows, macOS, Linux)</li>
+        <li>Abre Zotero y configura tu cuenta:
+            <ul>
+                <li>Edit → Settings → Sync</li>
+                <li>Introduce tu usuario y contraseña de Zotero</li>
+                <li>Habilita sincronización de biblioteca y archivos</li>
+            </ul>
+        </li>
+        <li>¡Listo! Tu biblioteca se sincronizará automáticamente</li>
+    </ol>
+
+    <p><strong>Opción B: Zotero Web (Sin instalación)</strong></p>
+    <ul>
+        <li>Accede directamente desde <a href="https://zotero.org/user/login" target="_blank" rel="noopener">zotero.org/user/login</a></li>
+        <li>Gestiona referencias desde el navegador (funcionalidad básica)</li>
+        <li>Ideal si no tienes espacio en disco o usas múltiples dispositivos</li>
+    </ul>
+
+    <h3>3. Instalar la extensión del navegador</h3>
+    <p>La extensión te permite capturar referencias directamente desde páginas web:</p>
+    <ol>
+        <li>Instala la extensión para tu navegador:
+            <ul>
+                <li><strong>Chrome:</strong> <a href="https://chrome.google.com/webstore" target="_blank" rel="noopener">Chrome Web Store</a> (busca "Zotero Connector")</li>
+                <li><strong>Firefox:</strong> <a href="https://addons.mozilla.org" target="_blank" rel="noopener">Mozilla Add-ons</a> (busca "Zotero Connector")</li>
+                <li><strong>Edge/Safari:</strong> Disponibles en sus respectivas tiendas</li>
+            </ul>
+        </li>
+        <li>Reinicia el navegador</li>
+        <li>Verás un icono de Zotero en la barra de herramientas</li>
+        <li>Cuando estés en un artículo o página académica, haz clic en el icono para capturar la referencia</li>
+    </ol>
+
+    <h3>4. Añadir referencias a tu biblioteca</h3>
+    <p><strong>Método 1: Desde el navegador (Recomendado para artículos)</strong></p>
+    <ol>
+        <li>Encuentra un artículo académico (ResearchGate, Google Scholar, JSTOR, etc.)</li>
+        <li>Haz clic en el icono de Zotero en la barra de herramientas</li>
+        <li>Selecciona dónde guardar: elige una colección (ej: "Bibliografía Tesis")</li>
+        <li>¡La referencia se guarda automáticamente con metadatos!</li>
+    </ol>
+
+    <p><strong>Método 2: Manual (Para cualquier fuente)</strong></p>
+    <ol>
+        <li>Abre Zotero (aplicación o web)</li>
+        <li>Haz clic en <strong>"New Item"</strong></li>
+        <li>Elige el tipo: Book, Journal Article, Conference Paper, etc.</li>
+        <li>Completa los campos:
+            <ul>
+                <li>Title (Título)</li>
+                <li>Author (Autor/es)</li>
+                <li>Date (Año de publicación)</li>
+                <li>Publication (Journal/Editorial)</li>
+                <li>URL (si aplica)</li>
+            </ul>
+        </li>
+        <li>Haz clic en <strong>"Save"</strong></li>
+    </ol>
+
+    <p><strong>Método 3: Desde archivo .bib (Si tienes una bibliografía anterior)</strong></p>
+    <ol>
+        <li>En Zotero: File → Import</li>
+        <li>Selecciona tu archivo .bib</li>
+        <li>Zotero importará todas las referencias automáticamente</li>
+    </ol>
+
+    <h3>5. Integración con Overleaf</h3>
+    <p><strong>Paso 1: Conectar Zotero con Overleaf</strong></p>
+    <ol>
+        <li>En Zotero: Haz clic derecho en una colección (ej: "Bibliografía Tesis")</li>
+        <li>Selecciona <strong>"Generate Bibliography"</strong></li>
+        <li>En el diálogo, copia la URL que genera</li>
+        <li>Esta URL es tu enlace de Zotero → Overleaf</li>
+    </ol>
+
+    <p><strong>Paso 2: Crear archivo .bib en Overleaf desde Zotero</strong></p>
+    <ol>
+        <li>Ve a tu proyecto en Overleaf</li>
+        <li>Haz clic en <strong>"New File"</strong></li>
+        <li>Elige <strong>"From External URL"</strong></li>
+        <li>Pega la URL de Zotero que generaste en el Paso 1</li>
+        <li>Nombralo: <code>referencias.bib</code></li>
+        <li>¡Overleaf descargará tu bibliografía de Zotero automáticamente!</li>
+    </ol>
+
+    <p><strong>Paso 3: Usar el archivo .bib en tu documento LaTeX</strong></p>
+    <p>En tu archivo .tex principal, agrega:</p>
+    <pre><code>\bibliographystyle{abbrv}  % O el estilo que prefieras
+\bibliography{referencias}   % Sin extensión .bib</code></pre>
+
+    <h3>6. Insertar citas en el documento LaTeX</h3>
+    <p>Una vez que tienes el archivo .bib en Overleaf, usa el comando:</p>
+    <pre><code>\cite{clave_referencia}</code></pre>
+
+    <p><strong>¿Cómo sé cuál es la clave de referencia?</strong></p>
+    <ol>
+        <li>Abre el archivo <code>referencias.bib</code> en Overleaf</li>
+        <li>Busca tu referencia (verás algo como):</li>
+    </ol>
+    <pre><code>@article{Smith2023,
+  author = {Smith, John},
+  title = {Título del artículo},
+  journal = {Journal Name},
+  year = {2023}
+}</code></pre>
+
+    <p>La clave es lo que viene después del <code>@</code> (en este caso: <code>Smith2023</code>)</p>
+    <p>Así que en tu documento escribirías: <code>\cite{Smith2023}</code></p>
+
+    <h3>7. Estilos de citas en Overleaf</h3>
+    <p>Overleaf soporta múltiples estilos bibliográficos. En tu archivo LaTeX, cambia el estilo:</p>
+    <table border="1" style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+        <thead>
+            <tr style="background-color: #f5f5f5;">
+                <th style="padding: 10px;">Estilo</th>
+                <th style="padding: 10px;">Comando</th>
+                <th style="padding: 10px;">Ejemplo en texto</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="padding: 10px;"><strong>abbrv</strong> (Alfabético)</td>
+                <td style="padding: 10px;"><code>\bibliographystyle{abbrv}</code></td>
+                <td style="padding: 10px;">[1] Smith et al., 2023</td>
+            </tr>
+            <tr style="background-color: #f9f9f9;">
+                <td style="padding: 10px;"><strong>alpha</strong> (Autor-Año)</td>
+                <td style="padding: 10px;"><code>\bibliographystyle{alpha}</code></td>
+                <td style="padding: 10px;">[Smi23] Smith et al., 2023</td>
+            </tr>
+            <tr>
+                <td style="padding: 10px;"><strong>plain</strong> (Numerado)</td>
+                <td style="padding: 10px;"><code>\bibliographystyle{plain}</code></td>
+                <td style="padding: 10px;">[1] Smith et al., 2023</td>
+            </tr>
+            <tr style="background-color: #f9f9f9;">
+                <td style="padding: 10px;"><strong>unsrt</strong> (Orden de aparición)</td>
+                <td style="padding: 10px;"><code>\bibliographystyle{unsrt}</code></td>
+                <td style="padding: 10px;">[1], [2], etc. en orden de citación</td>
+            </tr>
+            <tr>
+                <td style="padding: 10px;"><strong>apalike</strong> (APA-like)</td>
+                <td style="padding: 10px;"><code>\bibliographystyle{apalike}</code></td>
+                <td style="padding: 10px;">Smith et al. (2023)</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p><strong>Nota:</strong> Para usar estilos más modernos (IEEE, APA, Chicago), consulta <a href="clase4.html">Clase 4</a></p>
+
+    <h3>8. Flujo de trabajo completo: Paso a paso</h3>
+    <ol>
+        <li><strong>Crear colección en Zotero:</strong> "Mi Proyecto"</li>
+        <li><strong>Capturar referencias:</strong> Usa el navegador para guardar artículos</li>
+        <li><strong>Revisar metadatos:</strong> Asegúrate de que autor, año, etc. estén correctos</li>
+        <li><strong>Generar URL en Zotero:</strong> Clic derecho en colección → "Generate Bibliography"</li>
+        <li><strong>Crear .bib en Overleaf:</strong> New File → From External URL</li>
+        <li><strong>Insertar \bibliography{referencias} en LaTeX</strong></li>
+        <li><strong>Usar \cite{clave} en el texto:</strong> Citarás automáticamente</li>
+        <li><strong>Compilar en Overleaf:</strong> La bibliografía se genera automáticamente</li>
+    </ol>
+
+    <h3>9. Colaboración: Compartir biblioteca en Zotero</h3>
+    <p>Si trabajas en equipo:</p>
+    <ol>
+        <li>En Zotero: Haz clic derecho en una colección</li>
+        <li>Selecciona <strong>"Share"</strong></li>
+        <li>Copia el enlace y comparte con compañeros</li>
+        <li>Ellos pueden crear una colección vinculada en su Zotero</li>
+        <li>Las referencias se actualizan automáticamente para todos</li>
+    </ol>
+
+    <h3>10. Troubleshooting: Problemas comunes</h3>
+    <p><strong>❌ Problema: "El archivo .bib no se actualiza en Overleaf"</strong></p>
+    <ul>
+        <li>✅ Solución: En Overleaf, haz clic en el archivo .bib y selecciona "Refresh from External URL"</li>
+    </ul>
+
+    <p><strong>❌ Problema: "Las referencias no aparecen en la bibliografía final"</strong></p>
+    <ul>
+        <li>✅ Solución: Asegúrate de:
+            <ul>
+                <li>Tener <code>\bibliography{referencias}</code> en tu documento</li>
+                <li>Compilar 2 veces (primera vez para LaTeX, segunda para bibliografía)</li>
+                <li>Que la clave de la cita coincida exactamente con la del archivo .bib</li>
+            </ul>
+        </li>
+    </ul>
+
+    <p><strong>❌ Problema: "Zotero no detecta el artículo de la página web"</strong></p>
+    <ul>
+        <li>✅ Solución: La página no tiene metadatos. Agrega manualmente la referencia en Zotero</li>
+    </ul>
+
+    <p><strong>❌ Problema: "Necesito cambiar el formato de citas (APA, IEEE, etc.)"</strong></p>
+    <ul>
+        <li>✅ Solución: Cambia <code>\bibliographystyle{estilo}</code> o usa paquetes como <code>biblatex</code> (ver Clase 4 para detalles avanzados)</li>
+    </ul>
+
+    <h3>11. Diferencias: Zotero vs JabRef</h3>
+    <table border="1" style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+        <thead>
+            <tr style="background-color: #f5f5f5;">
+                <th style="padding: 10px;">Aspecto</th>
+                <th style="padding: 10px;">Zotero</th>
+                <th style="padding: 10px;">JabRef (local)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="padding: 10px;">Almacenamiento</td>
+                <td style="padding: 10px;">Cloud (automático)</td>
+                <td style="padding: 10px;">Local (.bib)</td>
+            </tr>
+            <tr style="background-color: #f9f9f9;">
+                <td style="padding: 10px;">Captura web</td>
+                <td style="padding: 10px;">✅ Extensión navegador</td>
+                <td style="padding: 10px;">❌ Manual</td>
+            </tr>
+            <tr>
+                <td style="padding: 10px;">Integración Overleaf</td>
+                <td style="padding: 10px;">✅ URL automática</td>
+                <td style="padding: 10px;">⚠️ Upload manual</td>
+            </tr>
+            <tr style="background-color: #f9f9f9;">
+                <td style="padding: 10px;">Colaboración</td>
+                <td style="padding: 10px;">✅ Colecciones compartidas</td>
+                <td style="padding: 10px;">⚠️ Via git/share</td>
+            </tr>
+            <tr>
+                <td style="padding: 10px;">Curva de aprendizaje</td>
+                <td style="padding: 10px;">✅ Fácil</td>
+                <td style="padding: 10px;">⚠️ Más complejo</td>
+            </tr>
+            <tr style="background-color: #f9f9f9;">
+                <td style="padding: 10px;">Libre/Open Source</td>
+                <td style="padding: 10px;">✅ Sí</td>
+                <td style="padding: 10px;">✅ Sí</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>12. Siguiente paso: Clase 4</h3>
+    <p>Para temas más avanzados en bibliografía y LaTeX (biblatex, estilos personalizados, etc.), consulta <a href="clase4.html">Clase 4: Fórmulas matemáticas y bibliografía con Zotero + Overleaf</a></p>
+
+    <hr>
+    <p><strong>Recursos útiles:</strong></p>
+    <ul>
+        <li><a href="https://www.zotero.org/support/" target="_blank" rel="noopener">Documentación oficial de Zotero</a></li>
+        <li><a href="https://www.overleaf.com/learn/how-to/Using_Zotero_for_Overleaf" target="_blank" rel="noopener">Guía oficial de Overleaf-Zotero</a></li>
+        <li><a href="quickstart.html">Quickstart: Primeros pasos en Overleaf</a></li>
+    </ul>
+
+    <p><a href="index.html" class="back-to-index">Volver al índice</a></p>
+</body>
+
+</html>
