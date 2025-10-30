@@ -9,14 +9,22 @@
 </head>
 
 <body class="container">
+    <div style="background-color: #e3f2fd; border-left: 4px solid #1976d2; padding: 12px; margin-bottom: 20px; border-radius: 4px;">
+        <p style="margin: 0; font-size: 0.95em; color: #0d47a1;">
+            <strong>📌 Nota importante:</strong> Este curso utiliza <strong>Overleaf</strong> como herramienta principal para LaTeX. 
+            Si prefieres trabajar con herramientas locales (TeXstudio, Git en terminal, etc.), 
+            consulta la <a href="https://105.ugr.es/latex" target="_blank" style="color: #1976d2; text-decoration: underline;">versión local del curso</a>.
+        </p>
+    </div>
+
     <p><a href="index.html" class="back-to-index">Volver al índice</a></p>
     <h2>Clase 5: Elementos avanzados y personalización</h2>
 
     <h3>1. Inclusión de código fuente</h3>
-    <p>LaTeX permite mostrar fragmentos de código con resaltado y numeración de líneas, especialmente útil para documentación técnica.</p>
+    <p>LaTeX permite mostrar fragmentos de código con resaltado y numeración de líneas, especialmente útil para documentación técnica. En Overleaf, esta funcionalidad está totalmente disponible sin necesidad de instalación adicional.</p>
 
-    <h4>1.1 Paquete listings</h4>
-    <p>El paquete <code>listings</code> facilita la inclusión de código fuente con resaltado de sintaxis:</p>
+    <h4>1.1 Paquete listings en Overleaf</h4>
+    <p>En tu proyecto de Overleaf, simplemente incluye el paquete <code>listings</code> en el preámbulo:</p>
     <pre><code>\usepackage{listings}
 \lstset{
     basicstyle=\small\ttfamily,
@@ -30,6 +38,7 @@
 </code></pre>
 
     <h4>1.2 Resaltado de sintaxis</h4>
+    <p><strong>En Overleaf:</strong> Después de incluir el preámbulo anterior, usa en el documento:</p>
     <pre><code>\begin{lstlisting}[language=Python,caption={Ejemplo en Python},label={code:python}]
 def factorial(n):
     if n <= 1:
@@ -39,13 +48,13 @@ def factorial(n):
 \end{lstlisting}
 </code></pre>
     <ul>
-        <li><code>language=Python</code> determina el lenguaje.</li>
+        <li><code>language=Python</code> determina el lenguaje (también: Java, C, C++, SQL, etc.).</li>
         <li><code>caption={...}</code> añade un título descriptivo.</li>
-        <li><code>label={...}</code> asigna una etiqueta para referencias en el documento.</li>
+        <li><code>label={...}</code> asigna una etiqueta para referencias en el documento con <code>\ref{code:python}</code>.</li>
     </ul>
 
     <h3>2. Creación de entornos personalizados</h3>
-    <p>Puedes definir tus propios entornos para dar un estilo específico a ciertos contenidos. Por ejemplo:</p>
+    <p>Puedes definir tus propios entornos para dar un estilo específico a ciertos contenidos. En Overleaf, esta funcionalidad funciona exactamente igual que en LaTeX local. Simplemente define tus entornos en el preámbulo:</p>
     <pre><code>\newenvironment{miResumen}
 {%
   \begin{quote}
@@ -55,20 +64,24 @@ def factorial(n):
   \end{quote}
 }
 </code></pre>
-    <p>Uso:</p>
+    <p>Luego, usa el entorno en el documento:</p>
     <pre><code>\begin{miResumen}
 Este es el resumen de la sección.
 \end{miResumen}
 </code></pre>
 
+    <p><strong>En Overleaf:</strong> Simplemente añade tu definición <code>\newenvironment{...}</code> en el preámbulo (antes de <code>\begin{document}</code>), guarda el proyecto con Ctrl+S, y Overleaf recompilará automáticamente. Verás el resultado en el PDF en tiempo real.</p>
+
     <h3>3. Diseño de página: márgenes, encabezados y pies de página</h3>
 
-    <h4>3.1 Márgenes con geometry</h4>
+    <h4>3.1 Márgenes con geometry en Overleaf</h4>
+    <p><strong>En Overleaf:</strong> En el preámbulo, añade:</p>
     <pre><code>\usepackage[a4paper, margin=2cm]{geometry}
 </code></pre>
-    <p>Ajusta la hoja A4 con un margen de 2 cm en cada lado.</p>
+    <p>Esto ajusta la hoja A4 con un margen de 2 cm en cada lado. Puedes cambiar <code>2cm</code> a otros valores (1cm, 3cm, etc.). Después de guardar, el PDF se actualizará automáticamente.</p>
 
-    <h4>3.2 Encabezados y pies de página con fancyhdr</h4>
+    <h4>3.2 Encabezados y pies de página con fancyhdr en Overleaf</h4>
+    <p><strong>En Overleaf:</strong> Añade en el preámbulo:</p>
     <pre><code>\usepackage{fancyhdr}
 \pagestyle{fancy}
 
@@ -81,38 +94,41 @@ Este es el resumen de la sección.
 </code></pre>
     <ul>
         <li><code>\leftmark</code> mostrará el título de la sección o capítulo actual.</li>
-        <li><code>\thepage</code> indica el número de página.</li>
+        <li><code>\thepage</code> indica el número de página actual.</li>
+        <li><code>[L]</code>, <code>[R]</code>, <code>[C]</code> significan Left (izquierda), Right (derecha), Center (centro).</li>
     </ul>
+    <p><strong>Consejo Overleaf:</strong> Si no ves los cambios en el PDF, haz clic en el botón de "Recompile" (o usa Ctrl+Enter) para forzar la recompilación.</p>
 
-    <h3>4. Uso de colores</h3>
-    <p>Para usar colores, se carga el paquete <code>xcolor</code> o <code>color</code>:</p>
+    <h3>4. Uso de colores en Overleaf</h3>
+    <p>Para usar colores en tu documento de Overleaf, simplemente carga el paquete en el preámbulo:</p>
     <pre><code>\usepackage{xcolor}
 </code></pre>
 
     <h4>4.1 Texto y fondo coloreados</h4>
+    <p><strong>En el documento:</strong></p>
     <pre><code>\textcolor{blue}{Texto en azul.}
 \colorbox{yellow}{Fondo amarillo para este texto.}
 </code></pre>
 
     <h4>4.2 Definir colores personalizados</h4>
+    <p>En el preámbulo, define tus propios colores:</p>
     <pre><code>\definecolor{miverde}{RGB}{0,128,0}
 \textcolor{miverde}{Texto en un verde personalizado.}
 </code></pre>
 
     <h4>4.3 tcolorbox para recuadros de colores</h4>
-    <p><code>tcolorbox</code> permite crear recuadros con gran flexibilidad:</p>
+    <p><code>tcolorbox</code> permite crear recuadros con gran flexibilidad. En el preámbulo de Overleaf, añade:</p>
     <pre><code>\usepackage{tcolorbox}
-
-\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,title=Ejemplo de tcolorbox]
+</code></pre>
+    <p>Luego en el documento:</p>
+    <pre><code>\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,title=Ejemplo de tcolorbox]
 Este es un texto de ejemplo dentro de un recuadro de color personalizado.  
 Puedes ajustar opacidad, bordes y mucho más.
 \end{tcolorbox}
 </code></pre>
 
 <h4>4.4 Parámetros de tcolorbox</h4>
-<p>En el ejemplo anterior:</p>
-
-<p>Aparecen tres parámetros que configuran el aspecto y el título del recuadro:</p>
+<p>En el ejemplo anterior aparecen tres parámetros que configuran el aspecto del recuadro:</p>
 
 <ol>
     <li><strong>colback=blue!5!white</strong>
@@ -138,17 +154,19 @@ Puedes ajustar opacidad, bordes y mucho más.
     </li>
 </ol>
 
-<p>Estos parámetros pueden personalizarse libremente para ajustar el color de fondo y de borde, así como etiquetar el recuadro con un título apropiado.</p>
+<p>Estos parámetros pueden personalizarse libremente. En Overleaf, después de hacer cambios, el PDF se actualizará automáticamente.</p>
 
 
 
 
     <h3>5. Ejemplo de colortbl en tablas</h3>
-    <p>El paquete <code>colortbl</code> añade color a filas y celdas de tablas:</p>
+    <p>El paquete <code>colortbl</code> añade color a filas y celdas de tablas. En Overleaf, carga estos paquetes en el preámbulo:</p>
     <pre><code>\usepackage{colortbl}
 \usepackage{booktabs}
+</code></pre>
 
-\begin{table}[ht]
+    <p>Luego, en el documento:</p>
+    <pre><code>\begin{table}[ht]
 \centering
 \rowcolors{1}{blue!10}{white}
 \begin{tabular}{l c c}
@@ -162,54 +180,90 @@ Naranjas  & \$2.20 & 40 \\
 \end{tabular}
 \caption{Ejemplo de tabla con colortbl}
 \label{tab:coloreada}
-</end{table}
+\end{table}
 </code></pre>
     <ul>
         <li><code>\rowcolors{1}{blue!10}{white}</code> alterna el color de fondo en las filas, iniciando desde la fila 1.</li>
-        <li><code>\rowcolor{blue!30}</code> ajusta el color de la fila del encabezado.</li>
-        <li><code>booktabs</code> aporta comandos como <code>\toprule</code>, <code>\midrule</code> y <code>\bottomrule</code>.</li>
+        <li><code>\rowcolor{blue!30}</code> ajusta el color de una fila específica (aquí, el encabezado).</li>
+        <li><code>booktabs</code> aporta comandos como <code>\toprule</code>, <code>\midrule</code> y <code>\bottomrule</code> para bordes profesionales.</li>
     </ul>
 
-    <h3>6. Ejercicios prácticos</h3>
+    <p><strong>En Overleaf:</strong> Después de guardar los cambios, el PDF mostrará la tabla con colores. Experimenta cambiando los valores de color (por ejemplo, <code>red!20</code>, <code>green!15</code>) para ver los resultados en tiempo real.</p>
+
+    <h3>6. Ejercicios prácticos en Overleaf</h3>
     <ol>
-        <li><strong>Listados de código</strong>: Crea un fragmento con <code>lstlisting</code> donde incluyas un pequeño script en C, Python o cualquier otro lenguaje.</li>
-        <li><strong>Entornos personalizados</strong>: Define un entorno llamado <code>aviso</code> que muestre un recuadro con un texto resaltado.</li>
-        <li><strong>Diseño de página</strong>: Ajusta los márgenes a 3 cm y agrega tu nombre en el lado izquierdo del encabezado, el título de la clase en el lado derecho, y centra el número de página en el pie.</li>
-        <li><strong>Uso de colores</strong>:
+        <li><strong>Listados de código</strong>: En un proyecto Overleaf, crea un nuevo documento. Incluye el paquete <code>listings</code> en el preámbulo con el ejemplo de <code>lstlisting</code> de un pequeño script en C, Python o cualquier otro lenguaje. Guarda el proyecto y observa el resultado en el PDF.</li>
+        
+        <li><strong>Entornos personalizados</strong>: Define un entorno llamado <code>aviso</code> en el preámbulo que muestre un recuadro con un texto resaltado. Luego crea varias instancias del entorno en el documento y verifica que el PDF se actualiza automáticamente.</li>
+        
+        <li><strong>Diseño de página</strong>: Crea un nuevo proyecto en Overleaf con márgenes de 3 cm. Incluye <code>fancyhdr</code>. Agrega tu nombre en el lado izquierdo del encabezado, el título de la clase en el lado derecho, y centra el número de página en el pie. Crea al menos 2 páginas para ver el efecto. Guarda y observa los cambios en el PDF.</li>
+        
+        <li><strong>Uso de colores y tablas</strong>:
             <ul>
-                <li>Crea un <code>tcolorbox</code> de fondo gris con borde negro.</li>
-                <li>Añade una tabla con filas alternadas en color usando <code>colortbl</code>.</li>
+                <li>Crea un <code>tcolorbox</code> con fondo gris personalizado y borde negro.</li>
+                <li>Añade una tabla con filas alternadas en color usando <code>colortbl</code>, con datos relevantes (por ejemplo, listado de paquetes, precios, etc.).</li>
             </ul>
         </li>
-        <li><strong>Revisión de Git</strong>: Realiza algunos cambios en un archivo, pídele a un compañero de clase que haga cambios en el mismo archivo en una rama diferente, y luego practica la resolución de conflictos al hacer <code>git pull</code>.</li>
+        
+        <li><strong>Combinación de elementos</strong>: En un solo documento Overleaf, intenta combinar al menos 3 de los elementos anteriores (código, colores, tablas, entornos personalizados) en un documento bien estructurado.</li>
     </ol>
 
-    <h3>7. Repaso de Git: resolución de conflictos simples</h3>
-    <p>Cuando realizas <code>git pull</code>, si tu rama local y la remota tienen cambios en la misma línea, se genera un conflicto.</p>
+    <h3>7. Conceptos de Git: Resolución de conflictos</h3>
+    <p>Cuando trabajas colaborativamente en Overleaf con Git, pueden surgir situaciones en las que tú y otro compañero hagáis cambios en la misma línea de un archivo. Esto genera un <strong>conflicto</strong>. Aquí explicamos cómo funcionan conceptualmente:</p>
+
+    <h4>7.1 ¿Qué es un conflicto?</h4>
+    <p>Un conflicto ocurre cuando:</p>
     <ol>
-        <li><strong>Pull</strong>:
-            <pre><code>git pull
-</code></pre>
-        </li>
-        <li><strong>Buscar y resolver el conflicto</strong> en el archivo marcado por:
-            <pre><code><<<<< HEAD
-...
-=======
-...
->>>>>> remote/branch
-</code></pre>
-        </li>
-        <li><strong>Guardar y hacer commit</strong>:
-            <pre><code>git add archivo_conflictivo
-git commit -m "Resolver conflicto"
-</code></pre>
-        </li>
-        <li><strong>Push</strong> para actualizar el repositorio remoto:
-            <pre><code>git push
-</code></pre>
-        </li>
+        <li>Tú estás trabajando en la rama <code>main</code> de tu proyecto Overleaf.</li>
+        <li>Un compañero también edita la misma línea en la rama <code>main</code>.</li>
+        <li>Ambos intentáis sincronizar cambios.</li>
+        <li>Git no puede decidir automáticamente qué versión mantener.</li>
     </ol>
-    <p>Este proceso enseña a manejar cambios simultáneos y fusionar esfuerzos en un equipo de trabajo.</p>
+
+    <h4>7.2 Marcadores de conflicto</h4>
+    <p>Cuando hay un conflicto, Git marca la zona conflictiva así:</p>
+    <pre><code>&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+Tu versión del código
+=======
+Versión del compañero
+&gt;&gt;&gt;&gt;&gt;&gt; nombre_rama
+</code></pre>
+
+    <h4>7.3 Resolución en Overleaf</h4>
+    <p><strong>En Overleaf con Git integrado:</strong></p>
+    <ol>
+        <li><strong>Recibe notificación:</strong> Overleaf te notificará que hay cambios en el repositorio remoto.</li>
+        <li><strong>Sincronización:</strong> Haz clic en "Pull" desde el panel de Git en Overleaf.</li>
+        <li><strong>Marca el conflicto:</strong> Si hay conflictos, Overleaf los resaltará en el editor.</li>
+        <li><strong>Resuelve manualmente:</strong> Decide qué código mantener: ¿tu versión, la del compañero, o una fusión de ambas?</li>
+        <li><strong>Guarda y confirma:</strong> Borra los marcadores &lt;&lt;&lt;&lt;&lt;, =======, y &gt;&gt;&gt;&gt;&gt;&gt; cuando hayas decidido.</li>
+        <li><strong>Commit de resolución:</strong> Haz un commit con mensaje "Resolver conflicto en línea X".</li>
+        <li><strong>Push:</strong> Sube tus cambios al repositorio remoto.</li>
+    </ol>
+
+    <h4>7.4 Ejemplo práctico</h4>
+    <p><strong>Situación:</strong> Tú y un compañero editáis el mismo párrafo en <code>documento.tex</code>.</p>
+    <p><strong>Tu versión (HEAD):</strong></p>
+    <pre><code>Este documento tiene una estructura clara y bien definida.</code></pre>
+    <p><strong>Versión del compañero:</strong></p>
+    <pre><code>Este documento posee una estructura clara y bien organizada.</code></pre>
+    <p><strong>Marcador de conflicto:</strong></p>
+    <pre><code>&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+Este documento tiene una estructura clara y bien definida.
+=======
+Este documento posee una estructura clara y bien organizada.
+&gt;&gt;&gt;&gt;&gt;&gt; main
+</code></pre>
+    <p><strong>Posible resolución (acordada entre ustedes):</strong></p>
+    <pre><code>Este documento tiene una estructura clara, bien definida y organizada.</code></pre>
+
+    <h4>7.5 Estrategias para evitar conflictos</h4>
+    <ul>
+        <li><strong>Comunicación:</strong> Avisa a tus compañeros qué secciones vas a editar.</li>
+        <li><strong>Archivos separados:</strong> Cada miembro del equipo edita diferentes secciones o archivos.</li>
+        <li><strong>Pull frecuentes:</strong> Sincroniza cambios regularmente con Git en Overleaf.</li>
+        <li><strong>Commits descriptivos:</strong> Cada cambio debe tener un mensaje claro indicando qué se modificó.</li>
+    </ul>
 
     <p><a href="index.html" class="back-to-index">Volver al índice</a></p>
 </body>
