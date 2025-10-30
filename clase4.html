@@ -10,6 +10,13 @@
 
 <body class="container">
     <p><a href="index.html" class="back-to-index">Volver al índice</a></p>
+    
+    <div style="background-color: #e8f4f8; border-left: 4px solid #0066cc; padding: 15px; margin: 20px 0; border-radius: 4px;">
+        <h4 style="margin-top: 0; color: #0066cc;">📌 Nota Importante</h4>
+        <p><strong>Esta clase utiliza Overleaf (herramienta cloud).</strong> La sección de bibliografía usa Zotero + Overleaf integrados, no JabRef local.</p>
+        <p>Si prefieres trabajar con herramientas locales (TeXstudio, Git desde terminal, JabRef), consulta la versión anterior del curso en: <a href="https://105.ugr.es/latex" target="_blank" rel="noopener"><strong>https://105.ugr.es/latex</strong></a></p>
+    </div>
+    
     <h2>Clase 4: Fórmulas matemáticas y bibliografía</h2>
 
     <h3>1. Escritura de fórmulas matemáticas (1.5h)</h3>
@@ -47,54 +54,66 @@ Como se ve en la ecuación \eqref{eq:onda}, la velocidad es crítica.
 
 <p>Consultar la <em>Comprehensive LaTeX Symbol list</em> y <a href="https://detexify.kirelabs.org/" target="_blank" rel="noopener">Detexify</a> para encontrar símbolos matemáticos.</p>
 
-<h3>2. Introducción a BibTeX y JabRef (1.5h)</h3>
-<h4>2.1 Crear una base de datos bibliográfica</h4>
-<p><strong>Estructura de un archivo <code>.bib</code></strong>:</p>
-<pre><code>@book{einstein1916relativity,
-    title     = {Relativity: The Special and General Theory},
-    author    = {Einstein, Albert},
-    year      = {1916},
-    publisher = {Methuen & Co.}
-}
-</code></pre>
-</code></pre>
+<h3>2. Gestión de Bibliografía con Zotero + Overleaf (1.5h)</h3>
 
-    <h4>2.2 Uso de JabRef</h4>
-    <p><strong>Pasos básicos</strong>:</p>
-    <ol>
-        <li>Crear nueva entrada (<code>Ctrl + N</code>).</li>
-        <li>Seleccionar tipo (libro, artículo, etc.).</li>
-        <li>Rellenar campos: autor, título, año, DOI (si existe).</li>
-        <li>Guardar como <code>referencias.bib</code>.</li>
-        <li>Búsquedas en bases de dados (ej. PubMed)</li>
-        <li>Inserción automática de citas en el documento</li>
-    </ol>
-    
+<p><strong>En lugar de JabRef local, usaremos Zotero + Overleaf, que es mucho más sencillo en la nube:</strong></p>
 
-    <h4>2.3 Citas y bibliografía en LaTeX</h4>
-    <p><strong>Preámbulo</strong>:</p>
-    <pre><code>\usepackage{natbib}  % Para estilos de citas
-\bibliographystyle{plainnat}  % Estilo APA, IEEE, etc.
-</code></pre>
+<h4>2.1 ¿Qué es Zotero?</h4>
+<p>Zotero es un gestor de referencias bibliográficas gratuito y de código abierto que funciona en línea. Permite:</p>
+<ul>
+    <li>Recopilar referencias desde navegadores, bases de datos y archivos</li>
+    <li>Organizar referencias en colecciones</li>
+    <li>Colaborar con otros usuarios en línea</li>
+    <li>Exportar a Overleaf de forma automática</li>
+</ul>
 
-    <p><strong>Citar en el texto</strong>:</p>
-    <pre><code>Según \citet{einstein1916relativity}, la teoría...
-Estudios recientes \citep{hawking1973large} confirman...
-</code></pre>
+<h4>2.2 Integración Zotero + Overleaf</h4>
+<p><strong>Paso 1: Crear Colección en Zotero</strong></p>
+<ol>
+    <li>Ve a <a href="https://www.zotero.org/" target="_blank" rel="noopener">Zotero.org</a> y crea una cuenta (gratuita).</li>
+    <li>Crea una nueva colección (ej: "Mi Tesis", "Proyecto Investigación")</li>
+    <li>Añade referencias buscando en Google Scholar, PubMed, o directamente desde PDFs</li>
+    <li>Zotero extrae automáticamente: título, autor, año, DOI</li>
+</ol>
 
-    <p><strong>Generar la bibliografía</strong>:</p>
-    <pre><code>\bibliography{referencias}  % Sin extensión .bib
-</code></pre>
+<p><strong>Paso 2: Sincronizar con Overleaf</strong></p>
+<ol>
+    <li>En Overleaf, abre tu proyecto y ve a <strong>Menu > Bibliography</strong></li>
+    <li>Selecciona <strong>"Add a new bibliography"</strong></li>
+    <li>Elige <strong>"Link a Zotero library"</strong></li>
+    <li>Autoriza Overleaf a acceder a tu Zotero</li>
+    <li>Selecciona la colección de referencias que deseas usar</li>
+    <li>Overleaf generará automáticamente un archivo <code>.bib</code></li>
+</ol>
 
-    <h4>2.4 Compilación con BibTeX</h4>
-    <p>Flujo de comandos (en orden):</p>
-    <ol>
-        <li><code>pdflatex documento.tex</code></li>
-        <li><code>bibtex documento.aux</code></li>
-        <li><code>pdflatex documento.tex</code> (2 veces).</li>
-    </ol>
+<h4>2.3 Usar Referencias en Overleaf</h4>
+<pre><code>\documentclass{article}
+\usepackage[style=authoryear]{biblatex}
+\addbibresource{references.bib}
 
-    <h3>3. Ejercicios prácticos (1h)</h3>
+\title{Mi Investigación}
+\author{Tu Nombre}
+
+\begin{document}
+
+\maketitle
+
+\section{Introducción}
+
+Como menciona \cite{einstein1916relativity}, la relatividad...
+
+\section{Referencias}
+\printbibliography
+
+\end{document}</code></pre>
+
+<h4>2.4 Estilos Bibliográficos</h4>
+<ul>
+    <li><code>style=authoryear</code>: (Autor, Año)</li>
+    <li><code>style=numeric</code>: [1]</li>
+    <li><code>style=apa</code>: APA</li>
+</ul>
+<h3>3. Ejercicios prácticos (1h)</h3>
     <h4>Ejercicio 1: Fórmulas matemáticas</h4>
     <p>Crea un documento LaTeX que incluya:</p>
     <ul>
@@ -114,28 +133,32 @@ I = \begin{pmatrix}
 </code></pre>
     </ul>
 
-    <h4>Ejercicio 2: Bibliografía con JabRef</h4>
+    <h4>Ejercicio 2: Bibliografía con Zotero + Overleaf</h4>
     <ol>
-        <li>Añade 2 entradas a <code>referencias.bib</code> usando JabRef (un libro y un artículo).</li>
-        <li>Cita ambas fuentes en el texto.</li>
-        <li>Compila el documento y verifica que la bibliografía se genera correctamente.</li>
+        <li><strong>✏️ Crear colección en Zotero:</strong> Ve a Zotero.org y crea una colección "Mi Proyecto". Busca 2 referencias (un libro y un artículo) usando Google Scholar o PubMed. Zotero importará automáticamente los detalles.</li>
+        <li><strong>✏️ Conectar con Overleaf:</strong> En Overleaf, crea un nuevo proyecto. Ve a Menu > Bibliography > Link to Zotero library. Selecciona tu colección "Mi Proyecto". Overleaf generará automáticamente el archivo <code>references.bib</code>.</li>
+        <li><strong>✏️ Citar referencias:</strong> En tu documento, añade el preámbulo con biblatex y compila. Usa \cite{} para citar tus referencias (Overleaf te autocompleta las claves disponibles).</li>
+        <li><strong>✏️ Verificar resultado:</strong> El PDF mostrará automáticamente la lista de referencias al final con el estilo que hayas elegido.</li>
     </ol>
 
-    <h3>Errores comunes y soluciones</h3>
+    <h3>Errores comunes con Zotero + Overleaf y soluciones</h3>
     <ul>
         <li><strong>¡La bibliografía no aparece!</strong>:
             <ul>
-                <li>Asegúrate de ejecutar <code>bibtex</code> y compilar 2 veces con <code>pdflatex</code>.</li>
+                <li>Verifica que incluiste <code>\printbibliography</code> al final del documento.</li>
+                <li>Asegúrate de que la colección en Zotero está compartida correctamente con Overleaf.</li>
             </ul>
         </li>
         <li><strong>Citas con <code>?</code></strong>:
             <ul>
-                <li>Verifica que la clave en <code>\cite</code> coincida con la entrada en <code>.bib</code>.</li>
+                <li>Verifica que la clave en <code>\cite{}</code> coincida con la referencia en Zotero.</li>
+                <li>Compila 2 veces: la primera genera las citas, la segunda las resuelve.</li>
             </ul>
         </li>
-        <li><strong>JabRef no guarda campos</strong>:
+        <li><strong>No veo las referencias de Zotero en Overleaf</strong>:
             <ul>
-                <li>Usa <code>Ctrl + S</code> después de editar cada entrada.</li>
+                <li>Recarga la página de Overleaf.</li>
+                <li>Verifica que tu colección en Zotero está seleccionada correctamente en Menu > Bibliography.</li>
             </ul>
         </li>
     </ul>
