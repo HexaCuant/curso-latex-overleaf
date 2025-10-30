@@ -4,84 +4,131 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LaTeX+Git</title>
+    <title>Primeros pasos en Overleaf</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body class="container">
     <p><a href="index.html" class="back-to-index">Volver al índice</a></p>
-    <h2>Quickstart: Instalación de LaTeX y Git</h2>
+    <h2>Quickstart: Primeros pasos en Overleaf</h2>
 
-    <h3>Instalar una distribución de LaTeX</h3>
-    <p>Para instalar LaTeX, sigue las instrucciones según tu sistema operativo:</p>
+    <div style="background-color: #e3f2fd; border-left: 4px solid #1976d2; padding: 15px; margin: 20px 0; border-radius: 4px;">
+        <p><strong>¿Por qué Overleaf?</strong></p>
+        <p>Overleaf es una plataforma cloud para trabajar con LaTeX sin necesidad de instalar nada en tu ordenador. Todo lo que necesitas es un navegador web y una conexión a internet. Colaboración en tiempo real, control de versiones integrado, y compilación automática.</p>
+    </div>
 
-    <h4>Windows</h4>
+    <h3>1. Crear tu cuenta en Overleaf</h3>
     <ol>
-        <li>Descarga e instala MiKTeX desde su página oficial: <a href="https://miktex.org/howto/install-miktex" target="_blank" rel="noopener">https://miktex.org/howto/install-miktex</a></li>
-        <li>Durante la instalación, elige la opción de instalar paquetes bajo demanda.</li>
-    </ol>
-
-    <h4>macOS</h4>
-    <ol>
-        <li>Descarga e instala MacTeX desde <a href="https://tug.org/mactex/" target="_blank" rel="noopener">https://tug.org/mactex/</a></li>
-    </ol>
-
-    <h4>Linux</h4>
-    <ul>
-        <li>Para distribuciones basadas en Debian/Ubuntu:
-            <pre><code>sudo apt-get install texlive</code></pre>
-        </li>
-        <li>Para distribuciones basadas en ArchLinux:
-            <pre><code>sudo pacman -S texlive</code></pre>
-        </li>
-        <li>O a través del gestor de software que prefieras de tu distribución.</li>
-    </ul>
-
-    <h3>Instalar Git</h3>
-    <p>Para instalar Git, sigue las instrucciones según tu sistema operativo:</p>
-
-    <h4>Windows</h4>
-    <ol>
-        <li>Descarga Git desde su página oficial: <a href="https://git-scm.com/" target="_blank" rel="noopener">https://git-scm.com/</a></li>
-        <li>Durante la instalación, asegúrate de seleccionar las siguientes opciones:
+        <li>Ve a <a href="https://www.overleaf.com" target="_blank" rel="noopener">https://www.overleaf.com</a></li>
+        <li>Haz clic en <strong>"Sign Up"</strong> (esquina superior derecha)</li>
+        <li>Completa el formulario con:
             <ul>
-                <li>"Use Git from Git Bash only"</li>
-                <li>"Checkout Windows-style, commit Unix-style line endings"</li>
+                <li>Tu dirección de correo electrónico</li>
+                <li>Nombre y apellidos</li>
+                <li>Contraseña segura</li>
             </ul>
         </li>
+        <li>Verifica tu correo electrónico (revisa spam si es necesario)</li>
+        <li>¡Tu cuenta está lista!</li>
     </ol>
 
-    <h4>macOS</h4>
+    <h3>2. Acceder al portal institucional (Campus License)</h3>
+    <p><strong>Nota:</strong> Si tu universidad tiene licencia de campus, puedes acceder con credenciales institucionales:</p>
     <ol>
-        <li>La forma más sencilla es usar Homebrew. Si no lo tienes instalado, visita <a href="https://brew.sh" target="_blank" rel="noopener">brew.sh</a> para instrucciones.</li>
-        <li>Abre la Terminal y ejecuta:
-            <pre><code>brew install git</code></pre>
-        </li>
+        <li>Ve a <a href="https://www.overleaf.com" target="_blank" rel="noopener">https://www.overleaf.com</a></li>
+        <li>En la página de login, busca la opción <strong>"Institution Login"</strong></li>
+        <li>Busca tu universidad en la lista</li>
+        <li>Inicia sesión con tus credenciales de la universidad</li>
+        <li>Tendrás acceso a todas las características premium de forma gratuita</li>
     </ol>
 
-    <h4>Linux</h4>
-    <ul>
-        <li>Para distribuciones basadas en Debian/Ubuntu:
-            <pre><code>sudo apt-get install git</code></pre>
+    <h3>3. Crear tu primer proyecto</h3>
+    <ol>
+        <li>Una vez logueado, haz clic en <strong>"New Project"</strong></li>
+        <li>Elige una opción:
+            <ul>
+                <li><strong>"Blank Project"</strong>: Para empezar desde cero</li>
+                <li><strong>"Example Project"</strong>: Para ver ejemplos de LaTeX</li>
+                <li><strong>"Upload Project"</strong>: Si tienes archivos locales</li>
+            </ul>
         </li>
-        <li>Para distribuciones basadas en ArchLinux:
-            <pre><code>sudo pacman -S git</code></pre>
+        <li>Dale un nombre a tu proyecto (ej: "Mi primer documento")</li>
+        <li>¡Listo! Accederás al editor de Overleaf</li>
+    </ol>
+
+    <h3>4. Familiarizarte con la interfaz</h3>
+    <p>La pantalla de Overleaf tiene tres secciones principales:</p>
+    <ul>
+        <li><strong>Panel izquierdo:</strong> Estructura de archivos de tu proyecto</li>
+        <li><strong>Panel central:</strong> Editor de código LaTeX</li>
+        <li><strong>Panel derecho:</strong> Vista previa del documento compilado</li>
+    </ul>
+    <p>Prueba escribiendo código LaTeX en el editor y verás el resultado en tiempo real en la preview.</p>
+
+    <h3>5. Colaboración en tiempo real</h3>
+    <ol>
+        <li>Abre tu proyecto</li>
+        <li>Haz clic en <strong>"Share"</strong> (botón azul, arriba a la derecha)</li>
+        <li>Copia el enlace o invita a compañeros por email</li>
+        <li>Elige el nivel de acceso:
+            <ul>
+                <li><strong>Can edit</strong>: Pueden modificar el proyecto</li>
+                <li><strong>Can view only</strong>: Solo lectura</li>
+            </ul>
         </li>
-        <li>O a través del gestor de software que prefieras de tu distribución.</li>
-    </ul>
+        <li>¡Ahora otros pueden editar el documento contigo en tiempo real!</li>
+    </ol>
 
-    <h3>Instalar un editor de texto</h3>
-    <p>En el curso vamos a usar TeXstudio:</p>
-    <ul>
-        <li>Visita <a href="https://texstudio.sourceforge.net/" target="_blank" rel="noopener">https://texstudio.sourceforge.net/</a> y descarga la versión para tu sistema operativo.</li>
-        <li>Para Linux, recomiendo siempre usar un instalador de paquetes de la distribución.</li>
-    </ul>
+    <h3>6. Control de versiones integrado</h3>
+    <p>Overleaf tiene Git integrado de forma sencilla:</p>
+    <ol>
+        <li>En tu proyecto, haz clic en el menú (≡) a la izquierda</li>
+        <li>Selecciona <strong>"History"</strong></li>
+        <li>Verás todos los cambios realizados en el documento</li>
+        <li>Puedes deshacer cambios haciendo clic en cualquier versión anterior</li>
+    </ol>
+    <p><strong>Para usuarios avanzados:</strong> También puedes clonar proyectos de Overleaf usando Git desde la terminal. Consulta <a href="clase1.html">Clase 1</a> para más detalles.</p>
 
-    <h3>Instalar JabRef para manejo de bibliografía</h3>
-    <ul>
-        <li>Visita <a href="https://www.jabref.org/#download" target="_blank" rel="noopener">https://www.jabref.org/#download</a> y descarga la versión para tu sistema operativo.</li>
-        <li>Para Linux, recomiendo siempre usar un instalador de paquetes de la distribución.</li>
-    </ul>
+    <h3>7. Síntesis de herramientas Overleaf vs herramientas locales</h3>
+    <table border="1" style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+        <thead>
+            <tr style="background-color: #f5f5f5;">
+                <th style="padding: 10px;">Función</th>
+                <th style="padding: 10px;">Herramienta Local</th>
+                <th style="padding: 10px;">Overleaf</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="padding: 10px;">Editar LaTeX</td>
+                <td style="padding: 10px;">TeXstudio</td>
+                <td style="padding: 10px;">Editor web (sin instalación)</td>
+            </tr>
+            <tr style="background-color: #f9f9f9;">
+                <td style="padding: 10px;">Compilar PDF</td>
+                <td style="padding: 10px;">pdflatex desde terminal</td>
+                <td style="padding: 10px;">Automático en tiempo real</td>
+            </tr>
+            <tr>
+                <td style="padding: 10px;">Control de versiones</td>
+                <td style="padding: 10px;">Git desde terminal</td>
+                <td style="padding: 10px;">History integrado (+ Git opcional)</td>
+            </tr>
+            <tr style="background-color: #f9f9f9;">
+                <td style="padding: 10px;">Bibliografía</td>
+                <td style="padding: 10px;">JabRef (local)</td>
+                <td style="padding: 10px;">Zotero + Overleaf (cloud)</td>
+            </tr>
+            <tr>
+                <td style="padding: 10px;">Colaboración</td>
+                <td style="padding: 10px;">Compartir archivos (manual)</td>
+                <td style="padding: 10px;">Tiempo real (integrado)</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>8. Siguiente paso: Consulta Zotero para bibliografía</h3>
+    <p>Si necesitas gestionar referencias bibliográficas, consulta <a href="clase4.html">Clase 4: Fórmulas matemáticas y bibliografía con Zotero + Overleaf</a></p>
 
     <p><a href="index.html" class="back-to-index">Volver al índice</a></p>
 </body>
