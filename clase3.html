@@ -10,6 +10,13 @@
 
 <body class="container">
     <p><a href="index.html" class="back-to-index">Volver al índice</a></p>
+    
+    <div style="background-color: #e8f4f8; border-left: 4px solid #0066cc; padding: 15px; margin: 20px 0; border-radius: 4px;">
+        <h4 style="margin-top: 0; color: #0066cc;">📌 Nota Importante</h4>
+        <p><strong>Esta clase utiliza Overleaf (herramienta cloud).</strong> Todos los ejemplos y ejercicios se realizan en el navegador web sin instalar nada.</p>
+        <p>Si prefieres trabajar con herramientas locales (TeXstudio, Git desde terminal), consulta la versión anterior del curso en: <a href="https://105.ugr.es/latex" target="_blank" rel="noopener"><strong>https://105.ugr.es/latex</strong></a></p>
+    </div>
+    
     <h2>Clase 3: Elementos básicos en LaTeX</h2>
 
 <h3>Definir comandos propios</h3>
@@ -758,10 +765,33 @@ La Figura~\ref{fig:mi_imagen} ilustra...
 
     <h3>Ejercicios prácticos</h3>
     <ol>
-        <li>Crea un documento con los tres tipos de listas, incluyendo personalización con <code>enumitem</code>.</li>
-        <li>Diseña una tabla compleja que incluya fusión de celdas, colores y diferentes alineaciones.</li>
-        <li>Inserta una figura con una leyenda personalizada y crea una referencia cruzada a ella.</li>
-        <li>Genera índices de tablas y figuras en tu documento.</li>
+        <li><strong>✏️ Listas Personalizadas:</strong> En Overleaf, crea un nuevo proyecto que demuestre los tres tipos de listas (enumerate, itemize, description). Incluye el paquete <code>enumitem</code> y personaliza una lista con opciones como <code>[noitemsep]</code> y <code>[label=\alph*)]</code>. Compila y observa los cambios.</li>
+        
+        <li><strong>✏️ Tabla Compleja:</strong> En Overleaf, diseña una tabla que incluya:
+            <ul>
+                <li>Fusión de celdas (usar \multirow y/o \multicolumn)</li>
+                <li>Colores en filas o celdas (paquete xcolor)</li>
+                <li>Diferentes alineaciones (izquierda, centro, derecha)</li>
+            </ul>
+            Prueba con el paquete <code>adjustbox</code> si la tabla es muy ancha. Compila y verifica el resultado.</li>
+        
+        <li><strong>✏️ Figura con Referencias:</strong> En Overleaf:
+            <ul>
+                <li>Inserta una figura usando <code>\includegraphics</code> (Overleaf tiene imágenes de ejemplo)</li>
+                <li>Añade una leyenda personalizada con <code>\caption{}</code></li>
+                <li>Crea una etiqueta con <code>\label{fig:nombre}</code></li>
+                <li>Referéncíala en el texto con <code>\ref{fig:nombre}</code> o <code>\hyperref[fig:nombre]{aquí}</code></li>
+            </ul>
+        </li>
+        
+        <li><strong>✏️ Índices Automáticos:</strong> En Overleaf, crea un documento que incluya:
+            <ul>
+                <li>Al menos 2 figuras con <code>\caption</code></li>
+                <li>Al menos 2 tablas con <code>\caption</code></li>
+                <li>Al principio del documento, agrega <code>\listoffigures</code> y <code>\listoftables</code></li>
+                <li>Compila dos veces para que los índices se generen. Verifica que aparecen en el PDF.</li>
+            </ul>
+        </li>
     </ol>
 
     <h3>Comandos para terminar una página</h3>
