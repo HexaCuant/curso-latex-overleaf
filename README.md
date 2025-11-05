@@ -1,15 +1,16 @@
-# Curso: LaTeX y Git en Overleaf
+# Curso: LaTeX en Overleaf para Tesis y Documentos Académicos
 
 **Autor:** Miguel Burgos
 
 ## 📚 Descripción
 
-Este es un curso completo de LaTeX diseñado para usar **Overleaf** como herramienta principal. Overleaf es una plataforma cloud que permite escribir LaTeX directamente en el navegador sin necesidad de instalaciones locales, con colaboración en tiempo real y control de versiones integrado.
+Este es un curso completo de LaTeX diseñado para usar **Overleaf** como herramienta principal. Overleaf es una plataforma cloud que permite escribir LaTeX directamente en el navegador sin necesidad de instalaciones locales, con colaboración en tiempo real y control de cambios integrado (History y Track Changes).
 
-El curso cubre desde conceptos fundamentales hasta temas avanzados como tesis doctorales, presentaciones con Beamer, y gestión de bibliografía con Zotero.
+El curso cubre desde conceptos fundamentales hasta temas avanzados como tesis doctorales, presentaciones con Beamer, y gestión de bibliografía con Zotero. **Está especialmente optimizado para doctorandos que escriben tesis en colaboración con sus directores.**
 
 ## 🎯 ¿Para quién es este curso?
 
+- **Estudiantes de doctorado** que escriben tesis en colaboración
 - Estudiantes universitarios que necesitan escribir documentos académicos
 - Investigadores que colaboran en proyectos LaTeX
 - Usuarios de la licencia de campus de Overleaf de la Universidad
@@ -28,6 +29,7 @@ Este guía te llevará paso a paso para:
 3. Crear tu primer proyecto
 4. Entender la interfaz
 5. Colaborar en tiempo real
+6. Usar Track Changes para revisiones
 
 ### Opción 2: Gestión de bibliografía con Zotero
 
@@ -44,11 +46,11 @@ Aprenderás a:
 
 | Clase | Tema | Duración | Enlace |
 |-------|------|----------|--------|
-| 1 | Introducción a Git y LaTeX en Overleaf | 3 horas | [Clase 1](clase1.html) |
+| 1 | Introducción a LaTeX en Overleaf | 3 horas | [Clase 1](clase1.html) |
 | 2 | Fundamentos de LaTeX | 3 horas | [Clase 2](clase2.html) |
 | 3 | Elementos Básicos en LaTeX | 3 horas | [Clase 3](clase3.html) |
 | 4 | Fórmulas matemáticas y bibliografía con Zotero + Overleaf | 3 horas | [Clase 4](clase4.html) |
-| 5 | Elementos Avanzados | 3 horas | [Clase 5](clase5.html) |
+| 5 | Elementos Avanzados y Colaboración | 3 horas | [Clase 5](clase5.html) |
 | 6 | Creación de una Plantilla para Tesis Doctoral en Overleaf | 3 horas | [Clase 6](clase6.html) |
 | 7 | Temas Especiales en Overleaf (Beamer, Animaciones) | 2 horas | [Clase 7](clase7.html) |
 
@@ -56,30 +58,45 @@ Aprenderás a:
 
 ## 🛠️ Herramientas Utilizadas
 
-### En Overleaf (Cloud)
+### En Overleaf (Cloud) - Principal
 - **Editor LaTeX**: Interfaz web de Overleaf
 - **Compilación**: Automática en tiempo real
 - **Colaboración**: Compartir proyectos y editar simultáneamente
-- **Control de versiones**: History integrado (+ Git avanzado opcional)
+- **Control de cambios integrado**:
+  - **History**: Línea de tiempo automática de todos los cambios
+  - **Track Changes**: Sugiere cambios sin aplicarlos automáticamente (ideal para revisiones)
 
 ### Complementarias
-- **Zotero**: Gestión de referencias bibliográficas (reemplaza JabRef)
-- **Git**: Control de versiones avanzado (opcional, desde terminal)
+- **Zotero**: Gestión de referencias bibliográficas en la nube
+- **Git**: Control de versiones avanzado (opcional, para usuarios interesados)
 - **GitHub**: Para clonar y sincronizar proyectos (opcional)
 
-### Versión Local (Alternativa)
+### Versión Local (Alternativa - No recomendada para este curso)
 Si prefieres herramientas locales, consulta: https://a105.ugr.es/latex
 - TeXstudio (editor local)
 - JabRef (gestor de referencias local)
 - Git desde terminal
 
-## 🔗 Enlaces Principales
+## � ¿Por qué no enseñamos Git en profundidad?
+
+**Este curso se enfoca en Overleaf porque:**
+
+1. **Simplicidad para tesis**: Overleaf ofrece History (automático) y Track Changes que son más intuitivos que Git para revisar colaborativa
+2. **Menor curva de aprendizaje**: No necesitas aprender commits, branches, merges, resolución de conflictos
+3. **Colaboración natural**: Cambios en tiempo real, sin sincronización manual
+4. **Revisión con directores**: Track Changes es más natural que Git para que directores sugieran cambios
+
+**Si quieres aprender Git como recurso avanzado:**
+- Consulta la versión local del curso: https://a105.ugr.es/latex
+- Lee las respuestas frecuentes: [FAQ Git Avanzado](git-faq.html)
+
+## �🔗 Enlaces Principales
 
 ### Durante el Curso
 - **[Índice completo del curso](index.html)** - Acceso a todas las clases
 - **[Quickstart](quickstart.html)** - Primeros pasos en Overleaf
 - **[Guía Zotero](zotero-quickstart.html)** - Gestión de bibliografía
-- **[FAQ Git Avanzado](git-faq.html)** - Preguntas frecuentes sobre Git
+- **[FAQ Git Avanzado](git-faq.html)** - Preguntas frecuentes (recurso opcional)
 
 ### Recursos Externos
 - [Sitio oficial de Overleaf](https://www.overleaf.com)
@@ -90,12 +107,13 @@ Si prefieres herramientas locales, consulta: https://a105.ugr.es/latex
 ## 📝 Estructura del Repositorio
 
 ```
+```
 overleaf/
 ├── README.md              # Este archivo
 ├── index.html             # Índice principal del curso
 ├── quickstart.html        # Primeros pasos en Overleaf
 ├── zotero-quickstart.html # Guía de Zotero
-├── git-faq.html           # FAQ sobre Git avanzado
+├── git-faq.html           # FAQ sobre Git avanzado (opcional)
 ├── clase1.html - clase7.html  # Contenidos de las 7 clases
 ├── style.css              # Estilos CSS
 ├── ADAPTACION_OVERLEAF.md # Documentación de adaptación
