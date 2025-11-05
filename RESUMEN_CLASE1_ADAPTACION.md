@@ -19,7 +19,7 @@
 
 ### 4. **Orientación Alternativa para Herramientas Locales**
    - ✅ Agregada nota prominente al inicio de clase
-   - ✅ Enlace directo a: https://105.ugr.es/latex
+   - ✅ Enlace directo a: https://a105.ugr.es/latex
    - ✅ Clarificación: "Ambas versiones enseñan los mismos conceptos, solo cambia dónde ejecutas"
 
 ### 5. **Ejercicios Prácticos Refactorizados**
@@ -76,7 +76,7 @@ GitHub (repositorio) ← → Overleaf (editor) ← ← → Estudiante (navegador
 Para las clases 2-7, aplicar el mismo enfoque:
 1. Eliminar referencias a herramientas locales
 2. Mostrar equivalente en Overleaf
-3. Agregar link a https://105.ugr.es/latex al inicio de cada clase
+3. Agregar link a https://a105.ugr.es/latex al inicio de cada clase
 4. Simplificar ejercicios a interfaz web pura
 
 ## 📝 Notas
