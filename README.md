@@ -68,7 +68,7 @@ Aprenderás a:
 - **GitHub**: Para clonar y sincronizar proyectos (opcional)
 
 ### Versión Local (Alternativa)
-Si prefieres herramientas locales, consulta: https://105.ugr.es/latex
+Si prefieres herramientas locales, consulta: https://a105.ugr.es/latex
 - TeXstudio (editor local)
 - JabRef (gestor de referencias local)
 - Git desde terminal
@@ -157,4 +157,4 @@ Para dudas sobre el curso:
 
 **Última actualización:** Octubre 2025
 **Versión:** 2.0 (Adaptada a Overleaf)
-**Versión local alternativa:** https://105.ugr.es/latex
+**Versión local alternativa:** https://a105.ugr.es/latex

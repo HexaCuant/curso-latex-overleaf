@@ -29,7 +29,7 @@ Este proyecto contiene la adaptación completa del curso de LaTeX original (en `
 ### 1. **Nota Inicial en Todas las Clases**
 Cada clase ahora comienza con una nota visual azul indicando:
 - Que el curso usa Overleaf como herramienta principal
-- Referencia a la versión local (https://105.ugr.es/latex) para usuarios que prefieran herramientas locales
+- Referencia a la versión local (https://a105.ugr.es/latex) para usuarios que prefieran herramientas locales
 
 ### 2. **Eliminación de Instalaciones Locales**
 - ❌ Eliminadas instrucciones de clonar repositorios con `git clone`
@@ -114,7 +114,7 @@ Cada clase ahora comienza con una nota visual azul indicando:
 - ✅ Zotero integrado (bibliografía)
 
 ### Alternativas Documentadas (Referencias)
-- 🔗 https://105.ugr.es/latex (versión local del curso)
+- 🔗 https://a105.ugr.es/latex (versión local del curso)
 - Usuarios que prefieran herramientas locales pueden consultar esa referencia
 
 ---
@@ -234,7 +234,7 @@ Si tu universidad tiene una licencia Campus de Overleaf, los alumnos obtendrán:
 - Acceso prioritario a nuevas características
 
 ### Referencia Local Conservada
-La URL https://105.ugr.es/latex se menciona en cada clase como referencia para usuarios que prefieran las herramientas locales. Esto preserva el acceso a la versión original del curso.
+La URL https://a105.ugr.es/latex se menciona en cada clase como referencia para usuarios que prefieran las herramientas locales. Esto preserva el acceso a la versión original del curso.
 
 ### Zotero en Overleaf
 Es fundamental que los alumnos entiendan:
@@ -251,7 +251,7 @@ Es fundamental que los alumnos entiendan:
 - **Líneas eliminadas:** 200+ (instrucciones locales)
 - **Líneas agregadas:** 300+ (instrucciones Overleaf)
 - **Cambio más significativo:** Clase 4 (JabRef → Zotero)
-- **Referencia: 105.ugr.es/latex** - Presente en todas las clases
+- **Referencia: a105.ugr.es/latex** - Presente en todas las clases
 
 ---
 
