@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LaTeX+Git</title>
+    <title>LaTeX en Overleaf</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -208,46 +208,61 @@ Naranjas  & \$2.20 & 40 \\
         <li><strong>Combinación de elementos</strong>: En un solo documento Overleaf, intenta combinar al menos 3 de los elementos anteriores (código, colores, tablas, entornos personalizados) en un documento bien estructurado.</li>
     </ol>
 
-    <h3>7. Conceptos de Git: Resolución de conflictos</h3>
-    <p>Cuando trabajas colaborativamente en Overleaf con Git, pueden surgir situaciones en las que tú y otro compañero hagáis cambios en la misma línea de un archivo. Esto genera un <strong>conflicto</strong>. Aquí explicamos cómo funcionan conceptualmente:</p>
+    <h3>7. Gestión de cambios colaborativos en Overleaf</h3>
+    <p>Cuando trabajas colaborativamente en Overleaf con otros compañeros (por ejemplo, editando la tesis junto a tu director), es importante saber cómo gestionar cambios conflictivos. Afortunadamente, <strong>Overleaf maneja esto automáticamente</strong> de forma mucho más intuitiva que sistemas como Git.</p>
 
-    <h4>7.1 ¿Qué es un conflicto?</h4>
-    <p>Un conflicto ocurre cuando:</p>
+    <h4>7.1 ¿Qué ocurre cuando múltiples personas editan?</h4>
+    <p>Cuando tú y otro compañero editáis el mismo proyecto simultáneamente en Overleaf:</p>
     <ol>
-        <li>Tú estás trabajando en la rama <code>main</code> de tu proyecto Overleaf.</li>
-        <li>Un compañero también edita la misma línea en la rama <code>main</code>.</li>
-        <li>Ambos intentáis sincronizar cambios.</li>
-        <li>Git no puede decidir automáticamente qué versión mantener.</li>
+        <li>Ambos veis los cambios en <strong>tiempo real</strong> en el editor.</li>
+        <li>Los cursores de cada persona aparecen con colores diferentes.</li>
+        <li>El PDF se recompila automáticamente con los cambios de ambos.</li>
+        <li>No hay "conflictos" complicados: todo se sincroniza automáticamente.</li>
     </ol>
 
-    <h4>7.2 Marcadores de conflicto</h4>
-    <p>Cuando hay un conflicto, Git marca la zona conflictiva así:</p>
-    <pre><code>&lt;&lt;&lt;&lt;&lt;&lt; HEAD
-Tu versión del código
-=======
-Versión del compañero
-&gt;&gt;&gt;&gt;&gt;&gt; nombre_rama
-</code></pre>
-
-    <h4>7.3 Resolución en Overleaf</h4>
-    <p><strong>En Overleaf con Git integrado:</strong></p>
+    <h4>7.2 Uso de Track Changes para revisiones colaborativas</h4>
+    <p>Si quieres que tu director <strong>revise y sugiera cambios</strong> sin aplicarlos automáticamente:</p>
     <ol>
-        <li><strong>Recibe notificación:</strong> Overleaf te notificará que hay cambios en el repositorio remoto.</li>
-        <li><strong>Sincronización:</strong> Haz clic en "Pull" desde el panel de Git en Overleaf.</li>
-        <li><strong>Marca el conflicto:</strong> Si hay conflictos, Overleaf los resaltará en el editor.</li>
-        <li><strong>Resuelve manualmente:</strong> Decide qué código mantener: ¿tu versión, la del compañero, o una fusión de ambas?</li>
-        <li><strong>Guarda y confirma:</strong> Borra los marcadores &lt;&lt;&lt;&lt;&lt;, =======, y &gt;&gt;&gt;&gt;&gt;&gt; cuando hayas decidido.</li>
-        <li><strong>Commit de resolución:</strong> Haz un commit con mensaje "Resolver conflicto en línea X".</li>
-        <li><strong>Push:</strong> Sube tus cambios al repositorio remoto.</li>
+        <li>Comparte el proyecto con tu director con permisos de edición.</li>
+        <li><strong>Activa Track Changes</strong> en tu cuenta o pídele que lo haga.</li>
+        <li>Tu director edita el documento, y sus cambios aparecen resaltados (no aplicados automáticamente).</li>
+        <li>Tú ves cada sugerencia en color con el nombre del revisor.</li>
+        <li>Puedes <strong>"Accept"</strong> o <strong>"Reject"</strong> cada sugerencia individualmente.</li>
+        <li>El Historia de cambios registra todo el proceso.</li>
     </ol>
 
-    <h4>7.4 Ejemplo práctico</h4>
-    <p><strong>Situación:</strong> Tú y un compañero editáis el mismo párrafo en <code>documento.tex</code>.</p>
-    <p><strong>Tu versión (HEAD):</strong></p>
-    <pre><code>Este documento tiene una estructura clara y bien definida.</code></pre>
-    <p><strong>Versión del compañero:</strong></p>
-    <pre><code>Este documento posee una estructura clara y bien organizada.</code></pre>
-    <p><strong>Marcador de conflicto:</strong></p>
+    <h4>7.3 Usar el Historial para resolver desacuerdos</h4>
+    <p>Si hay incertidumbre sobre qué versión es la correcta:</p>
+    <ol>
+        <li>Abre <strong>"History"</strong> en Overleaf.</li>
+        <li>Puedes ver exactamente quién hizo qué cambio y cuándo.</li>
+        <li>Si necesitas revertir a una versión anterior, haz clic en <strong>"Restore"</strong>.</li>
+        <li>Esto revierte el documento a ese punto sin perder el historial (el cambio aparece como un nuevo cambio).</li>
+    </ol>
+
+    <h4>7.4 Ejemplo práctico: Tú vs. Tu Director</h4>
+    <p><strong>Situación:</strong> Tú escribes un párrafo, tu director lo edita con Track Changes, pero luego ambos hacen cambios conflictivos.</p>
+    
+    <p><strong>Paso 1: Párrafo original (escrito por ti)</strong></p>
+    <pre><code>Este documento tiene una estructura clara.</code></pre>
+    
+    <p><strong>Paso 2: Director sugiere cambio (con Track Changes)</strong></p>
+    <p>El cambio aparece así: <span style="color: green;">Este documento posee una estructura clara y bien organizada.</span> (resaltado en verde, sin aplicar)</p>
+    
+    <p><strong>Paso 3: Cómo decidirliciar qué mantener</strong></p>
+    <ul>
+        <li><strong>Si aceptas la sugerencia:</strong> Haz clic en "Accept" y el texto se convierte en la versión oficial.</li>
+        <li><strong>Si rechazas la sugerencia:</strong> Haz clic en "Reject" y vuelve al texto original.</li>
+        <li><strong>Si quieres una fusión personalizada:</strong> Acepta/rechaza parcialmente editando manualmente.</li>
+    </ul>
+
+    <h4>7.5 Mejores prácticas para colaboración</h4>
+    <ol>
+        <li><strong>Comunícate claramente</strong>: Usa comentarios en Overleaf para explicar por qué aceptaste o rechazaste cambios.</li>
+        <li><strong>Revisa regularmente el Historial</strong>: Asegúrate de que los cambios más recientes son los que quieres.</li>
+        <li><strong>Haz commits conceptuales</strong>: En lugar de guardar cada palabra, guarda cuando hayas terminado un párrafo o sección.</li>
+        <li><strong>Si hay confusión extrema</strong>: Usa "Restore" para volver a una versión conocida como "buena" y vuelve a empezar desde ahí.</li>
+    </ol>
     <pre><code>&lt;&lt;&lt;&lt;&lt;&lt; HEAD
 Este documento tiene una estructura clara y bien definida.
 =======

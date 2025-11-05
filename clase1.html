@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LaTeX+Git</title>
+    <title>LaTeX en Overleaf</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -15,159 +15,10 @@
         <h4 style="margin-top: 0; color: #0066cc;">📌 Nota Importante</h4>
         <p><strong>Este curso utiliza Overleaf (herramienta cloud).</strong> Todo lo que necesitas está en el navegador web.</p>
         <p>Si prefieres trabajar con herramientas locales (TeXstudio, Git desde terminal, JabRef), consulta la versión anterior del curso en: <a href="https://a105.ugr.es/latex" target="_blank" rel="noopener"><strong>https://a105.ugr.es/latex</strong></a></p>
-        <p><em>Ambas versiones enseñan los mismos conceptos de LaTeX y Git. La única diferencia es dónde ejecutas las herramientas (cloud vs. local).</em></p>
+        <p><em>Ambas versiones enseñan los mismos conceptos de LaTeX. La única diferencia es dónde ejecutas las herramientas (cloud vs. local).</em></p>
     </div>
     
-    <h2>Introducción a Git</h2>
-    <h3>¿Qué es Git y por qué es útil para el control de versiones?</h3>
-    <p>Git es un sistema de control de versiones distribuido, creado por Linus Torvalds en 2005. Es una herramienta
-        esencial para la colaboración académica y científica, que permite rastrear cambios en documentos, colaborar eficientemente y gestionar diferentes versiones de un proyecto.</p>
-    <p>Git destaca por varias razones:</p>
-    <ol>
-        <li><strong>Historial completo</strong>: Git mantiene un registro detallado de todos los cambios realizados en
-            un proyecto, permitiendo ver quién hizo qué cambios y cuándo.</li>
-        <li><strong>Trabajo distribuido</strong>: Cada colaborador tiene una copia completa del repositorio, lo que
-            facilita el trabajo sin conexión y mejora la redundancia.</li>
-        <li><strong>Branching y merging</strong>: Git permite crear ramas para trabajar en diferentes características o
-            versiones del proyecto de forma aislada, y luego fusionarlas fácilmente.</li>
-        <li><strong>Velocidad y eficiencia</strong>: Git es notablemente rápido en comparación con otros sistemas de
-            control de versiones.</li>
-        <li><strong>Flexibilidad de flujo de trabajo</strong>: Git se adapta a diversos estilos de desarrollo y tamaños
-            de equipo.</li>
-        <li><strong>Integración con GitHub y Overleaf</strong>: Git se integra perfectamente con GitHub para respaldos en la nube y con Overleaf para sincronización automática.</li>
-    </ol>
-
-    <h3>Conceptos Fundamentales de Git</h3>
-    <p>Para entender cómo funciona Git, es importante conocer estos conceptos clave:</p>
-    
-    <h4>📁 Repositorio</h4>
-    <p>Un repositorio es una carpeta que contiene todos tus archivos y su historial de cambios. En Git, cada repositorio es independiente y completo.</p>
-    
-    <h4>📝 Commit</h4>
-    <p>Un commit es una "captura de pantalla" de tu proyecto en un momento específico. Cada commit guarda:</p>
-    <ul>
-        <li>Los cambios realizados en los archivos</li>
-        <li>Quién hizo los cambios (autor)</li>
-        <li>Cuándo se realizaron (fecha/hora)</li>
-        <li>Un mensaje descriptivo explicando qué se cambió</li>
-    </ul>
-    <p><strong>Ejemplo:</strong> "Agregué introducción a la Clase 1" o "Corregí ecuación en la sección 2"</p>
-    
-    <h4>🌿 Branch (Rama)</h4>
-    <p>Una rama es una línea de desarrollo independiente. Por ejemplo:</p>
-    <ul>
-        <li><strong>main</strong>: La versión oficial y estable</li>
-        <li><strong>experimental</strong>: Rama para probar ideas nuevas</li>
-        <li><strong>feature/capitulo-3</strong>: Rama para trabajar en el capítulo 3</li>
-    </ul>
-    <p>Las ramas permiten trabajar en paralelo sin afectar la versión principal.</p>
-    
-    <h4>☁️ Repositorio Remoto (GitHub)</h4>
-    <p>Un repositorio remoto es una copia de tu proyecto alojada en un servidor (como GitHub). Es tu respaldo en la nube y permite colaboración con otros.</p>
-    
-    <h4>🔄 Pull y Push</h4>
-    <ul>
-        <li><strong>Push:</strong> Subir cambios locales al repositorio remoto (GitHub)</li>
-        <li><strong>Pull:</strong> Descargar cambios del repositorio remoto a tu proyecto local</li>
-    </ul>
-    
-    <h3>Diagrama de Flujo de Trabajo de Git</h3>
-    <p>Aquí se muestra el ciclo de vida típico de un cambio en Git:</p>
-    
-    <img src="git.png" alt="Diagrama de flujo de trabajo de Git" style="max-width: 100%; height: auto;">
-    
-    <p><strong>En Overleaf + GitHub, este proceso es automático:</strong> No necesitas ejecutar comandos. Overleaf sincroniza automáticamente tus cambios con GitHub.</p>
-
-    <h3>Crear una cuenta en GitHub</h3>
-    <ol>
-        <li>Visita <a href="https://github.com/" target="_blank" rel="noopener">https://github.com/</a></li>
-        <li>Haz clic en "Sign up" en la esquina superior derecha</li>
-        <li>Ingresa tu <strong>correo electrónico (Institucional)</strong>, crea una contraseña y elige un nombre de
-            usuario</li>
-        <li>Completa el proceso de verificación</li>
-        <li>Selecciona el plan gratuito</li>
-    </ol>
-
-    <h3>Configurar el perfil (opcional)</h3>
-    <ol>
-        <li>Accede a tu cuenta</li>
-        <li>Ve a "Settings" > "Profile"</li>
-        <li>Añade una foto de perfil y una breve biografía</li>
-        <li>Completa información adicional como tu ubicación y sitio web</li>
-    </ol>
-
-    <h3>Crear tu primer repositorio</h3>
-    <ol>
-        <li>En GitHub, haz clic en el botón "+" en la esquina superior derecha</li>
-        <li>Selecciona "New repository"</li>
-        <li>Nombra tu repositorio empezando por <strong>2025Apellido</strong>
-            <li>Añade tus apellidos y nombre en la descripción</li>
-        <li>Elige que el sea repositorio privado</li>
-        <li>Marca "Initialize this repository with a README"</li>
-        <li>Haz clic en "Create repository"</li>
-    </ol>
-
-    <h3>Añadir al profesor como colaborador (evaluación)</h3>
-    <ol>
-        <li>En tu repositorio, ve a <strong>Settings</strong> (pestaña superior derecha).</li>
-        <li>En el menú izquierdo, selecciona <strong>Collaborators</strong> > <strong>Add people</strong>.</li>
-        <li>Escribe el nombre de usuario de GitHub del curso (latex-git).</li>
-        <li>Haz clic en <strong>Add to this repository.</strong></li>
-        <li>Recibirá una notificación en GitHub y una invitación por correo y deberá aceptarla.</li>
-    </ol>
-
-    <h3>Git integrado en Overleaf (Usando la Licencia de Campus)</h3>
-    
-    <p><strong>En Overleaf, Git está completamente integrado.</strong> No necesitas instalar Git en tu ordenador ni usar la terminal. Todo se hace desde la interfaz de Overleaf.</p>
-    
-    <h4>Activar la sincronización con GitHub en Overleaf</h4>
-    <ol>
-        <li>En tu proyecto Overleaf, haz clic en <strong>"Menu"</strong> (arriba a la izquierda).</li>
-        <li>Busca la opción <strong>"Git"</strong> en el menú.</li>
-        <li>Se abrirá un panel mostrando la URL para clonar desde GitHub:
-            <pre><code>git clone https://git.overleaf.com/[project-id]</code></pre>
-        </li>
-        <li>Si tu repositorio GitHub está conectado, verás la opción <strong>"Link to GitHub"</strong>.</li>
-        <li>Sigue los pasos para autorizar a Overleaf a acceder a tu GitHub.</li>
-    </ol>
-    
-    <h4>Sincronización automática Overleaf-GitHub</h4>
-    <p>Una vez vinculado tu proyecto Overleaf con un repositorio de GitHub:</p>
-    <ul>
-        <li>✅ <strong>Cambios en Overleaf</strong> se sincronizan automáticamente a GitHub.</li>
-        <li>✅ <strong>Cambios en GitHub</strong> se pueden traer a Overleaf (pull).</li>
-        <li>✅ <strong>Historial completo</strong> está disponible en GitHub.</li>
-        <li>✅ <strong>Control de versiones</strong> sin necesidad de usar la terminal.</li>
-    </ul>
-    
-    <h4>Clonar un proyecto desde GitHub a Overleaf</h4>
-    <ol>
-        <li>En Overleaf, ve a "New Project".</li>
-        <li>Selecciona <strong>"Import from GitHub"</strong>.</li>
-        <li>Autoriza a Overleaf si es la primera vez.</li>
-        <li>Selecciona el repositorio que deseas clonar.</li>
-        <li>¡Listo! Tu proyecto ahora está en Overleaf con sincronización automática.</li>
-    </ol>
-    
-    <h4>Ver cambios y commits en Overleaf</h4>
-    <p>En Overleaf puedes ver el historial de cambios de dos formas:</p>
-    <ul>
-        <li><strong>Historial de Overleaf:</strong> Haz clic en <strong>"History"</strong> en la barra superior. Ves todos los cambios realizados en Overleaf con timestamp y colaborador.</li>
-        <li><strong>Historial de Git/GitHub:</strong> Haz clic en <strong>"Menu"</strong> > <strong>"Git"</strong>. Ves los commits de tu repositorio GitHub.</li>
-    </ul>
-    </ol>
-
-    
-
-    <h3>Alternativas a GitHub</h3>
-    <p>Aunque GitHub es la plataforma más popular para alojar repositorios Git, existen alternativas notables:</p>
-    <ul>
-        <li><strong>GitLab</strong>: Ofrece repositorios privados ilimitados en su plan gratuito y puede instalarse en servidores propios. Destaca por su sistema integrado de CI/CD.</li>
-        <li><strong>Bitbucket</strong>: Desarrollado por Atlassian, se integra bien con Jira y otras herramientas de la suite. Ideal para equipos pequeños que necesitan repositorios privados.</li>
-    </ul>
-
-
-    <h2>Introducción a LaTeX</h2>
+    <h2>Introducción a LaTeX en Overleaf</h2>
 
     <h3>¿Qué es LaTeX y por qué es útil para la escritura académica?</h3>
     
@@ -190,11 +41,11 @@
     <p><a href="https://www.ctan.org/" target="_blank" rel="noopener">https://www.ctan.org/</a></p>
     <p><a href="http://cervantex.es/manuales" target="_blank" rel="noopener">http://cervantex.es/manuales</a></p>
     
-    <h3>Crear tu Cuenta en Overleaf (Recomendado para este curso)</h3>
+    <h2>Crear tu Cuenta en Overleaf (Recomendado para este curso)</h2>
     
     <p><strong>En lugar de instalar LaTeX localmente, usaremos Overleaf, una plataforma online colaborativa que te permite escribir documentos LaTeX sin necesidad de instalación.</strong></p>
     
-    <h4>¿Por qué Overleaf en lugar de instalar LaTeX localmente?</h4>
+    <h3>¿Por qué Overleaf en lugar de instalar LaTeX localmente?</h3>
     <ul>
         <li><strong>✅ Sin instalación complicada</strong>: Solo necesitas un navegador web y una conexión a internet.</li>
         <li><strong>✅ Compilación automática</strong>: Los documentos se compilan automáticamente en los servidores de Overleaf mientras escribes.</li>
@@ -202,10 +53,10 @@
         <li><strong>✅ Colaboración integrada</strong>: Trabaja con otros estudiantes en el mismo documento simultáneamente.</li>
         <li><strong>✅ Plantillas profesionales</strong>: Acceso a más de 6,000 plantillas preconfiguradas.</li>
         <li><strong>✅ Compatible con cualquier dispositivo</strong>: Funciona en Windows, macOS, Linux, tablets y móviles.</li>
-        <li><strong>✅ Integración con GitHub</strong>: Sincroniza automáticamente tu proyecto con GitHub (si tu universidad tiene licencia de campus).</li>
+        <li><strong>✅ Track Changes y Historial</strong>: Control de cambios integrado sin complejidad de herramientas externas.</li>
     </ul>
 
-    <h4>Crear tu cuenta en Overleaf:</h4>
+    <h3>Crear tu cuenta en Overleaf:</h3>
     <ol>
         <li>Visita <a href="https://www.overleaf.com" target="_blank" rel="noopener">https://www.overleaf.com</a></li>
         <li>Haz clic en el botón <strong>"Sign up"</strong> en la esquina superior derecha.</li>
@@ -219,13 +70,34 @@
         <li>¡Tu cuenta en Overleaf está lista! Ahora tendrás acceso al panel de proyectos.</li>
     </ol>
 
-    <h4>Primer acceso a Overleaf:</h4>
+    <h3>Primer acceso a Overleaf:</h3>
     <p>Después de crear tu cuenta, verás el panel de proyectos de Overleaf. Desde aquí puedes:</p>
     <ul>
         <li><strong>Crear un nuevo proyecto en blanco:</strong> Haz clic en <strong>"New Project"</strong> > <strong>"Blank Project"</strong>.</li>
         <li><strong>Usar una plantilla:</strong> Haz clic en <strong>"New Project"</strong> > <strong>"From Template"</strong> para elegir entre miles de plantillas profesionales.</li>
         <li><strong>Cargar un proyecto existente:</strong> Si tienes archivos LaTeX locales, haz clic en <strong>"New Project"</strong> > <strong>"Upload Project"</strong>.</li>
     </ul>
+
+    <h3>Importante: Activa tu Licencia de Campus</h3>
+    
+    <p><strong>Buenas noticias:</strong> Si tu universidad tiene una licencia de Overleaf Campus (que es muy probable), tendrás acceso a todas las características premium de Overleaf de forma gratuita:</p>
+
+    <ul>
+        <li>✅ Compilación rápida (240 segundos vs 20 segundos en versión gratuita).</li>
+        <li>✅ Acceso a integraciones con Zotero y Mendeley.</li>
+        <li>✅ Hasta 10 colaboradores por proyecto (ilimitado en algunos casos).</li>
+        <li>✅ Historial completo de cambios.</li>
+        <li>✅ Soporte prioritario.</li>
+    </ul>
+    
+    <p><strong>Para activar tu cuenta de campus:</strong></p>
+    <ol>
+        <li>Inicia sesión en Overleaf.</li>
+        <li>Ve a <strong>Account Settings</strong> (icono de cuenta arriba a la derecha).</li>
+        <li>Busca la sección <strong>"Institution & Group Accounts"</strong> o <strong>"Campus License"</strong>.</li>
+        <li>Introduce el código de activación que proporciona tu universidad.</li>
+        <li>¡Felicidades! Ya tienes acceso a todas las características premium.</li>
+    </ol>
     
     <h3>Interfaz de Overleaf - Guía Visual</h3>
     
@@ -255,17 +127,131 @@
         </li>
     </ul>
     
-    <h4>Botones principales:</h4>
+    <h3>Botones principales:</h3>
     <ul>
         <li><strong>Compile (verde)</strong>: Compila el documento y muestra el PDF. Se ejecuta automáticamente.</li>
         <li><strong>Share</strong>: Comparte el proyecto con otros estudiantes mediante un enlace o email.</li>
         <li><strong>History</strong>: Ver el historial de cambios (versiones anteriores del documento).</li>
-        <li><strong>Menu</strong>: Acceso a opciones avanzadas como descargar proyecto, sincronización con GitHub, etc.</li>
+        <li><strong>Menu</strong>: Acceso a opciones avanzadas como descargar proyecto, Track Changes, etc.</li>
     </ul>
     
-    <h3>Crear tu Primer Proyecto en Overleaf</h3>
+    <h2>Control de Cambios en Overleaf</h2>
+
+    <h3>¿Por qué es importante el control de cambios?</h3>
+
+    <p>Cuando trabajas en una tesis en colaboración con tu director o con otros estudiantes, necesitas poder:</p>
+    <ul>
+        <li>Ver qué cambios se han hecho y cuándo</li>
+        <li>Rastrear quién hizo cada cambio</li>
+        <li>Revertir cambios si es necesario</li>
+        <li>Comparar versiones diferentes del documento</li>
+    </ul>
+
+    <p><strong>En Overleaf, esto es más simple que aprender Git:</strong> Usa el Historial integrado y Track Changes.</p>
+
+    <h3>Opción 1: Historial de Cambios (History)</h3>
+
+    <p><strong>Qué es:</strong> Una línea de tiempo visual de todos los cambios realizados en tu proyecto.</p>
+
+    <p><strong>Cómo usarlo:</strong></p>
+    <ol>
+        <li>En tu proyecto, haz clic en <strong>"History"</strong> (arriba a la derecha, junto a "Share").</li>
+        <li>Verás una línea de tiempo con todos los cambios:
+            <ul>
+                <li>Quién hizo el cambio</li>
+                <li>Cuándo se realizó</li>
+                <li>Qué líneas fueron modificadas (mostradas en colores)</li>
+            </ul>
+        </li>
+        <li>Haz clic en cualquier versión anterior para previewizarla.</li>
+        <li>Si necesitas volver atrás, haz clic en <strong>"Restore"</strong> para restaurar esa versión.</li>
+    </ol>
+
+    <p><strong>Ventaja:</strong> Es automático. Cada vez que alguien (incluyéndote) guarda cambios, se registra en el historial.</p>
+
+    <h3>Opción 2: Track Changes (Seguimiento de Cambios)</h3>
+
+    <p><strong>Qué es:</strong> Similar a "Control de Cambios" en Word. Marca los cambios propuestos sin aplicarlos automáticamente.</p>
+
+    <p><strong>Cuándo usarlo:</strong> Cuando el director u otro revisor quiere sugerir cambios sin modificar directamente el documento.</p>
+
+    <p><strong>Cómo activarlo:</strong></p>
+    <ol>
+        <li>En tu proyecto, haz clic en <strong>"Menu"</strong> (arriba a la izquierda).</li>
+        <li>Busca la opción <strong>"Track Changes"</strong>.</li>
+        <li>Selecciona <strong>"On"</strong> para activar.</li>
+        <li>Puedes elegir qué tipo de cambios registrar (todas las ediciones).</li>
+    </ol>
+
+    <p><strong>Cómo ven los cambios propuestos:</strong></p>
+    <ul>
+        <li><strong>Texto añadido:</strong> Aparece en color (por defecto verde o azul).</li>
+        <li><strong>Texto eliminado:</strong> Aparece tachado.</li>
+        <li><strong>Cambios resaltados:</strong> Cada colaborador tiene un color diferente.</li>
+    </ul>
+
+    <p><strong>Cómo aceptar o rechazar cambios:</strong></p>
+    <ol>
+        <li>En Track Changes, verás botones para cada cambio: <strong>"Accept"</strong> o <strong>"Reject"</strong>.</li>
+        <li>Haz clic en <strong>"Accept"</strong> para aplicar el cambio sugerido.</li>
+        <li>Haz clic en <strong>"Reject"</strong> para descartar la sugerencia.</li>
+    </ol>
+
+    <p><strong>Ventaja:</strong> El director puede sugerir cambios sin que se apliquen automáticamente. Tú decides qué mantener.</p>
+
+    <h3>Comparación: Historia vs Track Changes</h3>
+
+    <table border="1" style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+        <thead>
+            <tr style="background-color: #1976d2; color: white;">
+                <th style="padding: 10px; font-weight: bold;">Característica</th>
+                <th style="padding: 10px; font-weight: bold;">History</th>
+                <th style="padding: 10px; font-weight: bold;">Track Changes</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="padding: 10px;"><strong>Automático</strong></td>
+                <td style="padding: 10px;">✅ Siempre activo</td>
+                <td style="padding: 10px;">❌ Requiere activación</td>
+            </tr>
+            <tr style="background-color: #f9f9f9;">
+                <td style="padding: 10px;"><strong>Cambios aplicados</strong></td>
+                <td style="padding: 10px;">✅ Inmediatamente</td>
+                <td style="padding: 10px;">❌ Solo si los aceptas</td>
+            </tr>
+            <tr>
+                <td style="padding: 10px;"><strong>Ver cambios sugeridos</strong></td>
+                <td style="padding: 10px;">✅ Ver qué cambió</td>
+                <td style="padding: 10px;">✅ Ver propuestas claramente</td>
+            </tr>
+            <tr style="background-color: #f9f9f9;">
+                <td style="padding: 10px;"><strong>Revertir cambios</strong></td>
+                <td style="padding: 10px;">✅ Restaurar versión anterior</td>
+                <td style="padding: 10px;">✅ Rechazar sugerencias</td>
+            </tr>
+            <tr>
+                <td style="padding: 10px;"><strong>Ideal para</strong></td>
+                <td style="padding: 10px;">Monitorear progress</td>
+                <td style="padding: 10px;">Revisión colaborativa</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Flujo de trabajo recomendado para tesis</h3>
+
+    <ol>
+        <li><strong>Escribe tu capítulo</strong> en Overleaf. History registra automáticamente tus cambios.</li>
+        <li><strong>Comparte con tu director</strong> usando el botón "Share" (con permisos de edición o comentario).</li>
+        <li><strong>Tu director activa Track Changes</strong> y propone cambios/mejoras.</li>
+        <li><strong>Tú ves los cambios sugeridos</strong> en color, sin que se apliquen automáticamente.</li>
+        <li><strong>Revisas cada sugerencia</strong> y aceptas o rechazas.</li>
+        <li><strong>History registra todo</strong> el proceso, así siempre tienes un registro completo.</li>
+    </ol>
     
-    <h4>Paso 1: Crear un proyecto en blanco</h4>
+    <h2>Crear tu Primer Proyecto en Overleaf</h2>
+    
+    <h3>Paso 1: Crear un proyecto en blanco</h3>
     <ol>
         <li>En el panel de proyectos, haz clic en <strong>"New Project"</strong>.</li>
         <li>Selecciona <strong>"Blank Project"</strong>.</li>
@@ -273,7 +259,7 @@
         <li>Haz clic en <strong>"Create"</strong>.</li>
     </ol>
     
-    <h4>Paso 2: Estructura básica de un documento</h4>
+    <h3>Paso 2: Estructura básica de un documento</h3>
     <p>Overleaf crea automáticamente un archivo <code>main.tex</code> con esta estructura básica:</p>
     <pre><code>\documentclass{article}
 \usepackage[utf8]{inputenc}
@@ -291,7 +277,7 @@ Este es mi primer documento en LaTeX usando Overleaf.
 
 \end{document}</code></pre>
     
-    <h4>Paso 3: Editar y compilar</h4>
+    <h3>Paso 3: Editar y compilar</h3>
     <ol>
         <li>Modifica el contenido en el panel central (editor).</li>
         <li>Haz clic en el botón <strong>"Compile"</strong> (verde) o presiona <code>Ctrl+Enter</code>.</li>
@@ -299,129 +285,56 @@ Este es mi primer documento en LaTeX usando Overleaf.
         <li>¡Felicidades! Has compilado tu primer documento LaTeX en Overleaf.</li>
     </ol>
     
-    <h4>Paso 4: Compartir tu proyecto</h4>
+    <h3>Paso 4: Compartir tu proyecto</h3>
     <ol>
         <li>Haz clic en el botón <strong>"Share"</strong> (arriba a la derecha).</li>
-        <li>Elige una de estas opciones:
-            <ul>
-                <li><strong>Edit link:</strong> Los colaboradores pueden editar el documento.</li>
-                <li><strong>View only link:</strong> Los colaboradores solo pueden ver (lectura).</li>
-            </ul>
-        </li>
-        <li>Copia el enlace y comparte con tus compañeros o profesor.</li>
+        <li>Consulta el apartado "Colaboración en tiempo real" en el Quickstart para ver cómo usar las opciones de compartir.</li>
     </ol>
 
-    <h2>Workflow de este Curso: Git + GitHub + Overleaf</h2>
+    <h2>Información importante sobre Overleaf</h2>
 
-    <h3>¿Cómo trabajan juntas estas herramientas?</h3>
-    
-    <p>En este curso, aprenderás a usar tres herramientas complementarias:</p>
-    
-    <ol>
-        <li><strong>Git</strong>: Sistema de control de versiones (rastrear cambios en tus archivos).</li>
-        <li><strong>GitHub</strong>: Plataforma online para alojar repositorios Git (colaboración y respaldos).</li>
-        <li><strong>Overleaf</strong>: Editor online de LaTeX (escribir y compilar documentos).</li>
-    </ol>
-    
-    <h4>Flujo de trabajo recomendado:</h4>
-    
-    <p><strong>Overleaf + GitHub (Con licencia de campus)</strong></p>
-    <ul>
-        <li>✅ Escribes en el editor de Overleaf.</li>
-        <li>✅ Overleaf sincroniza automáticamente con tu repositorio GitHub.</li>
-        <li>✅ Tú y tus compañeros ven los cambios en tiempo real en Overleaf.</li>
-        <li>✅ El historial de cambios está respaldado en GitHub.</li>
-        <li>✅ Trabajar desde cualquier dispositivo con el mismo proyecto.</li>
-        <li>✅ Sin necesidad de instalar nada en tu ordenador.</li>
-    </ul>
-    
-    <h3>Información importante sobre Overleaf</h3>
-    
-    <p><strong>Buenas noticias:</strong> Si tu universidad tiene una licencia de Overleaf Campus (que es muy probable), tendrás acceso a todas las características premium de Overleaf de forma gratuita:
-
-    <ul>
-        <li>✅ Compilación rápida (240 segundos vs 20 segundos en versión gratuita).</li>
-        <li>✅ Acceso a integraciones con GitHub, Zotero y Mendeley.</li>
-        <li>✅ Hasta 10 colaboradores por proyecto (ilimitado en algunos casos).</li>
-        <li>✅ Historial completo de cambios.</li>
-        <li>✅ Soporte prioritario.</li>
-    </ul>
-    
-    <p>Para activar tu cuenta de campus, en Overleaf ve a <strong>Account Settings</strong> y busca la opción de <strong>Campus License</strong>.</p>
-    
     <h3>Limitaciones de Overleaf (versión gratuita sin licencia)</h3>
 
     <p>Si no accedes a través de la licencia de campus, la versión gratuita de Overleaf tiene estas limitaciones:</p>
 
     <ol>
         <li><strong>Tiempo de compilación:</strong> Máximo 20 segundos por compilación.</li>
-        
         <li><strong>Colaboradores:</strong> Solo 1 colaborador por proyecto (otros pueden ver con enlace compartido).</li>
-        
         <li><strong>Tamaño de material editable:</strong> Máximo 7 MB por proyecto.</li>
-        
         <li><strong>Tamaño de archivo individual:</strong> Máximo 2 MB por archivo.</li>
-        
-        <li><strong>Sincronización con GitHub:</strong> No disponible en versión gratuita (sí con licencia campus).</li>
     </ol>
 
     <p><strong>Nota:</strong> Para este curso, estas limitaciones NO son un problema. Trabajaremos con documentos razonables en tamaño.</p>
     
-    <h3>Integraciones útiles de Overleaf</h3>
+    <h2>Integraciones útiles de Overleaf</h2>
     
-    <h4>1. Integración con Zotero (para bibliografía)</h4>
+    <h3>1. Integración con Zotero (para bibliografía)</h3>
     <p>Zotero es un gestor de referencias que puede integrarse con Overleaf. Aprenderemos esto en la Clase 4.</p>
     
-    <h4>2. Integración con Mendeley (alternativa)</h4>
+    <h3>2. Integración con Mendeley (alternativa)</h3>
     <p>Similar a Zotero, es otra opción popular en universidades. También se integra con Overleaf.</p>
-    
-    <h4>3. Sincronización con GitHub (Licencia Campus)</h4>
-    <p>Si tu institución proporciona licencia Campus, puedes sincronizar tu proyecto Overleaf directamente con GitHub:
+
+    <h2>Nota sobre Git (Recurso Avanzado Opcional)</h2>
+
+    <p><strong>¿Qué es Git y por qué no lo cubrimos en profundidad en este curso?</strong></p>
+
+    <p>Git es un sistema de control de versiones distribuido muy poderoso, pero tiene una curva de aprendizaje significativa (commits, branches, merges, resolución de conflictos). Para el propósito de este curso enfocado en escribir una tesis, <strong>Overleaf proporciona las funcionalidades esenciales de forma mucho más accesible:</strong></p>
+
     <ul>
-        <li>Cambios en Overleaf se sincronizan automáticamente a GitHub.</li>
-        <li>Los colaboradores ven los cambios en tiempo real.</li>
-        <li>Historial de versiones respaldado en la nube.</li>
+        <li><strong>Historia de cambios:</strong> Overleaf History es más intuitivo que Git.</li>
+        <li><strong>Track Changes:</strong> Más natural para revisión colaborativa que Git.</li>
+        <li><strong>Colaboración simultánea:</strong> Overleaf es inmediato, Git requiere sincronización manual.</li>
     </ul>
+
+    <p><strong>Si quieres aprender Git como recurso avanzado,</strong> la versión local del curso lo cubre. También puedes consultar el archivo <a href="git-faq.html" target="_blank">git-faq.html</a> para respuestas frecuentes.</p>
 
     <p><a href="index.html" class="back-to-index">Volver al índice</a></p>
     
     <h2>Ejercicios Prácticos - Clase 1</h2>
     
-    <p><strong>Realiza estos ejercicios en orden. Son esenciales para dominar Git, GitHub y Overleaf.</strong></p>
+    <p><strong>Realiza estos ejercicios en orden. Son esenciales para dominar Overleaf.</strong></p>
     
-    <h3>✏️ Ejercicio 1: Registrarse en GitHub (10 minutos)</h3>
-    <ol>
-        <li>Ve a <a href="https://github.com" target="_blank" rel="noopener">https://github.com</a>.</li>
-        <li>Haz clic en "Sign up" (esquina superior derecha).</li>
-        <li>Completa el formulario con:
-            <ul>
-                <li>Email: Tu correo institucional (recomendado)</li>
-                <li>Contraseña: Segura y memorable</li>
-                <li>Nombre de usuario: Formato sugerido: "2025TuApellido"</li>
-            </ul>
-        </li>
-        <li>Verifica tu email.</li>
-        <li>Completa tu perfil con foto y biografía.</li>
-    </ol>
-    
-    <h3>✏️ Ejercicio 2: Crear tu Primer Repositorio en GitHub (15 minutos)</h3>
-    <ol>
-        <li>Haz login en tu cuenta de GitHub.</li>
-        <li>Haz clic en el icono "+" (esquina superior derecha) > "New repository".</li>
-        <li>Completa la información:
-            <ul>
-                <li><strong>Repository name</strong>: "2025TuApellido"</li>
-                <li><strong>Description</strong>: "Repositorio del curso de LaTeX y Git"</li>
-                <li><strong>Privado</strong>: Marca "Private"</li>
-                <li><strong>Inicializar</strong>: Marca "Add a README file"</li>
-            </ul>
-        </li>
-        <li>Haz clic en "Create repository".</li>
-        <li>En tu repositorio, ve a <strong>Settings > Collaborators > Add people</strong>.</li>
-        <li>Añade al profesor (nombre de usuario del curso) como colaborador.</li>
-    </ol>
-    
-    <h3>✏️ Ejercicio 3: Registrarse en Overleaf (10 minutos)</h3>
+    <h3>✏️ Ejercicio 1: Registrarse en Overleaf (10 minutos)</h3>
     <ol>
         <li>Ve a <a href="https://www.overleaf.com" target="_blank" rel="noopener">https://www.overleaf.com</a></li>
         <li>Haz clic en "Sign up" (esquina superior derecha).</li>
@@ -430,14 +343,14 @@ Este es mi primer documento en LaTeX usando Overleaf.
         <li>Inicia sesión y accede al dashboard.</li>
         <li><strong>IMPORTANTE:</strong> Si tu institución tiene licencia Campus:
             <ul>
-                <li>Ve a <strong>Account Settings > Campus License</strong></li>
-                <li>Ingresa el código de activación que te proporcionó la universidad</li>
+                <li>Ve a <strong>Account Settings > Institution & Group Accounts</strong></li>
+                <li>Introduce el código de activación que te proporcionó la universidad</li>
                 <li>Activa tu licencia Campus para desbloquear todas las funciones</li>
             </ul>
         </li>
     </ol>
     
-    <h3>✏️ Ejercicio 4: Crear tu Primer Proyecto en Overleaf (20 minutos)</h3>
+    <h3>✏️ Ejercicio 2: Crear tu Primer Proyecto en Overleaf (20 minutos)</h3>
     <ol>
         <li>En Overleaf, haz clic en <strong>"New Project"</strong> (botón grande).</li>
         <li>Selecciona <strong>"Blank Project"</strong> para empezar desde cero.</li>
@@ -464,7 +377,7 @@ de instalación local. Es colaborativo y tiene compilación automática.
     \item Acceso desde cualquier navegador
     \item Compilación automática en tiempo real
     \item Colaboración simultánea con otros usuarios
-    \item Integración con GitHub
+    \item Track Changes para revisión colaborativa
     \item 6000+ plantillas profesionales
 \end{itemize}
 
@@ -475,15 +388,10 @@ de instalación local. Es colaborativo y tiene compilación automática.
         <li>¡Congratulations! Has creado y compilado tu primer documento LaTeX en Overleaf.</li>
     </ol>
     
-    <h3>✏️ Ejercicio 5: Colaborar en Tiempo Real - Compartir tu Proyecto (15 minutos)</h3>
+    <h3>✏️ Ejercicio 3: Colaborar en Tiempo Real - Compartir tu Proyecto (15 minutos)</h3>
     <ol>
         <li>En tu proyecto "Mi_Primer_Documento", haz clic en el botón <strong>"Share"</strong> (arriba a la derecha).</li>
-        <li>Verás dos opciones:
-            <ul>
-                <li><strong>"Edit as owner"</strong>: Para dar acceso de edición a otros usuarios de Overleaf registrados.</li>
-                <li><strong>"Edit link"</strong>: Copia el enlace para compartir con cualquiera.</li>
-            </ul>
-        </li>
+        <li>Consulta el Quickstart para ver cómo funciona el diálogo Share y qué opciones tienes.</li>
         <li>Copia el enlace "Edit link" y envíalo a un compañero (o a ti mismo desde otra ventana).</li>
         <li>Accede desde otra pestaña usando ese enlace.</li>
         <li>Ambos editores haced cambios simultáneamente y observa cómo se actualizan en tiempo real.</li>
@@ -491,31 +399,9 @@ de instalación local. Es colaborativo y tiene compilación automática.
         <li>Observa cómo el PDF se compila automáticamente con los cambios de ambos.</li>
     </ol>
     
-    <h3>✏️ Ejercicio 6: Conectar tu Proyecto Overleaf con GitHub (20 minutos)</h3>
+    <h3>✏️ Ejercicio 4: Explorar el Historial de Cambios (10 minutos)</h3>
     <ol>
-        <li>Asegúrate de haber creado un repositorio en GitHub (Ejercicio 2).</li>
-        <li>En Overleaf, abre tu proyecto "Mi_Primer_Documento".</li>
-        <li>Haz clic en <strong>"Menu"</strong> (arriba a la izquierda).</li>
-        <li>Busca y haz clic en <strong>"Sync with GitHub"</strong> (o "GitHub" dependiendo de tu versión).</li>
-        <li>Se abrirá una ventana solicitando autorización. Haz clic en <strong>"Authorize with GitHub"</strong>.</li>
-        <li>Inicia sesión en GitHub si es necesario.</li>
-        <li>Selecciona tu repositorio <code>2025TuApellido</code>.</li>
-        <li>Confirma la conexión. Ahora tu proyecto está sincronizado.</li>
-    </ol>
-    
-    <h3>✏️ Ejercicio 7: Ver Cambios Sincronizados en GitHub (10 minutos)</h3>
-    <ol>
-        <li>En Overleaf, haz un pequeño cambio en main.tex (ej: cambia el título).</li>
-        <li>Overleaf compilará automáticamente (verás el PDF actualizado).</li>
-        <li>Espera unos segundos para que sincronice con GitHub.</li>
-        <li>Ve a tu repositorio en GitHub y actualiza la página.</li>
-        <li>¡Verás que main.tex ha sido modificado! El cambio se sincronizó automáticamente.</li>
-        <li>Haz clic en el archivo main.tex en GitHub para ver el cambio resaltado.</li>
-    </ol>
-    
-    <h3>✏️ Ejercicio 8: Historial de Cambios en Overleaf (10 minutos)</h3>
-    <ol>
-        <li>En tu proyecto Overleaf, haz clic en <strong>"History"</strong> (arriba a la derecha).</li>
+        <li>En tu proyecto, haz clic en <strong>"History"</strong> (arriba a la derecha).</li>
         <li>Verás una línea de tiempo con todos los cambios realizados.</li>
         <li>Cada cambio muestra:
             <ul>
@@ -525,19 +411,29 @@ de instalación local. Es colaborativo y tiene compilación automática.
             </ul>
         </li>
         <li>Haz clic en un cambio anterior para verlo.</li>
-        <li>Haz clic en <strong>"Restore"</strong> si quieres volver a esa versión anterior.</li>
+        <li>Experimenta con las opciones: Ver cómo lucía el documento en una versión anterior.</li>
+    </ol>
+
+    <h3>✏️ Ejercicio 5: Activar Track Changes (10 minutos)</h3>
+    <ol>
+        <li>En tu proyecto, haz clic en <strong>"Menu"</strong> (arriba a la izquierda).</li>
+        <li>Busca la opción <strong>"Track Changes"</strong>.</li>
+        <li>Selecciona <strong>"On"</strong> para activar.</li>
+        <li>Haz algunos cambios en el documento (edita texto, agrega párrafos).</li>
+        <li>Verás que tus cambios aparecen resaltados sin ser aplicados inmediatamente.</li>
+        <li>Experimenta con los botones "Accept" y "Reject" para ver cómo funcionan.</li>
+        <li>Desactiva Track Changes cuando termines.</li>
     </ol>
     
     <h3>Resumen de lo que aprendiste en esta clase:</h3>
     <ul>
-        <li>✅ Entiendes qué es Git y por qué es importante.</li>
-        <li>✅ Creaste una cuenta en GitHub y un primer repositorio.</li>
-        <li>✅ Comprendes básicamente cómo funciona Git (add, commit, push).</li>
+        <li>✅ Comprendes qué es LaTeX y por qué es útil para tesis.</li>
         <li>✅ Creaste una cuenta en Overleaf.</li>
+        <li>✅ Activaste tu licencia de Campus (si aplica).</li>
         <li>✅ Compilaste tu primer documento LaTeX en Overleaf sin instalar nada.</li>
         <li>✅ Compartiste un proyecto con compañeros en Overleaf.</li>
-        <li>✅ Sincronizaste un proyecto entre Overleaf y GitHub.</li>
-        <li>✅ Clonaste un repositorio desde GitHub.</li>
+        <li>✅ Exploraste el Historial de cambios.</li>
+        <li>✅ Usaste Track Changes para revisar colaborativa.</li>
     </ul>
     
     <h3>Próxima clase: Clase 2 - Fundamentos de LaTeX</h3>
@@ -551,24 +447,11 @@ de instalación local. Es colaborativo y tiene compilación automática.
     
     <h3>Más información</h3>
     <ul>
-        <li><a href="https://www.geeksforgeeks.org/git-vs-other-version-control-systems-why-git-stands-out/"
-                target="_blank"
-                rel="noopener">Git vs Other Version Control Systems</a>
-        </li>
-        <li><a href="https://www.toolsqa.com/git/what-is-git/" target="_blank"
-                rel="noopener">¿Qué es Git?</a></li>
-        <li><a href="https://www.atlassian.com/git" target="_blank" rel="noopener">Tutoriales de Git - Atlassian</a>
-        </li>
-        <li><a href="https://docs.github.com/en/get-started/using-git/about-git" target="_blank"
-                rel="noopener">About Git - GitHub Docs</a></li>
-        <li><a href="https://www.overleaf.com/learn" target="_blank"
-                rel="noopener">Overleaf Learn - Documentación completa</a></li>
-        <li><a href="https://www.overleaf.com/learn/how-to/Sharing_a_project" target="_blank"
-                rel="noopener">Cómo compartir proyectos en Overleaf</a></li>
-        <li><a href="https://www.w3schools.com/git/" target="_blank" rel="noopener">W3Schools Git Tutorial</a>
-        </li>
-        <li><a href="https://www.freecodecamp.org/news/what-is-git-learn-git-version-control/" target="_blank"
-                rel="noopener">What is Git? Learn Git Version Control - freeCodeCamp</a></li>
+        <li><a href="https://www.latex-project.org/" target="_blank" rel="noopener">LaTeX Project - Documentación oficial</a></li>
+        <li><a href="https://www.overleaf.com/learn" target="_blank" rel="noopener">Overleaf Learn - Documentación completa</a></li>
+        <li><a href="https://www.overleaf.com/learn/how-to/Sharing_a_project" target="_blank" rel="noopener">Cómo compartir proyectos en Overleaf</a></li>
+        <li><a href="https://www.overleaf.com/learn/how-to/Using_Track_Changes" target="_blank" rel="noopener">Track Changes en Overleaf</a></li>
+        <li><a href="https://www.ctan.org/" target="_blank" rel="noopener">CTAN - LaTeX packages</a></li>
     </ul>
 </body>
 
