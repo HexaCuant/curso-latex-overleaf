@@ -96,13 +96,41 @@
         <li>✅ Soporte prioritario</li>
     </ul>
 
-    <h3>Primer acceso a Overleaf:</h3>
-    <p>Después de iniciar sesión, verás el panel de proyectos de Overleaf. Desde aquí puedes:</p>
-    <ul>
-        <li><strong>Crear un nuevo proyecto en blanco:</strong> Haz clic en <strong>"New Project"</strong> > <strong>"Blank Project"</strong>.</li>
-        <li><strong>Ver un proyecto de ejemplo:</strong> Haz clic en <strong>"New Project"</strong> > <strong>"Example Project"</strong> para ver un documento de demostración con código LaTeX ya escrito.</li>
-        <li><strong>Cargar un proyecto existente:</strong> Si tienes archivos LaTeX locales, haz clic en <strong>"New Project"</strong> > <strong>"Upload Project"</strong>.</li>
-    </ul>
+    <h2>Crear tu Primer Proyecto en Overleaf</h2>
+    
+    <h3>Paso 1: Crear un proyecto en blanco</h3>
+    <ol>
+        <li>En el panel de proyectos de Overleaf, haz clic en <strong>"New Project"</strong>.</li>
+        <li>Selecciona <strong>"Blank Project"</strong> (también puedes elegir "Example Project" para ver un ejemplo con código ya escrito).</li>
+        <li>Asigna un nombre al proyecto (ej: "MiPrimerDocumento").</li>
+        <li>Haz clic en <strong>"Create"</strong>.</li>
+    </ol>
+    
+    <h3>Paso 2: Estructura básica de un documento</h3>
+    <p>Overleaf crea automáticamente un archivo <code>main.tex</code> con esta estructura básica:</p>
+    <pre><code>\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{Mi Primer Documento}
+\author{Tu Nombre}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Introducción}
+Este es mi primer documento en LaTeX usando Overleaf.
+
+\end{document}</code></pre>
+    
+    <h3>Paso 3: Editar y compilar</h3>
+    <ol>
+        <li>Modifica el contenido en el panel central (editor).</li>
+        <li>Haz clic en el botón <strong>"Compile"</strong> (verde) o presiona <code>Ctrl+Enter</code>.</li>
+        <li>Ve el resultado en el panel derecho (PDF Preview).</li>
+        <li>¡Felicidades! Has compilado tu primer documento LaTeX en Overleaf.</li>
+    </ol>
     
     <h3>Interfaz de Overleaf - Guía Visual</h3>
     
@@ -307,48 +335,6 @@
         <li><strong>History registra todo</strong> el proceso, así siempre tienes un registro completo.</li>
     </ol>
     
-    <h2>Crear tu Primer Proyecto en Overleaf</h2>
-    
-    <h3>Paso 1: Crear un proyecto en blanco</h3>
-    <ol>
-        <li>En el panel de proyectos, haz clic en <strong>"New Project"</strong>.</li>
-        <li>Selecciona <strong>"Blank Project"</strong>.</li>
-        <li>Asigna un nombre al proyecto (ej: "MiPrimerDocumento").</li>
-        <li>Haz clic en <strong>"Create"</strong>.</li>
-    </ol>
-    
-    <h3>Paso 2: Estructura básica de un documento</h3>
-    <p>Overleaf crea automáticamente un archivo <code>main.tex</code> con esta estructura básica:</p>
-    <pre><code>\documentclass{article}
-\usepackage[utf8]{inputenc}
-
-\title{Mi Primer Documento}
-\author{Tu Nombre}
-\date{\today}
-
-\begin{document}
-
-\maketitle
-
-\section{Introducción}
-Este es mi primer documento en LaTeX usando Overleaf.
-
-\end{document}</code></pre>
-    
-    <h3>Paso 3: Editar y compilar</h3>
-    <ol>
-        <li>Modifica el contenido en el panel central (editor).</li>
-        <li>Haz clic en el botón <strong>"Compile"</strong> (verde) o presiona <code>Ctrl+Enter</code>.</li>
-        <li>Ve el resultado en el panel derecho (PDF Preview).</li>
-        <li>¡Felicidades! Has compilado tu primer documento LaTeX en Overleaf.</li>
-    </ol>
-    
-    <h3>Paso 4: Compartir tu proyecto</h3>
-    <ol>
-        <li>Haz clic en el botón <strong>"Share"</strong> (arriba a la derecha).</li>
-        <li>Consulta el apartado "Colaboración en tiempo real" en el Quickstart para ver cómo usar las opciones de compartir.</li>
-    </ol>
-
     <h2>Información importante sobre Overleaf</h2>
 
     <h3>Limitaciones de Overleaf (versión gratuita sin licencia)</h3>
