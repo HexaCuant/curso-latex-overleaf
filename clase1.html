@@ -135,10 +135,41 @@
     <h3>Botones principales:</h3>
     <ul>
         <li><strong>Compile (verde)</strong>: Compila el documento y muestra el PDF. Se ejecuta automáticamente.</li>
+        <li><strong>Review</strong>: Abre el panel de revisión donde puedes ver y gestionar cambios rastreados (Track Changes) y comentarios.</li>
         <li><strong>Share</strong>: Comparte el proyecto con otros estudiantes mediante un enlace o email.</li>
         <li><strong>History</strong>: Ver el historial de cambios (versiones anteriores del documento).</li>
-        <li><strong>Menu</strong>: Acceso a opciones avanzadas como descargar proyecto, Track Changes, etc.</li>
+        <li><strong>Menu</strong>: Acceso a opciones avanzadas como descargar proyecto, sincronización con Git, etc.</li>
     </ul>
+    
+    <h3>¿Para qué sirve el botón "Review"?</h3>
+    <p>El botón <strong>"Review"</strong> en la barra superior abre un <strong>panel lateral de revisión</strong> que te permite:</p>
+    <ul>
+        <li><strong>Ver todos los cambios rastreados (Track Changes):</strong> Lista completa de sugerencias de edición, adiciones y eliminaciones hechas en modo "Reviewing"</li>
+        <li><strong>Aceptar o rechazar cambios individualmente:</strong> Cada cambio tiene botones "Accept" y "Reject" para decidir si aplicarlo o descartarlo</li>
+        <li><strong>Ver comentarios:</strong> Todos los comentarios dejados por colaboradores en el documento</li>
+        <li><strong>Navegar entre cambios:</strong> Haz clic en cualquier cambio de la lista para ir directamente a esa parte del documento</li>
+        <li><strong>Filtrar por autor:</strong> Ver solo los cambios de una persona específica</li>
+        <li><strong>Responder a comentarios:</strong> Participar en discusiones sobre secciones específicas del documento</li>
+    </ul>
+
+    <p><strong>💡 Cuándo usar el panel Review:</strong></p>
+    <ul>
+        <li><strong>Después de que tu director revise tu tesis:</strong> Abre "Review" para ver todas sus sugerencias en una lista organizada</li>
+        <li><strong>Para revisión masiva de cambios:</strong> Puedes seleccionar todo el texto (Ctrl+A) y aceptar o rechazar todos los cambios a la vez</li>
+        <li><strong>Para seguimiento de discusiones:</strong> Ver comentarios pendientes de responder y resolver conversaciones</li>
+    </ul>
+
+    <p><strong>Cómo abrir el panel Review:</strong></p>
+    <ol>
+        <li>Haz clic en el botón <strong>"Review"</strong> en la barra superior (está entre "Recompile" y "Share")</li>
+        <li>Se abrirá un panel en el lado derecho mostrando:
+            <ul>
+                <li>Pestaña <strong>"Track changes"</strong>: Lista de todos los cambios pendientes</li>
+                <li>Pestaña <strong>"Comments"</strong>: Lista de todos los comentarios</li>
+            </ul>
+        </li>
+        <li>Haz clic nuevamente en "Review" para cerrar el panel</li>
+    </ol>
     
     <h2>Control de Cambios en Overleaf</h2>
 
@@ -204,12 +235,19 @@
 
     <p><strong>Cómo aceptar o rechazar cambios:</strong></p>
     <ol>
-        <li>En Track Changes, verás botones para cada cambio: <strong>"Accept"</strong> o <strong>"Reject"</strong>.</li>
-        <li>Haz clic en <strong>"Accept"</strong> para aplicar el cambio sugerido.</li>
-        <li>Haz clic en <strong>"Reject"</strong> para descartar la sugerencia.</li>
+        <li><strong>Opción 1 - Desde el documento:</strong> Los cambios aparecen directamente en el texto con botones <strong>"Accept"</strong> o <strong>"Reject"</strong> al lado de cada uno.</li>
+        <li><strong>Opción 2 - Desde el panel Review (recomendado):</strong> 
+            <ul>
+                <li>Haz clic en el botón <strong>"Review"</strong> en la barra superior</li>
+                <li>Se abrirá un panel lateral con la lista completa de cambios</li>
+                <li>Haz clic en cualquier cambio para ver su ubicación en el documento</li>
+                <li>Usa los botones <strong>"Accept"</strong> o <strong>"Reject"</strong> en el panel</li>
+                <li>Para aceptar/rechazar todos los cambios: selecciona todo el texto (Ctrl+A o Cmd+A) y aparecerá la opción "Accept all" o "Reject all"</li>
+            </ul>
+        </li>
     </ol>
 
-    <p><strong>Ventaja:</strong> El director puede sugerir cambios sin que se apliquen automáticamente. Tú decides qué mantener.</p>
+    <p><strong>Ventaja:</strong> El director puede sugerir cambios sin que se apliquen automáticamente. Tú decides qué mantener. El panel Review te da una vista organizada de todos los cambios pendientes.</p>
 
     <h3>Comparación: Historia vs Track Changes</h3>
 
@@ -244,7 +282,7 @@
             </tr>
             <tr>
                 <td style="padding: 10px;"><strong>Ideal para</strong></td>
-                <td style="padding: 10px;">Monitorear progress</td>
+                <td style="padding: 10px;">Monitorear progreso</td>
                 <td style="padding: 10px;">Revisión colaborativa</td>
             </tr>
         </tbody>
