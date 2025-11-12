@@ -164,10 +164,28 @@ Este es mi primer documento en LaTeX usando Overleaf.
     <ul>
         <li><strong>Compile (verde)</strong>: Compila el documento y muestra el PDF. Se ejecuta automáticamente.</li>
         <li><strong>Review</strong>: Abre el panel de revisión donde puedes ver y gestionar cambios rastreados (Track Changes) y comentarios.</li>
-        <li><strong>Share</strong>: Comparte el proyecto con otros estudiantes mediante un enlace o email.</li>
+        <li><strong>Share</strong>: Comparte el proyecto con otros. Ofrece dos métodos: por correo (con permisos específicos) o por enlace (público).</li>
         <li><strong>History</strong>: Ver el historial de cambios (versiones anteriores del documento).</li>
         <li><strong>Menu</strong>: Acceso a opciones avanzadas como descargar proyecto, sincronización con Git, etc.</li>
     </ul>
+    
+    <h3>¿Para qué sirve el botón "Share"?</h3>
+    <p>El botón <strong>"Share"</strong> te permite colaborar compartiendo tu proyecto. Tiene dos opciones principales:</p>
+    
+    <p><strong>Opción 1: Compartir por correo electrónico (recomendado)</strong></p>
+    <ul>
+        <li><strong>editor:</strong> La persona puede ver y editar todo el documento, hacer cambios Track Changes, y colaborar en tiempo real.</li>
+        <li><strong>reviewer:</strong> La persona puede hacer cambios sugeridos usando Track Changes, pero no puede editar directamente.</li>
+        <li><strong>viewer:</strong> La persona solo puede ver el documento, no puede editar ni comentar.</li>
+    </ul>
+    
+    <p><strong>Opción 2: Compartir por enlace (público)</strong></p>
+    <ul>
+        <li><strong>"Anyone with this link can edit this project":</strong> Cualquiera con el enlace puede editar.</li>
+        <li><strong>"Anyone with this link can view this project":</strong> Cualquiera con el enlace solo puede ver.</li>
+    </ul>
+    
+    <p><strong>💡 Consejo:</strong> Para colaborar con tu director, usa la opción de correo con permiso "editor". Para compartir rápidamente con compañeros, usa los enlaces.</p>
     
     <h3>¿Para qué sirve el botón "Review"?</h3>
     <p>El botón <strong>"Review"</strong> en la barra superior abre un <strong>panel lateral de revisión</strong> que te permite:</p>
@@ -176,7 +194,6 @@ Este es mi primer documento en LaTeX usando Overleaf.
         <li><strong>Aceptar o rechazar cambios individualmente:</strong> Cada cambio tiene botones "Accept" y "Reject" para decidir si aplicarlo o descartarlo</li>
         <li><strong>Ver comentarios:</strong> Todos los comentarios dejados por colaboradores en el documento</li>
         <li><strong>Navegar entre cambios:</strong> Haz clic en cualquier cambio de la lista para ir directamente a esa parte del documento</li>
-        <li><strong>Filtrar por autor:</strong> Ver solo los cambios de una persona específica</li>
         <li><strong>Responder a comentarios:</strong> Participar en discusiones sobre secciones específicas del documento</li>
     </ul>
 
@@ -441,8 +458,8 @@ Este es mi primer documento en LaTeX usando Overleaf.
         <p>El proyecto que crearás en estos ejercicios <strong>NO es tu tesis real</strong>, sino un proyecto de práctica para aprender LaTeX y Overleaf. Al finalizar todas las clases del curso, deberás compartir este proyecto con el profesor para que pueda evaluar tu progreso.</p>
         <p><strong>Instrucciones para compartir:</strong></p>
         <ul>
-            <li>Al terminar el curso completo, comparte tu proyecto con el correo del profesor</li>
-            <li>Usa la opción <strong>"Can edit"</strong> para que el profesor pueda revisar y hacer comentarios</li>
+            <li><strong>Recomendado:</strong> Usa el botón "Share" → introduce el correo del profesor → selecciona permiso <strong>"editor"</strong> → haz clic "Share"</li>
+            <li>El profesor recibirá una invitación por correo y podrá acceder a tu proyecto</li>
             <li>Este proyecto servirá como evidencia de que has completado todos los ejercicios del curso</li>
         </ul>
         <p><strong>💡 Nota:</strong> Cuando empieces tu tesis real, crearás un proyecto nuevo separado. Este es solo para práctica y evaluación del curso.</p>
@@ -505,19 +522,36 @@ de instalación local. Es colaborativo y tiene compilación automática.
     <h3>✏️ Ejercicio 3: Compartir tu Proyecto con el Profesor (15 minutos)</h3>
     <ol>
         <li>En tu proyecto "Mi_Primer_Documento", haz clic en el botón <strong>"Share"</strong> (arriba a la derecha).</li>
-        <li>Consulta el Quickstart para ver cómo funciona el diálogo Share y qué opciones tienes.</li>
-        <li><strong>Compartir con el profesor (importante para evaluación):</strong>
+        <li>Se abrirá un diálogo con dos formas de compartir tu proyecto.
+            <p><strong>OPCIÓN A: Compartir por correo electrónico (recomendado para el profesor):</strong></p>
             <ul>
-                <li>En el diálogo "Share", localiza la sección <strong>"Share with your collaborators"</strong></li>
-                <li>Introduce el correo electrónico del profesor (te lo indicará)</li>
-                <li>Selecciona el permiso <strong>"Can edit"</strong> para que pueda revisar tu trabajo y hacer comentarios</li>
-                <li>Haz clic en <strong>"Share"</strong></li>
-                <li><strong>💡 Nota:</strong> Al compartir con el profesor, este recibirá una notificación por correo y podrá acceder a tu proyecto para evaluarlo cuando termines el curso</li>
+                <li>En la sección superior del diálogo, introduce el correo electrónico del profesor</li>
+                <li>Selecciona el permiso:
+                    <ul>
+                        <li><strong>"editor"</strong>: El profesor puede editar y ver todo (recomendado para que revise y haga comentarios con Track Changes)</li>
+                        <li><strong>"reviewer"</strong>: El profesor puede hacer cambios sugeridos (Track Changes) pero no editar directamente</li>
+                        <li><strong>"viewer"</strong>: El profesor solo puede ver el documento, no puede editar</li>
+                    </ul>
+                </li>
+                <li>Haz clic en <strong>"Share"</strong> para enviar la invitación por correo</li>
+                <li><strong>💡 Nota:</strong> El profesor recibirá una notificación por correo con el enlace para acceder</li>
+            </ul>
+            <p><strong>OPCIÓN B: Compartir con enlace (si prefieres un enlace compartido):</strong></p>
+            <ul>
+                <li>En la sección de "Share with a link" (abajo en el diálogo), encontrarás dos opciones:
+                    <ul>
+                        <li><strong>"Anyone with this link can edit this project"</strong> - Enlace de edición: todos con el enlace pueden editar</li>
+                        <li><strong>"Anyone with this link can view this project"</strong> - Enlace de lectura: todos con el enlace solo pueden ver</li>
+                    </ul>
+                </li>
+                <li>Copia el enlace y comparte con el profesor</li>
+                <li><strong>⚠️ Nota:</strong> Los enlaces permiten acceso anónimo, por lo que cualquiera con el enlace puede acceder. Usa esta opción solo si confías en mantener el enlace seguro</li>
             </ul>
         </li>
+        <li><strong>Para este curso:</strong> Usa la OPCIÓN A (por correo) para compartir con el profesor, ya que es más seguro y quedará registro de quién tiene acceso</li>
         <li><strong>Probar la colaboración en tiempo real (opcional):</strong>
             <ul>
-                <li>Si quieres experimentar cómo funciona la colaboración simultánea, abre tu proyecto en otra ventana del navegador usando el enlace "Edit link"</li>
+                <li>Si quieres experimentar cómo funciona la colaboración simultánea, copia el enlace de edición y ábrelo en otra ventana</li>
                 <li>Haz cambios en ambas ventanas y observa cómo se sincronizan en tiempo real</li>
                 <li>Esto simula cómo trabajarás con tu director de tesis en el futuro</li>
             </ul>
