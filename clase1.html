@@ -224,49 +224,29 @@ Este es mi primer documento en LaTeX usando Overleaf.
         <li>Haz clic nuevamente en "Review" para cerrar el panel</li>
     </ol>
     
-    <h2>Control de Cambios en Overleaf</h2>
+    <h2>Control de Cambios en Overleaf: Track Changes e Historial</h2>
 
     <h3>¿Por qué es importante el control de cambios?</h3>
 
-    <p>Cuando trabajas en una tesis en colaboración con tu director o con otros estudiantes, necesitas poder:</p>
+    <p>Cuando trabajas en una tesis en colaboración con tu director, necesitas poder:</p>
     <ul>
         <li>Ver qué cambios se han hecho y cuándo</li>
         <li>Rastrear quién hizo cada cambio</li>
-        <li>Revertir cambios si es necesario</li>
+        <li>Aceptar o rechazar cambios sugeridos</li>
         <li>Comparar versiones diferentes del documento</li>
     </ul>
 
-    <p><strong>En Overleaf, esto es más simple que aprender Git:</strong> Usa el Historial integrado y Track Changes.</p>
+    <p><strong>En Overleaf, Overleaf ofrece dos herramientas complementarias:</strong> Track Changes (para revisión colaborativa) e History (para ver el historial de cambios).</p>
 
-    <h3>Opción 1: Historial de Cambios (History)</h3>
+    <h3>Opción 1: Track Changes (Rastreo de Cambios)</h3>
 
-    <p><strong>Qué es:</strong> Una línea de tiempo visual de todos los cambios realizados en tu proyecto.</p>
+    <p><strong>Qué es:</strong> Similar a "Control de Cambios" en Word. Marca los cambios propuestos sin aplicarlos automáticamente, permitiendo que el autor decida qué mantener y qué rechazar.</p>
 
-    <p><strong>Cómo usarlo:</strong></p>
+    <p><strong>Cuándo usarlo:</strong> Cuando tu director (o alguien con permiso "reviewer") quiere sugerir cambios sin modificar directamente el documento. Los cambios aparecen resaltados en color y pendientes de aceptación.</p>
+
+    <p><strong>Cómo activar Track Changes:</strong></p>
     <ol>
-        <li>En tu proyecto, haz clic en <strong>"History"</strong> (arriba a la derecha, junto a "Share").</li>
-        <li>Verás una línea de tiempo con todos los cambios:
-            <ul>
-                <li>Quién hizo el cambio</li>
-                <li>Cuándo se realizó</li>
-                <li>Qué líneas fueron modificadas (mostradas en colores)</li>
-            </ul>
-        </li>
-        <li>Haz clic en cualquier versión anterior para previsualizarla.</li>
-        <li>Si necesitas volver atrás, haz clic en <strong>"Restore"</strong> para restaurar esa versión.</li>
-    </ol>
-
-    <p><strong>Ventaja:</strong> Es automático. Cada vez que alguien (incluyéndote) guarda cambios, se registra en el historial.</p>
-
-    <h3>Opción 2: Track Changes (Seguimiento de Cambios)</h3>
-
-    <p><strong>Qué es:</strong> Similar a "Control de Cambios" en Word. Marca los cambios propuestos sin aplicarlos automáticamente.</p>
-
-    <p><strong>Cuándo usarlo:</strong> Cuando el director u otro revisor quiere sugerir cambios sin modificar directamente el documento.</p>
-
-    <p><strong>Cómo activarlo:</strong></p>
-    <ol>
-        <li>En tu proyecto abierto, localiza el botón en la <strong>esquina superior derecha</strong> del editor (donde aparece el texto actual del modo).</li>
+        <li>En tu proyecto abierto, localiza el botón en la <strong>esquina superior derecha del editor</strong> (muestra el modo actual).</li>
         <li>Haz clic en ese botón y verás dos opciones:
             <ul>
                 <li><strong>"Editing"</strong> (Modo edición normal - cambios se aplican directamente)</li>
@@ -277,66 +257,93 @@ Este es mi primer documento en LaTeX usando Overleaf.
         <li>Ahora todos los cambios que hagas se mostrarán como sugerencias pendientes de aceptar/rechazar.</li>
     </ol>
 
-    <p><strong>💡 Nota importante:</strong> Si tienes permisos de solo revisión (reviewer) en el proyecto, automáticamente estarás en modo "Reviewing" y no podrás cambiarlo.</p>
+    <p><strong>💡 Nota importante:</strong> Si tienes permisos de "reviewer" en el proyecto, automáticamente estarás en modo "Reviewing" y no podrás cambiarlo.</p>
 
-    <p><strong>Cómo ven los cambios propuestos:</strong></p>
+    <p><strong>Cómo ven los cambios propuestos en el documento:</strong></p>
     <ul>
         <li><strong>Texto añadido:</strong> Aparece en color (por defecto verde o azul).</li>
         <li><strong>Texto eliminado:</strong> Aparece tachado.</li>
-        <li><strong>Cambios resaltados:</strong> Cada colaborador tiene un color diferente.</li>
+        <li><strong>Cambios resaltados:</strong> Cada colaborador tiene un color diferente para identificar quién hizo cada cambio.</li>
     </ul>
 
-    <p><strong>Cómo aceptar o rechazar cambios:</strong></p>
+    <p><strong>Cómo aceptar o rechazar cambios (usando el panel Review):</strong></p>
     <ol>
         <li>Abre el panel <strong>"Review"</strong> haciendo clic en el botón en la barra superior</li>
         <li>En el panel lateral verás la lista completa de cambios y comentarios</li>
-        <li>Haz clic en cualquier cambio para ver su ubicación en el documento</li>
-        <li>Usa los botones <strong>"Accept"</strong> o <strong>"Reject"</strong> que aparecen en cada caja de cambio del panel</li>
+        <li>Para cada cambio, puedes:
+            <ul>
+                <li>Haz clic en el cambio para ir a su ubicación en el documento</li>
+                <li>Haz clic en <strong>"Accept"</strong> para aplicar el cambio</li>
+                <li>Haz clic en <strong>"Reject"</strong> para descartar el cambio</li>
+            </ul>
+        </li>
         <li><strong>Para aceptar/rechazar todos los cambios a la vez:</strong>
             <ul>
                 <li>Selecciona todo el texto en el editor (Ctrl+A o Cmd+A)</li>
-                <li>Aparecerá la opción <strong>"Accept selected changes"</strong> o <strong>"Reject selected changes"</strong> para aplicar la acción a todos los cambios seleccionados</li>
+                <li>En el panel Review aparecerá la opción <strong>"Accept selected changes"</strong> o <strong>"Reject selected changes"</strong></li>
             </ul>
         </li>
     </ol>
 
-    <p><strong>Ventaja:</strong> El director puede sugerir cambios sin que se apliquen automáticamente. Tú decides qué mantener. El panel Review te da una vista organizada de todos los cambios pendientes.</p>
+    <p><strong>Ventaja:</strong> El director puede sugerir cambios sin que se apliquen automáticamente. Tú controlas completamente qué cambios aceptas. El panel Review te da una vista organizada de todos los cambios pendientes.</p>
 
-    <h3>Comparación: Historia vs Track Changes</h3>
+    <h3>Opción 2: Historial de Cambios (History)</h3>
+
+    <p><strong>Qué es:</strong> Una línea de tiempo visual de todas las versiones guardadas de tu proyecto. Es automático e independiente de Track Changes.</p>
+
+    <p><strong>Cuándo usarlo:</strong> Para ver el historial completo del documento, entender cómo ha evolucionado, y revertir a versiones anteriores si es necesario.</p>
+
+    <p><strong>Cómo usarlo:</strong></p>
+    <ol>
+        <li>En tu proyecto, haz clic en <strong>"History"</strong> (arriba a la derecha, junto a "Share").</li>
+        <li>Verás una línea de tiempo con todos los cambios:
+            <ul>
+                <li>Quién hizo el cambio (si está colaborando)</li>
+                <li>Cuándo se realizó</li>
+                <li>Qué líneas fueron modificadas (mostradas resaltadas en colores)</li>
+            </ul>
+        </li>
+        <li>Haz clic en cualquier versión anterior para previsualizarla.</li>
+        <li>Si necesitas volver atrás, haz clic en <strong>"Restore"</strong> para restaurar esa versión.</li>
+    </ol>
+
+    <p><strong>Ventaja:</strong> Es completamente automático. Cada vez que alguien (incluyéndote) guarda cambios, se registra en el historial. No necesitas activarlo ni hacer nada especial.</p>
+
+    <h3>Comparación: Track Changes vs History</h3>
 
     <table border="1" style="width: 100%; border-collapse: collapse; margin: 20px 0;">
         <thead>
             <tr style="background-color: #1976d2; color: white;">
                 <th style="padding: 10px; font-weight: bold;">Característica</th>
-                <th style="padding: 10px; font-weight: bold;">History</th>
                 <th style="padding: 10px; font-weight: bold;">Track Changes</th>
+                <th style="padding: 10px; font-weight: bold;">History (Historial)</th>
             </tr>
         </thead>
         <tbody>
             <tr>
                 <td style="padding: 10px;"><strong>Automático</strong></td>
-                <td style="padding: 10px;">✅ Siempre activo</td>
-                <td style="padding: 10px;">❌ Cambiar a modo "Reviewing"</td>
+                <td style="padding: 10px;">❌ Requiere cambiar a modo "Reviewing"</td>
+                <td style="padding: 10px;">✅ Siempre activo automáticamente</td>
             </tr>
             <tr style="background-color: #f9f9f9;">
                 <td style="padding: 10px;"><strong>Cambios aplicados</strong></td>
-                <td style="padding: 10px;">✅ Inmediatamente</td>
-                <td style="padding: 10px;">❌ Solo si los aceptas</td>
+                <td style="padding: 10px;">❌ Solo si tú los aceptas</td>
+                <td style="padding: 10px;">✅ Inmediatamente (se registran en History)</td>
             </tr>
             <tr>
-                <td style="padding: 10px;"><strong>Ver cambios sugeridos</strong></td>
-                <td style="padding: 10px;">✅ Ver qué cambió</td>
-                <td style="padding: 10px;">✅ Ver propuestas claramente</td>
+                <td style="padding: 10px;"><strong>Propósito</strong></td>
+                <td style="padding: 10px;">✅ Revisión colaborativa con sugerencias</td>
+                <td style="padding: 10px;">✅ Ver todas las versiones guardadas</td>
             </tr>
             <tr style="background-color: #f9f9f9;">
                 <td style="padding: 10px;"><strong>Revertir cambios</strong></td>
-                <td style="padding: 10px;">✅ Restaurar versión anterior</td>
-                <td style="padding: 10px;">✅ Rechazar sugerencias</td>
+                <td style="padding: 10px;">✅ Rechazar sugerencias individuales</td>
+                <td style="padding: 10px;">✅ Restaurar versión completa anterior</td>
             </tr>
             <tr>
                 <td style="padding: 10px;"><strong>Ideal para</strong></td>
-                <td style="padding: 10px;">Monitorear progreso</td>
-                <td style="padding: 10px;">Revisión colaborativa</td>
+                <td style="padding: 10px;">Cuando alguien está revisando y sugiriendo cambios</td>
+                <td style="padding: 10px;">Monitorear evolución y recuperar versiones</td>
             </tr>
         </tbody>
     </table>
@@ -344,12 +351,13 @@ Este es mi primer documento en LaTeX usando Overleaf.
     <h3>Flujo de trabajo recomendado para tesis</h3>
 
     <ol>
-        <li><strong>Escribe tu capítulo</strong> en Overleaf (en modo "Editing"). History registra automáticamente tus cambios.</li>
-        <li><strong>Comparte con tu director</strong> usando el botón "Share" (con permisos de edición o comentario).</li>
-        <li><strong>Tu director cambia a modo "Reviewing"</strong> (botón superior derecha) y propone cambios/mejoras.</li>
-        <li><strong>Tú ves los cambios sugeridos</strong> en color, sin que se apliquen automáticamente.</li>
-        <li><strong>Revisas cada sugerencia</strong> y aceptas o rechazas.</li>
-        <li><strong>History registra todo</strong> el proceso, así siempre tienes un registro completo.</li>
+        <li><strong>Escribe tu capítulo</strong> en Overleaf (en modo "Editing"). History registra automáticamente todas tus versiones.</li>
+        <li><strong>Comparte con tu director</strong> usando el botón "Share" (con permiso "editor" o "reviewer").</li>
+        <li><strong>Tu director cambia a modo "Reviewing"</strong> (botón esquina superior derecha) y propone cambios/mejoras con Track Changes.</li>
+        <li><strong>Tú ves los cambios sugeridos</strong> resaltados en color, sin que se apliquen automáticamente.</li>
+        <li><strong>Abre el panel Review</strong> para ver la lista de cambios y comentarios organizados.</li>
+        <li><strong>Revisa cada sugerencia</strong> y acepta o rechaza según lo consideres.</li>
+        <li><strong>History registra todo</strong> el proceso, así siempre tienes un registro completo de cómo evolucionó el documento.</li>
     </ol>
     
     <h2>Información importante sobre Overleaf</h2>
