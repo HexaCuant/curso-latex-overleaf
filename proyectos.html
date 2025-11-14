@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial: Gestión de Proyectos en Overleaf</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #138A07;
+            border-bottom: 3px solid #138A07;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #2c5f2d;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #4a7c4e;
+            margin-top: 20px;
+        }
+        .section {
+            margin-bottom: 25px;
+        }
+        .feature {
+            background-color: #f9f9f9;
+            border-left: 4px solid #138A07;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .tip {
+            background-color: #e8f5e9;
+            border: 1px solid #4caf50;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .tip strong {
+            color: #2e7d32;
+        }
+        ul {
+            line-height: 1.8;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+        .button-example {
+            background-color: #138A07;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 4px;
+            display: inline-block;
+            margin: 5px;
+            font-weight: bold;
+        }
+        .icon {
+            font-weight: bold;
+            color: #138A07;
+        }
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Tutorial: Gestión de Proyectos en Overleaf</h1>
+        
+        <div class="section">
+            <p>Overleaf es un editor de LaTeX en línea que facilita la creación y gestión de documentos científicos. Este tutorial te guiará por la interfaz de gestión de proyectos para que puedas organizar eficientemente tu trabajo.</p>
+        </div>
+
+        <h2>1. Panel de Navegación Lateral</h2>
+        
+        <div class="feature">
+            <h3><span class="button-example">New project</span></h3>
+            <p>El botón verde en la parte superior izquierda te permite crear un nuevo proyecto. Al hacer clic, puedes elegir entre:</p>
+            <ul>
+                <li><strong>Blank Project:</strong> Un proyecto vacío desde cero</li>
+                <li><strong>Example Project:</strong> Proyecto de ejemplo con código de demostración</li>
+                <li><strong>Upload Project:</strong> Subir un proyecto existente desde tu ordenador</li>
+                <li><strong>Import from GitHub:</strong> Importar un proyecto desde un repositorio de GitHub</li>
+            </ul>
+        </div>
+
+        <div class="feature">
+            <h3>Secciones de Organización</h3>
+            <ul>
+                <li><strong>All projects:</strong> Muestra todos tus proyectos sin filtros</li>
+                <li><strong>Your projects:</strong> Proyectos creados por ti (sección actualmente seleccionada en verde)</li>
+                <li><strong>Shared with you:</strong> Proyectos compartidos por otros colaboradores</li>
+                <li><strong>Archived projects:</strong> Proyectos que has archivado para mantener tu espacio de trabajo organizado</li>
+                <li><strong>Trashed projects:</strong> Proyectos eliminados que aún pueden recuperarse</li>
+            </ul>
+        </div>
+
+        <div class="feature">
+            <h3>Organizar con Etiquetas (Tags)</h3>
+            <p>En la sección <strong>"ORGANIZE TAGS"</strong> puedes:</p>
+            <ul>
+                <li>Crear etiquetas personalizadas para categorizar tus proyectos</li>
+                <li>Hacer clic en <span class="icon">+ New tag</span> para crear una nueva etiqueta</li>
+                <li>Asignar colores y nombres a tus etiquetas (ej: "Curso", "Investigación", "Artículos")</li>
+                <li>Filtrar proyectos según las etiquetas asignadas</li>
+            </ul>
+        </div>
+
+        <h2>2. Área Principal de Proyectos</h2>
+
+        <div class="feature">
+            <h3>Barra de Búsqueda</h3>
+            <p>Utiliza la barra <code>Search in your projects...</code> para encontrar rápidamente proyectos por nombre o contenido.</p>
+        </div>
+
+        <div class="feature">
+            <h3>Tabla de Proyectos</h3>
+            <p>La tabla muestra tus proyectos con las siguientes columnas:</p>
+            <ul>
+                <li><strong>Checkbox (☐):</strong> Permite seleccionar múltiples proyectos para acciones en lote</li>
+                <li><strong>Title:</strong> Nombre del proyecto (ej: "curso")</li>
+                <li><strong>Owner:</strong> Indica quién es el propietario del proyecto ("You" si es tuyo)</li>
+                <li><strong>Last modified:</strong> Muestra cuándo fue la última modificación (ej: "2 days ago by You"). Puedes ordenar por esta columna haciendo clic en la flecha</li>
+                <li><strong>Actions:</strong> Iconos de acciones rápidas para cada proyecto</li>
+            </ul>
+        </div>
+
+        <h2>3. Iconos de Acciones</h2>
+
+        <div class="section">
+            <p>En la columna <strong>"Actions"</strong> encontrarás varios iconos que te permiten realizar acciones rápidas sobre cada proyecto:</p>
+            
+            <ul>
+                <li><span class="icon">📋</span> <strong>Copiar proyecto:</strong> Crea una copia duplicada del proyecto</li>
+                <li><span class="icon">⬇️</span> <strong>Descargar:</strong> Descarga el proyecto completo en formato ZIP</li>
+                <li><span class="icon">📁</span> <strong>Archivar:</strong> Mueve el proyecto a la sección de archivados</li>
+                <li><span class="icon">📧</span> <strong>Compartir:</strong> Envía invitaciones a colaboradores para trabajar en el proyecto</li>
+                <li><span class="icon">🗑️</span> <strong>Eliminar:</strong> Mueve el proyecto a la papelera (puede recuperarse después)</li>
+            </ul>
+        </div>
+
+        <h2>4. Información de la Cuenta</h2>
+
+        <div class="feature">
+            <h3>Tipo de Suscripción</h3>
+            <p>En la esquina superior derecha verás tu plan actual: <strong>"You're using Overleaf Premium"</strong></p>
+            <p>Esto indica las características disponibles para tu cuenta, como:</p>
+            <ul>
+                <li>Número de colaboradores permitidos</li>
+                <li>Capacidad de almacenamiento</li>
+                <li>Tiempo de compilación</li>
+                <li>Funciones avanzadas de sincronización (Dropbox, GitHub)</li>
+            </ul>
+        </div>
+
+        <h2>5. Menú Superior</h2>
+
+        <div class="section">
+            <p>La barra superior del sitio contiene los enlaces principales:</p>
+            <ul>
+                <li><strong>Product:</strong> Información sobre las características de Overleaf</li>
+                <li><strong>Solutions:</strong> Casos de uso y soluciones específicas</li>
+                <li><strong>Templates:</strong> Biblioteca de plantillas prediseñadas para diferentes tipos de documentos</li>
+                <li><strong>Pricing:</strong> Información sobre planes y precios</li>
+            </ul>
+        </div>
+
+        <div class="tip">
+            <strong>💡 Consejos Prácticos:</strong>
+            <ul>
+                <li>Utiliza nombres descriptivos para tus proyectos para facilitar su identificación</li>
+                <li>Aprovecha las etiquetas para organizar proyectos por curso, tema o estado</li>
+                <li>Archiva los proyectos completados para mantener tu espacio de trabajo limpio</li>
+                <li>Usa la función de compartir para colaborar en tiempo real con otros usuarios</li>
+                <li>Realiza copias de seguridad descargando periódicamente tus proyectos importantes</li>
+                <li>Ordena por "Last modified" para encontrar rápidamente los proyectos en los que estás trabajando activamente</li>
+            </ul>
+        </div>
+
+        <h2>6. Flujo de Trabajo Recomendado</h2>
+
+        <div class="section">
+            <ol>
+                <li><strong>Crear:</strong> Haz clic en "New project" y selecciona una plantilla o proyecto en blanco</li>
+                <li><strong>Desarrollar:</strong> Trabaja en tu documento LaTeX dentro del editor</li>
+                <li><strong>Organizar:</strong> Asigna etiquetas relevantes a tu proyecto</li>
+                <li><strong>Compartir:</strong> Si trabajas en equipo, comparte el proyecto con colaboradores</li>
+                <li><strong>Mantener:</strong> Archiva proyectos terminados y elimina borradores obsoletos</li>
+                <li><strong>Respaldar:</strong> Descarga copias locales de proyectos importantes</li>
+            </ol>
+        </div>
+
+        <div class="tip">
+            <strong>📚 Recursos Adicionales:</strong>
+            <p>Para aprender más sobre LaTeX y Overleaf, visita la sección de documentación oficial y explora las plantillas disponibles para diferentes tipos de documentos académicos.</p>
+        </div>
+    </div>
+</body>
+</html>
