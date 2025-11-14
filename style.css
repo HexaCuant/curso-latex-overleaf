@@ -472,20 +472,22 @@ hr {
     color: #81c784;
 }
 
+/* Estado inicial: mostrar solo el icono de copiar */
 .copy-button .copy-icon {
-    display: inline;
+    display: inline-block;
 }
 
 .copy-button .copied-icon {
-    display: none;
+    display: none !important;
 }
 
+/* Estado copiado: mostrar solo el icono de copiado */
 .copy-button.copied .copy-icon {
-    display: none;
+    display: none !important;
 }
 
 .copy-button.copied .copied-icon {
-    display: inline;
+    display: inline-block !important;
 }
 
 /* ═══════════════════════════════════════════════════════════════ */
