@@ -428,6 +428,67 @@ hr {
 }
 
 /* ═══════════════════════════════════════════════════════════════ */
+/* BOTÓN COPIAR AL PORTAPAPELES                                     */
+/* ═══════════════════════════════════════════════════════════════ */
+
+.code-container {
+    position: relative;
+    margin: var(--spacing-md) 0;
+}
+
+.copy-button {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #aed581;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-family: var(--font-family);
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    z-index: 10;
+}
+
+.copy-button:hover {
+    background: rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: scale(1.05);
+}
+
+.copy-button:active {
+    transform: scale(0.95);
+}
+
+.copy-button.copied {
+    background: rgba(67, 160, 71, 0.3);
+    border-color: rgba(67, 160, 71, 0.6);
+    color: #81c784;
+}
+
+.copy-button .copy-icon {
+    display: inline;
+}
+
+.copy-button .copied-icon {
+    display: none;
+}
+
+.copy-button.copied .copy-icon {
+    display: none;
+}
+
+.copy-button.copied .copied-icon {
+    display: inline;
+}
+
+/* ═══════════════════════════════════════════════════════════════ */
 /* IMPRESIÓN                                                        */
 /* ═══════════════════════════════════════════════════════════════ */
 
@@ -449,5 +510,9 @@ hr {
     
     a {
         border-bottom: 1px solid var(--primary-color);
+    }
+    
+    .copy-button {
+        display: none;
     }
 }
