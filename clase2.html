@@ -103,7 +103,6 @@ Este es el contenido del segundo capítulo.
 
 <p>Ejemplo:</p>
 <pre><code>\documentclass{article}
-\documentclass{article}
 
 \usepackage{ifluatex}
 
@@ -140,6 +139,33 @@ Texto normal
 \end{document}
 
 </code></pre>
+
+<div style="background-color: #e3f2fd; border-left: 4px solid #2196f3; padding: 15px; margin: 20px 0; border-radius: 4px;">
+    <h4 style="margin-top: 0; color: #2196f3;">💡 Explicación del código \ifluatex</h4>
+    <p>El bloque <code>\ifluatex ... \else ... \fi</code> es una <strong>estructura condicional</strong> que hace que tu documento funcione correctamente tanto en <strong>LuaLaTeX</strong> (el motor moderno que usa Overleaf por defecto) como en <strong>pdfLaTeX</strong> (motor tradicional).</p>
+    
+    <p><strong>¿Cómo funciona?</strong></p>
+    <ul>
+        <li><strong>Si estás compilando con LuaLaTeX</strong> (<code>\ifluatex</code> es verdadero):
+            <ul>
+                <li>Carga <code>fontspec</code>: paquete moderno que permite usar cualquier fuente instalada en el sistema</li>
+                <li>Usa <code>\setmainfont{CMU Serif}</code>: establece la fuente principal del documento</li>
+                <li>Las líneas comentadas (con %) son alternativas que puedes descomentar para probar otras fuentes</li>
+            </ul>
+        </li>
+        <li><strong>Si estás compilando con pdfLaTeX</strong> (<code>\else</code>):
+            <ul>
+                <li>Carga <code>inputenc</code> y <code>fontenc</code>: paquetes tradicionales para codificación de caracteres</li>
+                <li>Usa <code>lmodern</code>: fuente Latin Modern (versión mejorada de Computer Modern)</li>
+                <li>Opcionalmente puedes usar <code>mathptmx</code> para fuente Times</li>
+            </ul>
+        </li>
+    </ul>
+    
+    <p><strong>¿Por qué es útil?</strong> Este código hace que tu documento sea <strong>portable</strong>: funciona en cualquier sistema LaTeX sin tener que cambiar el código manualmente. En Overleaf (que usa LuaLaTeX), se ejecutará la primera parte; en instalaciones antiguas con pdfLaTeX, se ejecutará la segunda.</p>
+    
+    <p><strong>✏️ Para experimentar:</strong> Descomenta alguna de las fuentes alternativas (elimina el %) y compila para ver cómo cambia el aspecto del documento.</p>
+</div>
 
 <p>Ejercicio: Usa `\fontfamily{phv}\selectfont` para cambiar a una fuente sans-serif (como Helvetica) en una parte del documento.</p>
 
