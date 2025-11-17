@@ -97,32 +97,25 @@ Este es el contenido del segundo capítulo.
 
 <p><strong>✏️ Ejercicio:</strong> En Overleaf, cambia <code>\documentclass{report}</code> a <code>\documentclass{book}</code> y compila. Observa los cambios en la estructura del documento. Luego prueba añadiendo <code>\part{Primera Parte}</code> antes del primer capítulo.</p>
 
-<h3>Tipos de letra y fuentes</h3>
+<h3>Tipos de letra y fuentes en Overleaf</h3>
 
-<p>LaTeX permite cambiar fácilmente entre diferentes estilos de fuente.</p>
+<p>Overleaf utiliza <strong>LuaLaTeX</strong> como motor de compilación por defecto, lo que significa que puedes usar el paquete <code>fontspec</code> para acceder a una amplia variedad de fuentes modernas preinstaladas en el sistema.</p>
 
-<p>Ejemplo:</p>
+<div style="background-color: #e8f5e9; border-left: 4px solid #43a047; padding: 15px; margin: 20px 0; border-radius: 4px;">
+    <h4 style="margin-top: 0; color: #43a047;">📚 Catálogo completo de fuentes en Overleaf</h4>
+    <p><strong>Antes de empezar:</strong> Overleaf tiene cientos de fuentes disponibles. Para ver un catálogo visual completo con ejemplos de todas las fuentes, visita este proyecto de plantilla:</p>
+    <p><a href="https://www.overleaf.com/latex/templates/fontspec-all-the-fonts/hjrpnxhrrtxc" target="_blank" rel="noopener"><strong>📖 Fontspec: All the Fonts (Catálogo PDF)</strong></a></p>
+    <p>Este documento muestra cómo se ve cada fuente disponible en Overleaf. Es muy útil para elegir la tipografía de tu tesis.</p>
+</div>
+
+<h4>Ejemplo básico: Cambiar estilos de texto</h4>
+
+<p>Primero, veamos cómo cambiar el estilo del texto (negrita, cursiva, tamaños) sin cambiar la fuente:</p>
+
 <pre><code>\documentclass{article}
-
-\usepackage{ifluatex}
-
-\ifluatex
-  \usepackage{fontspec}
-  \setmainfont{CMU Serif}
-  %\setmainfont{Fira Sans Compressed}
-  %\setmainfont{DejaVue Sans}
-\else
-  \usepackage[utf8]{inputenc}
-  \usepackage[T1]{fontenc}
-  \usepackage{lmodern}
-  %\usepackage{mathptmx} %times
-\fi
+\usepackage{fontspec}
 
 \begin{document}
-
-% prueba a cambiar las indentaciones con \noindent y con \setlength{\parindent}{espacio}
-
-% prueba a cambiar el espaciado entre párrafos con \setlength{\parskip}{espacio}
 
 Texto normal
 
@@ -137,181 +130,137 @@ Texto normal
 {\footnotesize Texto pequeño}
 
 \end{document}
+</code></pre>
 
+<p><strong>✏️ Ejercicio:</strong> Copia este código en un nuevo proyecto de Overleaf y compílalo. Observa cómo se ven los diferentes estilos.</p>
+
+<h4>Cambiar la fuente principal del documento</h4>
+
+<p>En Overleaf, la forma recomendada de cambiar fuentes es usando <code>fontspec</code> con el comando <code>\setmainfont</code>:</p>
+
+<pre><code>\documentclass{article}
+\usepackage{fontspec}
+
+% Cambiar la fuente principal del documento
+\setmainfont{TeX Gyre Termes}
+
+\begin{document}
+
+Este documento usa TeX Gyre Termes (similar a Times New Roman).
+
+\textbf{Texto en negrita} y \textit{texto en cursiva} también usan esta fuente.
+
+\end{document}
+</code></pre>
+
+<h4>Fuentes populares disponibles en Overleaf</h4>
+
+<p>Estas son algunas de las fuentes más utilizadas que están preinstaladas en Overleaf:</p>
+
+<h5>Fuentes Serif (con serifa, para texto formal):</h5>
+<ul>
+    <li><strong>TeX Gyre Termes</strong> - Similar a Times New Roman (excelente para tesis)</li>
+    <li><strong>TeX Gyre Pagella</strong> - Similar a Palatino (muy elegante)</li>
+    <li><strong>TeX Gyre Bonum</strong> - Similar a Bookman (legible y profesional)</li>
+    <li><strong>TeX Gyre Schola</strong> - Similar a New Century Schoolbook</li>
+    <li><strong>Latin Modern Roman</strong> - Fuente LaTeX clásica mejorada</li>
+    <li><strong>Libertinus Serif</strong> - Moderna y elegante</li>
+    <li><strong>Crimson Text</strong> - Inspirada en fuentes antiguas</li>
+</ul>
+
+<h5>Fuentes Sans Serif (sin serifa, para presentaciones o documentos modernos):</h5>
+<ul>
+    <li><strong>TeX Gyre Heros</strong> - Similar a Helvetica</li>
+    <li><strong>Latin Modern Sans</strong> - Sans serif clásica de LaTeX</li>
+    <li><strong>Fira Sans</strong> - Moderna y muy legible</li>
+    <li><strong>Cabin</strong> - Humanista y amigable</li>
+    <li><strong>Noto Sans</strong> - Excelente para internacionalización</li>
+</ul>
+
+<h5>Fuentes Monoespaciadas (para código):</h5>
+<ul>
+    <li><strong>TeX Gyre Cursor</strong> - Similar a Courier</li>
+    <li><strong>Latin Modern Mono</strong> - Monoespaciada clásica</li>
+    <li><strong>Fira Mono</strong> - Moderna para código</li>
+    <li><strong>Inconsolata</strong> - Muy popular para programación</li>
+</ul>
+
+<h4>Ejemplo: Configurar diferentes fuentes para diferentes propósitos</h4>
+
+<p>Puedes configurar fuentes distintas para el texto principal, títulos y código:</p>
+
+<pre><code>\documentclass{article}
+\usepackage{fontspec}
+
+% Fuente para el texto principal (serif)
+\setmainfont{TeX Gyre Pagella}
+
+% Fuente para títulos y elementos sin serifa
+\setsansfont{Fira Sans}
+
+% Fuente para código y texto monoespaciado
+\setmonofont{Fira Mono}
+
+\begin{document}
+
+\section{Introducción}
+
+Este es el texto principal con TeX Gyre Pagella (serif).
+
+\textsf{Este texto usa Fira Sans (sans serif) para destacar.}
+
+\texttt{Este texto usa Fira Mono (monoespaciada) para código: x = 42}
+
+\end{document}
+</code></pre>
+
+<p><strong>✏️ Ejercicio:</strong> Crea un proyecto en Overleaf con este código. Luego, visita el <a href="https://www.overleaf.com/latex/templates/fontspec-all-the-fonts/hjrpnxhrrtxc" target="_blank">catálogo de fuentes</a> y prueba cambiar las fuentes a otras que te gusten.</p>
+
+<h4>Compatibilidad con pdfLaTeX (opcional)</h4>
+
+<p>Si necesitas que tu documento funcione también con pdfLaTeX (motor antiguo), puedes usar este código condicional:</p>
+
+<pre><code>\documentclass{article}
+
+\usepackage{ifluatex}
+
+\ifluatex
+  % Si usas LuaLaTeX (Overleaf por defecto)
+  \usepackage{fontspec}
+  \setmainfont{TeX Gyre Termes}
+\else
+  % Si usas pdfLaTeX (instalaciones antiguas)
+  \usepackage[utf8]{inputenc}
+  \usepackage[T1]{fontenc}
+  \usepackage{mathptmx} % Times
+\fi
+
+\begin{document}
+Este documento funciona en ambos motores.
+\end{document}
 </code></pre>
 
 <div style="background-color: #e3f2fd; border-left: 4px solid #2196f3; padding: 15px; margin: 20px 0; border-radius: 4px;">
     <h4 style="margin-top: 0; color: #2196f3;">💡 Explicación del código \ifluatex</h4>
-    <p>El bloque <code>\ifluatex ... \else ... \fi</code> es una <strong>estructura condicional</strong> que hace que tu documento funcione correctamente tanto en <strong>LuaLaTeX</strong> (el motor moderno que usa Overleaf por defecto) como en <strong>pdfLaTeX</strong> (motor tradicional).</p>
+    <p>El bloque <code>\ifluatex ... \else ... \fi</code> es una <strong>estructura condicional</strong> que detecta qué motor de compilación estás usando:</p>
     
-    <p><strong>¿Cómo funciona?</strong></p>
     <ul>
-        <li><strong>Si estás compilando con LuaLaTeX</strong> (<code>\ifluatex</code> es verdadero):
-            <ul>
-                <li>Carga <code>fontspec</code>: paquete moderno que permite usar cualquier fuente instalada en el sistema</li>
-                <li>Usa <code>\setmainfont{CMU Serif}</code>: establece la fuente principal del documento</li>
-                <li>Las líneas comentadas (con %) son alternativas que puedes descomentar para probar otras fuentes</li>
-            </ul>
-        </li>
-        <li><strong>Si estás compilando con pdfLaTeX</strong> (<code>\else</code>):
-            <ul>
-                <li>Carga <code>inputenc</code> y <code>fontenc</code>: paquetes tradicionales para codificación de caracteres</li>
-                <li>Usa <code>lmodern</code>: fuente Latin Modern (versión mejorada de Computer Modern)</li>
-                <li>Opcionalmente puedes usar <code>mathptmx</code> para fuente Times</li>
-            </ul>
-        </li>
+        <li><strong>LuaLaTeX (Overleaf):</strong> Usa <code>fontspec</code> y fuentes modernas como TeX Gyre Termes</li>
+        <li><strong>pdfLaTeX (sistemas antiguos):</strong> Usa paquetes tradicionales como <code>mathptmx</code></li>
     </ul>
     
-    <p><strong>¿Por qué es útil?</strong> Este código hace que tu documento sea <strong>portable</strong>: funciona en cualquier sistema LaTeX sin tener que cambiar el código manualmente. En Overleaf (que usa LuaLaTeX), se ejecutará la primera parte; en instalaciones antiguas con pdfLaTeX, se ejecutará la segunda.</p>
-    
-    <p><strong>✏️ Para experimentar:</strong> Descomenta alguna de las fuentes alternativas (elimina el %) y compila para ver cómo cambia el aspecto del documento.</p>
+    <p><strong>¿Cuándo usarlo?</strong> Solo si necesitas compartir tu código con personas que usan instalaciones LaTeX antiguas. En Overleaf no es necesario, puedes usar <code>fontspec</code> directamente.</p>
 </div>
 
-<p>Ejercicio: Usa `\fontfamily{phv}\selectfont` para cambiar a una fuente sans-serif (como Helvetica) en una parte del documento.</p>
-
-<p>Además de <code>phv</code> (que corresponde a Helvetica), hay varias otras familias de fuentes disponibles en LaTeX. Algunas de las más comunes son:</p>
-
-<ol>
-    <li><code>ptm</code> - Times</li>
-    <li><code>ppl</code> - Palatino</li>
-    <li><code>pbk</code> - Bookman</li>
-    <li><code>pcr</code> - Courier</li>
-    <li><code>pnc</code> - New Century Schoolbook</li>
-    <li><code>put</code> - Utopia</li>
-    <li><code>bch</code> - Charter</li>
-    <li><code>qbk</code> - TeX Gyre Bonum (similar a Bookman)</li>
-    <li><code>qpl</code> - TeX Gyre Pagella (similar a Palatino)</li>
-    <li><code>qtm</code> - TeX Gyre Termes (similar a Times)</li>
-    <li><code>qcr</code> - TeX Gyre Cursor (similar a Courier)</li>
-    <li><code>lmr</code> - Latin Modern Roman</li>
-    <li><code>lmss</code> - Latin Modern Sans Serif</li>
-    <li><code>lmtt</code> - Latin Modern Typewriter</li>
-</ol>
-
-<p>Para usar cualquiera de estas fuentes, puedes emplear la misma sintaxis que en tu ejemplo:</p>
-
-<pre><code>\fontfamily{código_de_la_fuente}\selectfont</code></pre>
-
-<p>Por ejemplo, para cambiar a Times:</p>
-
-<pre><code>\fontfamily{ptm}\selectfont</code></pre>
-
-<p>Recuerda que la disponibilidad de estas fuentes puede depender de tu instalación de LaTeX y de los paquetes que tengas instalados</p>
-
-
-<h3>Cambio de Fuentes en LaTeX</h3>
-
-<p>Para usar una fuente específica en todo el documento en LaTeX, tienes varias opciones. Aquí te presento las formas más comunes y efectivas:</p>
-
-<h4>1. Usando el paquete fontspec (recomendado para XeLaTeX o LuaLaTeX)</h4>
-
-<p>Si estás usando XeLaTeX o LuaLaTeX, el método más flexible y moderno es usar el paquete fontspec:</p>
-
-<pre><code>\documentclass{article}
-\usepackage{fontspec}
-\setmainfont{Nombre de la Fuente}
-\begin{document}
-Tu texto aquí
-\end{document}</code></pre>
-
-<p>Por ejemplo, para usar Helvetica:</p>
-
-<pre><code>\setmainfont{Helvetica}</code></pre>
-
-<h4>2. Usando paquetes específicos de fuentes</h4>
-
-<p>Muchas fuentes tienen paquetes dedicados que puedes usar en el preámbulo:</p>
-
-<pre><code>\documentclass{article}
-\usepackage{helvet} % Para Helvetica
-\renewcommand{\familydefault}{\sfdefault}
-\begin{document}
-Tu texto aquí
-\end{document}</code></pre>
-
-<p>Otros ejemplos:</p>
-<ul>
-    <li>Para Times: <code>\usepackage{times}</code></li>
-    <li>Para Palatino: <code>\usepackage{palatino}</code></li>
-</ul>
-
-<h4>3. Usando \renewcommand{\familydefault}</h4>
-
-<p>Puedes cambiar la fuente predeterminada para todo el documento así:</p>
-
-<pre><code>\documentclass{article}
-\usepackage[T1]{fontenc}
-\renewcommand{\familydefault}{\sfdefault} % Para sans-serif
-\begin{document}
-Tu texto aquí
-\end{document}</code></pre>
-
-<p>Para otras familias:</p>
-<ul>
-    <li><code>\rmdefault</code> para Roman (serif)</li>
-    <li><code>\ttdefault</code> para monoespaciada</li>
-</ul>
-
-<h4>4. Usando \usepackage{...}</h4>
-
-<p>Algunos paquetes de fuentes cambian automáticamente la fuente del documento:</p>
-
-<pre><code>\documentclass{article}
-\usepackage{lmodern} % Usa Latin Modern
-\begin{document}
-Tu texto aquí
-\end{document}</code></pre>
-
-<h4>Consideraciones importantes</h4>
+<h4>Consejos para elegir fuentes en tu tesis</h4>
 
 <ul>
-    <li>Asegúrate de que las fuentes que quieres usar estén instaladas en tu sistema.</li>
-    <li>Si usas pdfLaTeX, estás limitado a las fuentes disponibles en el sistema TeX. XeLaTeX y LuaLaTeX te permiten usar cualquier fuente instalada en tu sistema operativo.</li>
-    <li>Algunas fuentes pueden requerir paquetes adicionales o configuraciones específicas.</li>
-    <li>Considera la legibilidad y el propósito de tu documento al elegir una fuente.</li>
+    <li><strong>Fuentes serif para texto largo:</strong> Son más fáciles de leer en documentos impresos (TeX Gyre Termes, Pagella)</li>
+    <li><strong>Coherencia:</strong> No mezcles demasiadas fuentes diferentes (máximo 2-3 en todo el documento)</li>
+    <li><strong>Normas institucionales:</strong> Consulta si tu universidad requiere alguna fuente específica</li>
+    <li><strong>Prueba antes de decidir:</strong> Compila varias páginas con diferentes fuentes para ver cuál te gusta más</li>
+    <li><strong>Explora el catálogo:</strong> Visita <a href="https://www.overleaf.com/latex/templates/fontspec-all-the-fonts/hjrpnxhrrtxc" target="_blank">el catálogo completo</a> para ver ejemplos visuales</li>
 </ul>
-
-<h3>Paquetes comunes de fuentes en LaTeX</h3>
-
-<p>Varios tipos de fuentes en LaTeX tienen paquetes dedicados que se pueden cargar fácilmente con el comando \usepackage.</p>
-
-<h4>Fuentes serif</h4>
-<ul>
-    <li><strong>Times</strong>: <code>\usepackage{mathptmx}</code> (reemplaza el obsoleto \usepackage{times})</li>
-    <li><strong>Palatino</strong>: <code>\usepackage{mathpazo}</code></li>
-    <li><strong>Bookman</strong>: <code>\usepackage{bookman}</code></li>
-    <li><strong>Charter</strong>: <code>\usepackage{charter}</code></li>
-    <li><strong>Utopia</strong>: <code>\usepackage{fourier}</code></li>
-    <li><strong>Libertine</strong>: <code>\usepackage{libertine}</code></li>
-</ul>
-
-<h4>Fuentes sans-serif</h4>
-<ul>
-    <li><strong>Helvetica</strong>: <code>\usepackage{helvet}</code></li>
-    <li><strong>Avant Garde</strong>: <code>\usepackage{avant}</code></li>
-    <li><strong>Bera Sans</strong>: <code>\usepackage{berasans}</code></li>
-</ul>
-
-<h4>Fuentes monoespaciadas</h4>
-<ul>
-    <li><strong>Courier</strong>: <code>\usepackage{courier}</code></li>
-    <li><strong>Inconsolata</strong>: <code>\usepackage{inconsolata}</code></li>
-</ul>
-
-<h4>Otras fuentes notables</h4>
-<ul>
-    <li><strong>Computer Modern</strong> (predeterminada de LaTeX): No requiere paquete adicional</li>
-    <li><strong>Latin Modern</strong>: <code>\usepackage{lmodern}</code></li>
-    <li><strong>Kp-fonts</strong>: <code>\usepackage{kpfonts}</code></li>
-    <li><strong>Garamond</strong>: <code>\usepackage{garamond}</code></li>
-</ul>
-
-<p>Es importante notar que algunos de estos paquetes pueden estar obsoletos o tener versiones más recientes. Por ejemplo, para Times se recomienda usar mathptmx en lugar del antiguo paquete times. Además, muchas de estas fuentes tienen versiones mejoradas o alternativas en los paquetes TeX Gyre, que ofrecen un soporte más completo y actualizado.</p>
-
-<p>Para una mayor flexibilidad y acceso a más fuentes, especialmente si se usa XeLaTeX o LuaLaTeX, se recomienda el uso del paquete fontspec, que permite utilizar fuentes del sistema operativo directamente.</p>
-
-
-<p>Recuerda que cambiar la fuente para todo el documento puede afectar significativamente su apariencia, así que elige sabiamente según el contexto y los requisitos de tu proyecto.</p>
 
 <h3>Cajas de texto en LaTeX</h3>
 
