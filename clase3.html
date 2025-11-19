@@ -902,6 +902,75 @@ La Figura~\ref{fig:mi_imagen} ilustra...
 
     <p>El uso estratégico de estos comandos ayuda a controlar la colocación de elementos flotantes y la estructura de tu documento, mejorando su organización y legibilidad.</p>
     <p><a href="index.html" class="back-to-index">Volver al índice</a></p>
+
+    <script>
+        /**
+         * Agregar botones de copiar a portapapeles para bloques de código
+         * Funciona con cualquier elemento <pre><code>
+         */
+        document.addEventListener('DOMContentLoaded', function() {
+            // Seleccionar todos los bloques de código
+            const codeBlocks = document.querySelectorAll('pre');
+            
+            codeBlocks.forEach(function(pre) {
+                // Crear contenedor para el bloque de código
+                const container = document.createElement('div');
+                container.className = 'code-container';
+                
+                // Envolver el <pre> en el contenedor
+                pre.parentNode.insertBefore(container, pre);
+                container.appendChild(pre);
+                
+                // Crear el botón de copiar
+                const copyButton = document.createElement('button');
+                copyButton.className = 'copy-button';
+                copyButton.type = 'button';
+                copyButton.title = 'Copiar al portapapeles';
+                copyButton.innerHTML = `
+                    <span class="copy-icon">📋 Copiar</span>
+                    <span class="copied-icon">✓ Copiado</span>
+                `;
+                
+                // Agregar el botón al contenedor (antes del <pre>)
+                container.insertBefore(copyButton, pre);
+                
+                // Agregar funcionalidad de copiar
+                copyButton.addEventListener('click', function() {
+                    // Obtener el texto del código
+                    const code = pre.innerText;
+                    
+                    // Copiar al portapapeles
+                    navigator.clipboard.writeText(code).then(function() {
+                        // Cambiar estilo del botón momentáneamente
+                        copyButton.classList.add('copied');
+                        
+                        // Volver al estado normal después de 2 segundos
+                        setTimeout(function() {
+                            copyButton.classList.remove('copied');
+                        }, 2000);
+                    }).catch(function(err) {
+                        // Alternativa si clipboard API no funciona
+                        console.error('Error al copiar: ', err);
+                        // Mostrar fallback (seleccionar y copiar manualmente)
+                        const textArea = document.createElement('textarea');
+                        textArea.value = code;
+                        document.body.appendChild(textArea);
+                        textArea.select();
+                        try {
+                            document.execCommand('copy');
+                            copyButton.classList.add('copied');
+                            setTimeout(function() {
+                                copyButton.classList.remove('copied');
+                            }, 2000);
+                        } catch (err) {
+                            alert('No se pudo copiar. Por favor, usa Ctrl+C manualmente.');
+                        }
+                        document.body.removeChild(textArea);
+                    });
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>
