@@ -265,7 +265,7 @@ Este documento funciona en ambos motores.
 <ul>
     <li><strong>Fuentes serif para texto largo:</strong> Son más fáciles de leer en documentos impresos (TeX Gyre Termes, Pagella)</li>
     <li><strong>Coherencia:</strong> No mezcles demasiadas fuentes diferentes (máximo 2-3 en todo el documento)</li>
-    <li><strong>Normas institucionales:</strong> Consulta si tu universidad requiere alguna fuente específica</li>
+    <li><strong>Normas institucionales:</strong> Consulta si se requiere alguna fuente específica para el documento</li>
     <li><strong>Prueba antes de decidir:</strong> Compila varias páginas con diferentes fuentes para ver cuál te gusta más</li>
     <li><strong>Explora el catálogo:</strong> Visita <a href="https://www.overleaf.com/latex/templates/fontspec-all-the-fonts/hjrpnxhrrtxc" target="_blank">el catálogo completo</a> para ver ejemplos visuales</li>
 </ul>
@@ -709,13 +709,13 @@ Usa el paquete <code>xcolor</code> para definir colores personalizados. Compila 
 
 <h3>Uso de colores de xcolor en hyperref</h3>
 
-<p>En hyperref se pueden usar los colores definidos por xcolor, pero hay algunos requisitos y consideraciones importantes:</p>
+<p>En hyperref se pueden usar los colores definidos por xcolor, pero hay algunos requisitos y consideraciones importantes. Para más detalles técnicos, consulta la <a href="https://mirrors.ctan.org/macros/latex/contrib/hyperref/doc/hyperref-doc.pdf" target="_blank">documentación de hyperref en CTAN</a>:</p>
 
 <h4>1. Orden de carga de paquetes</h4>
 <p>Es crucial cargar xcolor antes de hyperref para poder utilizar los colores definidos por xcolor en las opciones de hyperref.</p>
 
 <h4>2. Compatibilidad de opciones</h4>
-<p>Al cargar xcolor con opciones como dvipsnames, es necesario pasarlas también a hyperref para evitar conflictos. Por ejemplo:</p>
+<p>Al cargar xcolor con opciones como dvipsnames, es necesario pasarlas también a hyperref para evitar conflictos. Puedes ver las tablas de colores disponibles en la <a href="http://mirrors.ctan.org/macros/latex/contrib/xcolor/xcolor.pdf" target="_blank">documentación de xcolor en CTAN</a>. Por ejemplo:</p>
 
 <pre><code>\usepackage[dvipsnames]{xcolor}
 \usepackage[dvipsnames]{hyperref}</code></pre>

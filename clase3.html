@@ -284,7 +284,7 @@
     <li><strong>Definición</strong>: Las columnas del tipo <code>p</code> se definen con el comando <code>p{ancho}</code>, donde <code>ancho</code> es el ancho fijo que tendrá la columna.</li>
     <li><strong>Alineación</strong>: Por defecto, el texto en columnas <code>p</code> se alinea a la izquierda. Puedes usar comandos como <code>\centering</code> o <code>\raggedright</code> para cambiar la alineación horizontal.</li>
     <li><strong>Saltos de línea</strong>: Las columnas <code>p</code> permiten saltos de línea dentro de la celda. Puedes usar el comando <code>\\</code> para forzar un salto de línea.</li>
-    <li><strong>Alineación vertical</strong>: El texto en columnas <code>p</code> se alinea al inicio de la celda, es decir, alineado a la parte superior.</li>
+    <li><strong>Alineación vertical</strong>: El texto en columnas <code>p</code> alinea su primera línea con la línea base. <strong>Nota:</strong> En el ejemplo de arriba, al combinarse con una columna <code>m</code>, la columna <code>p</code> parece centrada porque la columna <code>m</code> desplaza la línea base al centro.</li>
 </ul>
 
 <h4>Columnas <code>m</code></h4>
@@ -296,7 +296,14 @@
     <li><strong>Alineación vertical</strong>: La principal diferencia con las columnas <code>p</code> es que el texto en columnas <code>m</code> se alinea verticalmente al centro de la celda. Esto es especialmente útil cuando necesitas que el texto esté centrado verticalmente en filas con diferentes alturas.</li>
 </ul>
 
-<p>En resumen, la principal diferencia entre columnas <code>p</code> y <code>m</code> es la alineación vertical del texto. Las columnas <code>p</code> alinean el texto a la parte superior de la celda, mientras que las columnas <code>m</code> lo alinean al centro verticalmente.</p>
+<p>En resumen, la principal diferencia entre columnas <code>p</code> y <code>m</code> es la alineación vertical del texto respecto a la línea base. Las columnas <code>p</code> alinean la primera línea del texto con la línea base, mientras que las columnas <code>m</code> centran el contenido verticalmente en la línea base.</p>
+
+<p><strong>Importante sobre la interacción entre columnas:</strong> La alineación visual final depende de qué columna determina la altura de la fila (generalmente la que tiene más contenido):</p>
+<ul>
+    <li>Si la columna más alta es de tipo <strong>p</strong>, la línea base de la fila se sitúa en la parte superior (en su primera línea). Una columna <strong>m</strong> en la misma fila se centrará respecto a esa línea base superior, por lo que parecerá estar alineada arriba.</li>
+    <li>Si la columna más alta es de tipo <strong>m</strong>, la línea base se sitúa en el centro vertical de esa celda. Una columna <strong>p</strong> en la misma fila alineará su primera línea con ese centro.</li>
+</ul>
+<p>Por esta razón, si deseas que todas las celdas de una fila estén centradas verticalmente entre sí, se recomienda definir todas las columnas como tipo <strong>m</strong>.</p>
 
 
 
@@ -434,11 +441,11 @@ La Tabla \ref{tab:comparacion} muestra una comparación detallada de diferentes 
     \toprule
     Elemento & Cantidad & Precio \\
     \midrule
-    Manzanas & 5 & $2.50 \\
-    Peras    & 3 & $1.80 \\
-    Naranjas & 4 & $2.00 \\
+    Manzanas & 5 & \$2.50 \\
+    Peras    & 3 & \$1.80 \\
+    Naranjas & 4 & \$2.00 \\
     \midrule
-    Total    & 12 & $6.30 \\
+    Total    & 12 & \$6.30 \\
     \bottomrule
     \end{tabular}
     \caption{Ejemplo de tabla con booktabs}
@@ -450,6 +457,7 @@ La Tabla \ref{tab:comparacion} muestra una comparación detallada de diferentes 
         <li>El primer <code>\midrule</code> separa el encabezado del cuerpo de la tabla.</li>
         <li>El segundo <code>\midrule</code> separa el cuerpo del total.</li>
         <li><code>\bottomrule</code> cierra la tabla con una línea gruesa en la parte inferior.</li>
+        <li><strong>Nota sobre el símbolo de dólar:</strong> Se usa <code>\$</code> para imprimir el símbolo de dólar literalmente. Si usaras solo <code>$</code>, LaTeX entraría en modo matemático y, con el paquete <code>babel</code> en español, el punto decimal se convertiría automáticamente en una coma.</li>
     </ul>
 
     <p>El uso de estos comandos en lugar de <code>\hline</code> resulta en tablas más profesionales y fáciles de leer, siguiendo las mejores prácticas tipográficas para la presentación de datos tabulares.</p>
@@ -514,9 +522,6 @@ La Tabla \ref{tab:comparacion} muestra una comparación detallada de diferentes 
     <li><code>\begin{landscape}</code> ... <code>\end{landscape}</code>: Crea una página apaisada.</li>
     <li><code>\caption{} \label{}</code>: Agrega un título y una etiqueta a la tabla.</li>
     <li><code>\toprule</code>, <code>\midrule</code>, <code>\bottomrule</code>: Crea líneas horizontales mejoradas (requiere el paquete <code>booktabs</code>).</li>
-    <li><code>\endfirsthead</code> ... <code>\endhead</code>: Define el encabezado para la primera página y las siguientes.</li>
-    <li><code>\endfoot</code>: Define el pie de página para todas las páginas excepto la última.</li>
-    <li><code>\endlastfoot</code>: Define el pie de página para la última página de la tabla.</li>
 </ul>
 
 <h4>Consideraciones importantes:</h4>
@@ -528,58 +533,9 @@ La Tabla \ref{tab:comparacion} muestra una comparación detallada de diferentes 
     <li><strong>Márgenes</strong>: Los márgenes se ajustarán automáticamente para la orientación apaisada.</li>
 </ul>
 
-<h4>Ejemplo completo:</h4>
-
-<pre><code>\documentclass{article}
-\usepackage{pdflscape}
-\usepackage{longtable}
-\usepackage{booktabs}
-
-\begin{document}
-
-Texto normal en orientación vertical.
-
-\begin{landscape}
-\begin{longtable}{lcccccc}
-    \caption{Tabla grande apaisada}\label{tab:apaisada} \\
-    
-    \toprule
-    Método & Precisión & Recall & F1-Score & Tiempo (s) & Memoria (MB) & Complejidad \\
-    \midrule
-    \endfirsthead
-    
-    \multicolumn{7}{c}{Continuación de la Tabla \ref{tab:apaisada}} \\
-    \toprule
-    Método & Precisión & Recall & F1-Score & Tiempo (s) & Memoria (MB) & Complejidad \\
-    \midrule
-    \endhead
-    
-    \midrule
-    \multicolumn{7}{r}{Continúa en la siguiente página} \\
-    \endfoot
-    
-    \bottomrule
-    \endlastfoot
-    
-    Método A & 0.95 & 0.92 & 0.93 & 120 & 500 & O(n log n) \\
-    Método B & 0.88 & 0.90 & 0.89 & 80 & 300 & O(n) \\
-    Método C & 0.92 & 0.94 & 0.93 & 150 & 700 & O($n^2$) \\
-    Método D & 0.97 & 0.96 & 0.96 & 200 & 1000 & O($n^3$) \\
-    % ... Repite estas filas varias veces para crear una tabla larga
-\end{longtable}
-\end{landscape}
-
-Volvemos a la orientación vertical normal.
-
-\end{document}
-</code></pre>
-
-<p>El siguiente ejemplo creará una tabla apaisada que comenzará en una nueva página, se extenderá por múltiples páginas si es necesario, y luego volverá a la orientación normal del documento.</p>
-
-
 <h3>Tablas largas de varias páginas</h3>
 
-<p><code>longtable</code> es un paquete LaTeX muy útil que permite crear tablas que se extienden a lo largo de múltiples páginas. Es especialmente valioso cuando se trabaja con tablas largas que no caben en una sola página. Vamos a explorar cómo funciona <code>longtable</code> en detalle:</p>
+<p><code>longtable</code> es un paquete LaTeX muy útil que permite crear tablas que se extienden a lo largo de múltiples páginas. Es especialmente valioso cuando se trabaja con tablas largas que no caben en una sola página. Para utilizarlo, debes incluir <code>\usepackage{longtable}</code> en el preámbulo de tu documento.</p>
 
 <h4>Características principales de longtable</h4>
 <ol>
@@ -591,9 +547,15 @@ Volvemos a la orientación vertical normal.
 
 <h4>Estructura básica de una longtable</h4>
 
+<p><strong>Nota importante:</strong> A diferencia de <code>tabular</code>, el entorno <code>longtable</code> <strong>no</strong> debe ir dentro de un entorno <code>table</code>. Aunque <code>longtable</code> maneja las leyendas (<code>\caption</code>) como un entorno flotante, técnicamente <strong>no flota</strong>. La tabla aparecerá exactamente donde la coloques en el código y se dividirá automáticamente entre páginas si es necesario, pero LaTeX no intentará moverla a otra posición. Por ello, el comando <code>\caption</code> se coloca <strong>dentro</strong> del <code>longtable</code>.</p>
+
+<p><strong>Ojo:</strong> En <code>longtable</code>, el <code>\caption</code> se comporta como una fila completa de la tabla. Esto significa que <strong>siempre debe terminar con <code>\\</code></strong> (doble barra invertida), al igual que cualquier otra fila. Esto es diferente al entorno <code>table</code> normal, donde el <code>\caption</code> va fuera del <code>tabular</code> y no lleva <code>\\</code>.</p>
+
+<p><strong>Error común:</strong> Si olvidas el <code>\\</code> después del <code>\caption</code>, obtendrás un error críptico como <code>You have used a \hline command in the wrong place</code> o <code>\toprule ->\noalign</code>. Esto sucede porque LaTeX intenta insertar la línea horizontal (<code>\toprule</code>) <em>dentro</em> de la celda del título en lugar de en una nueva fila.</p>
+
 <pre><code>\begin{longtable}{ccc}
     % Encabezado de la primera página
-    \caption{Título de la tabla}\label{tab:ejemplo} \\
+    \caption{Título de la tabla}\label{tab:ejemplo} \\ % ¡Importante! El \\ es obligatorio aquí
     \toprule
     Columna 1 & Columna 2 & Columna 3 \\
     \midrule
@@ -694,6 +656,54 @@ Volvemos a la orientación vertical normal.
     <li><strong>Personalización</strong>: Puedes personalizar aún más usando paquetes como <code>array</code> para más opciones de formato de columnas.</li>
 </ol>
 
+<h3>Combinación de tablas apaisadas y largas</h3>
+
+<p>Es común tener tablas que son tanto anchas como largas. En estos casos, puedes combinar <code>pdflscape</code> y <code>longtable</code>. El siguiente ejemplo muestra cómo crear una tabla apaisada que se extiende por múltiples páginas:</p>
+
+<pre><code>\documentclass{article}
+\usepackage{pdflscape}
+\usepackage{longtable}
+\usepackage{booktabs}
+
+\begin{document}
+
+Texto normal en orientación vertical.
+
+\begin{landscape}
+\begin{longtable}{lcccccc}
+    \caption{Tabla grande apaisada}\label{tab:apaisada} \\
+    
+    \toprule
+    Método & Precisión & Recall & F1-Score & Tiempo (s) & Memoria (MB) & Complejidad \\
+    \midrule
+    \endfirsthead
+    
+    \multicolumn{7}{c}{Continuación de la Tabla \ref{tab:apaisada}} \\
+    \toprule
+    Método & Precisión & Recall & F1-Score & Tiempo (s) & Memoria (MB) & Complejidad \\
+    \midrule
+    \endhead
+    
+    \midrule
+    \multicolumn{7}{r}{Continúa en la siguiente página} \\
+    \endfoot
+    
+    \bottomrule
+    \endlastfoot
+    
+    Método A & 0.95 & 0.92 & 0.93 & 120 & 500 & O(n log n) \\
+    Método B & 0.88 & 0.90 & 0.89 & 80 & 300 & O(n) \\
+    Método C & 0.92 & 0.94 & 0.93 & 150 & 700 & O($n^2$) \\
+    Método D & 0.97 & 0.96 & 0.96 & 200 & 1000 & O($n^3$) \\
+    % ... Repite estas filas varias veces para crear una tabla larga
+\end{longtable}
+\end{landscape}
+
+Volvemos a la orientación vertical normal.
+
+\end{document}
+</code></pre>
+
 <p><code>longtable</code> es una herramienta poderosa para manejar tablas extensas en LaTeX, ofreciendo flexibilidad y control sobre cómo se presentan los datos a lo largo de múltiples páginas.</p>
 
 
@@ -703,8 +713,7 @@ Volvemos a la orientación vertical normal.
 
 <p>El tipo de columna m permite alinear el contenido verticalmente en el centro. Primero, debes incluir el paquete array en el preámbulo de tu documento LaTeX:</p>
 
-<pre><code>\documentclass{article}
-    \begin{tabular}{|m{5cm}|m{5cm}|}
+<pre><code>    \begin{tabular}{|m{5cm}|m{5cm}|}
     \hline
     Celda 1 & Celda 2 con más texto para que ocupe varias líneas \\ \hline
     Celda 3 & Celda 4 prueba a añadir un texto más largo... \\ \hline
@@ -713,7 +722,14 @@ Volvemos a la orientación vertical normal.
 
 
 <h4>2. Alineación vertical con multirow</h4>
-<p>Si estás utilizando multirow, puedes alinear verticalmente el contenido de las celdas multirow ajustando el parámetro de desplazamiento vertical:</p>
+<p>Si estás utilizando multirow (recuerda incluir <code>\usepackage{multirow}</code> en el preámbulo), puedes alinear verticalmente el contenido de las celdas multirow ajustando el parámetro de desplazamiento vertical. La sintaxis general es <code>\multirow{filas}{ancho}[ajuste]{texto}</code>:</p>
+
+<ul>
+    <li><strong>filas</strong>: Número de filas que ocupará la celda.</li>
+    <li><strong>ancho</strong>: Ancho de la celda. Usa <code>*</code> para que se ajuste automáticamente al contenido.</li>
+    <li><strong>ajuste</strong> (opcional): Desplazamiento vertical manual. Un valor positivo baja el texto, uno negativo lo sube. Útil para centrar visualmente cuando el cálculo automático no es perfecto.</li>
+    <li><strong>texto</strong>: El contenido de la celda.</li>
+</ul>
 
 <pre><code>	\begin{tabular}{| c |m{5cm}|}
     \hline
@@ -723,7 +739,20 @@ Volvemos a la orientación vertical normal.
 </code></pre>
 
 <h4>3. Alineación vertical con w</h4>
-<p>El tipo de columna w permite especificar un ancho y alinear tanto horizontal como verticalmente:</p>
+<p>El tipo de columna <code>w</code> (del paquete <code>array</code>) permite especificar un ancho fijo y alinear el contenido horizontalmente dentro de ese ancho. La sintaxis es <code>w{alineación}{ancho}</code>:</p>
+
+<ul>
+    <li><strong>alineación</strong>: Define la alineación horizontal del texto dentro de la celda. Puede ser:
+        <ul>
+            <li><code>l</code>: Izquierda (Left)</li>
+            <li><code>c</code>: Centro (Center)</li>
+            <li><code>r</code>: Derecha (Right)</li>
+        </ul>
+    </li>
+    <li><strong>ancho</strong>: El ancho fijo de la columna (ej. <code>3cm</code>, <code>20mm</code>).</li>
+</ul>
+
+<p><strong>Nota sobre alineación vertical:</strong> Por defecto, las columnas <code>w</code> alinean verticalmente al centro de la celda (similar a <code>m</code>), lo que las hace muy útiles para centrar contenido tanto horizontal como verticalmente.</p>
 
 <pre><code>\begin{tabular}{|w{r}{3cm}|m{5cm}|}
     \hline
@@ -733,6 +762,28 @@ Volvemos a la orientación vertical normal.
 </code></pre>
 
     <h3>Figuras: inserción y posicionamiento</h3>
+
+<h4>Subir imágenes a Overleaf</h4>
+<p>Antes de poder usar una imagen en tu documento, necesitas subirla a tu proyecto en Overleaf. Sigue estos pasos:</p>
+<ol>
+    <li>En el panel izquierdo (árbol de archivos), haz clic en el icono de <strong>Subir</strong> (icono de flecha hacia arriba).</li>
+    <li>Selecciona la imagen desde tu ordenador o arrástrala directamente al cuadro de diálogo.</li>
+    <li>Una vez subida, verás el archivo de imagen en la lista de archivos del proyecto.</li>
+    <li>Usa el nombre exacto del archivo (incluyendo la extensión, como <code>.jpg</code> o <code>.png</code>) en el comando <code>\includegraphics</code>.</li>
+</ol>
+
+<h4>Organizar imágenes en carpetas</h4>
+<p>Para mantener tu proyecto ordenado, es recomendable guardar las imágenes en una carpeta separada (por ejemplo, llamada <code>imagenes</code> o <code>figuras</code>):</p>
+<ol>
+    <li>En el panel izquierdo, haz clic en el icono de <strong>Nueva Carpeta</strong>.</li>
+    <li>Nombra la carpeta (ej. <code>imagenes</code>).</li>
+    <li>Sube tus imágenes dentro de esa carpeta.</li>
+    <li>Para usar la imagen, incluye la ruta en el nombre del archivo: <code>\includegraphics{imagenes/mi_foto.jpg}</code>.</li>
+    <li>Alternativamente, puedes indicar a LaTeX dónde buscar las imágenes añadiendo esto en el preámbulo: <code>\graphicspath{{imagenes/}}</code>. Así solo tendrás que escribir el nombre del archivo.</li>
+    <li><strong>Nota:</strong> Puedes incluir múltiples rutas si tienes imágenes en varias carpetas: <code>\graphicspath{{imagenes/}{capitulo1/figuras/}{logos/}}</code>. Cada ruta debe ir entre llaves <code>{}</code> y terminar con una barra <code>/</code>.</li>
+</ol>
+
+<h4>Código para insertar la figura</h4>
     <pre><code>\usepackage{graphicx}
 
 \begin{figure}[htbp]
@@ -754,6 +805,9 @@ Volvemos a la orientación vertical normal.
     </p>
 
     <h3>Leyendas para figuras y tablas</h3>
+    
+    <p>El paquete <code>caption</code> permite personalizar el aspecto y contenido de las leyendas (captions) en figuras y tablas. Aquí te mostramos cómo usarlo:</p>
+    
     <pre><code>\usepackage[font=small,labelfont=bf]{caption}
 
 \captionsetup[table]{name=Cuadro}  % Cambia "Tabla" por "Cuadro"
@@ -763,19 +817,68 @@ Volvemos a la orientación vertical normal.
     \begin{tabular}{cc}
         A & B \\
         C & D \\
-    \{tabular}
+    \end{tabular}
     \caption[Versión corta]{Una tabla con leyenda personalizada}
     \label{tab:ejemplo}
 \end{table}
 </code></pre>
 
-    <p>
+    <h4>Explicación del ejemplo</h4>
     <ul>
-        <li><code>\usepackage[font=small,labelfont=bf]{caption}</code> personaliza el estilo de las leyendas.</li>
-        <li><code>\captionsetup[table]{name=Cuadro}</code> cambia el nombre predeterminado de las tablas.</li>
-        <li>La versión corta del caption se usa en el índice de tablas.</li>
+        <li><code>\usepackage[font=small,labelfont=bf]{caption}</code>: Carga el paquete <code>caption</code> con opciones de personalización:
+            <ul>
+                <li><code>font=small</code>: Reduce el tamaño de la fuente de las leyendas.</li>
+                <li><code>labelfont=bf</code>: Pone el etiqueta (ej. "Tabla 1:") en negrita (bold font).</li>
+            </ul>
+        </li>
+        <li><code>\captionsetup[table]{name=Cuadro}</code>: Personaliza el nombre de las tablas. Por defecto, con `babel-spanish`, las tablas se llaman "Cuadro" en lugar de "Tabla". Si prefieres cambiar esto a "Tabla" o usar otro nombre, usa este comando. Por ejemplo, <code>\captionsetup[table]{name=Tabla}</code> cambia "Cuadro" por "Tabla".</li>
+        <li><code>\caption[Versión corta]{Descripción completa}</code>: La versión corta (en corchetes) aparece en el índice de tablas/figuras, mientras que la descripción completa aparece debajo de la tabla/figura en el documento.</li>
+        <li><code>\label{tab:ejemplo}</code>: Crea una etiqueta para referencias cruzadas.</li>
     </ul>
-    </p>
+
+    <h4>Otras opciones útiles del paquete caption</h4>
+    <ul>
+        <li><code>margin=1cm</code>: Añade márgenes alrededor de la leyenda.</li>
+        <li><code>justification=centering</code>: Centra el texto de la leyenda.</li>
+        <li><code>separator=:|</code>: Cambia el separador entre la etiqueta y el texto (ej. "Tabla 1 | " en lugar de "Tabla 1: ").</li>
+        <li><code>\captionsetup{name=Figura}</code> (sin especificar <code>[figure]</code> o <code>[table]</code>): Aplica la configuración a todas las leyendas.</li>
+    </ul>
+
+    <h4>Cambiar el nombre de tablas en el índice</h4>
+    <p><strong>Nota importante:</strong> El comando <code>\captionsetup[table]{name=Tabla}</code> solo cambia el nombre que aparece debajo de las tablas en el documento, pero <strong>no cambia</strong> el título del índice de tablas. En documentos con <code>babel-spanish</code>, el índice seguirá mostrando "Índice de cuadros".</p>
+    
+    <p>Para cambiar también el título del índice de tablas, hay dos enfoques:</p>
+    
+    <h5>Opción 1: En el preámbulo (usando \addto\captionsspanish)</h5>
+    <p>Añade esto en el preámbulo <strong>después</strong> de cargar <code>babel</code> y <code>caption</code>:</p>
+    
+    <pre><code>\usepackage[spanish]{babel}
+\usepackage[font=small,labelfont=bf]{caption}
+\captionsetup[table]{name=Tabla}
+\addto\captionsspanish{\renewcommand{\listtablename}{Índice de tablas}}</code></pre>
+    
+    <h5>Opción 2: Después de \begin{document} (método más fiable)</h5>
+    <p><strong>Consejo:</strong> Si la opción anterior no funciona, puedes mover el comando <code>\renewcommand</code> a <strong>después de <code>\begin{document}</code></strong>, justo antes de <code>\listoftables</code>:</p>
+    
+    <pre><code>\begin{document}
+\renewcommand{\listtablename}{Índice de tablas}
+\maketitle
+
+\tableofcontents
+
+\listoftables
+
+\listoffigures
+</code></pre>
+    
+    <p>Esta segunda opción suele ser más fiable porque coloca el comando después de que babel haya terminado de inicializar todas sus definiciones.</p>
+
+    <h4>Alternativa más simple: usar la opción es-tabla de babel</h4>
+    <p>Una forma más sencilla de cambiar automáticamente tanto el nombre de las tablas como el título del índice es usar la opción <code>es-tabla</code> al cargar el paquete <code>babel</code>:</p>
+    
+    <pre><code>\usepackage[spanish,es-tabla]{babel}</code></pre>
+    
+    <p>Con esta opción, LaTeX cambiará automáticamente todas las referencias de "Cuadro" a "Tabla" en el documento y en el índice de tablas, sin necesidad de usar <code>\captionsetup</code> ni <code>\renewcommand</code>. Esta es la forma más directa si tu instalación de LaTeX (o Overleaf) soporta esta opción.</p>
 
     <h3>Referencias cruzadas</h3>
     <pre><code>Como se muestra en la Tabla~\ref{tab:ejemplo} en la página~\pageref{tab:ejemplo}...
