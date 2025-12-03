@@ -405,69 +405,8 @@ sed -E '/^\s*doi\s*=/Id;/^\s*issn\s*=/Id' referencias.bib > referencias_sin_dois
         <p>Para trabajos largos (tesis, proyectos colaborativos) recomendamos usar <strong>Better BibTeX (BBT)</strong> para exportar automáticamente un fichero local (por ejemplo <code>references.bib</code>) y mantenerlo bajo control de versiones con <code>git</code>. Esto ofrece trazabilidad y claves de cita estables.</p>
         <p>Si quieres el procedimiento completo —configuración de BBT, .gitignore, remote de Overleaf, resolución de conflictos, scripts post-export y ejemplos de CI— consulta la guía avanzada de Git en Overleaf: <a href="git-faq.html#bbt-git-overleaf">FAQ: Git Avanzado — BBT + Git → Overleaf</a>.</p>
 
-        <h5>Detalles y pasos recomendados</h5>
-        <p>A continuación tienes un flujo robusto, con políticas y ejemplos para integrarlo sin sobresaltos en un proyecto de tesis.</p>
-
-        <h6>1) Configura Better BibTeX</h6>
-        <ol>
-            <li>Instala BBT y en <strong>Preferences → Better BibTeX</strong> elige <code>biblatex</code> si usas <code>biber</code>, o <code>bibtex</code> si necesitas BibTeX clásico.</li>
-            <li>En la colección que usarás para la tesis habilita <em>Automatic export</em> y configura la ruta de salida a la carpeta raíz de tu proyecto local (ej. <code>/home/usuario/tesis/references.bib</code>). Esto hace que BBT reescriba el fichero cada vez que cambies la colección.</li>
-            <li>Define un formato de claves estable (p. ej. <code>[auth][year][shorttitle]</code>) en la configuración de BBT; ayudará a mantener claves previsibles y evitar colisiones.</li>
-        </ol>
-
-        <h6>2) Mantén el .bib en tu repo y añade reglas</h6>
-        <ol>
-            <li>Incluye <code>references.bib</code> en tu repositorio local. Añade una entrada en <code>.gitignore</code> para excluir ficheros de adjuntos (PDFs) que no quieras subir:<pre><code># ejemplos en .gitignore
-*.pdf
-data/**/attachments/**
-</code></pre></li>
-            <li>Antes de cada push, revisa y prueba localmente (compila) para comprobar que las claves de las citas no han cambiado y que el fichero <code>.bib</code> está correcto.</li>
-        </ol>
-
-        <h6>3) Remote Git — Overleaf</h6>
-        <ol>
-            <li>Overleaf ofrece una URL Git del proyecto (ver Menu → Git). Puedes añadirla como remote (ej. <code>overleaf</code>):<pre><code>git remote add overleaf https://git.overleaf.com/your/project/id
-git push overleaf main</code></pre></li>
-            <li>Si trabajas con un origen central (GitHub/GitLab), configura un flujo claro: por ejemplo usar GitHub como origen principal y empujar (o desplegar) hacia Overleaf desde CI, o permitir pushes directos a Overleaf cuando trabajes localmente.</li>
-        </ol>
-
-        <h6>4) Resolver conflictos y buenas prácticas colaborativas</h6>
-        <ul>
-            <li>Evita que varias personas editen <code>references.bib</code> simultáneamente en Overleaf: preferid editar y exportar desde Zotero local y hacer pull/merge en la rama central antes de push.</li>
-            <li>Usa ramas o Pull Requests si conviene para revisar cambios bibliográficos (los cambios en <code>.bib</code> pueden ser revisados por tu director antes de integrarlos a la rama principal).</li>
-            <li>Siempre pull antes de push; documenta en el README del repo que <code>references.bib</code> es generado por BBT y que el flujo de trabajo es: export local → git commit → push → Overleaf (o CI → Overleaf).</li>
-        </ul>
-
-        <h6>5) Automatización (ejemplos)</h6>
-        <p>Si quieres automatizar el push tras cada export de BBT, tienes varias opciones:</p>
-        <ol>
-            <li><strong>Post-export script</strong>: BBT puede ejecutar un script cuando exporta. Un script sencillo (Linux) que añada, commitee y empuje:</li>
-            <pre><code>#!/usr/bin/env bash
-cd /home/usuario/tesis
-git add references.bib
-if git diff --staged --quiet; then
-  echo "Sin cambios en references.bib"
-  exit 0
-fi
-git commit -m "BBT auto-export: $(date -Iseconds)"
-git push overleaf main
-</code></pre>
-            <li><strong>Watcher</strong>: usa inotifywait o herramientas tipo <code>fswatch</code> para detectar cambios y ejecutar el script automáticamente.</li>
-            <li><strong>CI</strong>: Puedes centralizar autoría en GitHub y configurar un workflow (GitHub Actions) para desplegar a Overleaf. En CI guarda las credenciales de Overleaf en secretos y empuja desde la acción. Ventaja: centralizas y no necesitas exponer credenciales en el equipo local.</li>
-        </ol>
-
-        <h6>6) Seguridad y responsabilidad</h6>
-        <ul>
-            <li>Guarda las credenciales / tokens de Overleaf como secretos en tu entorno (no commitees las credenciales en el repo).</li>
-            <li>Revisa el contenido del <code>references.bib</code> antes de publicar (algunos campos pueden contener datos sensibles o URLs privadas).</li>
-        </ul>
-
-        <h5>Recursos y enlaces</h5>
-        <ul>
-            <li>Overleaf: <a href="https://www.overleaf.com/learn/how-to/Using_Git_with_Overleaf" target="_blank" rel="noopener">Using Git with Overleaf</a></li>
-            <li>Better BibTeX: <a href="https://retorque.re/zotero-better-bibtex/" target="_blank" rel="noopener">Better BibTeX documentation</a></li>
-            <li>Ejemplos de CI: busca "deploy to overleaf" para ver acciones/plantillas que empujan a Overleaf desde GitHub Actions.</li>
-        </ul>
+        <!-- Detalles avanzados movidos a git-faq.html (sección #bbt-git-overleaf). -->
+        <!-- Mantener una referencia breve y clara al FAQ avanzado para evitar duplicación en la clase. -->
 
         <h4>2.3.8 ¿Las revistas permiten <code>biblatex</code>? Estilos y personalización</h4>
         <p>Respuesta breve: <strong>sí</strong> — algunas revistas aceptan <code>biblatex</code> y otras no; depende de la editorial y del flujo de producción. Antes de usar <code>biblatex</code> para enviar un artículo, revisa las <em>instrucciones para autores</em> de la revista o contacta con el editor. Aquí tienes las consideraciones más comunes:</p>
