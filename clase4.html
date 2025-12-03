@@ -293,6 +293,48 @@ Como menciona \cite{einstein1916relativity}, la relatividad...
         <p>En Overleaf (BibTeX): sube ambos archivos y compila. Overleaf ejecutará la cadena (latex → bibtex → latex → latex) automáticamente. Si trabajas localmente, ejecuta <code>pdflatex main_bibtex.tex && bibtex main_bibtex && pdflatex main_bibtex.tex && pdflatex main_bibtex.tex</code>.</p>
 
         <p>Estos dos ejemplos permitirán a los estudiantes comprobar rápidamente que las citas funcionan, cambiar estilos y probar actualizaciones desde la integración Zotero o mediante subida manual de <code>.bib</code>.</p>
+
+        <h4>2.3.6 Quitar / ocultar DOI e ISSN (ejemplos)</h4>
+        <p>Si prefieres que la bibliografía no muestre DOI, ISSN, ISBN o URLs (por política del departamento, revisión anónima o estilo editorial), aquí tienes varias formas según el flujo que uses.</p>
+
+        <h5>Biblatex + biber (fácil, recomendado)</h5>
+        <p>Opciones rápidas (añádelo al preámbulo):</p>
+        <pre><code>% 1) Evitar mostrar DOI, ISBN y URL
+\usepackage[backend=biber,style=authoryear,doi=false,isbn=false,url=false]{biblatex}
+\addbibresource{referencias.bib}
+
+% 2) Forzar limpieza de campos (ISSN u otros)
+\AtEveryBibitem{%
+    \clearfield{issn}%
+    \clearfield{doi}%
+    \clearfield{url}%
+    \clearfield{isbn}%
+}
+</code></pre>
+        <p>Alternativa: usar <code>\DeclareSourcemap</code> para eliminar campos durante la importación (biber):</p>
+        <pre><code>\DeclareSourcemap{
+    \maps[datatype=bibtex]{
+        \map{
+            \step[fieldset=doi, null]
+            \step[fieldset=issn, null]
+            \step[fieldset=url, null]
+        }
+    }
+}
+</code></pre>
+
+        <h5>BibTeX clásico</h5>
+        <p>Si usas el flujo clásico (bibtex), elimina las líneas <code>doi = {...}</code> y <code>issn = {...}</code> del archivo <code>.bib</code> antes de compilar, o genera un fichero temporal limpio:</p>
+        <pre><code># eliminar líneas doi / issn generando un nuevo fichero
+sed -E '/^\s*doi\s*=/Id;/^\s*issn\s*=/Id' referencias.bib > referencias_sin_doissn.bib
+</code></pre>
+
+        <h5>Si tu .bib proviene de Zotero / Overleaf</h5>
+        <ul>
+                <li>Edita <code>referencias.bib</code> en Overleaf y borra las entradas <code>doi</code>/<code>issn</code> si prefieres mantener el control manual.</li>
+                <li>Si usas Better BibTeX (BBT), configura la exportación para omitir campos o usa una post-procesamiento en la ruta de exportación.</li>
+                <li>Si conectas Overleaf a una colección Zotero pública, considera usar la configuración de <code>biblatex</code> + <code>\AtEveryBibitem</code> para ocultar los campos durante la compilación, en lugar de modificar automáticamente los registros en Zotero.</li>
+        </ul>
 <h3>3. Ejercicios prácticos (1h)</h3>
     <h4>Ejercicio 1: Fórmulas matemáticas</h4>
     <p>Crea un documento LaTeX que incluya:</p>
