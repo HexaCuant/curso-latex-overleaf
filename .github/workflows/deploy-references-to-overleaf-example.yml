@@ -1,0 +1,38 @@
+# Ejemplo: GitHub Actions - desplegar references.bib a Overleaf
+# WARNING: Este es un ejemplo pedagógico. Ajusta la URL de Overleaf (en secreto) y las ramas a tu flujo.
+
+name: Deploy references to Overleaf
+
+on:
+  push:
+    paths:
+      - 'references.bib'
+  workflow_dispatch: {}
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configure git
+        run: |
+          git config user.name "CI bot"
+          git config user.email "ci@yourdomain.example"
+
+      - name: Commit references.bib (if changed)
+        run: |
+          git add references.bib || true
+          if git diff --cached --quiet; then
+            echo "No hay cambios en references.bib"
+          else
+            git commit -m "chore: update references.bib (BBT export)"
+          fi
+
+      - name: Push to Overleaf
+        env:
+          OVERLEAF_GIT_URL: ${{ secrets.OVERLEAF_GIT_URL }}
+        run: |
+          # Añade remoto 'overleaf' usando la URL segura desde los secretos
+          git remote add overleaf "$OVERLEAF_GIT_URL"
+          git push overleaf main

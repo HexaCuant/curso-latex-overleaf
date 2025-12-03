@@ -12,6 +12,27 @@
     <p><a href="index.html" class="back-to-index">Volver al índice</a></p>
     <h2>FAQ: Git Avanzado (Contenido Opcional)</h2>
 
+        <h4 id="ci-overleaf">Ejemplo: desplegar bibliografía a Overleaf desde CI (GitHub Actions)</h4>
+        <p>Si tu repo es el origen canónico (por ejemplo en GitHub) puedes automatizar el despliegue de <code>references.bib</code> a Overleaf con un flujo CI que haga push al Git remoto de Overleaf. <strong>Importante:</strong> nunca guardes credenciales en el repositorio — usa secretos.</p>
+
+        <h5>Resumen del flujo</h5>
+        <ol>
+                <li>BBT exporta <code>references.bib</code> a tu repo (o a un lugar que CI pueda leer).</li>
+                <li>Un workflow de GitHub Actions detecta cambios en <code>references.bib</code>.</li>
+                <li>El workflow hace commit (si es necesario) y hace push al remote de Overleaf usando una URL segura almacenada en un secreto.</li>
+        </ol>
+
+        <h5>Requisitos y secretos recomendados</h5>
+        <ul>
+                <li><code>OVERLEAF_GIT_URL</code>: la URL de git de Overleaf con credenciales embebidas (ej. <code>https://&lt;token&gt;@git.overleaf.com/xxxx/yyyy</code>) — **guardada como secreto**.</li>
+                <li>Opcionalmente puedes usar <code>OVERLEAF_USER</code> y <code>OVERLEAF_PASSWORD</code> en lugar de un token embebido, pero sigue siendo crítico almacenarlos como secretos.</li>
+                <li>Configura el disparador del workflow para ejecutarse solo cuando cambie <code>references.bib</code>, o manualmente con <code>workflow_dispatch</code>.</li>
+        </ul>
+
+        <h5>Ejemplo de workflow (GitHub Actions)</h5>
+        <p>Coloca este archivo en <code>.github/workflows/deploy-references-to-overleaf.yml</code>. Es un ejemplo mínimo — adáptalo a tu proyecto y a tu política de ramas.</p>
+        <pre><code class="language-yaml">name: Deploy references to Overleaf
+
     <div style="background-color: #fff3cd; border-left: 4px solid #ffc107; padding: 15px; margin: 20px 0; border-radius: 4px;">
         <p><strong>⚠️ Nota importante sobre este FAQ:</strong></p>
         <p>Este documento contiene información <strong>opcional y avanzada</strong> sobre el uso de Git con Overleaf desde terminal.</p>
@@ -46,6 +67,14 @@
         <li>Copia la URL que genera (algo como: <code>https://git.overleaf.com/uniqueid/projectname</code>)</li>
         <li>En tu terminal, ejecuta:</li>
     </ol>
+
+        <h5>Notas de seguridad y prácticas</h5>
+        <ul>
+                <li>No publiques la URL con token en el repositorio: usa siempre secretos (GitHub Secrets / GitLab CI variables).</li>
+                <li>Protege la rama destino (main) para evitar pushes automáticos desde forks no deseados y revisa quién puede actualizar los secrets.</li>
+                <li>Considera restringir el workflow a ejecuciones manuales (<code>workflow_dispatch</code>) si prefieres revisión humana antes de publicar a Overleaf.</li>
+                <li>En lugar de empujar directamente la rama principal, puedes usar una rama intermedia revisada por Pull Request para validar los cambios antes de desplegar.</li>
+        </ul>
     <pre><code>git clone https://git.overleaf.com/uniqueid/projectname
 cd projectname</code></pre>
     <p>¡Ahora tienes una copia local de tu proyecto!</p>

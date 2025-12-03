@@ -136,6 +136,12 @@ overleaf/
 4. El History de Overleaf guarda todos los cambios
 5. Opcional: Usa Git desde terminal para sincronización adicional
 
+---
+
+### Plantilla / snippet para tesis
+
+Si usas este repo como base para una tesis, hay un pequeño ejemplo y recomendaciones para el flujo BBT + git en <code>THESIS_README_SNIPPET.md</code> — contiene .gitignore aconsejado, flujo de export y comandos de ejemplo.
+
 ### Con Licencia de Campus
 1. Inicia sesión en Overleaf con tu cuenta de universidad
 2. Tendrás acceso a todas las características premium
