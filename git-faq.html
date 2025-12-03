@@ -44,7 +44,13 @@
     <ol>
         <li>Abre tu proyecto en Overleaf</li>
         <li>Haz clic en el menú (≡) a la izquierda</li>
-        <li>Busca la opción <strong>"Git"</strong> (menú del proyecto). Overleaf mostrará la URL de clonación y un comando <code>git clone</code>.</li>
+        <li>Busca la opción <strong>"Git"</strong> (menú del proyecto). Overleaf mostrará la URL de clonación y un comando <code>git clone</code>. Si no ves el elemento "Git" en el menú (la interfaz puede variar), prueba lo siguiente:
+            <ul>
+                <li>Revisa el menú principal del proyecto (≡) — en algunas versiones aparece como <strong>"Git"</strong> o <strong>"Git &amp; GitHub"</strong> o dentro de una sección llamada <strong>Sync</strong> / <strong>Synchronization</strong>.</li>
+                <li>Si aún no lo encuentras, copia la URL del proyecto desde la barra del navegador (ej. <code>https://www.overleaf.com/project/1234567</code>) y genera la URL de Git manualmente sustituyendo el host: <code>https://git.overleaf.com/1234567</code> (ver nota abajo para Server Pro).</li>
+                <li>En instalaciones de Overleaf Server Pro la URL de Git suele tener formato <code>https://&lt;HOST&gt;/git/PROJECT_ID</code> o una variante SSH; consulta al administrador si no encuentras la URL.</li>
+            </ul>
+        </li>
         <li>Copia la URL que genera (ejemplos según tu instalación de Overleaf):
             <ul>
                 <li><strong>Overleaf Cloud</strong> (projects on overleaf.com): si tu URL del proyecto es <code>https://www.overleaf.com/project/1234567</code>, la URL de Git suele ser <code>https://git.overleaf.com/1234567</code> — y el comando será <code>git clone https://git.overleaf.com/1234567</code>.</li>
