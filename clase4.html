@@ -367,6 +367,45 @@ sed -E '/^\s*doi\s*=/Id;/^\s*issn\s*=/Id' referencias.bib > referencias_sin_dois
             <li>Si prefieres no crear un <code>.bst</code> desde cero, contacta con la revista para solicitar su paquete de autor (suele incluir el <code>.bst</code>) o busca en la sección para autores de la web de la revista.</li>
         </ul>
         <p>En resumen: si tu objetivo es publicar en una revista con requisitos estrictos, usa el <code>.bst</code> que proporcione la revista (subiéndolo al proyecto Overleaf). Si necesitas adaptarlo, empieza por <code>makebst</code> o por leer <em>Tame the BeaST</em> (CTAN) y luego prueba localmente o en Overleaf con el flujo clásico de BibTeX.</p>
+
+        <h4>2.3.8 ¿Las revistas permiten <code>biblatex</code>? Estilos y personalización</h4>
+        <p>Respuesta breve: <strong>sí</strong> — algunas revistas aceptan <code>biblatex</code> y otras no; depende de la editorial y del flujo de producción. Antes de usar <code>biblatex</code> para enviar un artículo, revisa las <em>instrucciones para autores</em> de la revista o contacta con el editor. Aquí tienes las consideraciones más comunes:</p>
+
+        <ul>
+            <li><strong>Política editorial:</strong> algunas revistas permiten que los autores usen <code>biblatex</code> (junto con <code>biber</code>) en los archivos enviados; otras requieren el flujo clásico (<code>BibTeX</code> + <code>.bst</code>) o piden un PDF final con el formato exacto, delegando la adaptación al equipo de producción.</li>
+            <li><strong>Distribución de estilos:</strong> si la revista soporta <code>biblatex</code> probablemente te facilitará un paquete (con <code>.bbx</code> y/o <code>.cbx</code>) o indicaciones del estilo que debes usar. Cuando sea el caso, sube esos archivos al proyecto Overleaf (misma carpeta que tu <code>.tex</code>) y activa el estilo con <code>\usepackage[style=revista]{biblatex}</code> (o la opción que indique la revista).</li>
+            <li><strong>Compatibilidad con biber:</strong> algunos sistemas de gestión editorial y revisores automáticos no aceptan <code>biber</code> — comprueba si el flujo editorial soporta <code>biber</code>. Si no lo soporta, quizá tengas que recurrir a BibTeX o pedir instrucciones al editor.</li>
+        </ul>
+
+        <h5>¿Es posible crear estilos personalizados con <code>biblatex</code>?</h5>
+        <p>Sí — <code>biblatex</code> está pensado para ser extensible y muy personalizable. Puedes ajustar el formato de citas y de la bibliografía desde el propio preámbulo del documento, o crear archivos de estilo completos (<code>.bbx</code> y <code>.cbx</code>) que definan el formato de bibliografía y las reglas de citación. Ventajas:</p>
+        <ul>
+            <li>Evitas tocar código en un <code>.bst</code> (lenguaje menos amigable) y trabajas con macros LaTeX y funciones de <code>biblatex</code>.</li>
+            <li>Puedes usar <code>\DeclareFieldFormat</code>, <code>\DeclareNameFormat</code>, <code>\DeclareBibliographyDriver</code> y otras herramientas para adaptar cada campo y cada tipo de entrada.</li>
+            <li>Si ya tienes un estilo base, puedes crear un nuevo <code>.bbx</code> que modifique únicamente lo necesario y subirlo al proyecto (Overleaf lo reconocerá).</li>
+        </ul>
+
+        <h5>Pequeño ejemplo</h5>
+        <p>En el preámbulo puedes cambiar el formato de un campo y ocultar otros sin necesidad de crear un estilo completo:</p>
+        <pre><code>% preámbulo
+\usepackage[backend=biber,style=authoryear]{biblatex}
+\addbibresource{referencias.bib}
+
+% Forzar títulos en cursiva
+\DeclareFieldFormat{title}{\mkbibemph{#1}}
+
+% Ocultar URLs en la bibliografía
+\AtEveryBibitem{\clearfield{url}}
+</code></pre>
+
+        <p>Si necesitas una modificación importante (p. ej. cambiar el orden de los elementos en la entrada de cada tipo), lo habitual es crear un archivo <code>.bbx</code> o <code>.cbx</code> y usarlo como estilo en el proyecto.</p>
+
+        <h5>Recursos</h5>
+        <ul>
+            <li><a href="https://ctan.org/pkg/biblatex" target="_blank" rel="noopener">CTAN — biblatex</a> (documentación y manual)</li>
+            <li><a href="https://www.overleaf.com/learn/latex/Bibliography_management_with_biblatex" target="_blank" rel="noopener">Overleaf — Bibliography management with biblatex</a> (tutoriales y ejemplos)</li>
+            <li>Antes de enviar, confirma con la revista si aceptan <code>biblatex</code>/<code>biber</code> o si piden BibTeX/*.bst — ajustar el flujo a las normas del editor te ahorrará problemas al enviar el manuscrito.</li>
+        </ul>
 <h3>3. Ejercicios prácticos (1h)</h3>
     
     <h4>Ejercicio 2: Bibliografía con Zotero + Overleaf</h4>
