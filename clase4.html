@@ -228,6 +228,71 @@ Como menciona \cite{einstein1916relativity}, la relatividad...
 
     <p><strong>Nota</strong>: Si usas <code>biblatex</code>, compila con <code>biber</code> en lugar de <code>bibtex</code> (en TeXStudio: <em>Herramientas > Comandos > Biber</em>).</p>
 </div>
+    
+        <h4>2.3.5 Ejemplos listos para copiar & pegar</h4>
+        <p>Dos ejemplos completos, listos para que los estudiantes los copien en un proyecto nuevo en Overleaf y prueben la integración:</p>
+
+        <h5>Ejemplo A — biblatex + biber (recomendado)</h5>
+        <p>Archivos necesarios: <code>main.tex</code> y <code>referencias.bib</code>.</p>
+        <pre><code>% main.tex
+    \documentclass{article}
+    \usepackage[backend=biber,style=authoryear]{biblatex}
+    \addbibresource{referencias.bib}
+
+    \begin{document}
+    \section{Introducción}
+    Como muestra la referencia \cite{einstein1916relativity}, las ecuaciones son importantes.
+
+    \section{Conclusión}
+    La bibliografía aparece abajo.
+
+    \printbibliography
+    \end{document}
+    </code></pre>
+
+        <pre><code>% referencias.bib
+    @article{einstein1916relativity,
+      author  = {Einstein, Albert},
+      title   = {Die Grundlage der allgemeinen Relativitätstheorie},
+      journal = {Annalen der Physik},
+      year    = {1916},
+      volume  = {354},
+      number  = {7},
+      pages   = {769--822},
+    }
+    </code></pre>
+
+        <p>En Overleaf: crea un nuevo proyecto, pega <code>main.tex</code> y crea <code>referencias.bib</code>. En la configuración de compilación, selecciona <em>biber</em> si corresponde — Overleaf suele detectarlo automáticamente si <code>backend=biber</code> está en el preámbulo.</p>
+
+        <h5>Ejemplo B — BibTeX clásico (ejemplo simple)</h5>
+        <p>Archivos necesarios: <code>main_bibtex.tex</code> y <code>referencias.bib</code>.</p>
+        <pre><code>% main_bibtex.tex
+    \documentclass{article}
+    % usa BibTeX clásico
+    \begin{document}
+    \section{Introducción}
+    La teoría de la relatividad fue desarrollada por Einstein \cite{einstein1916relativity}.
+
+    \bibliographystyle{plain}
+    \bibliography{referencias}
+    \end{document}
+    </code></pre>
+
+        <pre><code>% referencias.bib (idéntico al anterior)
+    @article{einstein1916relativity,
+      author  = {Einstein, Albert},
+      title   = {Die Grundlage der allgemeinen Relativitätstheorie},
+      journal = {Annalen der Physik},
+      year    = {1916},
+      volume  = {354},
+      number  = {7},
+      pages   = {769--822},
+    }
+    </code></pre>
+
+        <p>En Overleaf (BibTeX): sube ambos archivos y compila. Overleaf ejecutará la cadena (latex → bibtex → latex → latex) automáticamente. Si trabajas localmente, ejecuta <code>pdflatex main_bibtex.tex && bibtex main_bibtex && pdflatex main_bibtex.tex && pdflatex main_bibtex.tex</code>.</p>
+
+        <p>Estos dos ejemplos permitirán a los estudiantes comprobar rápidamente que las citas funcionan, cambiar estilos y probar actualizaciones desde la integración Zotero o mediante subida manual de <code>.bib</code>.</p>
 <h3>3. Ejercicios prácticos (1h)</h3>
     <h4>Ejercicio 1: Fórmulas matemáticas</h4>
     <p>Crea un documento LaTeX que incluya:</p>
