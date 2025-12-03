@@ -260,13 +260,13 @@ build/</code></pre>
         <ul>
             <li><strong>Usuario</strong>: <code>git</code></li>
             <li><strong>Contraseña</strong>: tu <em>token de autenticación</em> generado en Overleaf</li>
-            <li><strong>Dónde generar tokens</strong>: en <code>Account settings</code> → <code>Authentication tokens</code> (o directamente desde el diálogo Git dentro de un proyecto la primera vez)</li>
+            <li><strong>Dónde generar tokens</strong>: normalmente <strong>desde el diálogo Git del propio proyecto</strong> (botón <code>Generate token</code> que aparece al activar/usar Git). Algunos despliegues o versiones mostrará información en <code>Account settings</code>, pero en general el token se crea desde el diálogo del proyecto y solo se muestra una vez.</li>
         </ul>
 
         <h4>Paso a paso — obtener el token y clonar</h4>
         <ol>
             <li>Abre tu proyecto en Overleaf y selecciona <strong>Menu → Git</strong> (opciones de sincronización). Copia el comando <code>git clone</code> que se muestra — incluye la URL del proyecto.</li>
-            <li>Si aún no tienes un token generado, Overleaf te ofrecerá la opción <strong>Generate token</strong> en ese diálogo. También puedes ir a <code>Account settings</code> → <code>Authentication tokens</code> para crear uno manualmente.</li>
+            <li>Si aún no tienes un token generado, Overleaf te ofrecerá la opción <strong>Generate token</strong> en el diálogo Git del proyecto. En algunas instalaciones puede existir gestión adicional en la página de la cuenta, pero lo seguro es generarlo desde el diálogo del proyecto la primera vez.</li>
             <li>Al ejecutar el comando <code>git clone</code>, cuando Git pida credenciales usa:
                 <ul>
                     <li><strong>Username</strong>: <code>git</code></li>
@@ -294,7 +294,7 @@ build/</code></pre>
             <li>En la sección de <code>Integrations</code> o <code>Integrations and add-ons</code> busca la entrada <strong>Git integration</strong> o <strong>Git</strong>.</li>
             <li>Actívala si está desactivada o, si no aparece, comprueba tu tipo de suscripción — la integración Git puede requerir una licencia premium / de campus; si estás en un servidor corporativo pide al administrador que active el soporte Git-bridge.</li>
         </ol>
-        <p>Una vez activada la integración, el diálogo <code>Menu → Git</code> dentro de un proyecto mostrará la URL de clonación y el comando <code>git clone</code>. En ese mismo diálogo —cuando actives Git por primera vez o al usar la opción Git— suele mostrarse un botón <strong>Generate token</strong> que te permite crear inmediatamente el token necesario. Alternativamente puedes generar o gestionar tokens desde <code>Account settings → Authentication tokens</code>. Recuerda que <strong>no podrás ver el token completo de nuevo</strong> después de generarlo: cópialo y guárdalo con seguridad.</p>
+        <p>Una vez activada la integración, el diálogo <code>Menu → Git</code> dentro de un proyecto mostrará la URL de clonación y el comando <code>git clone</code>. En ese mismo diálogo —cuando actives Git por primera vez o al usar la opción Git— verás un botón <strong>Generate token</strong> que te permite crear inmediatamente el token necesario. Ten en cuenta que el token se muestra <strong>solo en el momento de su generación</strong>: cópialo y guárdalo de forma segura. Si en tu instalación de Overleaf existe una página de gestión de tokens en la cuenta, úsala para ver/eliminar tokens; si no, genera uno nuevo desde el diálogo del proyecto cuando lo necesites.</p>
 
         <div class="info-box" style="margin-top:12px;">
             <strong>Texto visible en <code>Account settings</code> (Overleaf)</strong>
