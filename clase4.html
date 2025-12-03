@@ -402,7 +402,8 @@ sed -E '/^\s*doi\s*=/Id;/^\s*issn\s*=/Id' referencias.bib > referencias_sin_dois
         <p><strong>Consejo práctico para envíos a revistas:</strong> si la revista acepta <code>biblatex</code>, sube el código fuente con tu <code>mi_estilo.bbx</code>/<code>mi_estilo.cbx</code> (o incluye las opciones en el preámbulo). Si la revista pide <code>.bst</code> o un paquete concreto para autores, sigue sus instrucciones o genera el PDF final con el flujo que te pidan y aporta el <code>.bbl</code> si lo solicitan.</p>
 
         <h4>2.3.9 Flujo avanzado (recomendado para tesis): Better BibTeX + Git → Overleaf</h4>
-        <p>Para trabajos largos (tesis, proyectos colaborativos) recomendamos mantener la bibliografía centralizada y reproducible usando <strong>Better BibTeX (BBT)</strong> para exportar automáticamente un fichero local (por ejemplo <code>references.bib</code>), y mantener dicho fichero bajo control de versiones con <code>git</code>. Así se preserva la historia de cambios, se usan claves de cita estables (evita claves cambiantes que rompen las citas) y se facilita la colaboración con supervisores mediante el remote Git de Overleaf.</p>
+        <p>Para trabajos largos (tesis, proyectos colaborativos) recomendamos usar <strong>Better BibTeX (BBT)</strong> para exportar automáticamente un fichero local (por ejemplo <code>references.bib</code>) y mantenerlo bajo control de versiones con <code>git</code>. Esto ofrece trazabilidad y claves de cita estables.</p>
+        <p>Si quieres el procedimiento completo —configuración de BBT, .gitignore, remote de Overleaf, resolución de conflictos, scripts post-export y ejemplos de CI— consulta la guía avanzada de Git en Overleaf: <a href="git-faq.html#bbt-git-overleaf">FAQ: Git Avanzado — BBT + Git → Overleaf</a>.</p>
 
         <h5>Detalles y pasos recomendados</h5>
         <p>A continuación tienes un flujo robusto, con políticas y ejemplos para integrarlo sin sobresaltos en un proyecto de tesis.</p>

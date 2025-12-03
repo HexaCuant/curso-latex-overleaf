@@ -291,6 +291,71 @@ git push origin main</code></pre>
     </ul>
 
     <hr>
+    <h3 id="bbt-git-overleaf">16. Better BibTeX + Git → Overleaf (flujo recomendado para tesis)</h3>
+    <p>Para trabajos largos (tesis, proyectos colaborativos) recomendamos mantener la bibliografía centralizada y reproducible usando <strong>Better BibTeX (BBT)</strong> para exportar automáticamente un fichero local (por ejemplo <code>references.bib</code>) y mantener dicho fichero bajo control de versiones con <code>git</code>. Aquí tienes el flujo detallado, con buenas prácticas y ejemplos:</p>
+
+    <h4>Configurar Better BibTeX</h4>
+    <ol>
+        <li>Instala BBT y en <strong>Preferences → Better BibTeX</strong> selecciona el formato (recomendado: <code>biblatex</code> si usas <code>biber</code>).</li>
+        <li>En la colección de la tesis, habilita <em>Automatic export</em> y configura la ruta de salida hacia la raíz de tu proyecto local (ej. <code>/home/usuario/tesis/references.bib</code>), así el fichero se actualizará automáticamente.</li>
+        <li>Define un formato de claves estable (ej. <code>[auth][year][shorttitle]</code>) para evitar colisiones y claves inestables.</li>
+    </ol>
+
+    <h4>Mantener <code>references.bib</code> en el repo</h4>
+    <ol>
+        <li>Añade <code>references.bib</code> al repo y usa <code>.gitignore</code> para evitar subir adjuntos innecesarios (PDFs, etc.). Ejemplo:
+        <pre><code>*.pdf
+data/**/attachments/**
+</code></pre></li>
+        <li>Antes de push, siempre compila localmente para comprobar que las claves y el <code>.bib</code> están correctos.</li>
+    </ol>
+
+    <h4>Remote Git — Overleaf</h4>
+    <ol>
+        <li>Obtén la URL Git del proyecto (Menu → Git en Overleaf) y añádela como remote (<code>overleaf</code>), luego push:</li>
+        <pre><code>git remote add overleaf https://git.overleaf.com/your/project/id
+git push overleaf main</code></pre>
+        <li>Si usas GitHub/GitLab como origen principal, considera desplegar a Overleaf desde CI para centralizar la autoría.</li>
+    </ol>
+
+    <h4>Buenas prácticas colaborativas</h4>
+    <ul>
+        <li>Evita que varias personas editen <code>references.bib</code> simultáneamente en Overleaf; idealmente exporta desde Zotero local y centraliza cambios en la rama principal tras revisión.</li>
+        <li>Usa ramas y Pull Requests para cambios bibliográficos importantes y revisiones por el director.</li>
+        <li>Documenta en README cómo funciona el flujo: BBT export → commit → push → Overleaf.</li>
+    </ul>
+
+    <h4>Automatización</h4>
+    <p>Opciones para automatizar pushes al exportar:</p>
+    <ol>
+        <li>Usar un script post-export en BBT que haga commit y push (ejemplo de script Linux abajo).</li>
+        <li>Usar un watcher (inotifywait / fswatch) que ejecute el script al detectar cambios.</li>
+        <li>Desplegar desde CI (GitHub Actions) hacia Overleaf; guarda credenciales como secretos.</li>
+    </ol>
+    <pre><code>#!/usr/bin/env bash
+cd /home/usuario/tesis
+git add references.bib
+if git diff --staged --quiet; then
+  echo "Sin cambios en references.bib"
+  exit 0
+fi
+git commit -m "BBT auto-export: $(date -Iseconds)"
+git push overleaf main
+</code></pre>
+
+    <h4>Seguridad</h4>
+    <ul>
+        <li>Almacena tokens y credenciales como secretos (no en el repo).</li>
+        <li>Revisa el contenido del <code>.bib</code> antes de publicar para evitar fugas de datos o URLs privadas.</li>
+    </ul>
+
+    <h4>Enlaces</h4>
+    <ul>
+        <li>Overleaf: <a href="https://www.overleaf.com/learn/how-to/Using_Git_with_Overleaf" target="_blank" rel="noopener">Using Git with Overleaf</a></li>
+        <li>Better BibTeX (BBT): <a href="https://retorque.re/zotero-better-bibtex/" target="_blank" rel="noopener">BBT docs</a></li>
+    </ul>
+
+    <hr>
     <p><strong>¿Preguntas?</strong> Revisa <a href="quickstart.html">Quickstart</a> o <a href="index.html">vuelve al índice</a></p>
 
     <p><a href="index.html" class="back-to-index">Volver al índice</a></p>
