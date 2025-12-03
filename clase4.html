@@ -128,12 +128,106 @@ Como menciona \cite{einstein1916relativity}, la relatividad...
 
 \end{document}</code></pre>
 
-<h4>2.4 Estilos Bibliográficos</h4>
+<h4>2.3.1 Estilos bibliográficos</h4>
+<p>En Overleaf puedes usar diferentes estilos según tu disciplina y preferencias. A continuación hay un breve resumen y ejemplos prácticos. Para flujos modernos recomiendo <code>biblatex</code> + <code>biber</code>.</p>
 <ul>
-    <li><code>style=authoryear</code>: (Autor, Año)</li>
-    <li><code>style=numeric</code>: [1]</li>
-    <li><code>style=apa</code>: APA</li>
+    <li><code>style=authoryear</code>: (Autor, Año) — formato autor‑año, útil en humanidades y muchas ciencias sociales.</li>
+    <li><code>style=numeric</code>: [1] — citas numéricas, común en ingeniería y ciencias aplicadas.</li>
+    <li><code>style=apa</code>: Estilo APA, usado en muchas áreas de ciencias sociales.</li>
 </ul>
+
+<h4>2.3.2 Errores comunes y soluciones</h4>
+<ul>
+    <li><strong>¡La bibliografía no aparece!</strong>:
+        <ul>
+            <li>Verifica que incluiste <code>\printbibliography</code> (o <code>\bibliography{...}</code> para BibTeX) al final del documento.</li>
+            <li>Asegúrate de que la colección o el archivo <code>.bib</code> esté presente en el proyecto de Overleaf.</li>
+        </ul>
+    </li>
+    <li><strong>Citas con <code>?</code></strong>:
+        <ul>
+            <li>Comprueba que la clave en <code>\cite{}</code> coincide exactamente con la del archivo <code>.bib</code>.</li>
+            <li>Compila dos veces (una para generar referencias, otra para resolverlas) o usa la opción de compilación completa con <code>biber</code> si usas <code>biblatex</code>.</li>
+        </ul>
+    </li>
+    <li><strong>No veo las referencias de Zotero en Overleaf</strong>:
+        <ul>
+            <li>Recarga la página del proyecto en Overleaf.</li>
+            <li>Verifica que la colección en Zotero está correctamente vinculada/seleccionada en el menú de Bibliography del proyecto.</li>
+        </ul>
+    </li>
+</ul>
+
+<h4>2.3.3 Recursos y referencias rápidas</h4>
+<ul>
+    <li><strong>Lista completa de símbolos matemáticos</strong>: <a href="https://detexify.kirelabs.org/" target="_blank" rel="noopener">Detexify</a>.</li>
+    <li><strong>Gestión bibliográfica en Overleaf</strong>: <a href="https://es.overleaf.com/learn/latex/Bibliography_management_with_bibtex" target="_blank" rel="noopener">Overleaf - BibTeX</a>.</li>
+</ul>
+
+<h4>2.3.4 Otros estilos de bibliografía (detallado)</h4>
+<div>
+    <p>Además de <code>natbib</code>, LaTeX ofrece múltiples paquetes y estilos para gestionar citas y bibliografía. Aquí tienes una lista de los más relevantes, con ejemplos y casos de uso — útil para elegir el flujo apropiado para cursos y tesis:</p>
+
+    <hr>
+
+    <h3><strong>1. <code>biblatex</code></strong></h3>
+    <p><strong>Ventaja</strong>: Es el paquete más moderno y flexible, compatible con BibLaTeX (sucesor de BibTeX). Recomendado en la mayoría de casos actuales.</p>
+    <p><strong>Estilos populares</strong>:</p>
+    <ul>
+        <li><code>style=authoryear</code>: Citas como (Autor, Año).</li>
+    </ul>
+    <pre><code>\usepackage[style=authoryear]{biblatex}
+\addbibresource{referencias.bib} % Cargar base de datos
+\cite{einstein1916} → (Einstein, 1916)</code></pre>
+    <ul>
+        <li><code>style=numeric</code>: Citas numéricas [1].</li>
+        <li><code>style=apa</code>: Estilo APA (requiere <code>biblatex-apa</code>).</li>
+    </ul>
+
+    <p><strong>Ejemplo completo</strong>:</p>
+    <pre><code>\usepackage[backend=biber, style=authoryear]{biblatex}
+...
+\printbibliography % Generar bibliografía</code></pre>
+
+    <hr>
+
+    <h3><strong>2. Estilos clásicos de BibTeX</strong></h3>
+    <p>Funcionan con <code>\bibliographystyle{...}</code> (sin paquetes adicionales):</p>
+    <ul>
+        <li><strong><code>plain</code></strong>: Citas numéricas y autores en orden alfabético.</li>
+        <li><strong><code>unsrt</code></strong>: Como <code>plain</code>, pero ordenadas por aparición en el texto.</li>
+        <li><strong><code>alpha</code></strong>: Citas con abreviaturas (ej: [Ein16]).</li>
+        <li><strong><code>abbrv</code></strong>: Versión abreviada de <code>plain</code>.</li>
+    </ul>
+
+    <p><strong>Ejemplo</strong>:</p>
+    <pre><code>\bibliographystyle{plain}
+\bibliography{referencias}</code></pre>
+
+    <hr>
+
+    <h3><strong>3. <code>apacite</code> (APA)</strong></h3>
+    <p><strong>Para trabajos en ciencias sociales</strong>:</p>
+    <pre><code>\usepackage{apacite}
+\bibliographystyle{apacite}
+...
+\citeA{einstein1916} → Einstein (1916)
+\cite{hawking1973} → (Hawking, 1973)</code></pre>
+
+    <hr>
+
+    <h3><strong>Recomendaciones según disciplina</strong></h3>
+    <ul>
+        <li><strong>Ciencias naturales</strong>: <code>natbib</code> o <code>biblatex</code> (estilo <code>authoryear</code>).</li>
+        <li><strong>Ingeniería</strong>: <code>IEEEtran</code>.</li>
+        <li><strong>Ciencias Sociales</strong>: <code>apacite</code> o <code>biblatex-apa</code>.</li>
+        <li><strong>Humanidades</strong>: <code>chicago</code> o <code>oxford</code>.</li>
+    </ul>
+
+    <hr>
+
+    <p><strong>Nota</strong>: Si usas <code>biblatex</code>, compila con <code>biber</code> en lugar de <code>bibtex</code> (en TeXStudio: <em>Herramientas > Comandos > Biber</em>).</p>
+</div>
 <h3>3. Ejercicios prácticos (1h)</h3>
     <h4>Ejercicio 1: Fórmulas matemáticas</h4>
     <p>Crea un documento LaTeX que incluya:</p>
@@ -162,98 +256,7 @@ I = \begin{pmatrix}
         <li><strong>✏️ Verificar resultado:</strong> El PDF mostrará automáticamente la lista de referencias al final con el estilo que hayas elegido.</li>
     </ol>
 
-    <h3>Errores comunes con Zotero + Overleaf y soluciones</h3>
-    <ul>
-        <li><strong>¡La bibliografía no aparece!</strong>:
-            <ul>
-                <li>Verifica que incluiste <code>\printbibliography</code> al final del documento.</li>
-                <li>Asegúrate de que la colección en Zotero está compartida correctamente con Overleaf.</li>
-            </ul>
-        </li>
-        <li><strong>Citas con <code>?</code></strong>:
-            <ul>
-                <li>Verifica que la clave en <code>\cite{}</code> coincida con la referencia en Zotero.</li>
-                <li>Compila 2 veces: la primera genera las citas, la segunda las resuelve.</li>
-            </ul>
-        </li>
-        <li><strong>No veo las referencias de Zotero en Overleaf</strong>:
-            <ul>
-                <li>Recarga la página de Overleaf.</li>
-                <li>Verifica que tu colección en Zotero está seleccionada correctamente en Menu > Bibliography.</li>
-            </ul>
-        </li>
-    </ul>
 
-    <h3>Recursos adicionales</h3>
-    <ul>
-        <li><strong>Lista completa de símbolos matemáticos</strong>: <a href="https://detexify.kirelabs.org/" target="_blank" rel="noopener">Detexify</a>.</li>
-        <li><strong>Estilos bibliográficos</strong>: <a href="https://es.overleaf.com/learn/latex/Bibliography_management_with_bibtex" target="_blank" rel="noopener">Overleaf - BibTeX</a>.</li>
-    </ul>
-
-    <h4>Otros estilos de bibliografía</h4>
-    <div>
-        <p>Además de <code>natbib</code>, LaTeX ofrece múltiples paquetes y estilos para gestionar citas y bibliografía. Aquí tienes una lista de los más relevantes, con ejemplos y casos de uso:</p>
-
-        <hr>
-
-        <h3><strong>1. <code>biblatex</code></strong></h3>
-        <p><strong>Ventaja</strong>: Es el paquete más moderno y flexible, compatible con BibLaTeX (sucesor de BibTeX).</p>
-        <p><strong>Estilos populares</strong>:</p>
-        <ul>
-            <li><code>style=authoryear</code>: Citas como (Autor, Año).</li>
-        </ul>
-        <pre><code>\usepackage[style=authoryear]{biblatex}
-\addbibresource{referencias.bib} % Cargar base de datos
-\cite{einstein1916} → (Einstein, 1916)</code></pre>
-        <ul>
-            <li><code>style=numeric</code>: Citas numéricas [1].</li>
-            <li><code>style=apa</code>: Estilo APA (requiere <code>biblatex-apa</code>).</li>
-        </ul>
-
-        <p><strong>Ejemplo completo</strong>:</p>
-        <pre><code>\usepackage[backend=biber, style=authoryear]{biblatex}
-...
-\printbibliography % Generar bibliografía</code></pre>
-
-        <hr>
-
-        <h3><strong>2. Estilos clásicos de BibTeX</strong></h3>
-        <p>Funcionan con <code>\bibliographystyle{...}</code> (sin paquetes adicionales):</p>
-        <ul>
-            <li><strong><code>plain</code></strong>: Citas numéricas y autores en orden alfabético.</li>
-            <li><strong><code>unsrt</code></strong>: Como <code>plain</code>, pero ordenadas por aparición en el texto.</li>
-            <li><strong><code>alpha</code></strong>: Citas con abreviaturas (ej: [Ein16]).</li>
-            <li><strong><code>abbrv</code></strong>: Versión abreviada de <code>plain</code> (nombres cortos).</li>
-        </ul>
-
-        <p><strong>Ejemplo</strong>:</p>
-        <pre><code>\bibliographystyle{plain}
-\bibliography{referencias}</code></pre>
-
-        <hr>
-
-        <h3><strong>3. <code>apacite</code> (APA)</strong></h3>
-        <p><strong>Para trabajos en ciencias sociales</strong>:</p>
-        <pre><code>\usepackage{apacite}
-\bibliographystyle{apacite}
-...
-\citeA{einstein1916} → Einstein (1916)
-\cite{hawking1973} → (Hawking, 1973)</code></pre>
-
-        <hr>
-
-        <h3><strong>Recomendaciones según disciplina</strong></h3>
-        <ul>
-            <li><strong>Ciencias naturales</strong>: <code>natbib</code> o <code>biblatex</code> (estilo <code>authoryear</code>).</li>
-            <li><strong>Ingeniería</strong>: <code>IEEEtran</code>.</li>
-            <li><strong>Ciencias Sociales</strong>: <code>apacite</code> o <code>biblatex-apa</code>.</li>
-            <li><strong>Humanidades</strong>: <code>chicago</code> o <code>oxford</code>.</li>
-        </ul>
-
-        <hr>
-
-        <p><strong>Nota</strong>: Si usas <code>biblatex</code>, compila con <code>biber</code> en lugar de <code>bibtex</code> (en TeXStudio: <em>Herramientas > Comandos > Biber</em>).</p>
-    </div>
 
 
 
