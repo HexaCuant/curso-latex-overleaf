@@ -401,6 +401,51 @@ sed -E '/^\s*doi\s*=/Id;/^\s*issn\s*=/Id' referencias.bib > referencias_sin_dois
 
         <p><strong>Consejo práctico para envíos a revistas:</strong> si la revista acepta <code>biblatex</code>, sube el código fuente con tu <code>mi_estilo.bbx</code>/<code>mi_estilo.cbx</code> (o incluye las opciones en el preámbulo). Si la revista pide <code>.bst</code> o un paquete concreto para autores, sigue sus instrucciones o genera el PDF final con el flujo que te pidan y aporta el <code>.bbl</code> si lo solicitan.</p>
 
+        <h4>2.3.9 Flujo avanzado (recomendado para tesis): Better BibTeX + Git → Overleaf</h4>
+        <p>Para trabajos largos (tesis, proyectos colaborativos) recomendamos usar <strong>Better BibTeX (BBT)</strong> para exportar automáticamente un <code>references.bib</code> local, y luego mantener ese fichero bajo control de versiones con <code>git</code>. Esto asegura trazabilidad, claves estables y facilita la colaboración con supervisores a través del remote Git de Overleaf.</p>
+
+        <h5>Pasos básicos</h5>
+        <ol>
+            <li>Configura Better BibTeX en Zotero para <em>automatic export</em> a la ruta local del proyecto (ej. <code>/home/usuario/proyecto/references.bib</code>).</li>
+            <li>En tu repositorio local de proyecto LaTeX (el que sincronizas con Overleaf), añade <code>references.bib</code> al repo y realiza commit:</li>
+            <pre><code>git add references.bib
+git commit -m "Añadir/actualizar bibliografía desde BBT"
+git push origin main</code></pre>
+            <li>Si usas el remote Git de Overleaf (URL del proyecto), añade el remoto e impulsa los cambios a Overleaf:</li>
+            <pre><code>git remote add overleaf https://git.overleaf.com/your/project/id
+git push overleaf main</code></pre>
+            <li>En Overleaf aparecerá el fichero <code>references.bib</code> actualizado tras el push; compila para comprobar las citas en el PDF.</li>
+        </ol>
+
+        <h5>Automatización (opcional)</h5>
+        <p>Si quieres automatizar el push cada vez que BBT actualiza el fichero, BBT permite ejecutar scripts post-export o puedes usar un watcher. Ejemplo simple (Linux):</p>
+        <pre><code># script simple que añade, commitea y empuja changes cuando references.bib cambia
+#!/usr/bin/env bash
+cd /home/usuario/proyecto
+git add references.bib
+if git diff --staged --quiet; then
+  echo "Sin cambios en references.bib"
+  exit 0
+fi
+git commit -m "Auto-export BBT: $(date -Iseconds)"
+git push overleaf main
+</code></pre>
+        <p>Otra alternativa es usar inotifywait para vigilar cambios y ejecutar el script automáticamente.</p>
+
+        <h5>Consideraciones y buenas prácticas</h5>
+        <ul>
+            <li>No subas adjuntos de Zotero (.pdf/.attachments) al repositorio a menos que sea necesario; usa <code>.gitignore</code> para excluirlos y ahorra espacio en Overleaf.</li>
+            <li>Protege credenciales — utiliza el token/URL de Overleaf correctamente y evita exponer claves en scripts públicos.</li>
+            <li>Si el flujo editorial no acepta <code>biber</code>, consulta al editor; a veces conviene adjuntar también el <code>.bbl</code> generado o usar el flujo BibTeX si es obligatorio.</li>
+            <li>Documenta el flujo en el README del proyecto (p.ej. que BBT exporta automáticamente y que el push a Overleaf actualiza la bibliografía).</li>
+        </ul>
+
+        <h5>Enlaces útiles</h5>
+        <ul>
+            <li>Overleaf: Using Git with Overleaf — <a href="https://www.overleaf.com/learn/how-to/Using_Git_with_Overleaf" target="_blank" rel="noopener">https://www.overleaf.com/learn/how-to/Using_Git_with_Overleaf</a></li>
+            <li>Better BibTeX (BBT) docs: <a href="https://retorque.re/zotero-better-bibtex/" target="_blank" rel="noopener">https://retorque.re/zotero-better-bibtex/</a></li>
+        </ul>
+
         <h4>2.3.8 ¿Las revistas permiten <code>biblatex</code>? Estilos y personalización</h4>
         <p>Respuesta breve: <strong>sí</strong> — algunas revistas aceptan <code>biblatex</code> y otras no; depende de la editorial y del flujo de producción. Antes de usar <code>biblatex</code> para enviar un artículo, revisa las <em>instrucciones para autores</em> de la revista o contacta con el editor. Aquí tienes las consideraciones más comunes:</p>
 

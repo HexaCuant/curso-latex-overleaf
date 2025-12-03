@@ -34,7 +34,7 @@ Este guía te llevará paso a paso para:
 ### Opción 2: Gestión de bibliografía con Zotero
 
 Si necesitas gestionar referencias bibliográficas:
-→ [Ampliación: Zotero + Overleaf — detalles y flujos](zotero-overleaf-ampliacion.html)
+→ [Clase 4: Fórmulas y bibliografía (Zotero + Overleaf)](clase4.html)
 
 Aprenderás a:
 1. Crear tu cuenta en Zotero
@@ -95,7 +95,7 @@ Si prefieres herramientas locales, consulta: https://a105.ugr.es/latex
 ### Durante el Curso
 - **[Índice completo del curso](index.html)** - Acceso a todas las clases
 - **[Quickstart](quickstart.html)** - Primeros pasos en Overleaf
-- **[Ampliación Zotero](zotero-overleaf-ampliacion.html)** - Gestión de bibliografía (ampliación)
+- **[Clase 4: Bibliografía (Zotero + Overleaf)](clase4.html)** - Gestión de bibliografía
 - **[FAQ Git Avanzado](git-faq.html)** - Preguntas frecuentes (recurso opcional)
 
 ### Recursos Externos
