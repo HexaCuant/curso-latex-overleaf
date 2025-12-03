@@ -356,6 +356,17 @@ sed -E '/^\s*doi\s*=/Id;/^\s*issn\s*=/Id' referencias.bib > referencias_sin_dois
                 <li>Si usas Better BibTeX (BBT), configura la exportación para omitir campos o usa una post-procesamiento en la ruta de exportación.</li>
                 <li>Si conectas Overleaf a una colección Zotero pública, considera usar la configuración de <code>biblatex</code> + <code>\AtEveryBibitem</code> para ocultar los campos durante la compilación, en lugar de modificar automáticamente los registros en Zotero.</li>
         </ul>
+
+        <h4>2.3.7 Nota sobre revistas que usan BibTeX (.bst) y crear estilos propios</h4>
+        <p>Muchas revistas y conferencias siguen utilizando el flujo clásico de <strong>BibTeX</strong> y proporcionan un archivo de estilo <code>.bst</code> (por ejemplo <code>revista-name.bst</code>) que debes usar para formatear la bibliografía exactamente según las normas de la revista. Cosas a tener en cuenta:</p>
+        <ul>
+            <li>Si la revista ofrece un <code>.bst</code>, sube ese fichero al proyecto de Overleaf (mismo nivel que tu <code>.tex</code>) y usa <code>\bibliographystyle{revista-name}\n\bibliography{referencias}</code>.</li>
+            <li>Si no existe un <code>.bst</code> oficial o necesitas adaptar un estilo, CTAN ofrece herramientas y documentación para crear y personalizar estilos BibTeX.</li>
+            <li>Recurso recomendado — <strong>makebst</strong>: una utilidad que guía interactivamente la creación de un archivo <code>.bst</code> con las opciones que necesites. Más información y descarga en CTAN: <a href="https://ctan.org/pkg/makebst" target="_blank" rel="noopener">https://ctan.org/pkg/makebst</a>.</li>
+            <li>Lectura práctica — <strong>Tame the BeaST</strong>: una guía histórica y muy útil para entender la estructura de los <code>.bst</code> y cómo personalizarlos; disponible en CTAN: <a href="https://ctan.org/pkg/tamethebeast" target="_blank" rel="noopener">https://ctan.org/pkg/tamethebeast</a>.</li>
+            <li>Si prefieres no crear un <code>.bst</code> desde cero, contacta con la revista para solicitar su paquete de autor (suele incluir el <code>.bst</code>) o busca en la sección para autores de la web de la revista.</li>
+        </ul>
+        <p>En resumen: si tu objetivo es publicar en una revista con requisitos estrictos, usa el <code>.bst</code> que proporcione la revista (subiéndolo al proyecto Overleaf). Si necesitas adaptarlo, empieza por <code>makebst</code> o por leer <em>Tame the BeaST</em> (CTAN) y luego prueba localmente o en Overleaf con el flujo clásico de BibTeX.</p>
 <h3>3. Ejercicios prácticos (1h)</h3>
     
     <h4>Ejercicio 2: Bibliografía con Zotero + Overleaf</h4>
