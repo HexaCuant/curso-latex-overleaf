@@ -54,6 +54,27 @@ Como se ve en la ecuación \eqref{eq:onda}, la velocidad es crítica.
 
 <p>Consultar la <a href="https://ctan.org/pkg/comprehensive" target="_blank" rel="noopener">Comprehensive LaTeX Symbol List</a> (CTAN) y <a href="https://detexify.kirelabs.org/" target="_blank" rel="noopener">Detexify</a> para encontrar símbolos matemáticos.</p>
 
+    <h4>Ejercicio 1: Fórmulas matemáticas</h4>
+    <p>Crea un documento LaTeX que incluya:</p>
+    <ul>
+        <li>Una ecuación numerada con integral y fracciones:</li>
+        <pre><code>\begin{equation}
+    \label{eq:integral}
+    \int_0^1 \frac{x^2}{\sqrt{1 - x^2}} dx = \frac{\pi}{8}
+\end{equation}
+</code></pre>
+        <li>Una fórmula en línea con una matriz:</li>
+        <pre><code>La matriz identidad: \(
+I = \begin{pmatrix}
+  1 & 0 \\
+  0 & 1
+\end{pmatrix}
+\)
+</code></pre>
+    </ul>
+
+    
+
 <h3>2. Gestión de Bibliografía con Zotero + Overleaf (1.5h)</h3>
 
 <p><strong>En lugar de JabRef local, usaremos Zotero + Overleaf, que es mucho más sencillo en la nube:</strong></p>
@@ -336,25 +357,7 @@ sed -E '/^\s*doi\s*=/Id;/^\s*issn\s*=/Id' referencias.bib > referencias_sin_dois
                 <li>Si conectas Overleaf a una colección Zotero pública, considera usar la configuración de <code>biblatex</code> + <code>\AtEveryBibitem</code> para ocultar los campos durante la compilación, en lugar de modificar automáticamente los registros en Zotero.</li>
         </ul>
 <h3>3. Ejercicios prácticos (1h)</h3>
-    <h4>Ejercicio 1: Fórmulas matemáticas</h4>
-    <p>Crea un documento LaTeX que incluya:</p>
-    <ul>
-        <li>Una ecuación numerada con integral y fracciones:</li>
-        <pre><code>\begin{equation}
-    \label{eq:integral}
-    \int_0^1 \frac{x^2}{\sqrt{1 - x^2}} dx = \frac{\pi}{8}
-\end{equation}
-</code></pre>
-        <li>Una fórmula en línea con una matriz:</li>
-        <pre><code>La matriz identidad: \(
-I = \begin{pmatrix}
-  1 & 0 \\
-  0 & 1
-\end{pmatrix}
-\)
-</code></pre>
-    </ul>
-
+    
     <h4>Ejercicio 2: Bibliografía con Zotero + Overleaf</h4>
     <ol>
         <li><strong>✏️ Crear colección en Zotero:</strong> Ve a Zotero.org y crea una colección "Mi Proyecto". Busca 2 referencias (un libro y un artículo) usando Google Scholar o PubMed. Zotero importará automáticamente los detalles.</li>
