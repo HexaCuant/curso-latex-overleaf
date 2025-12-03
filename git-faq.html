@@ -254,12 +254,36 @@ build/</code></pre>
 
     <h3>13. Errores comunes y cómo evitarlos</h3>
         <h3>Autenticación y seguridad (tokens de Overleaf)</h3>
-        <p>Overleaf utiliza <strong>autenticación por token</strong> para operaciones Git (no uses tu contraseña en texto claro). Para obtener y gestionar tokens revisa la documentación oficial de Overleaf: <a href="https://docs.overleaf.com/integrations-and-add-ons/git-integration-and-github-synchronization/git-integration/git-integration-authentication-tokens" target="_blank" rel="noopener">Git integration authentication tokens — Overleaf Docs</a>.</p>
+        <p>Overleaf requiere la <strong>autenticación por token</strong> para operaciones Git. Esto significa que, al clonar, push o pull desde un proyecto, deberás usar el nombre de usuario <code>git</code> y un <em>authentication token</em> como contraseña.</p>
+
+        <p>Resumen rápido:</p>
+        <ul>
+            <li><strong>Usuario</strong>: <code>git</code></li>
+            <li><strong>Contraseña</strong>: tu <em>token de autenticación</em> generado en Overleaf</li>
+            <li><strong>Dónde generar tokens</strong>: en <code>Account settings</code> → <code>Authentication tokens</code> (o directamente desde el diálogo Git dentro de un proyecto la primera vez)</li>
+        </ul>
+
+        <h4>Paso a paso — obtener el token y clonar</h4>
         <ol>
-            <li>Genera un token desde <code>Account settings</code> → <code>Integrations</code> (o el diálogo que Overleaf proporcione para tokens).</li>
-            <li>Guarda el token como secreto si vas a usarlo en CI (por ejemplo <code>OVERLEAF_GIT_URL</code> con <code>https://&lt;token&gt;@git.overleaf.com/1234567</code>).</li>
-            <li>En Overleaf Server Pro puede soportarse también autenticación vía SSH/keys según la configuración del servidor; consulta al administrador del servidor si necesitas este método.</li>
+            <li>Abre tu proyecto en Overleaf y selecciona <strong>Menu → Git</strong> (opciones de sincronización). Copia el comando <code>git clone</code> que se muestra — incluye la URL del proyecto.</li>
+            <li>Si aún no tienes un token generado, Overleaf te ofrecerá la opción <strong>Generate token</strong> en ese diálogo. También puedes ir a <code>Account settings</code> → <code>Authentication tokens</code> para crear uno manualmente.</li>
+            <li>Al ejecutar el comando <code>git clone</code>, cuando Git pida credenciales usa:
+                <ul>
+                    <li><strong>Username</strong>: <code>git</code></li>
+                    <li><strong>Password</strong>: pega el token que generaste</li>
+                </ul>
+            </li>
+            <li>Si prefieres usar el token en la URL (ej. para CI), puedes usar la forma segura en el secreto: <code>https://&lt;token&gt;@git.overleaf.com/1234567</code> (guarda la URL con token como secreto, NO la pongas en el repo).</li>
         </ol>
+
+        <h4>Consejos importantes sobre tokens</h4>
+        <ul>
+            <li>Los tokens expiran pasado un año; recuerda regenerarlos cuando caduquen.</li>
+            <li>Puedes generar hasta 10 tokens; elimina tokens antiguos o no usados para liberar espacio.</li>
+            <li>No compartas tokens con otros usuarios: cada persona debe generar y usar su propio token.</li>
+            <li>Si te preocupa tener que escribir el token con frecuencia, configura un <em>credential helper</em> (p. ej. <code>git config --global credential.helper store</code> o usa el auxiliar del sistema) para almacenarlo localmente con seguridad.</li>
+            <li>En CI, guarda la URL con token o el token en el gestor de secretos de tu plataforma (GitHub Secrets, GitLab CI variables, etc.) y úsalo desde ahí — nunca lo incluyas en el repositorio.</li>
+        </ul>
 
         <h3>Nota sobre planes y disponibilidad</h3>
         <p>La integración Git de Overleaf es una característica <strong>premium</strong> (disponible para usuarios con suscripción individual o con licencias de campus/organización). Si ves que la opción de Git no aparece en el menú de tu proyecto, confirma que tu cuenta o tu institución tiene activada la integración.</p>
