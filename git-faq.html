@@ -31,9 +31,44 @@
 
         <h5>Ejemplo de workflow (GitHub Actions)</h5>
         <p>Coloca este archivo en <code>.github/workflows/deploy-references-to-overleaf.yml</code>. Es un ejemplo mínimo — adáptalo a tu proyecto y a tu política de ramas.</p>
-        <pre><code class="language-yaml">name: Deploy references to Overleaf
+                <pre><code class="language-yaml">name: Deploy references to Overleaf
 
-    <div style="background-color: #fff3cd; border-left: 4px solid #ffc107; padding: 15px; margin: 20px 0; border-radius: 4px;">
+on:
+    push:
+        paths:
+            - 'references.bib'
+    workflow_dispatch: {}
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+
+            - name: Configure git
+                run: |
+                    git config user.name "CI bot"
+                    git config user.email "ci@yourdomain.example"
+
+            - name: Commit references.bib (if changed)
+                run: |
+                    git add references.bib || true
+                    if git diff --cached --quiet; then
+                        echo "No hay cambios en references.bib"
+                    else
+                        git commit -m "chore: update references.bib (BBT export)"
+                    fi
+
+            - name: Push to Overleaf
+                env:
+                    OVERLEAF_GIT_URL: ${{ secrets.OVERLEAF_GIT_URL }}
+                run: |
+                    # Añade remoto 'overleaf' usando la URL segura desde los secretos
+                    git remote add overleaf "$OVERLEAF_GIT_URL"
+                    git push overleaf main
+</code></pre>
+
+        <div style="background-color: #fff3cd; border-left: 4px solid #ffc107; padding: 15px; margin: 20px 0; border-radius: 4px;">
         <p><strong>⚠️ Nota importante sobre este FAQ:</strong></p>
         <p>Este documento contiene información <strong>opcional y avanzada</strong> sobre el uso de Git con Overleaf desde terminal.</p>
         <p><strong>Para este curso de LaTeX en Overleaf:</strong></p>
