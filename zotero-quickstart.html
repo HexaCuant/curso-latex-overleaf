@@ -30,7 +30,10 @@
         </li>
         <li>Verifica tu email</li>
         <li>¡Tu biblioteca cloud está lista!</li>
+
     </ol>
+
+    <!-- Moved Better BibTeX details here later (after Zotero installation) to avoid confusion for users without local Zotero -->
 
     <h3>2. Instalar Zotero en tu ordenador</h3>
     <p><strong>Opción A: Aplicación de escritorio (Recomendado)</strong></p>
@@ -41,7 +44,7 @@
             <ul>
                 <li>Edit → Settings → Sync</li>
                 <li>Introduce tu usuario y contraseña de Zotero</li>
-                <li>Habilita sincronización de biblioteca y archivos</li>
+                <li>Habilita la sincronización de la biblioteca (metadatos). <strong>Si quieres ahorrar espacio en la nube, desmarca la opción "Sync attachment files in My Library" para no subir PDFs/adjuntos; los archivos quedarán locales en tu equipo.</strong></li>
             </ul>
         </li>
         <li>¡Listo! Tu biblioteca se sincronizará automáticamente</li>
@@ -54,8 +57,59 @@
         <li>Ideal si no tienes espacio en disco o usas múltiples dispositivos</li>
     </ul>
 
+    <h4>Detalles técnicos (Better BibTeX y Git)</h4>
+
+    <p>A continuación tienes instrucciones detalladas para instalar Better BibTeX y configurar la exportación automática, y cómo integrar el fichero <code>references.bib</code> con Overleaf usando Git (útil para tesis).</p>
+
+    <h5>Instalación de Better BibTeX (BBT)</h5>
+    <p><strong>Nota importante:</strong> Better BibTeX es un complemento para la aplicación de <em>Zotero Desktop</em>. No es un servicio que funcione en Zotero Web — por tanto, <strong>si no instalas Zotero en local no podrás usar BBT</strong>. Si prefieres no instalar nada en tu equipo, sigue con el flujo "Principiantes" (exportar .bib manualmente o usar la opción "From External URL" en Overleaf). Si necesitas sincronización automática sin instalar nada, considera alternativas cloud (ej. Paperpile) o usar WebDAV para archivos.</p>
+    <ol>
+        <li>Descarga la última versión de BBT desde <a href="https://github.com/retorquere/zotero-better-bibtex/releases" target="_blank" rel="noopener">GitHub Releases — Better BibTeX</a> (archivo <code>.xpi</code>).</li>
+        <li>En Zotero: <strong>Tools → Add-ons → Install Add-on From File</strong>, selecciona el <code>.xpi</code> y reinicia Zotero si te lo pide.</li>
+        <li>Configura BBT en: <strong>Preferences → Better BibTeX</strong>. Recomendaciones:
+            <ul>
+                <li>Formato: usa <code>biblatex</code> si empleas <code>biblatex</code> &amp; <code>biber</code>.</li>
+                <li>Keys (claves): personaliza el formato de las claves para que sean estables y legibles.</li>
+            </ul>
+        </li>
+    </ol>
+
+    <h5>¿Qué hacer si Better BibTeX aparece "disabled" (deshabilitado)?</h5>
+    <p>Si al abrir <strong>Herramientas → Extensiones</strong> ves "Better BibTeX for Zotero (disabled)", prueba estos pasos — normalmente el problema es una instalación incompleta o incompatibilidad de versión:</p>
+    <ol>
+        <li><strong>Comprobar la versión de Zotero</strong>: Ve a <em>Ayuda → Acerca de Zotero</em> y anota la versión. En la página de <a href="https://retorque.re/zotero-better-bibtex/" target="_blank" rel="noopener">Better BibTeX</a> (o en las releases en GitHub) verifica que el <code>.xpi</code> que descargues sea compatible.</li>
+        <li><strong>Reinstalar desde archivo</strong>: Descarga el <code>.xpi</code> compatible y en Zotero ve a <strong>Herramientas → Extensiones</strong>, haz clic en el engranaje (⚙️) y selecciona <em>Instalar complemento desde archivo</em> (o "Install Add-on From File"). Elige el <code>.xpi</code> descargado y confirma.
+        </li>
+        <li><strong>Habilitar el complemento</strong>: Si aparece en la lista pero marcado como "Disabled" o "Deshabilitado", pulsa el botón "Enable" (habilitar) o el interruptor correspondiente en la lista de extensiones y reinicia Zotero.</li>
+        <li><strong>Revisar errores</strong>: Si sigue apareciendo deshabilitado, abre <em>Herramientas → Developer → Error Console</em> y busca mensajes relacionados con Better BibTeX para identificar problemas (por ejemplo incompatibilidades o problemas de firma).</li>
+        <li><strong>Problemas con paquetes sandboxed (Linux)</strong>: Si usas Zotero instalado vía Flatpak o snap, el sandbox puede impedir la instalación correcta de add-ons. En ese caso prueba la versión tarball oficial descargable desde zotero.org y vuelve a instalar BBT ahí.</li>
+        <li><strong>Permisos y archivo corrupto</strong>: Asegúrate de que el archivo <code>.xpi</code> no esté corrupto y que tu usuario tenga permisos de lectura para el archivo.</li>
+        <li><strong>Desinstalar y reinstalar</strong>: Si nada funciona, elimina (Remove) Better BibTeX desde la lista de extensiones, reinicia Zotero y vuelve a instalar desde el <code>.xpi</code>.</li>
+    </ol>
+
+    <h5>Auto-export (exportación automática del .bib)</h5>
+    <ol>
+        <li>En Zotero, selecciona la colección que quieras exportar automáticamente.</li>
+        <li>Haz clic derecho → <strong>Export Collection</strong> → selecciona <strong>Better BibTeX</strong> o <strong>Better BibLaTeX</strong> y marca la opción <em>Automatic export</em> (si está disponible) o activa la opción equivalente en la preferencia de BBT.</li>
+        <li>Configura la ruta de salida al fichero local que quieras (por ejemplo: <code>/home/usuario/proyecto/references.bib</code> o la carpeta de tu proyecto LaTeX).</li>
+        <li>Comprueba que BBT actualiza el fichero cada vez que se modifica algo en la colección.</li>
+    </ol>
+
+    <h5>Ejemplo: enviar el .bib a Overleaf con Git (campus license)</h5>
+    <ol>
+        <li>En Overleaf abre el menú del proyecto → sección Git y copia la URL remota (algo como <code>https://git.overleaf.com/your/project/id</code>).</li>
+        <li>En tu carpeta local (donde BBT exporta <code>references.bib</code>), añade el remoto y envía el fichero:
+            <pre><code>git remote add overleaf https://git.overleaf.com/your/project/id
+git add references.bib
+git commit -m "Actualizar bibliografía"
+git push overleaf main</code></pre>
+        </li>
+        <li>Repite el último bloque cada vez que BBT actualice <code>references.bib</code> (puedes automatizarlo con un hook o script si lo deseas).</li>
+    </ol>
+
     <h3>3. Instalar la extensión del navegador</h3>
     <p>La extensión te permite capturar referencias directamente desde páginas web:</p>
+    <p><strong>Atajo recomendado:</strong> Si usas Zotero Desktop, la forma más rápida es hacer clic en <em>Zotero | Connectors</em> (en el panel central de Zotero). Esto abre la página oficial con el conector correcto para tu navegador y evita búsquedas o errores de versión.</p>
     <ol>
         <li>Instala la extensión para tu navegador:
             <ul>
@@ -104,12 +158,27 @@
 
     <h3>5. Integración con Overleaf</h3>
     <p><strong>Paso 1: Conectar Zotero con Overleaf</strong></p>
+    <p>Importante: el comando <code>Generate Bibliography</code> en la aplicación de escritorio crea una bibliografía para copiar/pegar, pero <strong>no</strong> garantiza un enlace URL actualizable para Overleaf. Para usar Overleaf con un archivo .bib "desde URL" necesitas que la colección esté sincronizada en Zotero web y que el recurso sea accesible públicamente (o usando la API). Aquí tienes opciones prácticas:</p>
     <ol>
-        <li>En Zotero: Haz clic derecho en una colección (ej: "Bibliografía Tesis")</li>
-        <li>Selecciona <strong>"Generate Bibliography"</strong></li>
-        <li>En el diálogo, copia la URL que genera</li>
-        <li>Esta URL es tu enlace de Zotero → Overleaf</li>
+        <li><strong>Método fiable y simple (recomendado para principiantes)</strong>: En Zotero (escritorio) -> clic derecho en la colección -> <strong>Export Collection</strong> → elegir <code>BibTeX</code> o <code>BibLaTeX</code> → guardar como <code>referencias.bib</code>, y luego subir ese fichero a Overleaf (arrastrar al proyecto). Es manual, pero funciona siempre y es sencillo de enseñar.</li>
+        <li><strong>Método "From External URL" (Overleaf)</strong>: Si quieres que Overleaf descargue tu .bib automáticamente desde una URL, debes usar la versión web de Zotero y asegurarte de que la colección sea pública o que sirvas el .bib desde un endpoint accesible. Opciones:
+            <ul>
+                <li>En Zotero web: abre la colección (después de sincronizar) y exporta manualmente el BibTeX (descargar) — si quieres un enlace público necesitarás publicar la colección o usar la API.</li>
+                <li>Usa la API pública (solo si la colección es pública) con una URL tipo: <code>https://api.zotero.org/users/USERID/collections/COLLECTIONKEY/items?format=bibtex</code>. Para colecciones privadas necesitarás usar una API key y scripts que descarguen el .bib a un endpoint accesible para Overleaf.</li>
+            </ul>
+        </li>
+        <li><strong>Método colaborativo (grupos):</strong> Creando un <em>Group</em> en Zotero y haciéndolo público o compartido con los colaboradores, puedes usar la exportación del grupo o su API para generar un .bib que Overleaf pueda actualizar. Es útil para trabajar con supervisores.</li>
     </ol>
+
+    <h5>Enlazar Overleaf con tu cuenta de Zotero (link)</h5>
+    <p>Overleaf puede conectarse directamente a tu cuenta web de Zotero para que importes referencias sin subir archivos manualmente. Para ello necesitas tener una <strong>cuenta Zotero en la web</strong> (o sincronizada con tu Zotero local). <strong>Importante:</strong> antes de intentar importar desde un proyecto, primero vincula tu cuenta: en Overleaf abre <strong>Settings (rueda dentada abajo a la izquierda) → Account settings → Reference managers → Zotero integration</strong> y conecta Zotero. Pasos para importar luego desde un proyecto:</p>
+    <ol>
+        <li>En Overleaf, ve a <strong>Settings (rueda dentada abajo a la izquierda) → Account settings → Reference managers → Zotero integration</strong> y conecta Zotero.</li>
+        <li>Busca la integración <strong>Zotero</strong> y haz clic en <strong>Connect</strong> / <strong>Link</strong>.</li>
+        <li>Se abrirá una ventana para autenticarte en <a href="https://www.zotero.org" target="_blank" rel="noopener">zotero.org</a>. Inicia sesión y autoriza a Overleaf a acceder a tu biblioteca.</li>
+        <li>Una vez vinculado, vuelve a tu proyecto en Overleaf y usa <strong>Add files → From Zotero</strong> (o la opción de importar desde Zotero) para buscar/seleccionar colecciones o referencias y crear un <code>.bib</code> dentro del proyecto.</li>
+    </ol>
+    <p><strong>Nota:</strong> Si tu colección es privada, Overleaf solo podrá verla si autorizas el acceso (OAuth) durante el proceso de vinculación; para flujos privados continua siendo recomendable el uso de BBT + git si prefieres no compartir acceso web.</p>
 
     <p><strong>Paso 2: Crear archivo .bib en Overleaf desde Zotero</strong></p>
     <ol>
@@ -196,6 +265,30 @@
         <li><strong>Insertar \bibliography{referencias} en LaTeX</strong></li>
         <li><strong>Usar \cite{clave} en el texto:</strong> Citarás automáticamente</li>
         <li><strong>Compilar en Overleaf:</strong> La bibliografía se genera automáticamente</li>
+    </ol>
+
+    <h3>8.1 Flujos por nivel: Principiante vs Avanzado</h3>
+    <p>Para que puedas enseñar la integración de Zotero con Overleaf según el nivel de los estudiantes, aquí tienes dos flujos recomendados.</p>
+
+    <h4>Flujo A — Principiantes (rápido y seguro)</h4>
+    <ol>
+        <li>Usa Zotero para capturar referencias y mantener la colección ordenada.</li>
+        <li>Exporta la colección a <code>referencias.bib</code> (Zotero → Export → BibLaTeX o BibTeX).</li>
+        <li>En Overleaf, sube manualmente <code>referencias.bib</code> (New File → Upload o arrastrar el archivo).</li>
+        <li>Usa <code>\addbibresource{referencias.bib}</code> (biblatex) o <code>\bibliography{referencias}</code> y compila — ideal para empezar sin configurar servidores ni git.</li>
+    </ol>
+
+    <h4>Flujo B — Avanzado / tesis (reproducible y colaborativo — recomendado para doctorandos)</h4>
+    <p>Recomendado para estudiantes que trabajan en tesis y necesitan colaboración con supervisores, control de versiones y automatización:</p>
+    <ol>
+        <li>Instala Better BibTeX (BBT) en Zotero y configura <em>automatic export</em> de la colección a un fichero local <code>references.bib</code> (formato BibLaTeX recomendado).</li>
+        <li>Usa git en la carpeta local que contiene tu proyecto LaTeX y añade <code>references.bib</code> al repo. Añade el remote de Overleaf (tu integración campus suele incluir git).
+            <pre><code>git add references.bib
+git commit -m "Actualizar bibliografía"
+git push overleaf main</code></pre>
+        </li>
+        <li>En Overleaf el fichero <code>references.bib</code> estará siempre actualizado tras cada push; todos los colaboradores (supervisor incluido) verán la última versión.</li>
+        <li>Ventajas: claves de cita estables (BBT), historial y reproducibilidad. Si prefieres no usar git, BBT también puede auto-exportar a una carpeta sincronizada con Drive/Dropbox y Overleaf puede sincronizar desde ahí cuando esté habilitado.</li>
     </ol>
 
     <h3>9. Colaboración: Compartir biblioteca en Zotero</h3>

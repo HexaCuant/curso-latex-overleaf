@@ -52,7 +52,7 @@ La integral \(\int_a^b f(x)dx\) representa el área bajo la curva.
 Como se ve en la ecuación \eqref{eq:onda}, la velocidad es crítica.
 </code></pre>
 
-<p>Consultar la <em>Comprehensive LaTeX Symbol list</em> y <a href="https://detexify.kirelabs.org/" target="_blank" rel="noopener">Detexify</a> para encontrar símbolos matemáticos.</p>
+<p>Consultar la <a href="https://ctan.org/pkg/comprehensive" target="_blank" rel="noopener">Comprehensive LaTeX Symbol List</a> (CTAN) y <a href="https://detexify.kirelabs.org/" target="_blank" rel="noopener">Detexify</a> para encontrar símbolos matemáticos.</p>
 
 <h3>2. Gestión de Bibliografía con Zotero + Overleaf (1.5h)</h3>
 
@@ -67,24 +67,45 @@ Como se ve en la ecuación \eqref{eq:onda}, la velocidad es crítica.
     <li>Exportar a Overleaf de forma automática</li>
 </ul>
 
-<h4>2.2 Integración Zotero + Overleaf</h4>
-<p><strong>Paso 1: Crear Colección en Zotero</strong></p>
+<h4>2.2 Integración Zotero + Overleaf — flujo recomendado (sin usar git)</h4>
+<p>A continuación explico un flujo sencillo, fiable y fácil de enseñar que NO requiere git y funciona bien para docentes y doctorandos.
+Sigue estos pasos en orden para comprobar que todo sincroniza correctamente entre Zotero local, Zotero web y Overleaf.</p>
+
 <ol>
-    <li>Ve a <a href="https://www.zotero.org/" target="_blank" rel="noopener">Zotero.org</a> y crea una cuenta (gratuita).</li>
-    <li>Crea una nueva colección (ej: "Mi Tesis", "Proyecto Investigación")</li>
-    <li>Añade referencias buscando en Google Scholar, PubMed, o directamente desde PDFs</li>
-    <li>Zotero extrae automáticamente: título, autor, año, DOI</li>
+    <li><strong>Crear cuenta en Zotero (opcional pero recomendado)</strong>: ve a <a href="https://www.zotero.org/" target="_blank" rel="noopener">zotero.org</a> y regístrate. Tener cuenta facilita que Overleaf pueda acceder a tu biblioteca y que la sincronización funcione automáticamente.</li>
+
+    <li><strong>Instalar Zotero en local</strong> (Zotero Desktop): descarga e instala la aplicación en tu equipo desde la página de descargas. Cuando abras Zotero por primera vez te pedirá iniciar sesión y sincronizar con tu cuenta web; si no lo hace, ve a <em>Edit → Preferences → Sync</em> e introduce tus credenciales para activar la sincronización. <strong>Nota:</strong> si quieres ahorrar espacio en la nube de Zotero, desmarca la opción <em>"Sync attachment files in My Library"</em> en <em>Edit → Preferences → Sync</em> — así solo se sincronizarán las referencias (metadatos) y los PDFs/adjuntos permanecerán locales en tu equipo.</li>
+
+    <li><strong>Instalar Better BibTeX (recomendado)</strong>: instala el complemento Better BibTeX (BBT) si quieres claves de cita estables y mejores exportaciones. Descarga el archivo <code>.xpi</code> desde la página oficial de releases: <a href="https://github.com/retorquere/zotero-better-bibtex/releases" target="_blank" rel="noopener">https://github.com/retorquere/zotero-better-bibtex/releases</a> (o usa la web del autor: <a href="https://retorque.re/zotero-better-bibtex/" target="_blank" rel="noopener">https://retorque.re/zotero-better-bibtex/</a>).
+        En Zotero: <em>Tools → Add-ons → Install Add-on From File</em> y selecciona el archivo <code>.xpi</code> de BBT. Después confirma que BBT aparece y está <strong>habilitado</strong> (no disabled).</li>
+
+    <li><strong>Instalar el conector del navegador</strong>: añade Zotero Connector a tu navegador. Esto te permite capturar referencias desde PubMed, Google Scholar, editoriales, etc. Pasos:
+        <ul>
+            <li><strong>Chrome / Edge (Chromium)</strong> — abre la <a href="https://chrome.google.com/webstore" target="_blank" rel="noopener">Chrome Web Store</a> (o <a href="https://microsoftedge.microsoft.com/addons/" target="_blank" rel="noopener">Edge Add-ons</a>), busca "Zotero Connector" y haz clic en "Agregar a Chrome" / "Obtener". Confirma permisos y comprueba que el icono aparece en la barra del navegador.</li>
+            <li><strong>Firefox</strong> — abre <a href="https://addons.mozilla.org" target="_blank" rel="noopener">Mozilla Add‑ons</a>, busca "Zotero Connector" y pulsa "Añadir a Firefox". Confirma permisos y revisa el icono.</li>
+            <li><strong>Safari</strong> — comprueba la versión de tu navegador; sigue las instrucciones en la página oficial de Zotero: <a href="https://www.zotero.org/support/connector_installation" target="_blank" rel="noopener">Instalación del conector</a> (la disponibilidad depende de la versión de Safari y macOS).</li>
+            <li>Una vez instalado el conector, haz clic en su icono para ajustar opciones (guardar en Zotero Web o en la aplicación local, adjuntar PDFs, etc.). Si quieres que las capturas vayan a Zotero Desktop, asegúrate de que Zotero Desktop esté abierto y sincronizado.</li>
+            <li><strong>Atajo (recomendado):</strong> desde Zotero Desktop puedes hacer clic en el enlace <em>"Zotero | Connectors"</em> (en el panel central) para abrir directamente la página oficial del conector para tu navegador. Es útil para evitar búsquedas erróneas en tiendas de extensiones y garantizar que instalas la versión correcta para tu navegador.</li>
+            <li>Prueba el conector en PubMed: abre un registro, haz clic en el icono de Zotero Connector y selecciona la colección destino; luego comprueba que el elemento aparece en Zotero Desktop y en Zotero Web tras sincronizar.</li>
+        </ul>
+    </li>
+
+    <li><strong>Prueba práctica en PubMed</strong>: abre PubMed, busca un artículo y, usando el conector (o clic derecho → "Guardar en Zotero" si aplica), añade la referencia a la colección local (ej. "Mi Tesis").
+        <ul>
+            <li>Comprueba en Zotero Desktop que la referencia aparece localmente.</li>
+        </ul>
+    </li>
+
+    <li><strong>Verificar sincronización web</strong>: una vez añadida la referencia en Zotero Desktop, espera a que se sincronice o fuerza la sincronización (botón verde de Sync). Luego abre <a href="https://www.zotero.org/" target="_blank" rel="noopener">Zotero Web</a> y confirma que la referencia también aparece online en la colección correspondiente.</li>
+
+    <li><strong>Conectar Overleaf con Zotero</strong> y crear el .bib: primer paso — vincula tu cuenta de Zotero a Overleaf desde <strong>Settings (rueda dentada abajo a la izquierda) → Account settings → Reference managers → Zotero integration</strong> y conecta Zotero. Tras autorizar Overleaf podrás, dentro de cualquier proyecto, ir a <em>Menu → Add files → From Zotero</em>, seleccionar la colección deseada y Overleaf creará automáticamente un archivo <code>referencias.bib</code> en tu proyecto.</li>
+
+    <li><strong>Comprobar la actualización dinámica:</strong> añade otra cita en Zotero Desktop y sincroniza. En Overleaf abre el archivo <code>referencias.bib</code> y selecciona <em>Refresh from Zotero</em> (o el mecanismo que ofrece Overleaf). Verás que la nueva cita aparece en el archivo .bib del proyecto.</li>
+
+    <li><strong>Insertar citas en LaTeX</strong>: en Overleaf usa <code>\cite{clave}</code>. Si no conoces la clave, busca en <code>referencias.bib</code> (la clave suele ser del tipo <code>AutorAño</code>), o usa la interfaz de Overleaf para buscar referencias importadas desde Zotero y copiar su clave.</li>
 </ol>
 
-<p><strong>Paso 2: Sincronizar con Overleaf</strong></p>
-<ol>
-    <li>En Overleaf, abre tu proyecto y ve a <strong>Menu > Bibliography</strong></li>
-    <li>Selecciona <strong>"Add a new bibliography"</strong></li>
-    <li>Elige <strong>"Link a Zotero library"</strong></li>
-    <li>Autoriza Overleaf a acceder a tu Zotero</li>
-    <li>Selecciona la colección de referencias que deseas usar</li>
-    <li>Overleaf generará automáticamente un archivo <code>.bib</code></li>
-</ol>
+<p>Con esto tienes un flujo práctico: cuenta web + Zotero local sincronizado + conector del navegador + Overleaf enlazado. No necesitas git y la actualización del .bib se realiza desde la integración web de Overleaf.</p>
 
 <h4>2.3 Usar Referencias en Overleaf</h4>
 <pre><code>\documentclass{article}
