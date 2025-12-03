@@ -121,6 +121,8 @@ Sigue estos pasos en orden para comprobar que todo sincroniza correctamente entr
 
     <li><strong>Conectar Overleaf con Zotero</strong> y crear el .bib: primer paso — vincula tu cuenta de Zotero a Overleaf desde <strong>Settings (rueda dentada abajo a la izquierda) → Account settings → Reference managers → Zotero integration</strong> y conecta Zotero. Tras autorizar Overleaf podrás, dentro de cualquier proyecto, ir a <em>Menu → Add files → From Zotero</em>, seleccionar la colección deseada y Overleaf creará automáticamente un archivo <code>referencias.bib</code> en tu proyecto.</li>
 
+    <li><strong>Nota sobre Git en Overleaf</strong>: si vas a usar la integración Git (por ejemplo para `references.bib` vía terminal o CI), comprueba que la integración Git esté habilitada en <code>Settings → Account settings → Integrations (o Integrations and add-ons)</code>. En algunos entornos (Overleaf Server Pro) la opción la gestiona el administrador del servidor y en Cloud puede requerirse una licencia premium.</li>
+
     <li><strong>Comprobar la actualización dinámica:</strong> añade otra cita en Zotero Desktop y sincroniza. En Overleaf abre el archivo <code>referencias.bib</code> y selecciona <em>Refresh from Zotero</em> (o el mecanismo que ofrece Overleaf). Verás que la nueva cita aparece en el archivo .bib del proyecto.</li>
 
     <li><strong>Insertar citas en LaTeX</strong>: en Overleaf usa <code>\cite{clave}</code>. Si no conoces la clave, busca en <code>referencias.bib</code> (la clave suele ser del tipo <code>AutorAño</code>), o usa la interfaz de Overleaf para buscar referencias importadas desde Zotero y copiar su clave.</li>
