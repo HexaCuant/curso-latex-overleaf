@@ -63,8 +63,13 @@
     <ol>
         <li>Abre tu proyecto en Overleaf</li>
         <li>Haz clic en el menú (≡) a la izquierda</li>
-        <li>Busca la opción <strong>"Git"</strong> o <strong>"Git & GitHub"</strong></li>
-        <li>Copia la URL que genera (algo como: <code>https://git.overleaf.com/uniqueid/projectname</code>)</li>
+        <li>Busca la opción <strong>"Git"</strong> (menú del proyecto). Overleaf mostrará la URL de clonación y un comando <code>git clone</code>.</li>
+        <li>Copia la URL que genera (ejemplos según tu instalación de Overleaf):
+            <ul>
+                <li><strong>Overleaf Cloud</strong> (projects on overleaf.com): si tu URL del proyecto es <code>https://www.overleaf.com/project/1234567</code>, la URL de Git suele ser <code>https://git.overleaf.com/1234567</code> — y el comando será <code>git clone https://git.overleaf.com/1234567</code>.</li>
+                <li><strong>Overleaf Server Pro</strong> (instalaciones locales): la URL puede usar SSH o HTTPS y el formato depende de la configuración del servidor — p. ej. <code>git@yourserver.example.com:git/1234567</code> o <code>https://git@yourserver.example.com/git/1234567</code>. Consulta el diálogo de Git del proyecto para la URL exacta.</li>
+            </ul>
+        </li>
         <li>En tu terminal, ejecuta:</li>
     </ol>
 
@@ -150,13 +155,13 @@ git checkout commit_id -- archivo.tex</code></pre>
     <h3>7. ¿Puedo usar ramas (branches) en Overleaf?</h3>
     <p><strong>Pregunta:</strong> ¿Cómo creo una rama para trabajar sin afectar el proyecto principal?</p>
     <p><strong>Respuesta:</strong></p>
-    <p>Sí, pero es más útil si trabajas desde terminal. Pasos:</p>
+    <p>Sí, pero ten en cuenta que la interfaz web de Overleaf normalmente trabaja sobre la rama <code>main</code> (o la rama por defecto del proyecto) y no expone ramas adicionales en la vista web. El uso de ramas completas (y Pull Requests) es práctico cuando trabajas localmente con Git y con plataformas como GitHub — en esos casos:</p>
     <pre><code>git checkout -b feature/nueva-caracteristica</code></pre>
     <p>Ahora trabajas en tu rama. Cuando termines:</p>
     <pre><code>git add .
 git commit -m "Descripción del cambio"
 git push origin feature/nueva-caracteristica</code></pre>
-    <p>En GitHub (o tu plataforma), creas un Pull Request para fusionar con main.</p>
+    <p>En GitHub (o tu plataforma), crea un Pull Request para fusionar con <code>main</code>. Ten en cuenta que Overleaf web mostrará normalmente la rama principal; si empujas ramas adicionales, quizás no las veas directamente en el editor web.</p>
     <p><strong>⚠️ Nota:</strong> En Overleaf Web, solo ves la rama main. Para ramas, necesitas terminal.</p>
 
     <h3>8. ¿Cómo sincronizar mi proyecto local con GitHub?</h3>
@@ -267,6 +272,22 @@ build/</code></pre>
     </ul>
 
     <h3>13. Errores comunes y cómo evitarlos</h3>
+        <h3>Autenticación y seguridad (tokens de Overleaf)</h3>
+        <p>Overleaf utiliza <strong>autenticación por token</strong> para operaciones Git (no uses tu contraseña en texto claro). Para obtener y gestionar tokens revisa la documentación oficial de Overleaf: <a href="https://docs.overleaf.com/integrations-and-add-ons/git-integration-and-github-synchronization/git-integration/git-integration-authentication-tokens" target="_blank" rel="noopener">Git integration authentication tokens — Overleaf Docs</a>.</p>
+        <ol>
+            <li>Genera un token desde <code>Account settings</code> → <code>Integrations</code> (o el diálogo que Overleaf proporcione para tokens).</li>
+            <li>Guarda el token como secreto si vas a usarlo en CI (por ejemplo <code>OVERLEAF_GIT_URL</code> con <code>https://&lt;token&gt;@git.overleaf.com/1234567</code>).</li>
+            <li>En Overleaf Server Pro puede soportarse también autenticación vía SSH/keys según la configuración del servidor; consulta al administrador del servidor si necesitas este método.</li>
+        </ol>
+
+        <h3>Nota sobre planes y disponibilidad</h3>
+        <p>La integración Git de Overleaf es una característica <strong>premium</strong> (disponible para usuarios con suscripción individual o con licencias de campus/organización). Si ves que la opción de Git no aparece en el menú de tu proyecto, confirma que tu cuenta o tu institución tiene activada la integración.</p>
+
+        <h3>Enlaces oficiales</h3>
+        <ul>
+            <li><a href="https://docs.overleaf.com/integrations-and-add-ons/git-integration-and-github-synchronization/git" target="_blank" rel="noopener">Overleaf — Git integration (documentación oficial)</a></li>
+            <li><a href="https://docs.overleaf.com/integrations-and-add-ons/git-integration-and-github-synchronization/git-integration/git-integration-authentication-tokens" target="_blank" rel="noopener">Overleaf — Git authentication tokens (cómo crear y usar)</a></li>
+        </ul>
     <p><strong>❌ Error: "Permission denied" al clonar</strong></p>
     <ul>
         <li>✅ Solución: Usa el enlace Git de Overleaf (https), no SSH</li>
