@@ -34,7 +34,7 @@ Este guía te llevará paso a paso para:
 ### Opción 2: Gestión de bibliografía con Zotero
 
 Si necesitas gestionar referencias bibliográficas:
-→ [Guía: Primeros pasos en Zotero + Overleaf](zotero-quickstart.html)
+→ [Ampliación: Zotero + Overleaf — detalles y flujos](zotero-overleaf-ampliacion.html)
 
 Aprenderás a:
 1. Crear tu cuenta en Zotero
@@ -95,7 +95,7 @@ Si prefieres herramientas locales, consulta: https://a105.ugr.es/latex
 ### Durante el Curso
 - **[Índice completo del curso](index.html)** - Acceso a todas las clases
 - **[Quickstart](quickstart.html)** - Primeros pasos en Overleaf
-- **[Guía Zotero](zotero-quickstart.html)** - Gestión de bibliografía
+- **[Ampliación Zotero](zotero-overleaf-ampliacion.html)** - Gestión de bibliografía (ampliación)
 - **[FAQ Git Avanzado](git-faq.html)** - Preguntas frecuentes (recurso opcional)
 
 ### Recursos Externos
@@ -112,7 +112,7 @@ overleaf/
 ├── README.md              # Este archivo
 ├── index.html             # Índice principal del curso
 ├── quickstart.html        # Primeros pasos en Overleaf
-├── zotero-quickstart.html # Guía de Zotero
+├── zotero-overleaf-ampliacion.html # Ampliación: Zotero + Overleaf
 ├── git-faq.html           # FAQ sobre Git avanzado (opcional)
 ├── clase1.html - clase7.html  # Contenidos de las 7 clases
 ├── style.css              # Estilos CSS
@@ -126,7 +126,7 @@ overleaf/
 1. Lee el [Quickstart](quickstart.html) para familiarizarte con Overleaf
 2. Accede a [Clase 1](clase1.html) y sigue en orden
 3. Practico con los ejemplos en Overleaf
-4. Usa [Zotero](zotero-quickstart.html) para tus referencias
+4. Usa [Zotero](zotero-overleaf-ampliacion.html) para tus referencias (ampliación)
 5. Consulta [FAQ Git](git-faq.html) para temas avanzados
 
 ### Para Colaboración en Grupo
@@ -169,7 +169,7 @@ Para dudas sobre el curso:
 - Consulta el [Índice](index.html)
 - Revisa el [FAQ sobre Git](git-faq.html)
 - Lee la documentación en el [Quickstart](quickstart.html)
-- Consulta la [Guía Zotero](zotero-quickstart.html)
+- Consulta la [Ampliación Zotero](zotero-overleaf-ampliacion.html)
 
 ---
 
