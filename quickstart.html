@@ -47,6 +47,91 @@
         <p>Una vez hayas iniciado sesión con éxito, mira la <strong>esquina superior derecha</strong> de tu espacio de usuario en Overleaf. Deberías ver el mensaje: <strong>"You're using Overleaf Premium"</strong>. Si lo ves, ¡todo está correcto! Ya tienes acceso a todas las características premium.</p>
     </div>
 
+    <hr style="margin: 40px 0;">
+
+    <h2>Instalación de herramientas locales (Opcional y Recomendado)</h2>
+
+    <div style="background-color: #fff3cd; border-left: 4px solid #ffc107; padding: 15px; margin: 20px 0; border-radius: 4px;">
+        <p><strong>⚠️ Nota de instalación:</strong></p>
+        <p>Al usar <strong>Overleaf</strong>, <strong>NO es necesario</strong> instalar una distribución de LaTeX ni un editor de texto en tu ordenador, ya que todo funciona en la nube.</p>
+        <p>Sin embargo, recomendamos instalar <strong>Git</strong> y <strong>JabRef</strong> para mejorar la gestión de versiones y bibliografía, aprovechando la flexibilidad del flujo de trabajo híbrido.</p>
+    </div>
+
+    <h3>3. Instalar Git</h3>
+    <p>Para instalar Git, sigue las instrucciones según tu sistema operativo:</p>
+
+    <h4>Windows</h4>
+    <ol>
+        <li>Descarga Git desde su página oficial: <a href="https://git-scm.com/" target="_blank" rel="noopener">https://git-scm.com/</a></li>
+        <li>Durante la instalación, asegúrate de seleccionar las siguientes opciones:
+            <ul>
+                <li>"Use Git from Git Bash only"</li>
+                <li>"Checkout Windows-style, commit Unix-style line endings"</li>
+            </ul>
+        </li>
+    </ol>
+
+    <h4>macOS</h4>
+    <ol>
+        <li>La forma más sencilla es usar Homebrew. Si no lo tienes instalado, visita <a href="https://brew.sh" target="_blank" rel="noopener">brew.sh</a> para instrucciones.</li>
+        <li>Abre la Terminal y ejecuta:
+            <pre><code>brew install git</code></pre>
+        </li>
+    </ol>
+
+    <h4>Linux</h4>
+    <ul>
+        <li>Para distribuciones basadas en Debian/Ubuntu:
+            <pre><code>sudo apt-get install git</code></pre>
+        </li>
+        <li>Para distribuciones basadas en ArchLinux:
+            <pre><code>sudo pacman -S git</code></pre>
+        </li>
+        <li>O a través del gestor de software que prefieras de tu distribución.</li>
+    </ul>
+
+    <h3>4. Instalar JabRef para manejo de bibliografía (Recomendado)</h3>
+    <div style="background-color: #e3f2fd; border-left: 4px solid #1976d2; padding: 10px; margin: 10px 0; border-radius: 4px;">
+        <p><strong>💡 Nota:</strong> Aunque Overleaf tiene integración con herramientas como Zotero o Mendeley, recomendamos instalar <strong>JabRef</strong>. La gestión local directa del archivo <code>.bib</code> suele ser más simple, robusta y evita problemas de sincronización en documentos complejos.</p>
+    </div>
+    <ul>
+        <li>Visita <a href="https://www.jabref.org/#download" target="_blank" rel="noopener">https://www.jabref.org/#download</a> y descarga la versión para tu sistema operativo.</li>
+        <li>Para Linux, recomiendo siempre usar un instalador de paquetes de la distribución.</li>
+    </ul>
+
+    <h3>5. Instalar una distribución de LaTeX (Opcional - No necesario para Overleaf)</h3>
+    <p><em>Estos pasos solo son necesarios si deseas compilar documentos en tu propio ordenador sin conexión a Internet. Si vas a usar Overleaf, puedes saltar este paso.</em></p>
+
+    <h4>Windows</h4>
+    <ol>
+        <li>Descarga e instala MiKTeX desde su página oficial: <a href="https://miktex.org/howto/install-miktex" target="_blank" rel="noopener">https://miktex.org/howto/install-miktex</a></li>
+        <li>Durante la instalación, elige la opción de instalar paquetes bajo demanda.</li>
+    </ol>
+
+    <h4>macOS</h4>
+    <ol>
+        <li>Descarga e instala MacTeX desde <a href="https://tug.org/mactex/" target="_blank" rel="noopener">https://tug.org/mactex/</a></li>
+    </ol>
+
+    <h4>Linux</h4>
+    <ul>
+        <li>Para distribuciones basadas en Debian/Ubuntu:
+            <pre><code>sudo apt-get install texlive</code></pre>
+        </li>
+        <li>Para distribuciones basadas en ArchLinux:
+            <pre><code>sudo pacman -S texlive</code></pre>
+        </li>
+        <li>O a través del gestor de software que prefieras de tu distribución.</li>
+    </ul>
+
+    <h3>6. Instalar un editor de texto (Opcional - No necesario para Overleaf)</h3>
+    <p><em>Overleaf ya incluye un potente editor web. Solo instala esto si prefieres editar archivos localmente.</em></p>
+    <p>En el curso vamos a usar TeXstudio (si decides trabajar en local):</p>
+    <ul>
+        <li>Visita <a href="https://texstudio.sourceforge.net/" target="_blank" rel="noopener">https://texstudio.sourceforge.net/</a> y descarga la versión para tu sistema operativo.</li>
+        <li>Para Linux, recomiendo siempre usar un instalador de paquetes de la distribución.</li>
+    </ul>
+
     <p><a href="index.html" class="back-to-index">Volver al índice</a></p>
 </body>
 
