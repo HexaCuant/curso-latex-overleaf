@@ -41,35 +41,60 @@
     <h3>1. ¿Cómo clonar un proyecto de Overleaf a mi ordenador?</h3>
     <p><strong>Pregunta:</strong> Quiero descargar mi proyecto de Overleaf y trabajar localmente con Git.</p>
     <p><strong>Respuesta:</strong></p>
+    <p>Para clonar un proyecto de Overleaf necesitas autenticarte usando un usuario (<code>git</code>) y un <strong>token</strong> (contraseña). Para facilitar el proceso, seguiremos este orden: configurar tu ordenador para recordar la contraseña, iniciar la clonación y crear el token justo cuando se nos pida en el proceso.</p>
+
+    <h4>Paso 1: Configurar <code>git credential helper</code> (Recomendado)</h4>
+    <p>Configura Git para recordar tus contraseñas y no tener que pegar el token en cada operación futura.</p>
+
+    <p><strong>Opción A: Windows (Git Credential Manager)</strong></p>
+    <pre><code>git config --global credential.helper manager-core</code></pre>
+
+    <p><strong>Opción B: macOS (Keychain)</strong></p>
+    <pre><code>git config --global credential.helper osxkeychain</code></pre>
+
+    <p><strong>Opción C: Linux (Store o Cache)</strong></p>
+    <ul>
+        <li><strong>Modo Store (Sencillo):</strong> Guarda el token en un archivo de texto plano en tu usuario. Úsalo solo en tu ordenador personal.
+            <pre><code>git config --global credential.helper store</code></pre>
+        </li>
+        <li><strong>Modo Cache (Temporal):</strong> Guarda el token en memoria por un tiempo (ej. 1 hora). Más seguro en ordenadores compartidos.
+            <pre><code>git config --global credential.helper 'cache --timeout=3600'</code></pre>
+        </li>
+        <li><em>Nota: Para integración segura con GNOME Keyring/Libsecret ver documentación de tu distribución.</em></li>
+    </ul>
+
+    <h4>Paso 2: Obtener la URL y ejecutar el comando</h4>
     <ol>
-        <li>Abre tu proyecto en Overleaf</li>
-        <li>Haz clic en el menú (≡) a la izquierda</li>
-        <li>Busca la opción <strong>"Git"</strong> (menú del proyecto). Overleaf mostrará la URL de clonación y un comando <code>git clone</code>. Si no ves el elemento "Git" en el menú (la interfaz puede variar), prueba lo siguiente:
+        <li>Abre tu proyecto en Overleaf.</li>
+        <li>Haz clic en el icono <strong>Integrations</strong> y selecciona <strong>Git</strong> / <strong>Clone this project</strong>.</li>
+        <li>Copia el comando que aparece (ej. <code>git clone https://git@git.overleaf.com/1234567890</code>).</li>
+        <li>Abre tu terminal, pega el comando y pulsa <strong>Enter</strong>.</li>
+        <li>Git conectará y te pedirá credenciales:
             <ul>
-                <li>Revisa el menú principal del proyecto (≡) — en algunas versiones aparece como <strong>"Git"</strong> o <strong>"Git &amp; GitHub"</strong> o dentro de una sección llamada <strong>Sync</strong> / <strong>Synchronization</strong>.</li>
-                <li>Si aún no lo encuentras, copia la URL del proyecto desde la barra del navegador (ej. <code>https://www.overleaf.com/project/1234567</code>) y genera la URL de Git manualmente sustituyendo el host: <code>https://git.overleaf.com/1234567</code> (ver nota abajo para Server Pro).</li>
-                <li>En instalaciones de Overleaf Server Pro la URL de Git suele tener formato <code>https://&lt;HOST&gt;/git/PROJECT_ID</code> o una variante SSH; consulta al administrador si no encuentras la URL.</li>
+                <li><strong>Username:</strong> Escribe <code>git</code> y pulsa Enter. (no lo pedirá si está incluído en la URL)</li>
+                <li><strong>Password:</strong> ¡Espera! Ahora necesitamos generar el token.</li>
             </ul>
         </li>
-        <li>Copia la URL que genera (ejemplos según tu instalación de Overleaf):
-            <ul>
-                <li><strong>Overleaf Cloud</strong> (projects on overleaf.com): si tu URL del proyecto es <code>https://www.overleaf.com/project/1234567</code>, la URL de Git suele ser <code>https://git.overleaf.com/1234567</code> — y el comando será <code>git clone https://git.overleaf.com/1234567</code>.</li>
-                <li><strong>Overleaf Server Pro</strong> (instalaciones locales): la URL puede usar SSH o HTTPS y el formato depende de la configuración del servidor — p. ej. <code>git@yourserver.example.com:git/1234567</code> o <code>https://git@yourserver.example.com/git/1234567</code>. Consulta el diálogo de Git del proyecto para la URL exacta.</li>
-            </ul>
-        </li>
-        <li>En tu terminal, ejecuta:</li>
     </ol>
 
-        <h5>Notas de seguridad y prácticas</h5>
-        <ul>
-                <li>No publiques la URL con token en el repositorio: usa siempre secretos (GitHub Secrets / GitLab CI variables).</li>
-                <li>Protege la rama destino (main) para evitar pushes automáticos desde forks no deseados y revisa quién puede actualizar los secrets.</li>
-                <li>Considera restringir el workflow a ejecuciones manuales (<code>workflow_dispatch</code>) si prefieres revisión humana antes de publicar a Overleaf.</li>
-                <li>En lugar de empujar directamente la rama principal, puedes usar una rama intermedia revisada por Pull Request para validar los cambios antes de desplegar.</li>
-        </ul>
-    <pre><code>git clone https://git.overleaf.com/uniqueid/projectname
-cd projectname</code></pre>
-    <p>¡Ahora tienes una copia local de tu proyecto!</p>
+    <h4>Paso 3: Generar el Token y completar la clonación</h4>
+    <p>Cuando el terminal esté esperando la contraseña (Password):</p>
+    <ol>
+        <li>Vuelve a Overleaf y ve a <strong>Settings</strong> (esquina inferior izquierda) y después a <strong>Account Settings</strong>.</li>
+        <li>Busca la sección <strong>Git Integration</strong>, <strong>Your Git authentication tokens</strong>.</li>
+        <li>Haz clic en <strong>Generate token</strong> o en el enlace <strong>Add anoter token</strong> si ya tienes algún token anterior.</li>
+        <li><strong>Copia el token</strong> generado inmediatamente.</li>
+        <li>Vuelve al terminal y <strong>pega el token</strong> donde pide "Password". (Nota: en Linux/Mac al pegar contraseñas no se ven asteriscos ni movimiento del cursor).</li>
+        <li>Pulsa <strong>Enter</strong>.</li>
+    </ol>
+
+    <p>🎉 <strong>¡Listo!</strong> Se descargará el proyecto. Además, si configuraste el <em>credential helper</em> en el Paso 1, Git recordará este token para el futuro.</p>
+
+    <h5>Notas de seguridad</h5>
+    <ul>
+        <li>Nunca compartas tu token; es personal e intransferible.</li>
+        <li>Si usas CI/CD (GitHub Actions, GitLab CI), guarda la URL con el token como una variable de entorno segura (Secret), nunca escrita en el código.</li>
+    </ul>
 
     <h3>2. ¿Cómo hacer push de cambios locales a Overleaf?</h3>
     <p><strong>Pregunta:</strong> He trabajado en mi ordenador y quiero que los cambios aparezcan en Overleaf.</p>
@@ -197,10 +222,10 @@ build/</code></pre>
         <li><strong>Usa History de Overleaf:</strong> Para cambios pequeños, usa el History integrado</li>
     </ol>
 
-    <h3>11. ¿Qué diferencia hay entre Git en Overleaf y en terminal?</h3>
+    <h3>11. Diferencias entre Overleaf History y Git en terminal</h3>
     <table border="1" style="width: 100%; border-collapse: collapse; margin: 20px 0;">
         <thead>
-            <tr style="background-color: #f5f5f5;">
+            <tr style="background-color: #333; color: white;">
                 <th style="padding: 10px;">Aspecto</th>
                 <th style="padding: 10px;">Overleaf History</th>
                 <th style="padding: 10px;">Git Terminal</th>
@@ -259,48 +284,13 @@ build/</code></pre>
     </ul>
 
     <h3>13. Errores comunes y cómo evitarlos</h3>
-        <h3>Autenticación y seguridad (tokens de Overleaf)</h3>
-        <p>Overleaf requiere la <strong>autenticación por token</strong> para operaciones Git. Esto significa que, al clonar, push o pull desde un proyecto, deberás usar el nombre de usuario <code>git</code> y un <em>authentication token</em> como contraseña.</p>
+        <p>La información sobre autenticación y tokens se ha integrado en la sección 1: "¿Cómo clonar un proyecto de Overleaf a mi ordenador?" arriba.</p>
 
-        <p>Resumen rápido:</p>
-        <ul>
-            <li><strong>Usuario</strong>: <code>git</code></li>
-            <li><strong>Contraseña</strong>: tu <em>token de autenticación</em> generado en Overleaf</li>
-            <li><strong>Dónde generar tokens</strong>: normalmente <strong>desde el diálogo Git del propio proyecto</strong> (botón <code>Generate token</code> que aparece al activar/usar Git). Algunos despliegues o versiones mostrará información en <code>Account settings</code>, pero en general el token se crea desde el diálogo del proyecto y solo se muestra una vez.</li>
-        </ul>
-
-        <h4>Paso a paso — obtener el token y clonar</h4>
-        <ol>
-            <li>Abre tu proyecto en Overleaf y selecciona <strong>Menu → Git</strong> (opciones de sincronización). Copia el comando <code>git clone</code> que se muestra — incluye la URL del proyecto.</li>
-            <li>Si aún no tienes un token generado, Overleaf te ofrecerá la opción <strong>Generate token</strong> en el diálogo Git del proyecto. En algunas instalaciones puede existir gestión adicional en la página de la cuenta, pero lo seguro es generarlo desde el diálogo del proyecto la primera vez.</li>
-            <li>Al ejecutar el comando <code>git clone</code>, cuando Git pida credenciales usa:
-                <ul>
-                    <li><strong>Username</strong>: <code>git</code></li>
-                    <li><strong>Password</strong>: pega el token que generaste</li>
-                </ul>
-            </li>
-            <li>Si prefieres usar el token en la URL (ej. para CI), puedes usar la forma segura en el secreto: <code>https://&lt;token&gt;@git.overleaf.com/1234567</code> (guarda la URL con token como secreto, NO la pongas en el repo).</li>
-        </ol>
-
-        <h4>Consejos importantes sobre tokens</h4>
-        <ul>
-            <li>Los tokens expiran pasado un año; recuerda regenerarlos cuando caduquen.</li>
-            <li>Puedes generar hasta 10 tokens; elimina tokens antiguos o no usados para liberar espacio.</li>
-            <li>No compartas tokens con otros usuarios: cada persona debe generar y usar su propio token.</li>
-            <li>Si te preocupa tener que escribir el token con frecuencia, configura un <em>credential helper</em> (p. ej. <code>git config --global credential.helper store</code> o usa el auxiliar del sistema) para almacenarlo localmente con seguridad.</li>
-            <li>En CI, guarda la URL con token o el token en el gestor de secretos de tu plataforma (GitHub Secrets, GitLab CI variables, etc.) y úsalo desde ahí — nunca lo incluyas en el repositorio.</li>
-        </ul>
-
-        <h3>Nota sobre planes y disponibilidad</h3>
-        <p>La integración Git de Overleaf es una característica <strong>premium</strong> (disponible para usuarios con suscripción individual o con licencias de campus/organización). Si ves que la opción de Git no aparece en el menú de tu proyecto, confirma que tu cuenta o tu institución tiene activada la integración.</p>
-
-        <p><strong>Cómo activar/confirmar la integración Git</strong> (rápido):</p>
-        <ol>
-            <li>Ve a <code>Settings</code> (rueda dentada abajo a la izquierda) → <code>Account settings</code>.</li>
+        <p><strong>❌ Error: "Permission denied" al clonar</strong></p>
             <li>En la sección de <code>Integrations</code> o <code>Integrations and add-ons</code> busca la entrada <strong>Git integration</strong> o <strong>Git</strong>.</li>
             <li>Actívala si está desactivada o, si no aparece, comprueba tu tipo de suscripción — la integración Git puede requerir una licencia premium / de campus; si estás en un servidor corporativo pide al administrador que active el soporte Git-bridge.</li>
         </ol>
-        <p>Una vez activada la integración, el diálogo <code>Menu → Git</code> dentro de un proyecto mostrará la URL de clonación y el comando <code>git clone</code>. En ese mismo diálogo —cuando actives Git por primera vez o al usar la opción Git— verás un botón <strong>Generate token</strong> que te permite crear inmediatamente el token necesario. Ten en cuenta que el token se muestra <strong>solo en el momento de su generación</strong>: cópialo y guárdalo de forma segura. Si en tu instalación de Overleaf existe una página de gestión de tokens en la cuenta, úsala para ver/eliminar tokens; si no, genera uno nuevo desde el diálogo del proyecto cuando lo necesites.</p>
+        <p>Una vez activada la integración, el diálogo <code>Integrations → Git</code> dentro de un proyecto (el cuadro <strong>"Clone with Git"</strong>) mostrará la URL de clonación y el comando <code>git clone</code>. En ese mismo diálogo —cuando actives Git por primera vez o al usar la opción Git— verás un botón <strong>Generate token</strong> que te permite crear inmediatamente el token necesario. Ten en cuenta que el token se muestra <strong>solo en el momento de su generación</strong>: cópialo y guárdalo de forma segura. Si en tu instalación de Overleaf existe una página de gestión de tokens en la cuenta, úsala para ver/eliminar tokens; si no, genera uno nuevo desde el diálogo del proyecto cuando lo necesites.</p>
 
         <div class="info-box" style="margin-top:12px;">
             <strong>Texto visible en <code>Account settings</code> (Overleaf)</strong>
@@ -394,7 +384,7 @@ data/**/attachments/**
 
     <h4>Remote Git — Overleaf</h4>
     <ol>
-        <li>Obtén la URL Git del proyecto (Menu → Git en Overleaf) y añádela como remote (<code>overleaf</code>), luego push:</li>
+        <li>Obtén la URL Git del proyecto desde <code>Integrations → Git</code> (diálogo "Clone with Git" en Overleaf) y añádela como remote (<code>overleaf</code>), luego push:</li>
         <pre><code>git remote add overleaf https://git.overleaf.com/your/project/id
 git push overleaf main</code></pre>
         <li>Si usas GitHub/GitLab como origen principal, considera desplegar a Overleaf desde CI para centralizar la autoría.</li>

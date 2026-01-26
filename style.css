@@ -177,11 +177,16 @@ code {
 }
 
 pre {
-    background-color: #263238;
-    color: #aed581;
+    /* Prefer wrapped, readable code blocks and avoid horizontal overflow hiding layout
+       Long lines wrap safely; keep overflow-x:auto as fallback for very long tokens */
+    background-color: #f4f6f8; /* light background for better contrast inside colored boxes */
+    color: var(--dark-gray);
     padding: var(--spacing-md);
     border-radius: 6px;
-    overflow-x: auto;
+    white-space: pre-wrap; /* wrap long lines */
+    word-break: break-word;
+    overflow-wrap: anywhere;
+    overflow-x: auto; /* fallback when wrapping is disabled or single-line tokens exist */
     margin: var(--spacing-md) 0;
     border-left: 4px solid var(--accent-color);
     font-family: var(--font-mono);
@@ -192,9 +197,15 @@ pre {
 pre code {
     background: none;
     border: none;
-    color: #aed581;
+    color: inherit;
     padding: 0;
     border-radius: 0;
+}
+
+/* Ensure info/warning boxes break long words (urls) and avoid overflow */
+.info-box, .note-box, .highlight-box, .success-box, .warning-box, .error-box {
+    word-break: break-word;
+    overflow-wrap: anywhere;
 }
 
 /* ═══════════════════════════════════════════════════════════════ */
