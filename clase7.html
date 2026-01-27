@@ -11,19 +11,18 @@
 <body class="container">
     <div style="background-color: #e3f2fd; border-left: 4px solid #1976d2; padding: 12px; margin-top: 20px; margin-bottom: 20px; border-radius: 4px;">
         <p style="margin: 0; font-size: 0.95em; color: #0d47a1;">
-            <strong>📌 Sobre este curso:</strong> Este es el curso de LaTeX adaptado para <strong>Overleaf</strong> (herramienta cloud). 
-            Si prefieres trabajar con herramientas locales (TeXstudio, Git en terminal, etc.), 
-            consulta la <a href="https://a105.ugr.es/latex" target="_blank" style="color: #1976d2; text-decoration: underline;">versión local del curso</a>.
+            <strong>📌 Sobre esta clase:</strong> Aprenderás a crear documentos especiales: <strong>cartas formales con membrete</strong>, <strong>pósters científicos</strong> y <strong>presentaciones con Beamer</strong>. Los ejemplos están basados en la <a href="https://github.com/latex-git/plantilla-tesis" target="_blank" style="color: #1976d2;">plantilla de tesis del curso</a>.
         </p>
-    </div>  <p><a href="index.html" class="back-to-index">Volver al índice</a></p>
+    </div>
+    <p><a href="index.html" class="back-to-index">Volver al índice</a></p>
   <h2>Clase 7: Temas especiales</h2>
 
 
-  <h3>Creación de una carta con membrete en LaTeX en Overleaf</h3>
+  <h3>Creación de cartas formales con membrete</h3>
 
-  <p><strong>Nota Overleaf:</strong> En Overleaf, tienes múltiples opciones para crear cartas formales. La clase <code>letter</code> está completamente disponible. También puedes usar la clase <code>article</code> para mayor flexibilidad. A continuación, explicamos ambas opciones.</p>
+  <p>LaTeX ofrece múltiples opciones para crear cartas formales. La clase <code>letter</code> proporciona una estructura sencilla, mientras que la clase <code>article</code> ofrece mayor flexibilidad para diseños con logos institucionales.</p>
 
-  <h3>Opción 1: Usando la clase letter en Overleaf</h3>
+  <h3>Opción 1: Usando la clase letter</h3>
 
   <p>Ejemplo básico de una carta formal en LaTeX usando la clase <code>letter</code>:</p>
 
@@ -150,12 +149,16 @@ cualquier información adicional que requiera.
     queden demasiado pegados a los bordes.</p>
 
 
-  <h3>Opción 2: Usando la clase article en Overleaf</h3>
+  <h3>Opción 2: Usando la clase article (recomendado para membretes)</h3>
 
-  <p><strong>Ventaja:</strong> La clase <code>article</code> ofrece mayor flexibilidad para diseñar cartas personalizadas con logos e imágenes. Utilizar <code>article</code> en lugar de <code>letter</code> es viable si necesitas incorporar elementos no disponibles en letter o si prefieres un diseño más personalizado.</p>
+  <p><strong>Ventaja:</strong> La clase <code>article</code> ofrece mayor flexibilidad para diseñar cartas con logos institucionales, firmas escaneadas y membretes personalizados. Es la opción preferida cuando necesitas un diseño corporativo.</p>
+  
+  <div style="background-color: #e8f5e9; padding: 12px; border-radius: 6px; margin: 15px 0;">
+      <strong>📁 Ejemplo en el repositorio:</strong> El archivo <a href="https://github.com/latex-git/plantilla-tesis/blob/main/carta/" target="_blank">carta/</a> contiene un ejemplo completo de carta con membrete institucional.
+  </div>
 
   <h4>Paso 1: Configuración inicial del documento</h4>
-  <p><strong>Código en Overleaf:</strong></p>
+  <p><strong>Código:</strong></p>
   <pre><code>\documentclass[a4paper,12pt]{article}
     \usepackage[utf8]{inputenc}
     \usepackage[spanish]{babel}</code></pre>
@@ -180,7 +183,7 @@ cualquier información adicional que requiera.
   </ul>
 
   <h4>Paso 3: Definir el membrete con logos</h4>
-  <p><strong>En Overleaf:</strong> Primero, sube tus logos usando "Upload Files". Luego, define el membrete:</p>
+  <p>Primero añade tus logos al proyecto (Upload Files en Overleaf, o <code>git add</code> localmente). Luego define el membrete en el preámbulo:</p>
   <pre><code>\newsavebox{\mylogo}
     \savebox{\mylogo}{\includegraphics[width=2cm]{escudougr}}
     
@@ -266,16 +269,20 @@ cualquier información adicional que requiera.
 
 
 
-  <h3>Creación de Pósters en LaTeX con Overleaf</h3>
+  <h3>Creación de Pósters Científicos</h3>
 
-  <p><strong>Nota Overleaf:</strong> Overleaf tiene soporte completo para crear pósters usando las clases <code>a0poster</code>, <code>beamerposter</code> o plantillas personalizadas. La galería de Overleaf incluye varias plantillas listas para usar. A continuación, explicamos cómo funcionan.</p>
+  <p>LaTeX ofrece varias clases para crear pósters académicos: <code>a0poster</code> (clásica), <code>beamerposter</code> (basada en Beamer) y <code>tikzposter</code> (máxima flexibilidad). A continuación explicamos cada una.</p>
+  
+  <div style="background-color: #e8f5e9; padding: 12px; border-radius: 6px; margin: 15px 0;">
+      <strong>📁 Ejemplo en el repositorio:</strong> El archivo <a href="https://github.com/latex-git/plantilla-tesis/blob/main/poster/" target="_blank">poster/</a> contiene un póster científico completo con comandos personalizados reutilizables.
+  </div>
 
   <h4>Paso 1: Configuración inicial del documento</h4>
-  <p><strong>Objetivo:</strong> Definir la clase del documento y paquetes esenciales.</p>
+  <p><strong>Objetivo:</strong> Definir la clase del documento y los paquetes esenciales.</p>
 
   <pre><code>\documentclass[a0,portrait]{a0poster}
-    \usepackage[utf8]{inputenc}
-    \usepackage[spanish]{babel}</code></pre>
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}</code></pre>
 
   <ul>
     <li><strong>Explicación:</strong>
@@ -289,76 +296,124 @@ cualquier información adicional que requiera.
   <h4>Paso 2: Paquetes adicionales para pósters</h4>
   <p><strong>Objetivo:</strong> Añadir funcionalidades gráficas, de texto y estructura.</p>
 
-  <pre><code>\usepackage{marvosym, multirow, rotating, setspace, multicol, color, type1cm, colortbl}
-    \usepackage{graphicx}</code></pre>
+  <pre><code>\usepackage{multicol}      % Divide el contenido en columnas
+\usepackage{graphicx}      % Insertar imágenes
+\usepackage{xcolor}        % Colores en texto y fondos
+\usepackage{colortbl}      % Colores en tablas
+\usepackage{eso-pic}       % Imágenes de fondo (marca de agua)
+\usepackage{framed}        % Marcos alrededor de texto
+\usepackage{wrapfig}       % Imágenes con texto alrededor</code></pre>
 
-  <ul>
-    <li><strong>Paquetes clave:</strong>
-      <ul>
-        <li><code>multicol</code>: Divide el contenido en columnas.</li>
-        <li><code>color</code> y <code>colortbl</code>: Permiten usar colores en texto y tablas.</li>
-        <li><code>graphicx</code>: Para insertar imágenes.</li>
-        <li><code>rotating</code>: Permite rotar texto e imágenes.</li>
-      </ul>
-    </li>
-  </ul>
+  <p><strong>Paquetes clave explicados:</strong></p>
+  <table border="1" style="width: 100%; border-collapse: collapse; margin: 15px 0;">
+      <thead>
+          <tr style="background-color: #1976d2; color: white;">
+              <th style="padding: 8px;">Paquete</th>
+              <th style="padding: 8px;">Función</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr><td style="padding: 8px;"><code>multicol</code></td><td style="padding: 8px;">Divide el contenido en múltiples columnas</td></tr>
+          <tr style="background-color: #f9f9f9;"><td style="padding: 8px;"><code>eso-pic</code></td><td style="padding: 8px;">Permite añadir imágenes de fondo en posiciones absolutas</td></tr>
+          <tr><td style="padding: 8px;"><code>framed</code></td><td style="padding: 8px;">Crea marcos y recuadros alrededor del texto</td></tr>
+          <tr style="background-color: #f9f9f9;"><td style="padding: 8px;"><code>wrapfig</code></td><td style="padding: 8px;">Imágenes con texto que fluye alrededor</td></tr>
+          <tr><td style="padding: 8px;"><code>graphicx</code></td><td style="padding: 8px;">Insertar y escalar imágenes</td></tr>
+      </tbody>
+  </table>
 
-  <p><strong>En Overleaf:</strong> Todos estos paquetes están disponibles por defecto. Solo necesitas añadirlos en el preámbulo.</p>
-        <li><code>pstricks</code>: Herramientas gráficas avanzadas.</li>
-      </ul>
-    </li>
-  </ul>
+  <h4>Paso 3: Imagen de fondo con eso-pic</h4>
+  <p><strong>Objetivo:</strong> Insertar una marca de agua o logo institucional como fondo.</p>
 
-  <h4>Paso 3: Configuración del fondo del póster</h4>
-  <p><strong>Objetivo:</strong> Insertar una imagen como fondo.</p>
+  <pre><code>\usepackage{eso-pic}
 
-  <pre><code>\newcommand\BackgroundPicture{%
-     \put(0,0){%
-     \parbox[b][\paperheight]{\paperwidth}{%
-     \vfill
-     \centering
-     \includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{esc-ugr-claro}%
-     \vfill
-     }}}
-    \AddToShipoutPicture{\BackgroundPicture}</code></pre>
+\newcommand\BackgroundPicture{%
+  \put(0,0){%                              % Posición: esquina inferior izquierda
+    \parbox[b][\paperheight]{\paperwidth}{% % Caja del tamaño de la página
+      \vfill                                 % Centrado vertical
+      \centering
+      \includegraphics[width=\paperwidth,    
+                       height=\paperheight,
+                       keepaspectratio]{logo-fondo}%
+      \vfill
+    }}}
 
-  <ul>
-    <li><strong>Funcionamiento:</strong>
-      <ul>
-        <li><code>\BackgroundPicture</code> centra la imagen <code>esc-ugr-claro</code> en todo el póster.</li>
-        <li><code>\AddToShipoutPicture</code> aplica este fondo a todas las páginas.</li>
-      </ul>
-    </li>
-  </ul>
+\AddToShipoutPicture{\BackgroundPicture}  % Aplica a TODAS las páginas
+% \AddToShipoutPictureBG*{...}            % Solo primera página</code></pre>
 
-  <h4>Paso 4: Definición de comandos personalizados</h4>
-  <p><strong>Objetivo:</strong> Simplificar la escritura de títulos, secciones y texto.</p>
+  <p><strong>Explicación línea por línea:</strong></p>
+  <table border="1" style="width: 100%; border-collapse: collapse; margin: 15px 0;">
+      <tbody>
+          <tr><td style="padding: 8px; width: 40%;"><code>\put(0,0){...}</code></td><td style="padding: 8px;">Coloca el contenido en la posición (0,0) de la página</td></tr>
+          <tr style="background-color: #f9f9f9;"><td style="padding: 8px;"><code>\parbox[b][altura]{ancho}</code></td><td style="padding: 8px;">Crea una caja del tamaño exacto de la página</td></tr>
+          <tr><td style="padding: 8px;"><code>\vfill...\vfill</code></td><td style="padding: 8px;">Centra verticalmente el contenido</td></tr>
+          <tr style="background-color: #f9f9f9;"><td style="padding: 8px;"><code>keepaspectratio</code></td><td style="padding: 8px;">Mantiene las proporciones de la imagen al escalar</td></tr>
+          <tr><td style="padding: 8px;"><code>\AddToShipoutPicture</code></td><td style="padding: 8px;">Añade la imagen a cada página del documento</td></tr>
+      </tbody>
+  </table>
 
-  <h5>4.1 Título principal</h5>
-  <pre><code>\newcommand{\titulo}[4]{
-     \begin{minipage}[c]{10cm}
-     \includegraphics[width=10cm]{#1}
-     \end{minipage}
-     \hfill
-     \begin{minipage}[c]{65cm}
-     \fontsize{2.2cm}{2.6cm}\selectfont 
-     \centering \textbf{\textcolor[rgb]{.5,0,0}{#2}}
-     \begin{center}
-     \fontsize{1.8cm}{1.8cm}\selectfont
-     \textbf{\textcolor[rgb]{0,0,.5}{#3}}
-     \vspace{.5cm}
-     \textbf{\textcolor[rgb]{0,.5,0}{#4}}
-     \end{center}
-     \end{minipage}
-     \vspace{1cm}
-     \rule{\textwidth}{.2cm}
-    }</code></pre>
+  <h4>Paso 4: Comandos personalizados reutilizables</h4>
+  <p><strong>Objetivo:</strong> Crear comandos que simplifiquen la escritura y mantengan consistencia visual.</p>
 
-  <p><strong>Uso:</strong> <code>\titulo{logo.png}{Título}{Autores}{Institución}</code></p>
-  <ul>
-    <li><code>#1</code>: Ruta del logo.</li>
-    <li><code>#2</code>, <code>#3</code>, <code>#4</code>: Título, autores e institución con colores predefinidos.</li>
-  </ul>
+  <h5>4.1 Comando para el título principal</h5>
+  <pre><code>\newcommand{\titulo}[4]{%
+  \begin{minipage}[c]{10cm}
+    \includegraphics[width=10cm]{#1}     % Parámetro 1: Logo
+  \end{minipage}
+  \hfill
+  \begin{minipage}[c]{65cm}
+    \fontsize{2.2cm}{2.6cm}\selectfont   % Tamaño fuente / interlineado
+    \centering
+    \textbf{\textcolor[rgb]{.5,0,0}{#2}} % Parámetro 2: Título (rojo oscuro)
+    \begin{center}
+      \fontsize{1.8cm}{1.8cm}\selectfont
+      \textbf{\textcolor[rgb]{0,0,.5}{#3}} % Parámetro 3: Autores (azul)
+      \vspace{.5cm}
+      \textbf{\textcolor[rgb]{0,.5,0}{#4}} % Parámetro 4: Institución (verde)
+    \end{center}
+  \end{minipage}
+  \vspace{1cm}
+  \rule{\textwidth}{.2cm}               % Línea horizontal decorativa
+}</code></pre>
+
+  <p><strong>Uso del comando:</strong></p>
+  <pre><code>\titulo{logo-ugr.png}{Título del Póster}{Autor 1, Autor 2}{Universidad de Granada}</code></pre>
+  
+  <p><strong>Parámetros explicados:</strong></p>
+  <table border="1" style="width: 100%; border-collapse: collapse; margin: 15px 0;">
+      <thead>
+          <tr style="background-color: #43a047; color: white;">
+              <th style="padding: 8px;">Parámetro</th>
+              <th style="padding: 8px;">Descripción</th>
+              <th style="padding: 8px;">Color</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr><td style="padding: 8px;"><code>#1</code></td><td style="padding: 8px;">Ruta del logo institucional</td><td style="padding: 8px;">-</td></tr>
+          <tr style="background-color: #f9f9f9;"><td style="padding: 8px;"><code>#2</code></td><td style="padding: 8px;">Título del póster</td><td style="padding: 8px; color: rgb(127,0,0);">Rojo oscuro</td></tr>
+          <tr><td style="padding: 8px;"><code>#3</code></td><td style="padding: 8px;">Nombres de los autores</td><td style="padding: 8px; color: rgb(0,0,127);">Azul</td></tr>
+          <tr style="background-color: #f9f9f9;"><td style="padding: 8px;"><code>#4</code></td><td style="padding: 8px;">Afiliación/Institución</td><td style="padding: 8px; color: rgb(0,127,0);">Verde</td></tr>
+      </tbody>
+  </table>
+
+  <h5>4.2 Comandos para secciones y texto</h5>
+  <pre><code>% Encabezado de sección (título grande en azul mayúsculas)
+\newcommand{\apartado}[1]{%
+  \noindent
+  \fontsize{45pt}{45pt}\selectfont
+  \textcolor[rgb]{0,0,1}{\textbf{\uppercase{#1}}}
+}
+
+% Texto principal (30pt para legibilidad a distancia)
+\newcommand{\texto}[1]{%
+  \fontsize{30pt}{30pt}\selectfont #1
+}
+
+% Texto secundario (para pies de figura, notas)
+\newcommand{\textochico}[1]{%
+  \fontsize{12pt}{24pt}\selectfont #1
+}</code></pre>
+
+  <p><strong>💡 Consejo:</strong> En pósters A0, el texto principal debe ser legible desde ~1.5 metros. Un tamaño de 24-30pt es adecuado para el cuerpo, 45-60pt para títulos de sección.</p>
 
   <h4>Paso 5: Estructura del contenido</h4>
   <p><strong>Objetivo:</strong> Organizar el texto en columnas y añadir figuras.</p>
@@ -486,39 +541,61 @@ cualquier información adicional que requiera.
   </ul>
   
   
-  <h3>Creación de presentaciones en LaTeX con Overleaf</h3>
+  <h3>Creación de presentaciones con Beamer</h3>
 
-  <p><strong>Nota Overleaf:</strong> Beamer es una clase LaTeX perfecta para crear presentaciones. En Overleaf, tienes soporte completo para Beamer, incluyendo compilación automática y una galería con muchas plantillas. A continuación, explicamos cómo crear presentaciones.</p>
+  <p>Beamer es la clase LaTeX estándar para crear presentaciones profesionales. Permite crear diapositivas con transiciones, animaciones, bloques de contenido y temas visuales personalizables.</p>
+  
+  <div style="background-color: #e8f5e9; padding: 12px; border-radius: 6px; margin: 15px 0;">
+      <strong>📁 Ejemplo en el repositorio:</strong> El archivo <a href="https://github.com/latex-git/plantilla-tesis/blob/main/presentacion/" target="_blank">presentacion/</a> contiene una presentación completa con cajas personalizadas, overlays y fondo de imagen.
+  </div>
 
-  <h3>Estructura Básica de una Presentación Beamer en Overleaf</h3>
+  <h4>Estructura Básica de una Presentación Beamer</h4>
   <p>Estructura básica del código:</p>
 
   <pre><code>\documentclass[11pt]{beamer}
-    \usepackage[utf8]{inputenc}
-    \usepackage[T1]{fontenc}
-    \usepackage{lmodern}
-    \usetheme{default}
-    \begin{document}
-      \author{Título de mi tesis}
-      \title{yo mismo}
-      %\subtitle{}
-      %\logo{}
-      %\institute{}
-      %\date{}
-      %\subject{}
-      %\setbeamercovered{transparent}
-      %\setbeamertemplate{navigation symbols}{}
-      \begin{frame}[plain]
-        \maketitle
-      \end{frame}
-      
-      \begin{frame}
-        \frametitle{Titulo de la diapositiva}
-        Contenido
-      \end{frame}
-    \end{document}</code></pre>
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}                    % Fuente moderna
+\usetheme{default}                       % Tema visual
 
-  <p><strong>Ejercicios: Descomentar los comandos para ver su uso y cambiar de tema.</strong></p>
+\title{Título de la Presentación}
+\author{Tu Nombre}
+\institute{Universidad de Granada}
+\date{\today}
+
+\begin{document}
+
+\begin{frame}[plain]                     % [plain] elimina encabezados
+  \titlepage                             % Diapositiva de título
+\end{frame}
+
+\begin{frame}
+  \frametitle{Índice}
+  \tableofcontents                       % Índice automático basado en \section
+\end{frame}
+
+\section{Introducción}
+
+\begin{frame}
+  \frametitle{Título de la diapositiva}
+  \framesubtitle{Subtítulo opcional}
+  Contenido de la diapositiva.
+\end{frame}
+
+\end{document}</code></pre>
+
+  <p><strong>Elementos clave:</strong></p>
+  <table border="1" style="width: 100%; border-collapse: collapse; margin: 15px 0;">
+      <tbody>
+          <tr><td style="padding: 8px; width: 35%;"><code>\usetheme{nombre}</code></td><td style="padding: 8px;">Cambia el aspecto visual (Madrid, Berlin, Copenhagen, etc.)</td></tr>
+          <tr style="background-color: #f9f9f9;"><td style="padding: 8px;"><code>\begin{frame}...\end{frame}</code></td><td style="padding: 8px;">Define una diapositiva</td></tr>
+          <tr><td style="padding: 8px;"><code>\frametitle{}</code></td><td style="padding: 8px;">Título de la diapositiva actual</td></tr>
+          <tr style="background-color: #f9f9f9;"><td style="padding: 8px;"><code>\section{}</code></td><td style="padding: 8px;">Organiza el contenido y aparece en el índice</td></tr>
+          <tr><td style="padding: 8px;"><code>[plain]</code></td><td style="padding: 8px;">Opción de frame que elimina encabezados y pies</td></tr>
+      </tbody>
+  </table>
+
+  <p><strong>💡 Ejercicio:</strong> Crea un proyecto con este código. Prueba a cambiar <code>\usetheme{default}</code> por <code>\usetheme{Madrid}</code>, <code>\usetheme{Berlin}</code> o <code>\usetheme{AnnArbor}</code> para ver diferentes estilos.</p>
 
   <h3>Personalización de Colores y Fuentes</h3>
   <p>Beamer permite personalizar los colores y fuentes de tu presentación. Puedes cambiar el tema de colores con
@@ -781,224 +858,310 @@ cualquier información adicional que requiera.
 
   <p>Estas personalizaciones te permiten adaptar los bloques a tu estilo de presentación.</p>
 
-  <h3>Otro tipo de cajas</h3>
+  <h3>Cajas personalizadas con beamerboxesrounded</h3>
 
-  <p>Los entornos «beamerboxesrounded» permiten crear recuadros con esquinas redondeadas y ofrecen algunas opciones de configuración que se pasan como claves en un formato key=value dentro de los corchetes. En concreto, las opciones conocidas y más utilizadas son:</p>
+  <p>El entorno <code>beamerboxesrounded</code> permite crear recuadros con esquinas redondeadas, muy útiles para destacar información. Es la base del ejemplo <code>presentacion/tema1-pres.tex</code> del repositorio.</p>
 
-  <ul>
-    <li><code>upper</code>: Define el color de fondo de la parte superior (la "cabeza") del recuadro, que suele contener el título.</li>
-    <li><code>lower</code>: Especifica el color de fondo de la parte inferior (el cuerpo) del recuadro, donde se muestra el contenido.</li>
-    <li><code>shadow</code>: Al establecer <code>shadow=true</code> se añade una sombra al recuadro, lo que aporta un efecto visual de profundidad.</li>
-  </ul>
+  <h4>Parámetros disponibles:</h4>
+  <table border="1" style="width: 100%; border-collapse: collapse; margin: 15px 0;">
+      <thead>
+          <tr style="background-color: #1976d2; color: white;">
+              <th style="padding: 8px;">Opción</th>
+              <th style="padding: 8px;">Descripción</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr><td style="padding: 8px;"><code>upper=color</code></td><td style="padding: 8px;">Color de fondo del encabezado (donde va el título)</td></tr>
+          <tr style="background-color: #f9f9f9;"><td style="padding: 8px;"><code>lower=color</code></td><td style="padding: 8px;">Color de fondo del cuerpo del recuadro</td></tr>
+          <tr><td style="padding: 8px;"><code>shadow=true</code></td><td style="padding: 8px;">Añade sombra al recuadro</td></tr>
+      </tbody>
+  </table>
 
-  <p>Por ejemplo, se puede usar de la siguiente manera:</p>
+  <h4>Ejemplo básico:</h4>
+  <pre><code>% En el preámbulo: definir colores personalizados
+\setbeamercolor{upcol}{fg=white, bg=blue}      % Encabezado: texto blanco, fondo azul
+\setbeamercolor{lowcol}{fg=black, bg=blue!20}  % Cuerpo: texto negro, fondo azul claro
 
-    
-  <section>
-    
+% En el documento:
+\begin{frame}{Ejemplo de recuadro}
+  \begin{beamerboxesrounded}[upper=upcol, lower=lowcol, shadow=true]{Título del Bloque}
+    Contenido del recuadro con información destacada.
+    \begin{itemize}
+      \item Primer punto
+      \item Segundo punto
+    \end{itemize}
+  \end{beamerboxesrounded}
+\end{frame}</code></pre>
 
+  <h4>Crear un entorno reutilizable</h4>
+  <p>Para no repetir los parámetros cada vez, puedes definir tu propio entorno en el preámbulo. Este es el enfoque usado en el ejemplo del repositorio:</p>
 
-    <pre><code>\setbeamercolor{upcol}{fg=white, bg=red}       % Para la parte superior (header)
-  \setbeamercolor{lowcol}{fg=black, bg=blue!20}    % Para la parte inferior (cuerpo)</code></pre>
+  <pre><code>% Definir colores (en el preámbulo)
+\setbeamercolor{upcol}{fg=blue, bg=orange}
+\setbeamercolor{lowcol}{fg=black, bg=blue!20}
 
-    <h5>Ejemplo de uso:</h5>
-    <pre><code>\begin{frame}{Ejemplo de recuadro personalizado}
-    \begin{beamerboxesrounded}[upper=upcol, lower=lowcol, shadow=true]{Título del Bloque}
-      Aquí va el contenido del recuadro.  
-      \begin{itemize}
-        \item Primer elemento
-        \item Segundo elemento
-      \end{itemize}
-    \end{beamerboxesrounded}
-  \end{frame}</code></pre>
-
-  <p>Es importante tener en cuenta que estas opciones pueden depender del tema o inner theme que esté utilizando la presentación. Algunos temas pueden forzar estilos de bloque particulares, de modo que en ocasiones puede ser necesario ajustar o redefinir la plantilla de bloques para ver reflejados los cambios.</p>
-
-    <p>Esta estrategia permite usar diferentes combinaciones de colores para distintas cajas:</p>
-
-    <h5>Definición de objetos de color personalizados:</h5>
-    <pre><code>% Definición de objetos de color personalizados
-  \setbeamercolor{blueHeader}{fg=white, bg=Blue}
-  \setbeamercolor{redBody}{fg=black, bg=Red!20}
-  \setbeamercolor{greenHeader}{fg=white, bg=Green}
-  \setbeamercolor{yellowBody}{fg=black, bg=Yellow!50}</code></pre>
-
-    <h5>Ejemplo de uso con diferentes colores:</h5>
-    <pre><code>\begin{frame}{Cajas de Diferentes Colores}
-    \begin{beamerboxesrounded}[upper=blueHeader, lower=redBody, shadow=true]{Caja 1: Azul - Rojo}
-      Contenido de una caja con cabecera azul y cuerpo rojo claro.
-    \end{beamerboxesrounded}
-
-    \vskip2ex
-
-    \begin{beamerboxesrounded}[upper=greenHeader, lower=yellowBody, shadow=true]{Caja 2: Verde - Amarilla}
-      Contenido de otra caja con cabecera verde y cuerpo amarillo.
-    \end{beamerboxesrounded}
-  \end{frame}</code></pre>
-
-<h4>Definición de cajas personalizadas basadas en beamerboxesrounded:</h4>
-
-<pre><code>\newenvironment{micaja}[1][]%
-{
-  \begin{beamerboxesrounded}[upper=blueHeader, lower=redBody, shadow=true]{#1}%
+% Crear entorno personalizado
+\newenvironment{caja}[1][]%
+{%
+  \begin{beamerboxesrounded}[upper=upcol, lower=lowcol, shadow=true]{#1}%
 }%
 {%
   \end{beamerboxesrounded}%
 }
 
+% Uso en el documento:
 \begin{frame}
-\frametitle{mi caja}
-\begin{micaja}[Título]
-  Contenido
-  \end{micaja}
+  \frametitle{Caracteres Métricos}
+  \begin{caja}{Los caracteres métricos}
+    \begin{itemize}
+      \item Diferencias de grado
+      \item Variación continua
+      \item Genética Cuantitativa
+    \end{itemize}
+  \end{caja}
 \end{frame}</code></pre>
+
+  <p><strong>💡 Ventaja:</strong> Una vez definido el entorno <code>caja</code>, solo necesitas escribir <code>\begin{caja}{Título}...\end{caja}</code> en lugar de repetir todos los parámetros de <code>beamerboxesrounded</code>.</p>
+
+  <h4>Múltiples estilos de caja</h4>
+  <p>Puedes definir varios estilos para diferentes propósitos:</p>
+  <pre><code>% Colores para diferentes tipos de cajas
+\setbeamercolor{blueHeader}{fg=white, bg=blue}
+\setbeamercolor{blueBody}{fg=black, bg=blue!10}
+\setbeamercolor{greenHeader}{fg=white, bg=green!50!black}
+\setbeamercolor{greenBody}{fg=black, bg=green!10}
+\setbeamercolor{redHeader}{fg=white, bg=red!70!black}
+\setbeamercolor{redBody}{fg=black, bg=red!10}
+
+% Entorno para información general
+\newenvironment{cajainfo}[1][]%
+{\begin{beamerboxesrounded}[upper=blueHeader, lower=blueBody, shadow=true]{#1}}%
+{\end{beamerboxesrounded}}
+
+% Entorno para ejemplos
+\newenvironment{cajaejemplo}[1][]%
+{\begin{beamerboxesrounded}[upper=greenHeader, lower=greenBody, shadow=true]{#1}}%
+{\end{beamerboxesrounded}}
+
+% Entorno para advertencias
+\newenvironment{cajaaviso}[1][]%
+{\begin{beamerboxesrounded}[upper=redHeader, lower=redBody, shadow=true]{#1}}%
+{\end{beamerboxesrounded}}</code></pre>
 
   </section>
 
-  <h3>Alertar o resaltar items en una lista:</h3>
+  <section>
+  <h3>Alertar o resaltar items en una lista</h3>
 
-  <h3>Usar <code>\alert</code> para Resaltar Texto</h3>
+  <p>Beamer ofrece varias técnicas para resaltar elementos durante una presentación, muy útiles para guiar la atención de la audiencia.</p>
 
-  <p>Puedes usar el comando <code>\alert{}</code> para resaltar partes específicas del texto dentro de los items:</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Técnica</th>
+        <th>Sintaxis</th>
+        <th>Efecto</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>\alert{texto}</code></td>
+        <td><code>\alert{importante}</code></td>
+        <td>Resalta el texto en color de alerta (por defecto rojo)</td>
+      </tr>
+      <tr>
+        <td><code>&lt;alert@+&gt;</code></td>
+        <td><code>[&lt;+-| alert@+&gt;]</code></td>
+        <td>Resalta cada item secuencialmente</td>
+      </tr>
+      <tr>
+        <td><code>&lt;alert@N&gt;</code></td>
+        <td><code>\item&lt;alert@2&gt;</code></td>
+        <td>Resalta el item solo en el overlay N</td>
+      </tr>
+    </tbody>
+  </table>
 
-  <pre><code>\begin{frame}
-    \frametitle{Resaltar Texto con \alert}
-    \begin{itemize}
-      \item Este item contiene texto \alert{importante}.
-      \item Este item contiene texto \alert{crucial}.
-    \end{itemize}
-  \end{frame}</code></pre>
+  <h4>Usar <code>\alert</code> para Resaltar Texto</h4>
 
-  <h3>Alertar Items con <code>&lt;alert@+&gt;</code></h3>
-
-  <p>Puedes utilizar el comando <code>&lt;alert@+&gt;</code> para resaltar los items de una lista uno a uno:</p>
-
-  <pre><code>\begin{frame}
-    \frametitle{Alertar Items}
-    \begin{itemize}[<+-| alert@+>]
-      \item Este item se muestra y resalta en la primera diapositiva.
-      \item Este item se muestra y resalta en la segunda diapositiva.
-      \item Este item se muestra y resalta en la tercera diapositiva.
-    \end{itemize}
-  \end{frame}</code></pre>
-
-  
-
-  <h3>Resaltar Items con <code>&lt;alert@1&gt;</code>, <code>&lt;alert@2&gt;</code>, etc.</h3>
-
-  <p>Puedes especificar qué item resaltar en cada diapositiva utilizando <code>&lt;alert@1&gt;</code>, <code>&lt;alert@2&gt;</code>, etc.:</p>
-
-  <pre><code>\begin{frame}
-    \frametitle{Resaltar Items Específicos}
-    \begin{itemize}
-      \item&lt;alert@1&gt; Este item se resalta en la primera diapositiva.
-      \item&lt;alert@2&gt; Este item se resalta en la segunda diapositiva.
-      \item&lt;alert@3&gt; Este item se resalta en la tercera diapositiva.
-    \end{itemize}
-  \end{frame}</code></pre>
-
-  <h3>4. Combinar Reveal y Alert</h3>
-
-  <p>Puedes combinar el revelado de items con su resaltado:</p>
+  <p>El comando <code>\alert{}</code> resalta partes específicas del texto:</p>
 
   <pre><code>\begin{frame}
-    \frametitle{Combinar Reveal y Alert}
-    \begin{itemize}[<+->]
-      \item<1-| alert@1> Este item se muestra y resalta en la primera diapositiva.
-      \item<2-| alert@2> Este item se muestra y resalta en la segunda diapositiva.
-      \item<3-| alert@3> Este item se muestra y resalta en la tercera diapositiva.
-    \end{itemize}
-  \end{frame}</code></pre>
+  \frametitle{Resaltar Texto con \textbackslash alert}
+  \begin{itemize}
+    \item Este item contiene texto \alert{importante}.
+    \item Esto es \alert{crucial} para entender el tema.
+  \end{itemize}
+\end{frame}</code></pre>
 
-<h3>Personalizar el color de alerta</h3>
+  <h4>Alertar Items Secuencialmente con <code>&lt;alert@+&gt;</code></h4>
 
-<p>Para personalizar el color de alerta en Beamer, puedes utilizar el comando <code>\setbeamercolor{alerted text}{fg=color}</code> para cambiar el color del texto resaltado por <code>\alert</code>. Aquí tienes un ejemplo de cómo hacerlo:</p>
+  <p>Puedes resaltar los items de una lista uno a uno automáticamente:</p>
 
-<h3>Cambiar el Color de Alerta</h3>
+  <pre><code>\begin{frame}
+  \frametitle{Alertar Items Secuencialmente}
+  \begin{itemize}[<+-| alert@+>]
+    \item Primer punto (aparece y se resalta en overlay 1).
+    \item Segundo punto (aparece y se resalta en overlay 2).
+    \item Tercer punto (aparece y se resalta en overlay 3).
+  \end{itemize}
+\end{frame}</code></pre>
 
-<pre><code>\documentclass{beamer}
+  <p><strong>Explicación:</strong> La opción <code>[&lt;+-| alert@+&gt;]</code> combina dos efectos: <code>&lt;+-&gt;</code> revela los items uno a uno, y <code>alert@+</code> resalta el item actual.</p>
 
-% Cambia el color de alerta a verde
-\setbeamercolor{alerted text}{fg=green}
+  <h4>Resaltar Items Específicos con <code>&lt;alert@N&gt;</code></h4>
+
+  <p>Para controlar exactamente en qué overlay se resalta cada item:</p>
+
+  <pre><code>\begin{frame}
+  \frametitle{Resaltar Items Específicos}
+  \begin{itemize}
+    \item<alert@1> Se resalta solo en overlay 1.
+    \item<alert@2> Se resalta solo en overlay 2.
+    \item<alert@3> Se resalta solo en overlay 3.
+  \end{itemize}
+\end{frame}</code></pre>
+
+  <h4>Combinar Reveal y Alert</h4>
+
+  <p>Puedes combinar el revelado progresivo con el resaltado para efectos más elaborados:</p>
+
+  <pre><code>\begin{frame}
+  \frametitle{Combinar Reveal y Alert}
+  \begin{itemize}[<+->]
+    \item<1-| alert@1> Aparece y se resalta solo en overlay 1.
+    \item<2-| alert@2> Aparece en overlay 2, se resalta solo entonces.
+    \item<3-| alert@3> Aparece en overlay 3, se resalta solo entonces.
+  \end{itemize}
+\end{frame}</code></pre>
+
+  <p><strong>Resultado:</strong> Cada item aparece en su overlay correspondiente, permanece visible en los siguientes, pero solo se resalta (color de alerta) en su overlay inicial.</p>
+
+  <h4>Personalizar el color de alerta</h4>
+
+  <p>Por defecto, <code>\alert</code> usa rojo. Para cambiarlo:</p>
+
+  <pre><code>\documentclass{beamer}
+\usetheme{Madrid}
+
+% Personalizar color de alerta
+\setbeamercolor{alerted text}{fg=green!70!black}
 
 \begin{document}
-
 \begin{frame}
   \frametitle{Alerta Personalizada}
-  Este texto es \alert{importante}.
+  Este texto es \alert{importante} y ahora aparece en verde.
 \end{frame}
-
 \end{document}</code></pre>
+  </section>
 
-<p>En este ejemplo, el texto dentro de <code>\alert{}</code> se mostrará en verde.</p>
+  <section>
+  <h2>Animaciones con imágenes en Beamer</h2>
 
-<h2>Imágenes animadas en Overleaf</h2>
+  <p>El paquete <code>animate</code> permite crear animaciones a partir de secuencias de imágenes, útil para mostrar procesos o evoluciones temporales en presentaciones científicas.</p>
 
-<p><strong>Nota Overleaf:</strong> Para crear animaciones en Overleaf con Beamer, puedes usar el paquete <code>animate</code>, que funciona perfectamente en la plataforma.</p>
+  <h3>Paso 1: Preparar la secuencia de imágenes</h3>
 
-<h3>1. Convertir un Video en una Secuencia de Imágenes</h3>
+  <p>Primero, necesitas una secuencia de imágenes numeradas. Puedes generarlas desde un video o crearlas manualmente:</p>
 
-<p>Primero, necesitas convertir tu video en una secuencia de imágenes. Puedes usar herramientas locales como:</p>
-<ul>
-  <li><strong>FFmpeg (línea de comandos):</strong> <code>ffmpeg -i input.mp4 output-%03d.png</code></li>
-  <li><strong>Photoshop, Filmora, VLC:</strong> Opciones gráficas para extraer frames</li>
-  <li><strong>Servicios online:</strong> Convertidores web de video a imágenes</li>
-</ul>
+  <table>
+    <thead>
+      <tr>
+        <th>Herramienta</th>
+        <th>Comando/Método</th>
+        <th>Resultado</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>FFmpeg</td>
+        <td><code>ffmpeg -i video.mp4 frame-%03d.png</code></td>
+        <td>frame-001.png, frame-002.png, ...</td>
+      </tr>
+      <tr>
+        <td>VLC</td>
+        <td>Preferencias → Video → Filtros → Escena</td>
+        <td>Extrae frames automáticamente</td>
+      </tr>
+      <tr>
+        <td>Python</td>
+        <td>Matplotlib animations</td>
+        <td>Genera gráficos secuenciales</td>
+      </tr>
+    </tbody>
+  </table>
 
-<p>Esto generará una serie de imágenes numeradas (<code>output-001.png</code>, <code>output-002.png</code>, etc.).</p>
+  <p><strong>En Overleaf:</strong> Sube las imágenes numeradas con "Upload Files" (o arrastra los archivos).</p>
 
-<h3>2. Crear una Animación en LaTeX Beamer en Overleaf</h3>
+  <h3>Paso 2: Crear la animación con <code>animate</code></h3>
 
-<p><strong>En Overleaf:</strong> Una vez que tengas la secuencia de imágenes, súbelas a tu proyecto con "Upload Files". Luego, usa el paquete <code>animate</code>:</p>
-
-<pre><code>\documentclass{beamer}
+  <pre><code>\documentclass{beamer}
 \usepackage{animate}
 
 \begin{document}
-
 \begin{frame}
   \frametitle{Animación}
   \centering
-  \animategraphics[autoplay,loop,width=\textwidth]{10}{output-}{001}{100}
+  % Parámetros: [opciones]{fps}{base-nombre}{inicio}{fin}
+  \animategraphics[autoplay,loop,width=0.8\textwidth]{10}{frame-}{001}{100}
 \end{frame}
-
 \end{document}</code></pre>
 
-<p>En este ejemplo, se reproduce una animación que muestra las imágenes <code>output-001.png</code> a <code>output-100.png</code> en un bucle continuamente.</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Parámetro</th>
+        <th>Descripción</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>autoplay</code></td>
+        <td>Inicia automáticamente al abrir el PDF</td>
+      </tr>
+      <tr>
+        <td><code>loop</code></td>
+        <td>Repite la animación continuamente</td>
+      </tr>
+      <tr>
+        <td><code>{10}</code></td>
+        <td>Frames por segundo</td>
+      </tr>
+      <tr>
+        <td><code>{frame-}</code></td>
+        <td>Prefijo del nombre de archivo</td>
+      </tr>
+      <tr>
+        <td><code>{001}{100}</code></td>
+        <td>Rango de numeración (frame-001 a frame-100)</td>
+      </tr>
+    </tbody>
+  </table>
 
-<h3>Ventajas y Limitaciones</h3>
+  <h3>Limitaciones importantes</h3>
 
-<ul>
-  <li><strong>Ventajas</strong>: Creas animaciones en PDFs sin necesidad de plugins externos. La animación está completamente incrustada en el PDF.</li>
-  <li><strong>Limitaciones</strong>: El tamaño del PDF puede aumentar significativamente si la animación tiene muchos frames. No todos los lectores PDF soportan reproducir animaciones (principalmente Adobe Reader sí lo hace).</li>
-</ul>
+  <ul>
+    <li><strong>Compatibilidad:</strong> Las animaciones solo funcionan en Adobe Acrobat Reader. Otros visores PDF mostrarán solo el primer frame.</li>
+    <li><strong>Tamaño:</strong> Muchos frames aumentan significativamente el tamaño del PDF.</li>
+    <li><strong>Alternativa:</strong> Para presentaciones web, considera exportar a HTML5 o usar enlaces a videos externos.</li>
+  </ul>
 
-<h3>Herramientas para Convertir Videos a Imágenes (fuera de Overleaf)</h3>
+  <h3>Alternativa: Videos externos</h3>
 
-<p><strong>Nota:</strong> Estas herramientas se ejecutan en tu computadora. Una vez generes la secuencia de imágenes, súbelas a Overleaf.</p>
+  <p>Si prefieres enlazar un video en lugar de incrustarlo:</p>
 
-<ul>
-  <li><strong>FFmpeg (recomendado):</strong> Herramienta de línea de comandos poderosa. Comando básico: <code>ffmpeg -i video.mp4 frame-%03d.png</code></li>
-  <li><strong>Photoshop:</strong> Abre el video y exporta cada frame como imagen.</li>
-  <li><strong>Filmora:</strong> Forma gráfica sencilla para convertir videos.</li>
-  <li><strong>VLC:</strong> Utiliza la función de extracción de fotogramas.</li>
-  <li><strong>Blender:</strong> Software 3D que también permite extraer fotogramas de videos.</li>
-</ul>
-
-<h3>Reproductor externo en Beamer</h3>
-
-<p>Alternativamente, puedes incrustar un video dentro de una presentación Beamer usando el paquete <code>multimedia</code>:</p>
-
-<pre><code>\usepackage{multimedia}
+  <pre><code>\usepackage{multimedia}
 
 \begin{frame}
-  \movie[width=8cm,height=6cm,autostart,loop]{Video}{video.mp4}
-\end{frame}
-</code></pre>
+  \frametitle{Video Externo}
+  % Muestra una imagen que al clic abre el video
+  \movie[width=8cm,height=6cm,poster]{
+    \includegraphics[width=8cm]{video-thumbnail.png}
+  }{video.mp4}
+\end{frame}</code></pre>
 
-<p><strong>En Overleaf:</strong> Sube tu archivo de video a "Upload Files" y refine​ncilo como se muestra arriba.</p>
-
-<p><strong>Nota:</strong> Este método permite reproducir videos externos. El usuario verá una imagen (miniatura) que, al hacer clic, abre el video en un reproductor externo.</p>
+  <p><strong>En Overleaf:</strong> Sube el video con "Upload Files". Al hacer clic en la imagen durante la presentación, se abrirá el video en el reproductor del sistema.</p>
+  </section>
 
     <p><a href="index.html" class="back-to-index">Volver al índice</a></p>
 
