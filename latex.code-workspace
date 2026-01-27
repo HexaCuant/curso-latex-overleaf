@@ -5,6 +5,12 @@
 		},
 		{
 			"path": "."
+		},
+		{
+			"path": "../plantilla-tesis"
+		},
+		{
+			"path": "../ibt"
 		}
 	],
 	"settings": {}
