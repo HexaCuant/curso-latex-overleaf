@@ -26,16 +26,46 @@
     <h4>1.1 Paquete listings en Overleaf</h4>
     <p>En tu proyecto de Overleaf, simplemente incluye el paquete <code>listings</code> en el preámbulo:</p>
     <pre><code>\usepackage{listings}
+\usepackage{xcolor}  % Necesario para colores
+
 \lstset{
-    basicstyle=\small\ttfamily,
-    keywordstyle=\color{blue}\bfseries,
-    commentstyle=\color{gray},
-    stringstyle=\color{red},
-    numbers=left,
-    frame=single,
-    breaklines=true
-}
-</code></pre>
+    basicstyle=\small\ttfamily,           % Fuente base: pequeña, monoespaciada
+    keywordstyle=\color{blue}\bfseries,   % Palabras clave en azul negrita
+    commentstyle=\color{gray}\itshape,    % Comentarios en gris cursiva
+    stringstyle=\color{red},              % Cadenas de texto en rojo
+    numbers=left,                          % Números de línea a la izquierda
+    numberstyle=\tiny\color{gray},        % Estilo de números de línea
+    stepnumber=1,                          % Numerar cada línea
+    numbersep=8pt,                         % Separación números-código
+    frame=single,                          % Marco simple alrededor
+    framesep=3pt,                          % Separación marco-código
+    backgroundcolor=\color{gray!5},       % Fondo gris muy claro
+    breaklines=true,                       % Partir líneas largas
+    breakatwhitespace=true,                % Partir en espacios
+    showstringspaces=false,                % No marcar espacios en strings
+    tabsize=4,                             % Tamaño de tabulación
+    captionpos=b                           % Título debajo del código
+}</code></pre>
+
+    <p>Cada opción de <code>\lstset</code> controla un aspecto del formato:</p>
+    <table border="1" style="width: 100%; border-collapse: collapse; margin: 15px 0;">
+        <thead>
+            <tr style="background-color: #1976d2; color: white;">
+                <th style="padding: 8px;">Opción</th>
+                <th style="padding: 8px;">Descripción</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td style="padding: 8px;"><code>basicstyle</code></td><td style="padding: 8px;">Fuente y tamaño base del código</td></tr>
+            <tr style="background-color: #f9f9f9;"><td style="padding: 8px;"><code>keywordstyle</code></td><td style="padding: 8px;">Estilo para palabras reservadas del lenguaje</td></tr>
+            <tr><td style="padding: 8px;"><code>commentstyle</code></td><td style="padding: 8px;">Estilo para comentarios</td></tr>
+            <tr style="background-color: #f9f9f9;"><td style="padding: 8px;"><code>stringstyle</code></td><td style="padding: 8px;">Estilo para cadenas de texto</td></tr>
+            <tr><td style="padding: 8px;"><code>numbers</code></td><td style="padding: 8px;"><code>left</code>, <code>right</code> o <code>none</code></td></tr>
+            <tr style="background-color: #f9f9f9;"><td style="padding: 8px;"><code>frame</code></td><td style="padding: 8px;"><code>single</code>, <code>shadowbox</code>, <code>lines</code>, <code>tb</code> (top-bottom)</td></tr>
+            <tr><td style="padding: 8px;"><code>backgroundcolor</code></td><td style="padding: 8px;">Color de fondo (requiere xcolor)</td></tr>
+            <tr style="background-color: #f9f9f9;"><td style="padding: 8px;"><code>breaklines</code></td><td style="padding: 8px;">Partir líneas que exceden el ancho</td></tr>
+        </tbody>
+    </table>
 
     <h4>1.2 Resaltado de sintaxis</h4>
     <p><strong>En Overleaf:</strong> Después de incluir el preámbulo anterior, usa en el documento:</p>
@@ -45,13 +75,64 @@ def factorial(n):
         return 1
     else:
         return n * factorial(n - 1)
-\end{lstlisting}
-</code></pre>
+\end{lstlisting}</code></pre>
     <ul>
-        <li><code>language=Python</code> determina el lenguaje (también: Java, C, C++, SQL, etc.).</li>
+        <li><code>language=Python</code> determina el lenguaje (también: Java, C, C++, SQL, R, Matlab, etc.).</li>
         <li><code>caption={...}</code> añade un título descriptivo.</li>
         <li><code>label={...}</code> asigna una etiqueta para referencias en el documento con <code>\ref{code:python}</code>.</li>
     </ul>
+
+    <h4>1.3 Código en línea y desde archivo externo</h4>
+    <p>Para código breve dentro de un párrafo, usa <code>\lstinline</code>:</p>
+    <pre><code>La función \lstinline|print("Hola")| muestra texto en pantalla.
+También funciona con otros delimitadores: \lstinline!x = 5!</code></pre>
+
+    <p>Para incluir código desde un archivo externo (útil para código largo o reutilizable):</p>
+    <pre><code>\lstinputlisting[language=Python, caption={Script completo}, firstline=10, lastline=25]{codigo/script.py}</code></pre>
+    <ul>
+        <li><code>firstline</code> y <code>lastline</code>: Muestra solo un rango de líneas del archivo.</li>
+        <li>El archivo debe estar en tu proyecto de Overleaf.</li>
+    </ul>
+
+    <h4>1.4 Definir estilos reutilizables</h4>
+    <p>Si usas varios lenguajes, define estilos con nombre en el preámbulo:</p>
+    <pre><code>\lstdefinestyle{mipython}{
+    language=Python,
+    basicstyle=\footnotesize\ttfamily,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green!60!black},
+    stringstyle=\color{orange},
+    frame=tb,
+    numbers=left
+}
+
+\lstdefinestyle{misql}{
+    language=SQL,
+    basicstyle=\small\ttfamily,
+    keywordstyle=\color{purple}\bfseries,
+    frame=single,
+    numbers=none
+}</code></pre>
+    <p>Luego úsalos así:</p>
+    <pre><code>\begin{lstlisting}[style=mipython]
+# Tu código Python aquí
+\end{lstlisting}</code></pre>
+
+    <h4>1.5 Alternativa: minted (resaltado avanzado)</h4>
+    <p>El paquete <code>minted</code> ofrece resaltado de sintaxis más sofisticado usando Pygments:</p>
+    <pre><code>\usepackage{minted}
+
+\begin{minted}[linenos, bgcolor=gray!10, frame=lines]{python}
+def fibonacci(n):
+    a, b = 0, 1
+    for _ in range(n):
+        a, b = b, a + b
+    return a
+\end{minted}</code></pre>
+
+    <div style="background-color: #fff3cd; padding: 12px; border-radius: 6px; margin: 15px 0;">
+        <strong>⚠️ Nota sobre minted en Overleaf:</strong> Para usar minted, debes habilitar <code>-shell-escape</code> en tu proyecto. En Overleaf, ve a <strong>Menu → Compiler → LaTeX + shell-escape</strong>. Sin esto, minted no funcionará.
+    </div>
 
     <h3>2. Creación de entornos personalizados</h3>
     <p>Puedes definir tus propios entornos para dar un estilo específico a ciertos contenidos. En Overleaf, esta funcionalidad funciona exactamente igual que en LaTeX local. Simplemente define tus entornos en el preámbulo:</p>
@@ -90,21 +171,55 @@ Este es el resumen de la sección.
 
 \fancyhead[L]{Nombre del Documento}
 \fancyhead[R]{\leftmark}
-\fancyfoot[C]{\thepage}
-</code></pre>
+\fancyfoot[C]{\thepage}</code></pre>
     <ul>
         <li><code>\leftmark</code> mostrará el título de la sección o capítulo actual.</li>
+        <li><code>\rightmark</code> muestra la subsección actual.</li>
         <li><code>\thepage</code> indica el número de página actual.</li>
         <li><code>[L]</code>, <code>[R]</code>, <code>[C]</code> significan Left (izquierda), Right (derecha), Center (centro).</li>
     </ul>
+
+    <h5>Encabezados diferentes en páginas pares e impares</h5>
+    <p>Para documentos a doble cara (libros, tesis), usa las opciones <code>[LE,RO]</code> (Left Even, Right Odd):</p>
+    <pre><code>\fancyhead[LE]{\thepage}           % Página par: número a la izquierda
+\fancyhead[RO]{\thepage}           % Página impar: número a la derecha
+\fancyhead[RE]{\leftmark}          % Página par: capítulo a la derecha
+\fancyhead[LO]{\rightmark}         % Página impar: sección a la izquierda
+\fancyfoot[C]{}                    % Sin pie de página</code></pre>
+    <p><strong>Nota:</strong> Necesitas <code>\documentclass[twoside]{book}</code> o <code>[twoside]{report}</code> para que funcione.</p>
+
+    <h5>Personalizar el estilo de \leftmark y \rightmark</h5>
+    <p>Por defecto, LaTeX muestra "CAPÍTULO 1. NOMBRE" en mayúsculas. Para cambiar esto:</p>
+    <pre><code>% Capítulo sin "CAPÍTULO" y sin mayúsculas
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+
+% Sección sin número
+\renewcommand{\sectionmark}[1]{\markright{#1}}</code></pre>
+
+    <h5>Línea decorativa en encabezados y pies</h5>
+    <pre><code>\renewcommand{\headrulewidth}{0.4pt}  % Línea bajo el encabezado
+\renewcommand{\footrulewidth}{0.4pt}  % Línea sobre el pie
+% Usar 0pt para eliminar la línea</code></pre>
+
+    <h5>Primera página de capítulo sin encabezado</h5>
+    <p>Las primeras páginas de capítulo usan el estilo <code>plain</code> por defecto. Para personalizarlas:</p>
+    <pre><code>\fancypagestyle{plain}{
+    \fancyhf{}              % Limpiar todo
+    \fancyfoot[C]{\thepage} % Solo número de página centrado
+    \renewcommand{\headrulewidth}{0pt}
+}</code></pre>
+
     <p><strong>Consejo Overleaf:</strong> Si no ves los cambios en el PDF, haz clic en el botón de "Recompile" (o usa Ctrl+Enter) para forzar la recompilación.</p>
 
     <h3>4. Uso de colores en Overleaf</h3>
     <p>Para usar colores en tu documento de Overleaf, simplemente carga el paquete en el preámbulo:</p>
-    <pre><code>\usepackage{xcolor}
-</code></pre>
+    <pre><code>\usepackage{xcolor}</code></pre>
+    
+    <div style="background-color: #e3f2fd; padding: 12px; border-radius: 6px; margin: 15px 0;">
+        <strong>📖 Nota:</strong> Los comandos básicos de colores (<code>\textcolor{}</code>, <code>\colorbox{}</code>, <code>\definecolor{}</code>) se introdujeron en la <a href="clase2.html">Clase 2</a>. Aquí nos centramos en usos más avanzados como tcolorbox y tablas coloreadas.
+    </div>
 
-    <h4>4.1 Texto y fondo coloreados</h4>
+    <h4>4.1 Texto y fondo coloreados (repaso)</h4>
     <p><strong>En el documento:</strong></p>
     <pre><code>\textcolor{blue}{Texto en azul.}
 \colorbox{yellow}{Fondo amarillo para este texto.}
@@ -156,8 +271,37 @@ Puedes ajustar opacidad, bordes y mucho más.
 
 <p>Estos parámetros pueden personalizarse libremente. En Overleaf, después de hacer cambios, el PDF se actualizará automáticamente.</p>
 
+    <h4>4.5 Más opciones de tcolorbox</h4>
+    <p>tcolorbox es extremadamente flexible. Algunas opciones adicionales útiles:</p>
+    <pre><code>\begin{tcolorbox}[
+    colback=yellow!10,           % Fondo amarillo claro
+    colframe=orange!80!black,    % Borde naranja oscuro
+    title=Advertencia,           % Título
+    fonttitle=\bfseries,         % Título en negrita
+    coltitle=white,              % Color del texto del título
+    rounded corners,             % Esquinas redondeadas
+    boxrule=1.5pt,               % Grosor del borde
+    shadow={2mm}{-2mm}{0mm}{black!50}  % Sombra
+]
+Contenido de la caja con sombra y esquinas redondeadas.
+\end{tcolorbox}</code></pre>
 
+    <h4>4.6 Definir estilos de caja reutilizables</h4>
+    <p>En el preámbulo, define estilos para usarlos repetidamente:</p>
+    <pre><code>\tcbset{
+    miestilo/.style={
+        colback=green!5,
+        colframe=green!50!black,
+        fonttitle=\bfseries,
+        rounded corners,
+        boxrule=0.8pt
+    }
+}
 
+% Luego en el documento:
+\begin{tcolorbox}[miestilo, title=Nota importante]
+Este recuadro usa el estilo predefinido "miestilo".
+\end{tcolorbox}</code></pre>
 
     <h3>5. Ejemplo de colortbl en tablas</h3>
     <p>El paquete <code>colortbl</code> añade color a filas y celdas de tablas. En Overleaf, carga estos paquetes en el preámbulo:</p>
@@ -190,6 +334,131 @@ Naranjas  & \$2.20 & 40 \\
 
     <p><strong>En Overleaf:</strong> Después de guardar los cambios, el PDF mostrará la tabla con colores. Experimenta cambiando los valores de color (por ejemplo, <code>red!20</code>, <code>green!15</code>) para ver los resultados en tiempo real.</p>
 
+    <h3>5.1 hyperref: enlaces y metadatos del PDF</h3>
+    <p>El paquete <code>hyperref</code> añade hipervínculos al PDF y permite configurar metadatos. Es muy recomendable en documentos académicos.</p>
+    
+    <h4>Configuración básica</h4>
+    <pre><code>\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,        % Enlaces en color (no recuadros)
+    linkcolor=blue,         % Color de enlaces internos
+    citecolor=green!50!black, % Color de citas bibliográficas
+    urlcolor=cyan,          % Color de URLs
+    pdftitle={Mi Documento},
+    pdfauthor={Tu Nombre},
+    pdfsubject={Tema del documento},
+    pdfkeywords={palabra1, palabra2, palabra3}
+}</code></pre>
+
+    <h4>Comandos útiles de hyperref</h4>
+    <pre><code>% Enlace a URL externa
+\href{https://www.ugr.es}{Universidad de Granada}
+
+% Enlace a sección/figura/tabla del documento
+Ver la Sección \ref{sec:intro} o la Figura \ref{fig:ejemplo}.
+
+% Enlace a URL sin texto personalizado
+\url{https://www.overleaf.com}
+
+% Enlace a correo electrónico
+\href{mailto:tumail@ugr.es}{tumail@ugr.es}</code></pre>
+
+    <h4>Opciones de estilo para enlaces</h4>
+    <pre><code>% Sin colores (enlaces negros, para impresión)
+\hypersetup{hidelinks}
+
+% Con recuadros en lugar de colores
+\hypersetup{
+    colorlinks=false,
+    linkbordercolor=red,
+    citebordercolor=green,
+    urlbordercolor=cyan
+}</code></pre>
+
+    <div style="background-color: #fff3cd; padding: 12px; border-radius: 6px; margin: 15px 0;">
+        <strong>⚠️ Orden de carga:</strong> <code>hyperref</code> debe cargarse casi al final del preámbulo, después de la mayoría de paquetes. Solo algunos como <code>cleveref</code> deben ir después de hyperref.
+    </div>
+
+    <div style="background-color: #e3f2fd; padding: 12px; border-radius: 6px; margin: 15px 0;">
+        <strong>📖 Más sobre hyperref:</strong> En la <a href="clase2.html#hyperref">Clase 2</a> encontrarás opciones avanzadas de hyperref: personalización detallada de colores, uso con xcolor, metadatos del PDF, y ejemplos completos.
+    </div>
+
+    <h3>5.2 Otros paquetes útiles de personalización</h3>
+    <table border="1" style="width: 100%; border-collapse: collapse; margin: 15px 0;">
+        <thead>
+            <tr style="background-color: #1976d2; color: white;">
+                <th style="padding: 10px;">Paquete</th>
+                <th style="padding: 10px;">Función</th>
+                <th style="padding: 10px;">Ejemplo de uso</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="padding: 10px;"><code>enumitem</code></td>
+                <td style="padding: 10px;">Personaliza listas (numeración, espaciado, etiquetas)</td>
+                <td style="padding: 10px;"><code>\begin{enumerate}[label=\roman*)]</code></td>
+            </tr>
+            <tr style="background-color: #f9f9f9;">
+                <td style="padding: 10px;"><code>titlesec</code></td>
+                <td style="padding: 10px;">Personaliza formato de títulos de secciones</td>
+                <td style="padding: 10px;"><code>\titleformat{\section}{\Large\bfseries}{...}</code></td>
+            </tr>
+            <tr>
+                <td style="padding: 10px;"><code>caption</code></td>
+                <td style="padding: 10px;">Personaliza pies de figuras y tablas</td>
+                <td style="padding: 10px;"><code>\captionsetup{font=small,labelfont=bf}</code></td>
+            </tr>
+            <tr style="background-color: #f9f9f9;">
+                <td style="padding: 10px;"><code>setspace</code></td>
+                <td style="padding: 10px;">Controla el interlineado</td>
+                <td style="padding: 10px;"><code>\onehalfspacing</code> o <code>\doublespacing</code></td>
+            </tr>
+            <tr>
+                <td style="padding: 10px;"><code>microtype</code></td>
+                <td style="padding: 10px;">Mejora tipografía (kerning, protrusión)</td>
+                <td style="padding: 10px;"><code>\usepackage{microtype}</code> (sin config.)</td>
+            </tr>
+            <tr style="background-color: #f9f9f9;">
+                <td style="padding: 10px;"><code>cleveref</code></td>
+                <td style="padding: 10px;">Referencias inteligentes ("Figura 3" automático)</td>
+                <td style="padding: 10px;"><code>\cref{fig:ejemplo}</code> → "Figure 3"</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h4>Ejemplo: personalización de listas con enumitem</h4>
+    <pre><code>\usepackage{enumitem}
+
+% Lista con números romanos y sin espacio entre items
+\begin{enumerate}[label=\roman*), nosep]
+    \item Primer elemento
+    \item Segundo elemento
+\end{enumerate}
+
+% Lista con letras y margen personalizado
+\begin{enumerate}[label=\alph*., leftmargin=2cm]
+    \item Elemento A
+    \item Elemento B
+\end{enumerate}</code></pre>
+
+    <h4>Ejemplo: personalización de títulos con titlesec</h4>
+    <pre><code>\usepackage{titlesec}
+
+% Secciones: número y título en líneas separadas
+\titleformat{\section}
+    {\normalfont\Large\bfseries}  % Formato del título
+    {\thesection}                  % Etiqueta (número)
+    {1em}                          % Separación entre número y título
+    {}                             % Código antes del título
+
+% Secciones centradas y con línea decorativa
+\titleformat{\section}[block]
+    {\centering\Large\bfseries}
+    {\thesection.}
+    {0.5em}
+    {}
+    [\titlerule]  % Línea horizontal después</code></pre>
+
     <h3>6. Ejercicios prácticos en Overleaf</h3>
     <ol>
         <li><strong>Listados de código</strong>: En un proyecto Overleaf, crea un nuevo documento. Incluye el paquete <code>listings</code> en el preámbulo con el ejemplo de <code>lstlisting</code> de un pequeño script en C, Python o cualquier otro lenguaje. Guarda el proyecto y observa el resultado en el PDF.</li>
@@ -208,76 +477,33 @@ Naranjas  & \$2.20 & 40 \\
         <li><strong>Combinación de elementos</strong>: En un solo documento Overleaf, intenta combinar al menos 3 de los elementos anteriores (código, colores, tablas, entornos personalizados) en un documento bien estructurado.</li>
     </ol>
 
-    <h3>7. Gestión de cambios colaborativos en Overleaf</h3>
-    <p>Cuando trabajas colaborativamente en Overleaf con otros compañeros (por ejemplo, editando la tesis junto a tu director), es importante saber cómo gestionar cambios conflictivos. Afortunadamente, <strong>Overleaf maneja esto automáticamente</strong> de forma mucho más intuitiva que sistemas como Git.</p>
-
-    <h4>7.1 ¿Qué ocurre cuando múltiples personas editan?</h4>
-    <p>Cuando tú y otro compañero editáis el mismo proyecto simultáneamente en Overleaf:</p>
-    <ol>
-        <li>Ambos veis los cambios en <strong>tiempo real</strong> en el editor.</li>
-        <li>Los cursores de cada persona aparecen con colores diferentes.</li>
-        <li>El PDF se recompila automáticamente con los cambios de ambos.</li>
-        <li>No hay "conflictos" complicados: todo se sincroniza automáticamente.</li>
-    </ol>
-
-    <h4>7.2 Uso de Track Changes para revisiones colaborativas</h4>
-    <p>Si quieres que tu director <strong>revise y sugiera cambios</strong> sin aplicarlos automáticamente:</p>
-    <ol>
-        <li>Comparte el proyecto con tu director con permisos de edición.</li>
-        <li><strong>Activa Track Changes</strong> en tu cuenta o pídele que lo haga.</li>
-        <li>Tu director edita el documento, y sus cambios aparecen resaltados (no aplicados automáticamente).</li>
-        <li>Tú ves cada sugerencia en color con el nombre del revisor.</li>
-        <li>Puedes <strong>"Accept"</strong> o <strong>"Reject"</strong> cada sugerencia individualmente.</li>
-        <li>El Historia de cambios registra todo el proceso.</li>
-    </ol>
-
-    <h4>7.3 Usar el Historial para resolver desacuerdos</h4>
-    <p>Si hay incertidumbre sobre qué versión es la correcta:</p>
-    <ol>
-        <li>Abre <strong>"History"</strong> en Overleaf.</li>
-        <li>Puedes ver exactamente quién hizo qué cambio y cuándo.</li>
-        <li>Si necesitas revertir a una versión anterior, haz clic en <strong>"Restore"</strong>.</li>
-        <li>Esto revierte el documento a ese punto sin perder el historial (el cambio aparece como un nuevo cambio).</li>
-    </ol>
-
-    <h4>7.4 Ejemplo práctico: Tú vs. Tu Director</h4>
-    <p><strong>Situación:</strong> Tú escribes un párrafo, tu director lo edita con Track Changes, pero luego ambos hacen cambios conflictivos.</p>
+    <h3>7. Colaboración en Overleaf (resumen)</h3>
     
-    <p><strong>Paso 1: Párrafo original (escrito por ti)</strong></p>
-    <pre><code>Este documento tiene una estructura clara.</code></pre>
+    <div style="background-color: #e8f5e9; padding: 15px; border-radius: 8px; margin: 15px 0; border-left: 4px solid #4caf50;">
+        <strong>📖 Referencia principal:</strong> Las herramientas de colaboración de Overleaf (Track Changes, comentarios, History) se explican en detalle en la <a href="clase1.html#colaboracion"><strong>Clase 1: Control de Cambios</strong></a>. Aquí se presenta solo un resumen rápido.
+    </div>
     
-    <p><strong>Paso 2: Director sugiere cambio (con Track Changes)</strong></p>
-    <p>El cambio aparece así: <span style="color: green;">Este documento posee una estructura clara y bien organizada.</span> (resaltado en verde, sin aplicar)</p>
-    
-    <p><strong>Paso 3: Cómo decidirliciar qué mantener</strong></p>
+    <p>Overleaf ofrece herramientas de colaboración integradas que permiten trabajar en equipo de forma muy intuitiva:</p>
+
+    <h4>7.1 Edición simultánea en tiempo real</h4>
+    <p>Cuando tú y otro compañero editáis el mismo proyecto simultáneamente:</p>
     <ul>
-        <li><strong>Si aceptas la sugerencia:</strong> Haz clic en "Accept" y el texto se convierte en la versión oficial.</li>
-        <li><strong>Si rechazas la sugerencia:</strong> Haz clic en "Reject" y vuelve al texto original.</li>
-        <li><strong>Si quieres una fusión personalizada:</strong> Acepta/rechaza parcialmente editando manualmente.</li>
+        <li>Ambos veis los cambios <strong>instantáneamente</strong> en el editor.</li>
+        <li>Los cursores de cada persona aparecen con <strong>colores diferentes</strong> y su nombre.</li>
+        <li>El PDF se recompila automáticamente con los cambios de todos.</li>
+    <ul>
+        <li><strong>Edición simultánea:</strong> Múltiples personas editando a la vez, cursores con colores diferentes.</li>
+        <li><strong>Track Changes:</strong> Revisiones con aceptar/rechazar cambios individualmente.</li>
+        <li><strong>Comentarios:</strong> Discutir sin modificar el texto (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>C</kbd>).</li>
+        <li><strong>History:</strong> Historial automático de todas las versiones, con opción de restaurar.</li>
     </ul>
 
-    <h4>7.5 Mejores prácticas para colaboración</h4>
-    <ol>
-        <li><strong>Comunícate claramente</strong>: Usa comentarios en Overleaf para explicar por qué aceptaste o rechazaste cambios.</li>
-        <li><strong>Revisa regularmente el Historial</strong>: Asegúrate de que los cambios más recientes son los que quieres.</li>
-        <li><strong>Haz commits conceptuales</strong>: En lugar de guardar cada palabra, guarda cuando hayas terminado un párrafo o sección.</li>
-        <li><strong>Si hay confusión extrema</strong>: Usa "Restore" para volver a una versión conocida como "buena" y vuelve a empezar desde ahí.</li>
-    </ol>
-    <pre><code>&lt;&lt;&lt;&lt;&lt;&lt; HEAD
-Este documento tiene una estructura clara y bien definida.
-=======
-Este documento posee una estructura clara y bien organizada.
-&gt;&gt;&gt;&gt;&gt;&gt; main
-</code></pre>
-    <p><strong>Posible resolución (acordada entre ustedes):</strong></p>
-    <pre><code>Este documento tiene una estructura clara, bien definida y organizada.</code></pre>
-
-    <h4>7.5 Estrategias para evitar conflictos</h4>
+    <h4>Buenas prácticas rápidas</h4>
     <ul>
-        <li><strong>Comunicación:</strong> Avisa a tus compañeros qué secciones vas a editar.</li>
-        <li><strong>Archivos separados:</strong> Cada miembro del equipo edita diferentes secciones o archivos.</li>
-        <li><strong>Pull frecuentes:</strong> Sincroniza cambios regularmente con Git en Overleaf.</li>
-        <li><strong>Commits descriptivos:</strong> Cada cambio debe tener un mensaje claro indicando qué se modificó.</li>
+        <li>Dividir el documento en archivos separados (cap1.tex, cap2.tex) para evitar editar el mismo sitio.</li>
+        <li>Usar comentarios para discutir antes de editar.</li>
+        <li>Etiquetar versiones importantes en History ("Versión enviada a revisión").</li>
+        <li>Para control de versiones avanzado (ramas, GitHub), consulta la <a href="git-faq.html">Guía de Git + Overleaf</a>.</li>
     </ul>
 
     <p><a href="index.html" class="back-to-index">Volver al índice</a></p>
