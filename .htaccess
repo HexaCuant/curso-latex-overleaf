@@ -1,0 +1,11 @@
+# Forzar recarga de archivos HTML (evitar caché agresivo)
+<FilesMatch "\.(html|htm)$">
+    Header set Cache-Control "no-cache, must-revalidate"
+    Header set Pragma "no-cache"
+    Header set Expires "0"
+</FilesMatch>
+
+# Para PHP también
+<FilesMatch "\.php$">
+    Header set Cache-Control "no-cache, must-revalidate"
+</FilesMatch>
