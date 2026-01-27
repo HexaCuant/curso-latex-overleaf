@@ -4,34 +4,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LaTeX en Overleaf</title>
+    <title>Clase 4: Fórmulas matemáticas y bibliografía</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body class="container">
     <p><a href="index.html" class="back-to-index">Volver al índice</a></p>
     
-    <div style="background-color: #e8f4f8; border-left: 4px solid #0066cc; padding: 15px; margin: 20px 0; border-radius: 4px;">
-        <h4 style="margin-top: 0; color: #0066cc;">📌 Nota Importante</h4>
-        <p><strong>Esta clase utiliza Overleaf (herramienta cloud).</strong> La sección de bibliografía usa Zotero + Overleaf integrados, no JabRef local.</p>
-        <p>Si prefieres trabajar con herramientas locales (TeXstudio, Git desde terminal, JabRef), consulta la versión anterior del curso en: <a href="https://a105.ugr.es/latex" target="_blank" rel="noopener"><strong>https://a105.ugr.es/latex</strong></a></p>
-    </div>
-    
     <h2>Clase 4: Fórmulas matemáticas y bibliografía</h2>
 
+    <div style="background-color: #e3f2fd; border-left: 4px solid #1976d2; padding: 15px; margin: 20px 0; border-radius: 4px;">
+        <p><strong>📌 Herramientas de esta clase:</strong></p>
+        <ul style="margin-bottom: 0;">
+            <li><strong>Bibliografía:</strong> Usaremos <strong>JabRef</strong> (local) + Git para sincronizar con Overleaf</li>
+            <li><strong>Alternativa:</strong> Si prefieres integración cloud, consulta la <a href="zotero-overleaf.html">Guía de Zotero + Overleaf</a></li>
+        </ul>
+    </div>
+
     <h3>1. Escritura de fórmulas matemáticas (1.5h)</h3>
+    
     <h4>1.1 Modo inline y modo display</h4>
     <p><strong>Inline</strong>: Fórmulas dentro del texto, usando <code>$...$</code> o <code>\(...\)</code>.</p>
     <pre><code>La energía $E = mc^2$ es fundamental en física moderna.
-La integral \(\int_a^b f(x)dx\) representa el área bajo la curva.
-</code></pre>
+La integral \(\int_a^b f(x)dx\) representa el área bajo la curva.</code></pre>
 
     <p><strong>Display</strong>: Fórmulas centradas y destacadas, con <code>\[...\]</code> o <code>equation*</code>.</p>
     <pre><code>La ecuación de onda es:
 \[
 \nabla^2 \psi = \frac{1}{v^2} \frac{\partial^2 \psi}{\partial t^2}
-\]
-</code></pre>
+\]</code></pre>
 
     <h4>1.2 Símbolos matemáticos comunes</h4>
     <p><strong>Letras griegas</strong>: <code>\alpha</code>, <code>\beta</code>, <code>\Gamma</code>, <code>\Omega</code>.</p>
@@ -40,8 +41,7 @@ La integral \(\int_a^b f(x)dx\) representa el área bajo la curva.
     <pre><code>\(\frac{a}{b}\), \(\sqrt{x}\), \(\sqrt[n]{x}\).
 \[
 \sum_{i=1}^n \frac{\sqrt{x_i}}{2} \times \alpha
-\]
-</code></pre>
+\]</code></pre>
 
     <h4>1.3 Ecuaciones numeradas y referencias</h4>
     <p>Entorno <code>equation</code> para numeración automática:</p>
@@ -49,471 +49,402 @@ La integral \(\int_a^b f(x)dx\) representa el área bajo la curva.
     \label{eq:onda}
     \frac{\partial^2 u}{\partial t^2} = c^2 \nabla^2 u
 \end{equation}
-Como se ve en la ecuación \eqref{eq:onda}, la velocidad es crítica.
-</code></pre>
+Como se ve en la ecuación \eqref{eq:onda}, la velocidad es crítica.</code></pre>
 
-<p>Consultar la <a href="https://ctan.org/pkg/comprehensive" target="_blank" rel="noopener">Comprehensive LaTeX Symbol List</a> (CTAN) y <a href="https://detexify.kirelabs.org/" target="_blank" rel="noopener">Detexify</a> para encontrar símbolos matemáticos.</p>
+    <p>Consultar la <a href="https://ctan.org/pkg/comprehensive" target="_blank" rel="noopener">Comprehensive LaTeX Symbol List</a> (CTAN) y <a href="https://detexify.kirelabs.org/" target="_blank" rel="noopener">Detexify</a> para encontrar símbolos matemáticos.</p>
 
     <h4>Ejercicio 1: Fórmulas matemáticas</h4>
     <p>Crea un documento LaTeX que incluya:</p>
     <ul>
-        <li>Una ecuación numerada con integral y fracciones:</li>
-        <pre><code>\begin{equation}
+        <li>Una ecuación numerada con integral y fracciones</li>
+        <li>Una fórmula en línea con una matriz</li>
+    </ul>
+    <pre><code>\begin{equation}
     \label{eq:integral}
     \int_0^1 \frac{x^2}{\sqrt{1 - x^2}} dx = \frac{\pi}{8}
 \end{equation}
-</code></pre>
-        <li>Una fórmula en línea con una matriz:</li>
-        <pre><code>La matriz identidad: \(
+
+La matriz identidad: \(
 I = \begin{pmatrix}
   1 & 0 \\
   0 & 1
 \end{pmatrix}
-\)
-</code></pre>
+\)</code></pre>
+
+    <hr style="margin: 40px 0;">
+
+    <h3>2. Gestión de Bibliografía con JabRef + Git + Overleaf</h3>
+
+    <p>Usaremos <strong>JabRef</strong> para gestionar el archivo <code>.bib</code> localmente, y <strong>Git</strong> para sincronizarlo con Overleaf. Este flujo ofrece control total sobre las referencias y es más robusto para documentos largos como tesis.</p>
+
+    <h4>2.1 ¿Qué es JabRef?</h4>
+    <p>JabRef es un gestor de referencias bibliográficas de código abierto, especializado en archivos BibTeX/BibLaTeX. Ventajas:</p>
+    <ul>
+        <li>✅ <strong>Control directo del .bib</strong>: Editas el archivo directamente, sin intermediarios</li>
+        <li>✅ <strong>Formato nativo LaTeX</strong>: Diseñado específicamente para BibTeX/BibLaTeX</li>
+        <li>✅ <strong>Integración con Git</strong>: El archivo .bib es texto plano, ideal para control de versiones</li>
+        <li>✅ <strong>Sin dependencias cloud</strong>: Funciona offline y no requiere sincronización externa</li>
+        <li>✅ <strong>Búsqueda de referencias</strong>: Puede buscar en bases de datos como DOI, ISBN, arXiv</li>
     </ul>
 
-    
+    <h4>2.2 Flujo de trabajo: JabRef → Git → Overleaf</h4>
+    <div style="background-color: #e8f5e9; border-left: 4px solid #43a047; padding: 15px; margin: 20px 0; border-radius: 4px;">
+        <p><strong>Flujo recomendado:</strong></p>
+        <ol style="margin-bottom: 0;">
+            <li>Editar referencias en <strong>JabRef</strong> (local)</li>
+            <li>Guardar el archivo <code>referencias.bib</code></li>
+            <li>Hacer <code>git add</code>, <code>git commit</code>, <code>git push</code></li>
+            <li>Overleaf recibe automáticamente el archivo actualizado</li>
+        </ol>
+    </div>
 
-<h3>2. Gestión de Bibliografía con Zotero + Overleaf (1.5h)</h3>
+    <h4>2.3 Configurar JabRef</h4>
+    <ol>
+        <li>Descarga JabRef desde <a href="https://www.jabref.org/#download" target="_blank" rel="noopener">jabref.org</a></li>
+        <li>Abre JabRef y crea una nueva base de datos: <em>File → New library</em></li>
+        <li>Guarda el archivo como <code>referencias.bib</code> en la carpeta de tu proyecto clonado de Overleaf</li>
+        <li>Configura las preferencias recomendadas:
+            <ul>
+                <li><em>File → Preferences → File</em>: Asegurar que el encoding es UTF-8</li>
+                <li><em>File → Preferences → Citation key generator</em>: Configura el formato de claves (ej: <code>[auth][year]</code>)</li>
+            </ul>
+        </li>
+    </ol>
 
-<p><strong>En lugar de JabRef local, usaremos Zotero + Overleaf, que es mucho más sencillo en la nube:</strong></p>
+    <h4>2.4 Añadir referencias en JabRef</h4>
+    <p>Hay varias formas de añadir referencias:</p>
+    <ul>
+        <li><strong>Manualmente</strong>: Botón <em>"New entry"</em> → Selecciona tipo (Article, Book, etc.) → Rellena campos</li>
+        <li><strong>Por DOI</strong>: <em>Lookup → Search DOI</em> → Pega el DOI → JabRef rellena automáticamente</li>
+        <li><strong>Por ISBN</strong>: <em>Lookup → Search ISBN</em> → Ideal para libros</li>
+        <li><strong>Importar BibTeX</strong>: Si tienes un .bib de otra fuente, <em>File → Import</em></li>
+    </ul>
 
-<h4>2.1 ¿Qué es Zotero?</h4>
-<p>Zotero es un gestor de referencias bibliográficas gratuito y de código abierto que funciona en línea. Permite:</p>
-<ul>
-    <li>Recopilar referencias desde navegadores, bases de datos y archivos</li>
-    <li>Organizar referencias en colecciones</li>
-    <li>Colaborar con otros usuarios en línea</li>
-    <li>Exportar a Overleaf de forma automática</li>
-</ul>
+    <h4>2.5 Sincronizar con Overleaf vía Git</h4>
+    <p>Una vez que tengas referencias en JabRef, sincroniza con Overleaf:</p>
+    <pre><code># En el directorio de tu proyecto clonado de Overleaf
+git add referencias.bib
+git commit -m "Actualizar bibliografía"
+git push</code></pre>
+    <p>Overleaf recibirá el archivo actualizado. Si estás editando en Overleaf, haz <code>git pull</code> antes de trabajar localmente.</p>
 
-<h4>2.2 Integración Zotero + Overleaf — flujo recomendado (sin usar git)</h4>
-<p>A continuación explico un flujo sencillo, fiable y fácil de enseñar que NO requiere git y funciona bien para docentes y doctorandos.
-Sigue estos pasos en orden para comprobar que todo sincroniza correctamente entre Zotero local, Zotero web y Overleaf.</p>
+    <hr style="margin: 40px 0;">
 
-<ol>
-    <li><strong>Crear cuenta en Zotero (opcional pero recomendado)</strong>: ve a <a href="https://www.zotero.org/" target="_blank" rel="noopener">zotero.org</a> y regístrate. Tener cuenta facilita que Overleaf pueda acceder a tu biblioteca y que la sincronización funcione automáticamente.</li>
+    <h3>3. BibTeX vs Biber: Diferencias y uso</h3>
 
-    <li><strong>Instalar Zotero en local</strong> (Zotero Desktop): descarga e instala la aplicación en tu equipo desde la página de descargas. Cuando abras Zotero por primera vez te pedirá iniciar sesión y sincronizar con tu cuenta web; si no lo hace, ve a <em>Edit → Preferences → Sync</em> e introduce tus credenciales para activar la sincronización. <strong>Nota:</strong> si quieres ahorrar espacio en la nube de Zotero, desmarca la opción <em>"Sync attachment files in My Library"</em> en <em>Edit → Preferences → Sync</em> — así solo se sincronizarán las referencias (metadatos) y los PDFs/adjuntos permanecerán locales en tu equipo.</li>
+    <div style="background-color: #fff3cd; border-left: 4px solid #ffc107; padding: 15px; margin: 20px 0; border-radius: 4px;">
+        <p><strong>⚠️ Importante:</strong> BibTeX y Biber son dos <em>procesadores</em> diferentes para generar la bibliografía. La elección afecta a qué paquetes y comandos usar en tu documento.</p>
+    </div>
 
-    <li><strong>Instalar Better BibTeX (recomendado)</strong>: instala el complemento Better BibTeX (BBT) si quieres claves de cita estables y mejores exportaciones. Descarga el archivo <code>.xpi</code> desde la página oficial de releases: <a href="https://github.com/retorquere/zotero-better-bibtex/releases" target="_blank" rel="noopener">https://github.com/retorquere/zotero-better-bibtex/releases</a> (o usa la web del autor: <a href="https://retorque.re/zotero-better-bibtex/" target="_blank" rel="noopener">https://retorque.re/zotero-better-bibtex/</a>).
-        En Zotero: <em>Tools → Add-ons → Install Add-on From File</em> y selecciona el archivo <code>.xpi</code> de BBT. Después confirma que BBT aparece y está <strong>habilitado</strong> (no disabled).</li>
+    <h4>3.1 Comparativa rápida</h4>
+    <table border="1" style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+        <thead>
+            <tr style="background-color: #333; color: white;">
+                <th style="padding: 10px;">Característica</th>
+                <th style="padding: 10px;">BibTeX (clásico)</th>
+                <th style="padding: 10px;">Biber (moderno)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="padding: 10px;"><strong>Paquete LaTeX</strong></td>
+                <td style="padding: 10px;"><code>natbib</code> o ninguno</td>
+                <td style="padding: 10px;"><code>biblatex</code></td>
+            </tr>
+            <tr style="background-color: #f9f9f9;">
+                <td style="padding: 10px;"><strong>Archivo de estilo</strong></td>
+                <td style="padding: 10px;"><code>.bst</code></td>
+                <td style="padding: 10px;"><code>.bbx</code> / <code>.cbx</code></td>
+            </tr>
+            <tr>
+                <td style="padding: 10px;"><strong>Soporte Unicode</strong></td>
+                <td style="padding: 10px;">⚠️ Limitado</td>
+                <td style="padding: 10px;">✅ Completo</td>
+            </tr>
+            <tr style="background-color: #f9f9f9;">
+                <td style="padding: 10px;"><strong>Personalización</strong></td>
+                <td style="padding: 10px;">⚠️ Difícil (lenguaje .bst)</td>
+                <td style="padding: 10px;">✅ Fácil (macros LaTeX)</td>
+            </tr>
+            <tr>
+                <td style="padding: 10px;"><strong>Múltiples bibliografías</strong></td>
+                <td style="padding: 10px;">⚠️ Complejo</td>
+                <td style="padding: 10px;">✅ Nativo</td>
+            </tr>
+            <tr style="background-color: #f9f9f9;">
+                <td style="padding: 10px;"><strong>Compatibilidad revistas</strong></td>
+                <td style="padding: 10px;">✅ Universal</td>
+                <td style="padding: 10px;">⚠️ Creciente</td>
+            </tr>
+            <tr>
+                <td style="padding: 10px;"><strong>Recomendación</strong></td>
+                <td style="padding: 10px;">Si la revista lo exige</td>
+                <td style="padding: 10px;"><strong>✅ Para tesis y nuevos proyectos</strong></td>
+            </tr>
+        </tbody>
+    </table>
 
-    <li><strong>Instalar el conector del navegador</strong>: añade Zotero Connector a tu navegador. Esto te permite capturar referencias desde PubMed, Google Scholar, editoriales, etc. Pasos:
-        <ul>
-            <li><strong>Chrome / Edge (Chromium)</strong> — abre la <a href="https://chrome.google.com/webstore" target="_blank" rel="noopener">Chrome Web Store</a> (o <a href="https://microsoftedge.microsoft.com/addons/" target="_blank" rel="noopener">Edge Add-ons</a>), busca "Zotero Connector" y haz clic en "Agregar a Chrome" / "Obtener". Confirma permisos y comprueba que el icono aparece en la barra del navegador.</li>
-            <li><strong>Firefox</strong> — abre <a href="https://addons.mozilla.org" target="_blank" rel="noopener">Mozilla Add‑ons</a>, busca "Zotero Connector" y pulsa "Añadir a Firefox". Confirma permisos y revisa el icono.</li>
-            <li><strong>Safari</strong> — comprueba la versión de tu navegador; sigue las instrucciones en la página oficial de Zotero: <a href="https://www.zotero.org/support/connector_installation" target="_blank" rel="noopener">Instalación del conector</a> (la disponibilidad depende de la versión de Safari y macOS).</li>
-            <li>Una vez instalado el conector, haz clic en su icono para ajustar opciones (guardar en Zotero Web o en la aplicación local, adjuntar PDFs, etc.). Si quieres que las capturas vayan a Zotero Desktop, asegúrate de que Zotero Desktop esté abierto y sincronizado.</li>
-            <li><strong>Atajo (recomendado):</strong> desde Zotero Desktop puedes hacer clic en el enlace <em>"Zotero | Connectors"</em> (en el panel central) para abrir directamente la página oficial del conector para tu navegador. Es útil para evitar búsquedas erróneas en tiendas de extensiones y garantizar que instalas la versión correcta para tu navegador.</li>
-            <li>Prueba el conector en PubMed: abre un registro, haz clic en el icono de Zotero Connector y selecciona la colección destino; luego comprueba que el elemento aparece en Zotero Desktop y en Zotero Web tras sincronizar.</li>
-        </ul>
-    </li>
+    <h4>3.2 Flujo con Biber + biblatex (RECOMENDADO)</h4>
+    <p>Este es el flujo moderno, más flexible y con mejor soporte Unicode. <strong>Recomendado para tesis y proyectos nuevos.</strong></p>
 
-    <li><strong>Prueba práctica en PubMed</strong>: abre PubMed, busca un artículo y, usando el conector (o clic derecho → "Guardar en Zotero" si aplica), añade la referencia a la colección local (ej. "Mi Tesis").
-        <ul>
-            <li>Comprueba en Zotero Desktop que la referencia aparece localmente.</li>
-        </ul>
-    </li>
+    <h5>Preámbulo</h5>
+    <pre><code>\documentclass{article}
+\usepackage[backend=biber, style=authoryear]{biblatex}
+\addbibresource{referencias.bib}
 
-    <li><strong>Verificar sincronización web</strong>: una vez añadida la referencia en Zotero Desktop, espera a que se sincronice o fuerza la sincronización (botón verde de Sync). Luego abre <a href="https://www.zotero.org/" target="_blank" rel="noopener">Zotero Web</a> y confirma que la referencia también aparece online en la colección correspondiente.</li>
+\begin{document}
+...</code></pre>
 
-    <li><strong>Conectar Overleaf con Zotero</strong> y crear el .bib: primer paso — vincula tu cuenta de Zotero a Overleaf desde <strong>Settings (rueda dentada abajo a la izquierda) → Account settings → Reference managers → Zotero integration</strong> y conecta Zotero. Tras autorizar Overleaf podrás, dentro de cualquier proyecto, ir a <em>Menu → Add files → From Zotero</em>, seleccionar la colección deseada y Overleaf creará automáticamente un archivo <code>referencias.bib</code> en tu proyecto.</li>
+    <h5>Citar referencias</h5>
+    <pre><code>Según \textcite{einstein1916}, la relatividad...  % → Einstein (1916) afirma...
+Como se ha demostrado \parencite{hawking1988}...   % → ... (Hawking, 1988)</code></pre>
 
-    <li><strong>Nota sobre Git en Overleaf</strong>: si vas a usar la integración Git (por ejemplo para `references.bib` vía terminal o CI), comprueba que la integración Git esté habilitada en <code>Settings → Account settings → Integrations (o Integrations and add-ons)</code>. En algunos entornos (Overleaf Server Pro) la opción la gestiona el administrador del servidor y en Cloud puede requerirse una licencia premium.</li>
-    <!-- Removed token UI note: kept only in git-faq.html as requested -->
+    <h5>Imprimir bibliografía</h5>
+    <pre><code>\printbibliography</code></pre>
 
-    <li><strong>Comprobar la actualización dinámica:</strong> añade otra cita en Zotero Desktop y sincroniza. En Overleaf abre el archivo <code>referencias.bib</code> y selecciona <em>Refresh from Zotero</em> (o el mecanismo que ofrece Overleaf). Verás que la nueva cita aparece en el archivo .bib del proyecto.</li>
+    <h5>Estilos disponibles</h5>
+    <ul>
+        <li><code>style=authoryear</code> — (Autor, Año) - Humanidades y ciencias sociales</li>
+        <li><code>style=numeric</code> — [1], [2] - Ingeniería y ciencias</li>
+        <li><code>style=alphabetic</code> — [Ein16] - Abreviatura autor+año</li>
+        <li><code>style=apa</code> — Estilo APA (requiere <code>biblatex-apa</code>)</li>
+        <li><code>style=ieee</code> — Estilo IEEE</li>
+    </ul>
 
-    <li><strong>Insertar citas en LaTeX</strong>: en Overleaf usa <code>\cite{clave}</code>. Si no conoces la clave, busca en <code>referencias.bib</code> (la clave suele ser del tipo <code>AutorAño</code>), o usa la interfaz de Overleaf para buscar referencias importadas desde Zotero y copiar su clave.</li>
-</ol>
-
-<p>Con esto tienes un flujo práctico: cuenta web + Zotero local sincronizado + conector del navegador + Overleaf enlazado. No necesitas git y la actualización del .bib se realiza desde la integración web de Overleaf.</p>
-
-<h4>2.3 Usar Referencias en Overleaf</h4>
-<pre><code>\documentclass{article}
-\usepackage[style=authoryear]{biblatex}
-\addbibresource{references.bib}
+    <h5>Ejemplo completo (biblatex + biber)</h5>
+    <pre><code>% main.tex
+\documentclass{article}
+\usepackage[spanish]{babel}
+\usepackage[backend=biber, style=authoryear, sorting=nyt]{biblatex}
+\addbibresource{referencias.bib}
 
 \title{Mi Investigación}
 \author{Tu Nombre}
 
 \begin{document}
-
 \maketitle
 
 \section{Introducción}
+La teoría de la relatividad \parencite{einstein1916} revolucionó la física.
+Posteriormente, \textcite{hawking1988} amplió estos conceptos.
 
-Como menciona \cite{einstein1916relativity}, la relatividad...
+\section{Metodología}
+Seguimos el enfoque de \cite{knuth1984}.
 
-\section{Referencias}
 \printbibliography
-
 \end{document}</code></pre>
 
-<h4>2.3.1 Estilos bibliográficos</h4>
-<p>En Overleaf puedes usar diferentes estilos según tu disciplina y preferencias. A continuación hay un breve resumen y ejemplos prácticos. Para flujos modernos recomiendo <code>biblatex</code> + <code>biber</code>.</p>
-<ul>
-    <li><code>style=authoryear</code>: (Autor, Año) — formato autor‑año, útil en humanidades y muchas ciencias sociales.</li>
-    <li><code>style=numeric</code>: [1] — citas numéricas, común en ingeniería y ciencias aplicadas.</li>
-    <li><code>style=apa</code>: Estilo APA, usado en muchas áreas de ciencias sociales.</li>
-</ul>
+    <h4>3.3 Flujo con BibTeX clásico</h4>
+    <p>Usa este flujo si la revista exige un archivo <code>.bst</code> específico o si trabajas con plantillas antiguas.</p>
 
-<h4>2.3.2 Errores comunes y soluciones</h4>
-<ul>
-    <li><strong>¡La bibliografía no aparece!</strong>:
-        <ul>
-            <li>Verifica que incluiste <code>\printbibliography</code> (o <code>\bibliography{...}</code> para BibTeX) al final del documento.</li>
-            <li>Asegúrate de que la colección o el archivo <code>.bib</code> esté presente en el proyecto de Overleaf.</li>
-        </ul>
-    </li>
-    <li><strong>Citas con <code>?</code></strong>:
-        <ul>
-            <li>Comprueba que la clave en <code>\cite{}</code> coincide exactamente con la del archivo <code>.bib</code>.</li>
-            <li>Compila dos veces (una para generar referencias, otra para resolverlas) o usa la opción de compilación completa con <code>biber</code> si usas <code>biblatex</code>.</li>
-        </ul>
-    </li>
-    <li><strong>No veo las referencias de Zotero en Overleaf</strong>:
-        <ul>
-            <li>Recarga la página del proyecto en Overleaf.</li>
-            <li>Verifica que la colección en Zotero está correctamente vinculada/seleccionada en el menú de Bibliography del proyecto.</li>
-        </ul>
-    </li>
-</ul>
+    <h5>Preámbulo</h5>
+    <pre><code>\documentclass{article}
+% Sin paquete especial, o con natbib para más opciones
+\usepackage{natbib}
 
-<h4>2.3.3 Recursos y referencias rápidas</h4>
-<ul>
-    <li><strong>Lista completa de símbolos matemáticos</strong>: <a href="https://detexify.kirelabs.org/" target="_blank" rel="noopener">Detexify</a>.</li>
-    <li><strong>Gestión bibliográfica en Overleaf</strong>: <a href="https://es.overleaf.com/learn/latex/Bibliography_management_with_bibtex" target="_blank" rel="noopener">Overleaf - BibTeX</a>.</li>
-        <li><strong>Ampliación Zotero + Overleaf</strong>: <a href="zotero-overleaf-ampliacion.html" target="_blank" rel="noopener">Ampliación: Zotero + Overleaf — flujos y detalles</a> (guía ampliada del curso).</li>
-</ul>
+\begin{document}
+...</code></pre>
 
-<h4>2.3.4 Otros estilos de bibliografía (detallado)</h4>
-<div>
-    <p>Además de <code>natbib</code>, LaTeX ofrece múltiples paquetes y estilos para gestionar citas y bibliografía. Aquí tienes una lista de los más relevantes, con ejemplos y casos de uso — útil para elegir el flujo apropiado para cursos y tesis:</p>
+    <h5>Citar referencias</h5>
+    <pre><code>\cite{einstein1916}           % → [1] o (Einstein, 1916) según estilo
+\citep{hawking1988}           % → (Hawking, 1988) con natbib
+\citet{knuth1984}             % → Knuth (1984) con natbib</code></pre>
 
-    <hr>
+    <h5>Imprimir bibliografía</h5>
+    <pre><code>\bibliographystyle{plain}     % o apalike, unsrt, alpha, ieeetr...
+\bibliography{referencias}    % sin extensión .bib</code></pre>
 
-    <h3><strong>1. <code>biblatex</code></strong></h3>
-    <p><strong>Ventaja</strong>: Es el paquete más moderno y flexible, compatible con BibLaTeX (sucesor de BibTeX). Recomendado en la mayoría de casos actuales.</p>
-    <p><strong>Estilos populares</strong>:</p>
+    <h5>Estilos .bst comunes</h5>
     <ul>
-        <li><code>style=authoryear</code>: Citas como (Autor, Año).</li>
-    </ul>
-    <pre><code>\usepackage[style=authoryear]{biblatex}
-\addbibresource{referencias.bib} % Cargar base de datos
-\cite{einstein1916} → (Einstein, 1916)</code></pre>
-    <ul>
-        <li><code>style=numeric</code>: Citas numéricas [1].</li>
-        <li><code>style=apa</code>: Estilo APA (requiere <code>biblatex-apa</code>).</li>
+        <li><code>plain</code> — Numérico, alfabético por autor</li>
+        <li><code>unsrt</code> — Numérico, por orden de aparición</li>
+        <li><code>alpha</code> — Abreviatura [Ein16]</li>
+        <li><code>apalike</code> — Estilo APA simplificado</li>
+        <li><code>ieeetr</code> — Estilo IEEE</li>
     </ul>
 
-    <p><strong>Ejemplo completo</strong>:</p>
-    <pre><code>\usepackage[backend=biber, style=authoryear]{biblatex}
-...
-\printbibliography % Generar bibliografía</code></pre>
+    <h5>Ejemplo completo (BibTeX clásico)</h5>
+    <pre><code>% main.tex
+\documentclass{article}
+\usepackage[spanish]{babel}
+\usepackage{natbib}
 
-    <hr>
+\title{Mi Investigación}
+\author{Tu Nombre}
 
-    <h3><strong>2. Estilos clásicos de BibTeX</strong></h3>
-    <p>Funcionan con <code>\bibliographystyle{...}</code> (sin paquetes adicionales):</p>
-    <ul>
-        <li><strong><code>plain</code></strong>: Citas numéricas y autores en orden alfabético.</li>
-        <li><strong><code>unsrt</code></strong>: Como <code>plain</code>, pero ordenadas por aparición en el texto.</li>
-        <li><strong><code>alpha</code></strong>: Citas con abreviaturas (ej: [Ein16]).</li>
-        <li><strong><code>abbrv</code></strong>: Versión abreviada de <code>plain</code>.</li>
-    </ul>
+\begin{document}
+\maketitle
 
-    <p><strong>Ejemplo</strong>:</p>
-    <pre><code>\bibliographystyle{plain}
-\bibliography{referencias}</code></pre>
+\section{Introducción}
+La teoría de la relatividad \citep{einstein1916} revolucionó la física.
+Posteriormente, \citet{hawking1988} amplió estos conceptos.
 
-    <hr>
+\bibliographystyle{apalike}
+\bibliography{referencias}
+\end{document}</code></pre>
 
-    <h3><strong>3. <code>apacite</code> (APA)</strong></h3>
-    <p><strong>Para trabajos en ciencias sociales</strong>:</p>
-    <pre><code>\usepackage{apacite}
-\bibliographystyle{apacite}
-...
-\citeA{einstein1916} → Einstein (1916)
-\cite{hawking1973} → (Hawking, 1973)</code></pre>
+    <h4>3.4 Compilación: diferencias importantes</h4>
 
-    <hr>
+    <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+        <div style="flex: 1; min-width: 300px; background-color: #e3f2fd; padding: 15px; border-radius: 8px;">
+            <h5 style="margin-top: 0;">Biber (biblatex)</h5>
+            <pre style="background-color: #fff;"><code>pdflatex main.tex
+biber main
+pdflatex main.tex
+pdflatex main.tex</code></pre>
+            <p><em>En Overleaf: automático si detecta <code>backend=biber</code></em></p>
+        </div>
+        <div style="flex: 1; min-width: 300px; background-color: #fff3cd; padding: 15px; border-radius: 8px;">
+            <h5 style="margin-top: 0;">BibTeX (clásico)</h5>
+            <pre style="background-color: #fff;"><code>pdflatex main.tex
+bibtex main
+pdflatex main.tex
+pdflatex main.tex</code></pre>
+            <p><em>En Overleaf: automático</em></p>
+        </div>
+    </div>
 
-    <h3><strong>Recomendaciones según disciplina</strong></h3>
-    <ul>
-        <li><strong>Ciencias naturales</strong>: <code>natbib</code> o <code>biblatex</code> (estilo <code>authoryear</code>).</li>
-        <li><strong>Ingeniería</strong>: <code>IEEEtran</code>.</li>
-        <li><strong>Ciencias Sociales</strong>: <code>apacite</code> o <code>biblatex-apa</code>.</li>
-        <li><strong>Humanidades</strong>: <code>chicago</code> o <code>oxford</code>.</li>
-    </ul>
-
-    <hr>
-
-    <p><strong>Nota</strong>: Si usas <code>biblatex</code>, compila con <code>biber</code> en lugar de <code>bibtex</code> (en TeXStudio: <em>Herramientas > Comandos > Biber</em>).</p>
-</div>
-    
-        <h4>2.3.5 Ejemplos listos para copiar & pegar</h4>
-        <p>Dos ejemplos completos, listos para que los estudiantes los copien en un proyecto nuevo en Overleaf y prueben la integración:</p>
-
-        <h5>Ejemplo A — biblatex + biber (recomendado)</h5>
-        <p>Archivos necesarios: <code>main.tex</code> y <code>referencias.bib</code>.</p>
-        <pre><code>% main.tex
-    \documentclass{article}
-    \usepackage[backend=biber,style=authoryear]{biblatex}
-    \addbibresource{referencias.bib}
-
-    \begin{document}
-    \section{Introducción}
-    Como muestra la referencia \cite{einstein1916relativity}, las ecuaciones son importantes.
-
-    \section{Conclusión}
-    La bibliografía aparece abajo.
-
-    \printbibliography
-    \end{document}
-    </code></pre>
-
-        <pre><code>% referencias.bib
-    @article{einstein1916relativity,
-      author  = {Einstein, Albert},
-      title   = {Die Grundlage der allgemeinen Relativitätstheorie},
-      journal = {Annalen der Physik},
-      year    = {1916},
-      volume  = {354},
-      number  = {7},
-      pages   = {769--822},
-    }
-    </code></pre>
-
-        <p>En Overleaf: crea un nuevo proyecto, pega <code>main.tex</code> y crea <code>referencias.bib</code>. En la configuración de compilación, selecciona <em>biber</em> si corresponde — Overleaf suele detectarlo automáticamente si <code>backend=biber</code> está en el preámbulo.</p>
-
-        <h5>Ejemplo B — BibTeX clásico (ejemplo simple)</h5>
-        <p>Archivos necesarios: <code>main_bibtex.tex</code> y <code>referencias.bib</code>.</p>
-        <pre><code>% main_bibtex.tex
-    \documentclass{article}
-    % usa BibTeX clásico
-    \begin{document}
-    \section{Introducción}
-    La teoría de la relatividad fue desarrollada por Einstein \cite{einstein1916relativity}.
-
-    \bibliographystyle{plain}
-    \bibliography{referencias}
-    \end{document}
-    </code></pre>
-
-        <pre><code>% referencias.bib (idéntico al anterior)
-    @article{einstein1916relativity,
-      author  = {Einstein, Albert},
-      title   = {Die Grundlage der allgemeinen Relativitätstheorie},
-      journal = {Annalen der Physik},
-      year    = {1916},
-      volume  = {354},
-      number  = {7},
-      pages   = {769--822},
-    }
-    </code></pre>
-
-        <p>En Overleaf (BibTeX): sube ambos archivos y compila. Overleaf ejecutará la cadena (latex → bibtex → latex → latex) automáticamente. Si trabajas localmente, ejecuta <code>pdflatex main_bibtex.tex && bibtex main_bibtex && pdflatex main_bibtex.tex && pdflatex main_bibtex.tex</code>.</p>
-
-        <p>Estos dos ejemplos permitirán a los estudiantes comprobar rápidamente que las citas funcionan, cambiar estilos y probar actualizaciones desde la integración Zotero o mediante subida manual de <code>.bib</code>.</p>
-
-        <h4>2.3.6 Quitar / ocultar DOI e ISSN (ejemplos)</h4>
-        <p>Si prefieres que la bibliografía no muestre DOI, ISSN, ISBN o URLs (por política del departamento, revisión anónima o estilo editorial), aquí tienes varias formas según el flujo que uses.</p>
-
-        <h5>Biblatex + biber (fácil, recomendado)</h5>
-        <p>Opciones rápidas (añádelo al preámbulo):</p>
-        <pre><code>% 1) Evitar mostrar DOI, ISBN y URL
-\usepackage[backend=biber,style=authoryear,doi=false,isbn=false,url=false]{biblatex}
-\addbibresource{referencias.bib}
-
-% 2) Forzar limpieza de campos (ISSN u otros)
-\AtEveryBibitem{%
-    \clearfield{issn}%
-    \clearfield{doi}%
-    \clearfield{url}%
-    \clearfield{isbn}%
-}
-</code></pre>
-        <p>Alternativa: usar <code>\DeclareSourcemap</code> para eliminar campos durante la importación (biber):</p>
-        <pre><code>\DeclareSourcemap{
-    \maps[datatype=bibtex]{
-        \map{
-            \step[fieldset=doi, null]
-            \step[fieldset=issn, null]
-            \step[fieldset=url, null]
-        }
-    }
-}
-</code></pre>
-
-        <h5>BibTeX clásico</h5>
-        <p>Si usas el flujo clásico (bibtex), elimina las líneas <code>doi = {...}</code> y <code>issn = {...}</code> del archivo <code>.bib</code> antes de compilar, o genera un fichero temporal limpio:</p>
-        <pre><code># eliminar líneas doi / issn generando un nuevo fichero
-sed -E '/^\s*doi\s*=/Id;/^\s*issn\s*=/Id' referencias.bib > referencias_sin_doissn.bib
-</code></pre>
-
-        <h5>Si tu .bib proviene de Zotero / Overleaf</h5>
-        <ul>
-                <li>Edita <code>referencias.bib</code> en Overleaf y borra las entradas <code>doi</code>/<code>issn</code> si prefieres mantener el control manual.</li>
-                <li>Si usas Better BibTeX (BBT), configura la exportación para omitir campos o usa una post-procesamiento en la ruta de exportación.</li>
-                <li>Si conectas Overleaf a una colección Zotero pública, considera usar la configuración de <code>biblatex</code> + <code>\AtEveryBibitem</code> para ocultar los campos durante la compilación, en lugar de modificar automáticamente los registros en Zotero.</li>
-        </ul>
-
-        <h4>2.3.7 Nota sobre revistas que usan BibTeX (.bst) y crear estilos propios</h4>
-        <p>Muchas revistas y conferencias siguen utilizando el flujo clásico de <strong>BibTeX</strong> y proporcionan un archivo de estilo <code>.bst</code> (por ejemplo <code>revista-name.bst</code>) que debes usar para formatear la bibliografía exactamente según las normas de la revista. Cosas a tener en cuenta:</p>
-        <ul>
-            <li>Si la revista ofrece un <code>.bst</code>, sube ese fichero al proyecto de Overleaf (mismo nivel que tu <code>.tex</code>) y usa <code>\bibliographystyle{revista-name}\n\bibliography{referencias}</code>.</li>
-            <li>Si no existe un <code>.bst</code> oficial o necesitas adaptar un estilo, CTAN ofrece herramientas y documentación para crear y personalizar estilos BibTeX.</li>
-            <li>Recurso recomendado — <strong>makebst</strong>: una utilidad que guía interactivamente la creación de un archivo <code>.bst</code> con las opciones que necesites. Más información y descarga en CTAN: <a href="https://ctan.org/pkg/makebst" target="_blank" rel="noopener">https://ctan.org/pkg/makebst</a>.</li>
-            <li>Lectura práctica — <strong>Tame the BeaST</strong>: una guía histórica y muy útil para entender la estructura de los <code>.bst</code> y cómo personalizarlos; disponible en CTAN: <a href="https://ctan.org/pkg/tamethebeast" target="_blank" rel="noopener">https://ctan.org/pkg/tamethebeast</a>.</li>
-            <li>Si prefieres no crear un <code>.bst</code> desde cero, contacta con la revista para solicitar su paquete de autor (suele incluir el <code>.bst</code>) o busca en la sección para autores de la web de la revista.</li>
-        </ul>
-        <p>En resumen: si tu objetivo es publicar en una revista con requisitos estrictos, usa el <code>.bst</code> que proporcione la revista (subiéndolo al proyecto Overleaf). Si necesitas adaptarlo, empieza por <code>makebst</code> o por leer <em>Tame the BeaST</em> (CTAN) y luego prueba localmente o en Overleaf con el flujo clásico de BibTeX.</p>
-
-        <h4>2.3.8 Revistas, <code>biblatex</code> y estilos personalizados</h4>
-        <p><strong>¿Aceptan las revistas biblatex?</strong> Depende de la revista. Hoy en día muchas revistas y editores aceptan documentos preparados con <code>biblatex</code> y <code>biber</code>, pero otras (especialmente las más antiguas) siguen exigiendo el flujo clásico con <code>.bst</code>. Antes de enviar, siempre revisa las <em>author guidelines</em> de la revista: ahí se indica el proceso de entrega y los estilos admitidos.</p>
-
-        <p><strong>Cómo gestionan los estilos:</strong></p>
-        <ul>
-            <li>Algunas revistas publican un paquete para autores (con clase y/o archivos de estilo) que incluye un <code>.bst</code> o instrucciones para <code>biblatex</code>. Si existe, úsalo — suele garantizar que el formato cumple las normas de la revista.</li>
-            <li>Si la revista no ofrece archivos, lo habitual es enviar un PDF que cumpla el formato; muchas revistas aceptan cualquier flujo que genere el PDF final correctamente formateado (tanto <code>biblatex+biber</code> como <code>BibTeX</code>). Sin embargo, la conversión a los estilos finales muchas veces la hace el equipo de producción de la editorial, por lo que piden el archivo fuente y/o el <code>.bbl</code>.</li>
-        </ul>
-
-        <p><strong>¿Puedo crear estilos personalizados con <code>biblatex</code>?</strong> Sí — <code>biblatex</code> fue diseñado para ser altamente personalizable. En lugar de generar archivos <code>.bst</code>, con <code>biblatex</code> normalmente se define un estilo mediante:</p>
-        <ul>
-            <li><code>.bbx</code> — drivers para formatear las entradas bibliográficas (bibliography drivers).</li>
-            <li><code>.cbx</code> — definiciones de comandos de citación (citation commands).</li>
-            <li>Opcionalmente, archivos auxiliares y ajustes en el preámbulo (<code>\DeclareFieldFormat</code>, <code>\DeclareNameFormat</code>, etc.).</li>
-        </ul>
-
-        <p>Para crear o adaptar un estilo personalizado tienes varias rutas:</p>
-        <ol>
-            <li>Partir de un estilo existente (por ejemplo <code>authoryear</code>, <code>numeric</code>, <code>apa</code>) y aplicar ajustes en el preámbulo con <code>biblatex</code> (ej. <code>\DeclareFieldFormat</code>, <code>\AtEveryBibitem</code>).</li>
-            <li>Crear tus propios ficheros <code>.bbx/.cbx</code> si necesitas control fino; súbelos al proyecto de Overleaf (misma carpeta que tu <code>.tex</code>) y usa <code>\usepackage[style=mi_estilo]{biblatex}</code> (donde <code>mi_estilo.bbx</code> y <code>mi_estilo.cbx</code> están en el proyecto).</li>
-            <li>Consultas útiles: la documentación oficial de <code>biblatex</code> y ejemplos en CTAN — estos recursos muestran la estructura interna y los ejemplos de personalización.</li>
-        </ol>
-
-        <p><strong>Lecturas y recursos:</strong></p>
-        <ul>
-            <li>Documentación de <code>biblatex</code> (manual): <a href="https://mirrors.ctan.org/macros/latex/contrib/biblatex/doc/biblatex.pdf" target="_blank" rel="noopener">biblatex manual (CTAN)</a></li>
-            <li>Repositorio CTAN de <code>biblatex</code>: <a href="https://ctan.org/pkg/biblatex" target="_blank" rel="noopener">https://ctan.org/pkg/biblatex</a></li>
-            <li>Overleaf — ejemplos y estilos (vía Learn pages): <a href="https://www.overleaf.com/learn/latex/Bibliography_management_with_biblatex" target="_blank" rel="noopener">Overleaf: Bibliography management with biblatex</a></li>
-        </ul>
-
-        <p><strong>Consejo práctico para envíos a revistas:</strong> si la revista acepta <code>biblatex</code>, sube el código fuente con tu <code>mi_estilo.bbx</code>/<code>mi_estilo.cbx</code> (o incluye las opciones en el preámbulo). Si la revista pide <code>.bst</code> o un paquete concreto para autores, sigue sus instrucciones o genera el PDF final con el flujo que te pidan y aporta el <code>.bbl</code> si lo solicitan.</p>
-
-        <h4>2.3.9 Flujo avanzado (recomendado para tesis): Better BibTeX + Git → Overleaf</h4>
-        <p>Para trabajos largos (tesis, proyectos colaborativos) recomendamos usar <strong>Better BibTeX (BBT)</strong> para exportar automáticamente un fichero local (por ejemplo <code>references.bib</code>) y mantenerlo bajo control de versiones con <code>git</code>. Esto ofrece trazabilidad y claves de cita estables.</p>
-        <p>Si quieres el procedimiento completo —configuración de BBT, .gitignore, remote de Overleaf, resolución de conflictos, scripts post-export y ejemplos de CI— consulta la guía avanzada de Git en Overleaf: <a href="git-faq.html#bbt-git-overleaf">FAQ: Git Avanzado — BBT + Git → Overleaf</a>.</p>
-
-        <!-- Detalles avanzados movidos a git-faq.html (sección #bbt-git-overleaf). -->
-        <!-- Mantener una referencia breve y clara al FAQ avanzado para evitar duplicación en la clase. -->
-
-        <h4>2.3.8 ¿Las revistas permiten <code>biblatex</code>? Estilos y personalización</h4>
-        <p>Respuesta breve: <strong>sí</strong> — algunas revistas aceptan <code>biblatex</code> y otras no; depende de la editorial y del flujo de producción. Antes de usar <code>biblatex</code> para enviar un artículo, revisa las <em>instrucciones para autores</em> de la revista o contacta con el editor. Aquí tienes las consideraciones más comunes:</p>
-
-        <ul>
-            <li><strong>Política editorial:</strong> algunas revistas permiten que los autores usen <code>biblatex</code> (junto con <code>biber</code>) en los archivos enviados; otras requieren el flujo clásico (<code>BibTeX</code> + <code>.bst</code>) o piden un PDF final con el formato exacto, delegando la adaptación al equipo de producción.</li>
-            <li><strong>Distribución de estilos:</strong> si la revista soporta <code>biblatex</code> probablemente te facilitará un paquete (con <code>.bbx</code> y/o <code>.cbx</code>) o indicaciones del estilo que debes usar. Cuando sea el caso, sube esos archivos al proyecto Overleaf (misma carpeta que tu <code>.tex</code>) y activa el estilo con <code>\usepackage[style=revista]{biblatex}</code> (o la opción que indique la revista).</li>
-            <li><strong>Compatibilidad con biber:</strong> algunos sistemas de gestión editorial y revisores automáticos no aceptan <code>biber</code> — comprueba si el flujo editorial soporta <code>biber</code>. Si no lo soporta, quizá tengas que recurrir a BibTeX o pedir instrucciones al editor.</li>
-        </ul>
-
-        <h5>¿Es posible crear estilos personalizados con <code>biblatex</code>?</h5>
-        <p>Sí — <code>biblatex</code> está pensado para ser extensible y muy personalizable. Puedes ajustar el formato de citas y de la bibliografía desde el propio preámbulo del documento, o crear archivos de estilo completos (<code>.bbx</code> y <code>.cbx</code>) que definan el formato de bibliografía y las reglas de citación. Ventajas:</p>
-        <ul>
-            <li>Evitas tocar código en un <code>.bst</code> (lenguaje menos amigable) y trabajas con macros LaTeX y funciones de <code>biblatex</code>.</li>
-            <li>Puedes usar <code>\DeclareFieldFormat</code>, <code>\DeclareNameFormat</code>, <code>\DeclareBibliographyDriver</code> y otras herramientas para adaptar cada campo y cada tipo de entrada.</li>
-            <li>Si ya tienes un estilo base, puedes crear un nuevo <code>.bbx</code> que modifique únicamente lo necesario y subirlo al proyecto (Overleaf lo reconocerá).</li>
-        </ul>
-
-        <h5>Pequeño ejemplo</h5>
-        <p>En el preámbulo puedes cambiar el formato de un campo y ocultar otros sin necesidad de crear un estilo completo:</p>
-        <pre><code>% preámbulo
-\usepackage[backend=biber,style=authoryear]{biblatex}
-\addbibresource{referencias.bib}
+    <h4>3.5 Personalización avanzada (biblatex)</h4>
+    <p>Con biblatex puedes personalizar fácilmente desde el preámbulo:</p>
+    <pre><code>% Ocultar DOI, ISBN y URL
+\usepackage[backend=biber, style=authoryear, doi=false, isbn=false, url=false]{biblatex}
 
 % Forzar títulos en cursiva
 \DeclareFieldFormat{title}{\mkbibemph{#1}}
 
-% Ocultar URLs en la bibliografía
-\AtEveryBibitem{\clearfield{url}}
-</code></pre>
+% Limpiar campos específicos
+\AtEveryBibitem{%
+    \clearfield{issn}%
+    \clearfield{note}%
+}</code></pre>
 
-        <p>Si necesitas una modificación importante (p. ej. cambiar el orden de los elementos en la entrada de cada tipo), lo habitual es crear un archivo <code>.bbx</code> o <code>.cbx</code> y usarlo como estilo en el proyecto.</p>
+    <hr style="margin: 40px 0;">
 
-        <h5>Recursos</h5>
-        <ul>
-            <li><a href="https://ctan.org/pkg/biblatex" target="_blank" rel="noopener">CTAN — biblatex</a> (documentación y manual)</li>
-            <li><a href="https://www.overleaf.com/learn/latex/Bibliography_management_with_biblatex" target="_blank" rel="noopener">Overleaf — Bibliography management with biblatex</a> (tutoriales y ejemplos)</li>
-            <li>Antes de enviar, confirma con la revista si aceptan <code>biblatex</code>/<code>biber</code> o si piden BibTeX/*.bst — ajustar el flujo a las normas del editor te ahorrará problemas al enviar el manuscrito.</li>
-        </ul>
-<h3>3. Ejercicios prácticos (1h)</h3>
+    <h3>4. Archivo referencias.bib: estructura</h3>
+
+    <p>El archivo <code>.bib</code> contiene las referencias en formato texto. JabRef lo gestiona visualmente, pero es útil conocer su estructura:</p>
+
+    <h4>4.1 Tipos de entrada comunes</h4>
+    <pre><code>@article{einstein1916,
+    author  = {Einstein, Albert},
+    title   = {Die Grundlage der allgemeinen Relativitätstheorie},
+    journal = {Annalen der Physik},
+    year    = {1916},
+    volume  = {354},
+    number  = {7},
+    pages   = {769--822},
+}
+
+@book{hawking1988,
+    author    = {Hawking, Stephen},
+    title     = {A Brief History of Time},
+    publisher = {Bantam Books},
+    year      = {1988},
+    address   = {New York},
+}
+
+@inproceedings{knuth1984,
+    author    = {Knuth, Donald E.},
+    title     = {Literate Programming},
+    booktitle = {The Computer Journal},
+    year      = {1984},
+    volume    = {27},
+    number    = {2},
+    pages     = {97--111},
+}</code></pre>
+
+    <h4>4.2 Claves de cita</h4>
+    <p>La clave (ej: <code>einstein1916</code>) es el identificador que usas en <code>\cite{}</code>. Recomendaciones:</p>
+    <ul>
+        <li>Usa un formato consistente: <code>autor+año</code> o <code>autor+año+palabra</code></li>
+        <li>Sin espacios ni caracteres especiales</li>
+        <li>JabRef puede generar claves automáticamente</li>
+    </ul>
+
+    <hr style="margin: 40px 0;">
+
+    <h3>5. Errores comunes y soluciones</h3>
+
+    <h4>❌ La bibliografía no aparece</h4>
+    <ul>
+        <li>Verifica que incluiste <code>\printbibliography</code> (biblatex) o <code>\bibliography{...}</code> (BibTeX)</li>
+        <li>Asegúrate de que el archivo <code>.bib</code> está en el proyecto</li>
+        <li>Comprueba que has citado al menos una referencia con <code>\cite{}</code></li>
+    </ul>
+
+    <h4>❌ Citas aparecen como [?] o ??</h4>
+    <ul>
+        <li>La clave en <code>\cite{clave}</code> no coincide con la del archivo <code>.bib</code></li>
+        <li>Compila varias veces (latex → biber/bibtex → latex → latex)</li>
+        <li>Revisa errores en el log de compilación</li>
+    </ul>
+
+    <h4>❌ Caracteres extraños en la bibliografía</h4>
+    <ul>
+        <li>Asegúrate de que el <code>.bib</code> está guardado en UTF-8</li>
+        <li>Añade <code>\usepackage[utf8]{inputenc}</code> si usas pdflatex</li>
+        <li>Considera usar XeLaTeX o LuaLaTeX para mejor soporte Unicode</li>
+    </ul>
+
+    <hr style="margin: 40px 0;">
+
+    <h3>6. Ejercicios prácticos</h3>
     
-    <h4>Ejercicio 2: Bibliografía con Zotero + Overleaf</h4>
+    <h4>Ejercicio 2: Bibliografía con JabRef + Git + Overleaf</h4>
     <ol>
-        <li><strong>✏️ Crear colección en Zotero:</strong> Ve a Zotero.org y crea una colección "Mi Proyecto". Busca 2 referencias (un libro y un artículo) usando Google Scholar o PubMed. Zotero importará automáticamente los detalles.</li>
-        <li><strong>✏️ Conectar con Overleaf:</strong> En Overleaf, crea un nuevo proyecto. Ve a Menu > Bibliography > Link to Zotero library. Selecciona tu colección "Mi Proyecto". Overleaf generará automáticamente el archivo <code>references.bib</code>.</li>
-        <li><strong>✏️ Citar referencias:</strong> En tu documento, añade el preámbulo con biblatex y compila. Usa \cite{} para citar tus referencias (Overleaf te autocompleta las claves disponibles).</li>
-        <li><strong>✏️ Verificar resultado:</strong> El PDF mostrará automáticamente la lista de referencias al final con el estilo que hayas elegido.</li>
+        <li><strong>✏️ Configurar JabRef:</strong> Abre JabRef y crea un nuevo archivo <code>referencias.bib</code> en tu carpeta del proyecto clonado de Overleaf</li>
+        <li><strong>✏️ Añadir referencias:</strong> Añade 3 referencias (un artículo, un libro y una web) usando la búsqueda por DOI o manualmente</li>
+        <li><strong>✏️ Sincronizar con Overleaf:</strong> Guarda el archivo, luego ejecuta:
+            <pre><code>git add referencias.bib
+git commit -m "Añadir bibliografía inicial"
+git push</code></pre>
+        </li>
+        <li><strong>✏️ Crear documento en Overleaf:</strong> En Overleaf, crea un documento que use biblatex+biber y cite tus 3 referencias</li>
+        <li><strong>✏️ Verificar:</strong> Compila y comprueba que la bibliografía aparece correctamente</li>
     </ol>
 
+    <h4>Ejercicio 3: Comparar BibTeX vs Biber</h4>
+    <ol>
+        <li>Crea dos proyectos en Overleaf: uno usando biblatex+biber y otro usando BibTeX clásico</li>
+        <li>Usa el mismo archivo <code>referencias.bib</code> en ambos</li>
+        <li>Compara los resultados con diferentes estilos</li>
+        <li>Intenta ocultar el DOI en cada versión</li>
+    </ol>
 
-
-
+    <h3>7. Recursos adicionales</h3>
+    <ul>
+        <li><a href="https://www.jabref.org/" target="_blank" rel="noopener">JabRef - Página oficial</a></li>
+        <li><a href="https://www.overleaf.com/learn/latex/Bibliography_management_with_biblatex" target="_blank" rel="noopener">Overleaf - Bibliography management with biblatex</a></li>
+        <li><a href="https://www.overleaf.com/learn/latex/Bibliography_management_with_bibtex" target="_blank" rel="noopener">Overleaf - Bibliography management with BibTeX</a></li>
+        <li><a href="https://ctan.org/pkg/biblatex" target="_blank" rel="noopener">CTAN - biblatex documentation</a></li>
+        <li><a href="https://detexify.kirelabs.org/" target="_blank" rel="noopener">Detexify - Buscar símbolos LaTeX</a></li>
+        <li><a href="zotero-overleaf.html">Guía alternativa: Zotero + Overleaf</a></li>
+    </ul>
 
     <p><a href="index.html" class="back-to-index">Volver al índice</a></p>
 
     <script>
-        /**
-         * Agregar botones de copiar a portapapeles para bloques de código
-         * Funciona con cualquier elemento <pre><code>
-         */
         document.addEventListener('DOMContentLoaded', function() {
-            // Seleccionar todos los bloques de código
             const codeBlocks = document.querySelectorAll('pre');
-            
             codeBlocks.forEach(function(pre) {
-                // Crear contenedor para el bloque de código
                 const container = document.createElement('div');
                 container.className = 'code-container';
-                
-                // Envolver el <pre> en el contenedor
                 pre.parentNode.insertBefore(container, pre);
                 container.appendChild(pre);
                 
-                // Crear el botón de copiar
                 const copyButton = document.createElement('button');
                 copyButton.className = 'copy-button';
                 copyButton.type = 'button';
                 copyButton.title = 'Copiar al portapapeles';
-                copyButton.innerHTML = `
-                    <span class="copy-icon">📋 Copiar</span>
-                    <span class="copied-icon">✓ Copiado</span>
-                `;
-                
-                // Agregar el botón al contenedor (antes del <pre>)
+                copyButton.innerHTML = '<span class="copy-icon">📋 Copiar</span><span class="copied-icon">✓ Copiado</span>';
                 container.insertBefore(copyButton, pre);
                 
-                // Agregar funcionalidad de copiar
                 copyButton.addEventListener('click', function() {
-                    // Obtener el texto del código
                     const code = pre.innerText;
-                    
-                    // Copiar al portapapeles
                     navigator.clipboard.writeText(code).then(function() {
-                        // Cambiar estilo del botón momentáneamente
                         copyButton.classList.add('copied');
-                        
-                        // Volver al estado normal después de 2 segundos
-                        setTimeout(function() {
-                            copyButton.classList.remove('copied');
-                        }, 2000);
+                        setTimeout(function() { copyButton.classList.remove('copied'); }, 2000);
                     }).catch(function(err) {
-                        // Alternativa si clipboard API no funciona
-                        console.error('Error al copiar: ', err);
-                        // Mostrar fallback (seleccionar y copiar manualmente)
                         const textArea = document.createElement('textarea');
                         textArea.value = code;
                         document.body.appendChild(textArea);
@@ -521,12 +452,8 @@ sed -E '/^\s*doi\s*=/Id;/^\s*issn\s*=/Id' referencias.bib > referencias_sin_dois
                         try {
                             document.execCommand('copy');
                             copyButton.classList.add('copied');
-                            setTimeout(function() {
-                                copyButton.classList.remove('copied');
-                            }, 2000);
-                        } catch (err) {
-                            alert('No se pudo copiar. Por favor, usa Ctrl+C manualmente.');
-                        }
+                            setTimeout(function() { copyButton.classList.remove('copied'); }, 2000);
+                        } catch (err) { alert('No se pudo copiar.'); }
                         document.body.removeChild(textArea);
                     });
                 });
@@ -534,5 +461,4 @@ sed -E '/^\s*doi\s*=/Id;/^\s*issn\s*=/Id' referencias.bib > referencias_sin_dois
         });
     </script>
 </body>
-
 </html>

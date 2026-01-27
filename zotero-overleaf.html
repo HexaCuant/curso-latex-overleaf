@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía: Zotero + Overleaf (opcional)</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="container">
+    <p><a href="index.html" class="back-to-index">Volver al índice</a></p>
+    
+    <h2>Guía: Integración Zotero + Overleaf (Contenido Opcional)</h2>
+
+    <div style="background-color: #fff3cd; border-left: 4px solid #ffc107; padding: 15px; margin: 20px 0; border-radius: 4px;">
+        <p><strong>📌 Nota:</strong> Esta guía es <strong>opcional</strong>. En el curso principal usamos <strong>JabRef</strong> para la gestión de bibliografía porque es más directo y robusto para el flujo de trabajo con Git + Overleaf.</p>
+        <p>Sin embargo, si prefieres usar Zotero (especialmente si ya lo tienes configurado), aquí encontrarás todos los pasos necesarios para integrarlo con Overleaf.</p>
+    </div>
+
+    <h3>¿Qué es Zotero?</h3>
+    <p>Zotero es un gestor de referencias bibliográficas gratuito y de código abierto que funciona en línea. Permite:</p>
+    <ul>
+        <li>Recopilar referencias desde navegadores, bases de datos y archivos</li>
+        <li>Organizar referencias en colecciones</li>
+        <li>Colaborar con otros usuarios en línea</li>
+        <li>Exportar a Overleaf de forma automática</li>
+    </ul>
+
+    <h3>Integración Zotero + Overleaf — Flujo Completo</h3>
+    <p>A continuación se explica un flujo sencillo, fiable y fácil de seguir que NO requiere Git y funciona bien para docentes y doctorandos.</p>
+
+    <h4>Paso 1: Crear cuenta en Zotero</h4>
+    <p>Ve a <a href="https://www.zotero.org/" target="_blank" rel="noopener">zotero.org</a> y regístrate. Tener cuenta facilita que Overleaf pueda acceder a tu biblioteca y que la sincronización funcione automáticamente.</p>
+
+    <h4>Paso 2: Instalar Zotero en local (Zotero Desktop)</h4>
+    <p>Descarga e instala la aplicación en tu equipo desde la página de descargas. Cuando abras Zotero por primera vez te pedirá iniciar sesión y sincronizar con tu cuenta web; si no lo hace, ve a <em>Edit → Preferences → Sync</em> e introduce tus credenciales para activar la sincronización.</p>
+    <p><strong>Nota:</strong> si quieres ahorrar espacio en la nube de Zotero, desmarca la opción <em>"Sync attachment files in My Library"</em> en <em>Edit → Preferences → Sync</em> — así solo se sincronizarán las referencias (metadatos) y los PDFs/adjuntos permanecerán locales en tu equipo.</p>
+
+    <h4>Paso 3: Instalar Better BibTeX (recomendado)</h4>
+    <p>Instala el complemento Better BibTeX (BBT) si quieres claves de cita estables y mejores exportaciones. Descarga el archivo <code>.xpi</code> desde la página oficial de releases: <a href="https://github.com/retorquere/zotero-better-bibtex/releases" target="_blank" rel="noopener">https://github.com/retorquere/zotero-better-bibtex/releases</a>.</p>
+    <p>En Zotero: <em>Tools → Add-ons → Install Add-on From File</em> y selecciona el archivo <code>.xpi</code> de BBT. Después confirma que BBT aparece y está <strong>habilitado</strong> (no disabled).</p>
+
+    <h4>Paso 4: Instalar el conector del navegador</h4>
+    <p>Añade Zotero Connector a tu navegador. Esto te permite capturar referencias desde PubMed, Google Scholar, editoriales, etc.</p>
+    <ul>
+        <li><strong>Chrome / Edge (Chromium)</strong> — abre la <a href="https://chrome.google.com/webstore" target="_blank" rel="noopener">Chrome Web Store</a>, busca "Zotero Connector" y haz clic en "Agregar a Chrome".</li>
+        <li><strong>Firefox</strong> — abre <a href="https://addons.mozilla.org" target="_blank" rel="noopener">Mozilla Add‑ons</a>, busca "Zotero Connector" y pulsa "Añadir a Firefox".</li>
+        <li><strong>Safari</strong> — sigue las instrucciones en la página oficial de Zotero: <a href="https://www.zotero.org/support/connector_installation" target="_blank" rel="noopener">Instalación del conector</a>.</li>
+    </ul>
+    <p><strong>Atajo:</strong> desde Zotero Desktop puedes hacer clic en el enlace <em>"Zotero | Connectors"</em> (en el panel central) para abrir directamente la página oficial del conector para tu navegador.</p>
+
+    <h4>Paso 5: Prueba práctica en PubMed</h4>
+    <p>Abre PubMed, busca un artículo y, usando el conector (icono de Zotero en la barra del navegador), añade la referencia a la colección local (ej. "Mi Tesis"). Comprueba en Zotero Desktop que la referencia aparece localmente.</p>
+
+    <h4>Paso 6: Verificar sincronización web</h4>
+    <p>Una vez añadida la referencia en Zotero Desktop, espera a que se sincronice o fuerza la sincronización (botón verde de Sync). Luego abre <a href="https://www.zotero.org/" target="_blank" rel="noopener">Zotero Web</a> y confirma que la referencia también aparece online en la colección correspondiente.</p>
+
+    <h4>Paso 7: Conectar Overleaf con Zotero</h4>
+    <p>Vincula tu cuenta de Zotero a Overleaf:</p>
+    <ol>
+        <li>En Overleaf, ve a <strong>Settings (rueda dentada) → Account settings → Reference managers → Zotero integration</strong></li>
+        <li>Conecta Zotero y autoriza el acceso</li>
+        <li>Dentro de cualquier proyecto, ve a <em>Menu → Add files → From Zotero</em></li>
+        <li>Selecciona la colección deseada y Overleaf creará automáticamente un archivo <code>referencias.bib</code></li>
+    </ol>
+
+    <h4>Paso 8: Comprobar la actualización dinámica</h4>
+    <p>Añade otra cita en Zotero Desktop y sincroniza. En Overleaf abre el archivo <code>referencias.bib</code> y selecciona <em>Refresh from Zotero</em>. Verás que la nueva cita aparece en el archivo .bib del proyecto.</p>
+
+    <h4>Paso 9: Insertar citas en LaTeX</h4>
+    <p>En Overleaf usa <code>\cite{clave}</code>. Si no conoces la clave, busca en <code>referencias.bib</code> (la clave suele ser del tipo <code>AutorAño</code>), o usa la interfaz de Overleaf para buscar referencias importadas desde Zotero.</p>
+
+    <h3>Ejemplo completo con Zotero</h3>
+    <pre><code>\documentclass{article}
+\usepackage[backend=biber,style=authoryear]{biblatex}
+\addbibresource{referencias.bib}
+
+\title{Mi Investigación}
+\author{Tu Nombre}
+
+\begin{document}
+
+\maketitle
+
+\section{Introducción}
+Como menciona \cite{einstein1916relativity}, la relatividad...
+
+\printbibliography
+
+\end{document}</code></pre>
+
+    <h3>Problemas comunes con Zotero + Overleaf</h3>
+    <ul>
+        <li><strong>No veo las referencias de Zotero en Overleaf</strong>:
+            <ul>
+                <li>Recarga la página del proyecto en Overleaf</li>
+                <li>Verifica que la colección en Zotero está correctamente vinculada</li>
+                <li>Comprueba que la sincronización en Zotero Desktop está activa</li>
+            </ul>
+        </li>
+        <li><strong>Las claves de cita cambian cada vez</strong>:
+            <ul>
+                <li>Instala Better BibTeX (BBT) para generar claves estables</li>
+                <li>Configura el formato de claves en BBT (ej: <code>[auth][year][shorttitle]</code>)</li>
+            </ul>
+        </li>
+        <li><strong>Conflictos entre versiones</strong>:
+            <ul>
+                <li>Si usas Git además de la sincronización Zotero, pueden surgir conflictos</li>
+                <li>Recomendación: usa solo un método de sincronización del .bib</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h3>¿Cuándo usar Zotero vs JabRef?</h3>
+    <table border="1" style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+        <thead>
+            <tr style="background-color: #333; color: white;">
+                <th style="padding: 10px;">Criterio</th>
+                <th style="padding: 10px;">Zotero</th>
+                <th style="padding: 10px;">JabRef</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="padding: 10px;">Sincronización cloud</td>
+                <td style="padding: 10px;">✅ Integrada</td>
+                <td style="padding: 10px;">❌ Manual (vía Git)</td>
+            </tr>
+            <tr style="background-color: #f9f9f9;">
+                <td style="padding: 10px;">Captura desde navegador</td>
+                <td style="padding: 10px;">✅ Excelente (Connector)</td>
+                <td style="padding: 10px;">⚠️ Limitada</td>
+            </tr>
+            <tr>
+                <td style="padding: 10px;">Control del .bib</td>
+                <td style="padding: 10px;">⚠️ Indirecto</td>
+                <td style="padding: 10px;">✅ Total y directo</td>
+            </tr>
+            <tr style="background-color: #f9f9f9;">
+                <td style="padding: 10px;">Integración con Git</td>
+                <td style="padding: 10px;">⚠️ Requiere BBT</td>
+                <td style="padding: 10px;">✅ Nativa</td>
+            </tr>
+            <tr>
+                <td style="padding: 10px;">Curva de aprendizaje</td>
+                <td style="padding: 10px;">Media</td>
+                <td style="padding: 10px;">Baja</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Recursos adicionales</h3>
+    <ul>
+        <li><a href="https://www.zotero.org/support/" target="_blank" rel="noopener">Documentación oficial de Zotero</a></li>
+        <li><a href="https://retorque.re/zotero-better-bibtex/" target="_blank" rel="noopener">Better BibTeX para Zotero</a></li>
+        <li><a href="https://www.overleaf.com/learn/how-to/How_to_link_your_Overleaf_account_to_Mendeley_and_Zotero" target="_blank" rel="noopener">Overleaf: Enlazar con Zotero</a></li>
+    </ul>
+
+    <p><a href="clase4.html">← Volver a Clase 4</a> | <a href="index.html" class="back-to-index">Volver al índice</a></p>
+</body>
+
+</html>
