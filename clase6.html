@@ -28,12 +28,12 @@
     </ol>
     <p>Para este curso, recomendamos usar una de las plantillas oficiales de Overleaf, ya que están completamente integradas y funcionan sin necesidad de instalaciones locales.</p>
 
-    <h3>Paquetes y Configuración Inicial en Overleaf</h3>
-    <p>Cuando creas una plantilla de tesis en Overleaf (o importas una de la galería), el preámbulo ya contiene los paquetes necesarios. A continuación, explicamos los principales:</p>
+    <h3>Paquetes y Configuración Inicial</h3>
+    <p>Cuando creas una plantilla de tesis (o importas una de la galería de Overleaf), el preámbulo contiene los paquetes necesarios. A continuación, explicamos los principales:</p>
 
     <h4>Paquetes Básicos</h4>
     <ul>
-        <li><code>natbib</code>: Gestiona citas bibliográficas con estilos como plainnat, abbrvnat, etc.</li>
+        <li><code>biblatex</code> (con biber): Gestión moderna de bibliografía, muy flexible. Alternativa: <code>natbib</code> para plantillas clásicas.</li>
         <li><code>inputenc</code> y <code>fontenc</code>: Manejan la codificación de caracteres y fuentes (en Overleaf, UTF-8 es automático).</li>
         <li><code>babel</code>: Adapta el documento al idioma español (guiones, títulos automáticos, etc.).</li>
         <li><code>amsmath</code>: Proporciona funcionalidades matemáticas avanzadas.</li>
@@ -43,7 +43,7 @@
     <ul>
         <li><code>geometry</code>: Configura los márgenes y el tamaño del papel.</li>
         <li><code>fancyhdr</code>: Personaliza encabezados y pies de página.</li>
-        <li><code>graphicx</code>: Permite la inserción de imágenes (en Overleaf, usa "Upload Files" para añadir imágenes).</li>
+        <li><code>graphicx</code>: Permite la inserción de imágenes. Para añadirlas al proyecto: usa "Upload Files" en Overleaf, o agrégalas a tu repositorio local y haz <code>git push</code>.</li>
         <li><code>hyperref</code>: Crea enlaces interactivos en el PDF (tabla de contenidos, referencias, etc.).</li>
     </ul>
 
@@ -54,19 +54,49 @@
         <li><code>caption</code>: Personaliza el formato de los pies de figura y tabla.</li>
     </ul>
 
-    <p><strong>En Overleaf:</strong> Para incluir estas funcionalidades, solo necesitas agregar <code>\usepackage{...}</code> en el preámbulo. Overleaf tiene acceso a la mayoría de paquetes LaTeX disponibles en CTAN.</p>
+    <p><strong>Nota:</strong> Para incluir estas funcionalidades, agrega <code>\usepackage{...}</code> en el preámbulo. Tanto Overleaf como las instalaciones locales de TeX tienen acceso a la mayoría de paquetes disponibles en CTAN.</p>
 
-    <h3>Estructura del Documento en Overleaf</h3>
-    <p>La estructura de una tesis en Overleaf se organiza típicamente en un archivo principal (<code>main.tex</code>) que incluye otros archivos mediante <code>\input{}</code> o <code>\include{}</code>. La estructura de la tesis incluye:</p>
+    <h3>Estructura del Documento</h3>
+    <p>La estructura de una tesis se organiza típicamente en un archivo principal (<code>main.tex</code>) que incluye otros archivos mediante <code>\input{}</code> o <code>\include{}</code>. La estructura incluye:</p>
     <ol>
         <li><strong>Portada</strong>: Se crea utilizando comandos personalizados (definidos en el preámbulo) y el entorno <code>center</code>.</li>
         <li><strong>Páginas Preliminares</strong>: Incluyen agradecimientos, dedicatoria y citas (en archivos separados).</li>
         <li><strong>Índices</strong>: Se generan automáticamente con <code>\tableofcontents</code>, <code>\listoffigures</code>, y <code>\listoftables</code>.</li>
         <li><strong>Cuerpo Principal</strong>: Dividido en capítulos como Introducción, Material y Métodos, Resultados, etc.</li>
-        <li><strong>Bibliografía</strong>: Gestionada con Zotero + Overleaf (como en clase 4) o con archivos .bib.</li>
+        <li><strong>Bibliografía</strong>: Gestionada con JabRef + Git + Overleaf (como en clase 4) usando archivos .bib.</li>
     </ol>
 
-    <p><strong>En Overleaf:</strong> Puedes organizar tus archivos en carpetas. Por ejemplo:
+    <h4>Ejemplo real: Estructura del repositorio plantilla-tesis</h4>
+    <p>La <a href="https://github.com/latex-git/plantilla-tesis" target="_blank">plantilla de ejemplo</a> que usamos en el curso tiene la siguiente estructura:</p>
+    
+    <div style="background-color: #f5f5f5; padding: 15px; border-radius: 6px; font-family: monospace; margin: 15px 0;">
+<strong>📁 plantilla-tesis/</strong><br>
+├── <strong>plantilla-tesis.tex</strong>  &nbsp;&nbsp;← Archivo principal (documento maestro)<br>
+├── <strong>biblio.bib</strong>           &nbsp;&nbsp;← Bibliografía (~88KB con muchas referencias)<br>
+├── <strong>estilo.bst</strong>           &nbsp;&nbsp;← Estilo de bibliografía personalizado<br>
+├── <strong>resumen.tex</strong>          &nbsp;&nbsp;← Resumen/Abstract<br>
+├── <strong>agradecimientos.tex</strong>  &nbsp;&nbsp;← Sección de agradecimientos<br>
+│<br>
+├── 📁 <strong>introduccion/</strong>     &nbsp;&nbsp;← Capítulo de introducción<br>
+│   └── introduccion.tex<br>
+├── 📁 <strong>mat-met/</strong>          &nbsp;&nbsp;← Material y Métodos<br>
+│   └── mat-met.tex<br>
+├── 📁 <strong>resultados/</strong>       &nbsp;&nbsp;← Resultados<br>
+│   └── resultados.tex<br>
+├── 📁 <strong>discusion/</strong>        &nbsp;&nbsp;← Discusión<br>
+│   └── discusion.tex<br>
+│<br>
+├── <strong>escudo_ugr_*.eps/png</strong> &nbsp;&nbsp;← Logos institucionales<br>
+├── <strong>logo_*.eps</strong>           &nbsp;&nbsp;← Logos de institutos/facultades<br>
+│<br>
+├── 📁 <strong>carta/</strong>            &nbsp;&nbsp;← Ejemplo: carta formal<br>
+├── 📁 <strong>poster/</strong>           &nbsp;&nbsp;← Ejemplo: póster científico<br>
+└── 📁 <strong>presentacion/</strong>     &nbsp;&nbsp;← Ejemplo: presentación Beamer
+    </div>
+
+    <p><strong>💡 Consejo:</strong> Esta organización en carpetas por capítulo facilita enormemente el trabajo colaborativo y el control de versiones. Cada colaborador puede trabajar en su carpeta sin conflictos.</p>
+
+    <p><strong>Organización recomendada:</strong> Puedes organizar tus archivos en carpetas. Por ejemplo:
     <ul>
         <li><code>main.tex</code> (archivo principal)</li>
         <li><code>capitulos/introduccion.tex</code></li>
@@ -77,7 +107,7 @@
     </ul>
     </p>
 
-    <h3>Comandos Personalizados en Overleaf</h3>
+    <h3>Comandos Personalizados</h3>
     <p>Las plantillas de tesis suelen definir comandos personalizados en el preámbulo para facilitar el formateo consistente. Ejemplo:</p>
     <pre><code>\newcommand{\figura}[4]{
   \begin{figure}[htbp]
@@ -89,10 +119,63 @@
   \end{figure}
 }
 </code></pre>
-    <p>Este comando simplifica la inserción de figuras, permitiendo especificar el nombre del archivo, tamaño, título corto y pie de figura en una sola línea. <strong>En Overleaf:</strong> Puedes definir estos comandos en el preámbulo o en un archivo <code>preamble.tex</code> que incluyas con <code>\input{preamble}</code>.</p>
+    <p>Este comando simplifica la inserción de figuras, permitiendo especificar el nombre del archivo, tamaño, título corto y pie de figura en una sola línea:</p>
+    <pre><code>% Uso del comando \figura:
+\figura{microfotografia.png}{0.8}{Células en cultivo}{Microfotografía de células HeLa 
+en cultivo mostrando la morfología típica a 48h post-siembra. Barra de escala: 100 µm.}</code></pre>
+    <p>Esto genera automáticamente una figura con etiqueta <code>fig:microfotografia.png</code> que puedes referenciar con <code>\ref{fig:microfotografia.png}</code>.</p>
+    
+    <p><strong>Ubicación:</strong> Puedes definir estos comandos en el preámbulo o en un archivo <code>preamble.tex</code> que incluyas con <code>\input{preamble}</code>.</p>
 
-    <h3>Formato de Capítulos en Overleaf</h3>
-    <p>Para personalizar la apariencia de los títulos de capítulos, se usa <code>\makeatletter</code> y <code>\makeatother</code> para acceder a comandos internos de LaTeX:</p>
+    <h3>Formato de Capítulos</h3>
+    <p>Para personalizar la apariencia de los títulos de capítulos, LaTeX ofrece varias opciones, desde paquetes de alto nivel hasta la modificación directa del código interno.</p>
+
+    <h4>Opción recomendada: paquetes titlesec y titletoc</h4>
+    <p>El paquete <a href="https://ctan.org/pkg/titlesec" target="_blank"><code>titlesec</code></a> proporciona una interfaz sencilla para personalizar títulos de secciones, mientras que <a href="https://ctan.org/pkg/titletoc" target="_blank"><code>titletoc</code></a> permite formatear el índice de contenidos.</p>
+
+    <h5>Ejemplos con titlesec:</h5>
+    <pre><code>\usepackage{titlesec}
+
+% Formato básico: número y título en la misma línea, negrita grande
+\titleformat{\chapter}[hang]
+  {\normalfont\Huge\bfseries}  % Formato del texto
+  {\thechapter.}               % Etiqueta (número del capítulo)
+  {20pt}                       % Espacio entre número y título
+  {}                           % Código antes del título
+
+% Ejemplo más elaborado: capítulo con línea decorativa
+\titleformat{\chapter}[display]
+  {\normalfont\huge\bfseries}
+  {\chaptertitlename\ \thechapter}
+  {20pt}
+  {\Huge}
+\titlespacing*{\chapter}{0pt}{50pt}{40pt}  % Espaciado: izq, antes, después</code></pre>
+
+    <p><strong>Formatos disponibles en titlesec:</strong></p>
+    <ul>
+        <li><code>[hang]</code>: Número y título en la misma línea (como secciones normales)</li>
+        <li><code>[display]</code>: Número en una línea, título debajo (formato clásico de capítulos)</li>
+        <li><code>[runin]</code>: Título seguido del texto sin salto de línea</li>
+        <li><code>[block]</code>: Todo centrado en bloque</li>
+        <li><code>[frame]</code>: Título enmarcado</li>
+    </ul>
+
+    <h5>Ejemplo con titletoc (índice de contenidos):</h5>
+    <pre><code>\usepackage{titletoc}
+
+% Personalizar cómo aparecen los capítulos en el índice
+\titlecontents{chapter}
+  [0pt]                        % Margen izquierdo
+  {\addvspace{1em}\bfseries}   % Formato global
+  {\contentslabel{1.5em}}      % Formato del número
+  {}                           % Sin número (capítulos no numerados)
+  {\titlerule*[0.5pc]{.}\contentspage}  % Puntos y número de página</code></pre>
+
+    <p><strong>💡 Consejo:</strong> Usa titlesec para la mayoría de personalizaciones. Es más legible y menos propenso a errores que modificar el código interno de LaTeX.</p>
+
+    <h4>Opción avanzada: modificar el código fuente de LaTeX</h4>
+    <p>Algunas plantillas (como <code>plantilla-tesis</code>) modifican directamente los comandos internos de LaTeX. Este enfoque es más potente pero requiere entender la estructura interna:</p>
+    
     <pre><code>\makeatletter
 \def\@makechapterhead#1{
   \vspace*{1\p@}%
@@ -106,12 +189,45 @@
     \vskip 40\p@
   }
 }
-\makeatother
-</code></pre>
-    <p>Este código modifica la apariencia de los títulos de capítulos, ajustando espaciado y formato. <strong>En Overleaf:</strong> Coloca este código en el preámbulo o en un archivo <code>preamble.tex</code> incluido.</p>
+\makeatother</code></pre>
 
-    <h3>Configuración de Páginas en Overleaf</h3>
-    <p>La plantilla utiliza <code>fancyhdr</code> para personalizar encabezados y pies de página. En Overleaf:</p>
+    <h5>¿De dónde viene este código?</h5>
+    <p>Este bloque redefine el comando interno <code>\@makechapterhead</code>, que es el responsable de dibujar los títulos de capítulos numerados en las clases <code>book</code> y <code>report</code>. El código original se encuentra en los archivos de clase de LaTeX (por ejemplo, <code>book.cls</code>). Puedes consultarlo en tu instalación de TeX o en <a href="https://ctan.org/pkg/base" target="_blank">CTAN (LaTeX base)</a>.</p>
+
+    <h5>¿Por qué usar \makeatletter y \makeatother?</h5>
+    <p>En LaTeX, el carácter <code>@</code> tiene un tratamiento especial:</p>
+    <ul>
+        <li><strong>En documentos normales:</strong> <code>@</code> es un carácter "otro" (no puede formar parte de nombres de comandos)</li>
+        <li><strong>En archivos de clase (.cls) y paquetes (.sty):</strong> <code>@</code> es una "letra" (puede usarse en nombres internos como <code>\@makechapterhead</code>)</li>
+    </ul>
+    <p>Los comandos <code>\makeatletter</code> y <code>\makeatother</code> cambian temporalmente esta categoría:</p>
+    <ul>
+        <li><code>\makeatletter</code>: Convierte <code>@</code> en letra → puedes usar/redefinir comandos internos</li>
+        <li><code>\makeatother</code>: Restaura <code>@</code> a "otro" → vuelves al comportamiento normal</li>
+    </ul>
+    <p><strong>⚠️ Importante:</strong> Siempre cierra con <code>\makeatother</code> después de tus modificaciones, o podrías causar errores difíciles de diagnosticar.</p>
+
+    <h5>Explicación línea por línea del código:</h5>
+    <table border="1" cellpadding="8" style="border-collapse: collapse; margin: 15px 0; width: 100%;">
+        <thead style="background-color: #f0f0f0;">
+            <tr><th>Código</th><th>Explicación</th></tr>
+        </thead>
+        <tbody>
+            <tr><td><code>\def\@makechapterhead#1{</code></td><td>Redefine el comando de título de capítulo. <code>#1</code> es el texto del título.</td></tr>
+            <tr><td><code>\vspace*{1\p@}</code></td><td>Espacio vertical de 1 punto (<code>\p@</code> = 1pt). El <code>*</code> evita que desaparezca al inicio de página.</td></tr>
+            <tr><td><code>\parindent \z@</code></td><td>Sin sangría (<code>\z@</code> = 0pt).</td></tr>
+            <tr><td><code>\raggedright</code></td><td>Alineación a la izquierda.</td></tr>
+            <tr><td><code>\ifnum \c@secnumdepth >\m@ne</code></td><td>Comprueba si los capítulos deben numerarse (<code>\c@secnumdepth</code> es el contador de profundidad).</td></tr>
+            <tr><td><code>\interlinepenalty\@M</code></td><td>Penalización máxima (<code>\@M</code> = 10000) para evitar saltos de página dentro del título.</td></tr>
+            <tr><td><code>\Huge \bfseries \thechapter.\space#1</code></td><td>Dibuja el número del capítulo (<code>\thechapter</code>), un punto, espacio y el título, todo en negrita enorme.</td></tr>
+            <tr><td><code>\vskip 40\p@</code></td><td>Espacio vertical de 40 puntos después del título.</td></tr>
+        </tbody>
+    </table>
+
+    <p><strong>Ubicación:</strong> Coloca este código en el preámbulo o en un archivo <code>preamble.tex</code> incluido. Si usas titlesec, no necesitas este enfoque manual.</p>
+
+    <h3>Configuración de Páginas con fancyhdr</h3>
+    <p>La plantilla utiliza <code>fancyhdr</code> para personalizar encabezados y pies de página:</p>
     <pre><code>\pagestyle{fancy}
 \lhead{\uppercase{\bfseries{\leftmark}}}
 \rhead{\uppercase{\bfseries{\rightmark}}}
@@ -123,39 +239,72 @@
         <li><code>\rhead</code>: Encabezado derecho con el nombre de la sección actual.</li>
         <li><code>\cfoot</code>: Pie de página centrado con el número de página.</li>
     </ul>
-    <p><strong>En Overleaf:</strong> Después de hacer cambios en <code>\pagestyle</code>, el PDF se actualiza automáticamente al guardar o compilar.</p>
+    <p>Tras hacer cambios en <code>\pagestyle</code>, debes recompilar el documento para ver los resultados. En Overleaf el PDF se actualiza automáticamente al guardar.</p>
 
-    <h3>Bibliografía en Overleaf</h3>
-    <p>Para la bibliografía en Overleaf, tienes dos opciones (como viste en clase 4):</p>
-    <ol>
-        <li><strong>Zotero + Overleaf (recomendado):</strong> Conecta tu colección de Zotero con Overleaf. El archivo .bib se genera automáticamente y se sincroniza.</li>
-        <li><strong>Archivo .bib manual:</strong> Crea un archivo <code>biblio.bib</code> en tu proyecto Overleaf con las referencias.</li>
-    </ol>
-    <p>Luego, en el documento, configura la bibliografía con:</p>
-    <pre><code>\bibliographystyle{plainnat}  % o abbrvnat, unsrtnat, etc.
-\bibliography{biblio}  % archivo sin extensión .bib
-</code></pre>
-    <p><strong>Para dos columnas:</strong> Si quieres que la bibliografía aparezca en dos columnas con texto más pequeño:</p>
+    <h3>Gestión de la Bibliografía</h3>
+    <p>Para la bibliografía en tu tesis, usaremos el flujo <strong>JabRef + Git + Overleaf</strong> que aprendiste en la <a href="clase4.html">Clase 4</a>:</p>
+    
+    <h4>Opción recomendada: biblatex + biber</h4>
+    <p>Esta es la opción más moderna y flexible, especialmente para tesis doctorales:</p>
+    <pre><code>% En el preámbulo:
+\usepackage[backend=biber, style=authoryear, sorting=nyt]{biblatex}
+\addbibresource{referencias.bib}
+
+% Al final del documento (antes de \end{document}):
+\printbibliography[title={Referencias}]</code></pre>
+    
+    <p><strong>Para bibliografía en dos columnas</strong> (útil si tienes muchas referencias):</p>
+    <pre><code>\usepackage{multicol}
+
+% Al final del documento:
+\begin{multicols}{2}
+\printbibliography[title={Referencias}]
+\end{multicols}</code></pre>
+
+    <h4>Opción alternativa: BibTeX clásico</h4>
+    <p>Si tu universidad exige un estilo <code>.bst</code> específico o usas una plantilla antigua:</p>
+    <pre><code>\bibliographystyle{plainnat}  % o abbrvnat, unsrtnat, apalike, etc.
+\bibliography{referencias}    % archivo sin extensión .bib</code></pre>
+    
+    <div style="background-color: #fff3e0; padding: 12px; border-radius: 6px; margin: 15px 0;">
+        <strong>📌 Nota sobre estilos personalizados:</strong> La plantilla de ejemplo usa un archivo <code>estilo.bst</code> personalizado. Si tu departamento o universidad te proporciona un archivo <code>.bst</code>, simplemente súbelo a Overleaf y úsalo:
+        <pre style="margin: 10px 0 0 0; background: #fff;"><code>\bibliographystyle{estilo}  % Sin extensión .bst
+\bibliography{biblio}       % Tu archivo .bib</code></pre>
+        Para crear tu propio estilo personalizado, consulta la sección sobre <a href="clase4.html#makebst">makebst en la Clase 4</a>.
+    </div>
+    
+    <p><strong>Para dos columnas con BibTeX:</strong></p>
     <pre><code>\begin{singlespace}
 \begin{footnotesize}
-\begin{twocolumn}
+\begin{multicols}{2}
 \bibliographystyle{plainnat}
-\bibliography{biblio}
-\end{twocolumn}
+\bibliography{referencias}
+\end{multicols}
 \end{footnotesize}
-\end{singlespace}
-</code></pre>
+\end{singlespace}</code></pre>
+
+    <div style="background-color: #e8f5e9; padding: 12px; border-radius: 6px; margin: 15px 0;">
+        <strong>💡 Flujo de trabajo recomendado:</strong>
+        <ol style="margin-bottom: 0;">
+            <li>Gestiona tus referencias en <strong>JabRef</strong> (local)</li>
+            <li>Guarda el archivo <code>.bib</code> en tu carpeta del proyecto</li>
+            <li>Sincroniza con <strong>Git</strong>: <code>git add referencias.bib && git commit -m "Actualizar bibliografía" && git push</code></li>
+            <li>En <strong>Overleaf</strong>, haz <code>git pull</code> o sincroniza desde el menú Git</li>
+        </ol>
+    </div>
+    
+    <p><strong>📚 Alternativa cloud:</strong> Si prefieres no usar herramientas locales, consulta la <a href="zotero-overleaf.html">Guía de Zotero + Overleaf</a>.</p>
 
 
 
 
-    <h3>Creación del "Frontmatter" en Overleaf</h3>
+    <h3>Creación del "Frontmatter" (páginas preliminares)</h3>
 
-    <p>El "frontmatter" en LaTeX contiene las páginas preliminares de la tesis, como portada, dedicatorias, agradecimientos e índices. En Overleaf, estas páginas se crean fácilmente usando comandos LaTeX estándar. A continuación, se explica cómo se construye cada una:</p>
+    <p>El "frontmatter" contiene las páginas preliminares de la tesis: portada, dedicatorias, agradecimientos e índices. Estas páginas se crean usando comandos LaTeX estándar. A continuación, se explica cómo se construye cada una:</p>
 
-    <h3>1. Portada Inicial en Overleaf</h3>
+    <h3>1. Portada Inicial</h3>
     <p><strong>Objetivo</strong>: Mostrar título, autor, logos institucionales y fecha.<br>
-    <strong>En Overleaf:</strong> Crea un archivo <code>portada.tex</code> e inclúyelo en <code>main.tex</code> con <code>\input{portada}</code>.</p>
+    <strong>Recomendación:</strong> Crea un archivo <code>portada.tex</code> e inclúyelo en <code>main.tex</code> con <code>\input{portada}</code>.</p>
     <pre><code>\begin{center}
         \LARGE \titulo \\ % Comando personalizado para el título
         \vspace{\stretch{2}} % Espacio flexible proporcional
@@ -168,12 +317,12 @@
     <ul>
             <li><code>\vspace{\stretch{n}}</code>: Distribuye el espacio verticalmente de forma proporcional (sin valores fijos).</li>
             <li><code>\titulo</code> y <code>\fecha</code>: Comandos personalizados definidos en el preámbulo con <code>\newcommand</code>.</li>
-            <li><code>\includegraphics{...}</code>: Para incluir la imagen del logo, primero úpla a Overleaf con "Upload Files".</li>
+            <li><code>\includegraphics{...}</code>: Para incluir la imagen del logo, añádela al proyecto con "Upload Files" o mediante <code>git add</code> + <code>git push</code>.</li>
     </ul>
 
-    <h3>2. Página Institucional en Overleaf</h3>
+    <h3>2. Página Institucional</h3>
     <p><strong>Objetivo</strong>: Mostrar logos de instituciones y departamentos lado a lado.<br>
-    <strong>Técnica en Overleaf:</strong> Usa <code>minipage</code> para alinear múltiples elementos en una fila:</p>
+    <strong>Técnica:</strong> Usa <code>minipage</code> para alinear múltiples elementos en una fila:</p>
     <pre><code>\begin{minipage}[t]{.23\textwidth}
         \centering
         \includegraphics[width=.8\textwidth]{logo_ib} % Logo 1
@@ -191,9 +340,8 @@
         <li><code>[t]</code>: Alinea el contenido al tope (top) de la minipage.</li>
     </ul>
 
-    <h3>3. Página de Directores y Financiación en Overleaf</h3>
-    <p><strong>Objetivo</strong>: Detallar directores, programa de financiación y declaración institucional.<br>
-    <strong>En Overleaf:</strong></p>
+    <h3>3. Página de Directores y Financiación</h3>
+    <p><strong>Objetivo</strong>: Detallar directores, programa de financiación y declaración institucional.</p>
     <pre><code>\begin{minipage}[t]{.4\textwidth}
         Dirigida por: \\ 
         \vspace{15ex} % Espacio vertical fijo
@@ -202,9 +350,8 @@
     \end{minipage}</code></pre>
     <p>Puedes agregar más minipages lado a lado para mostrar otras instituciones o información de financiación.</p>
 
-    <h3>4. Dedicatoria y Cita en Overleaf</h3>
-    <p><strong>Objetivo</strong>: Añadir elementos personales o inspiradores.<br>
-    <strong>En Overleaf:</strong></p>
+    <h3>4. Dedicatoria y Cita</h3>
+    <p><strong>Objetivo</strong>: Añadir elementos personales o inspiradores.</p>
     <pre><code>\begin{flushright}
         \begin{minipage}{8cm}
             \textit{Siembra un pensamiento y cosecharás una acción...} \\
@@ -218,27 +365,26 @@
         <li><code>textit</code>: Texto itálico para la cita.</li>
     </ul>
 
-    <h3>5. Agradecimientos en Overleaf</h3>
+    <h3>5. Agradecimientos</h3>
     <p><strong>Objetivo</strong>: Incluir un archivo externo con los agradecimientos.<br>
-    <strong>En Overleaf:</strong> Crea un archivo <code>agradecimientos.tex</code> en tu proyecto, copia el contenido, y en <code>main.tex</code>, incluye:</p>
+    <strong>Recomendación:</strong> Crea un archivo <code>agradecimientos.tex</code> y en <code>main.tex</code>, incluye:</p>
     <pre><code>\cleardoublepage % Asegura que empiece en página impar
 \input{agradecimientos} % Incluye el archivo sin extensión .tex
 </code></pre>
     <p><code>\cleardoublepage</code> fuerza una nueva página y, si estás en una página par, añade una página en blanco para que los agradecimientos empiecen en página impar (importante en documentos de dos caras).</p>
 
-    <h3>6. Índices Generales en Overleaf</h3>
-    <p><strong>Objetivo</strong>: Listar capítulos, figuras y tablas automáticamente.<br>
-    <strong>En Overleaf:</strong></p>
+    <h3>6. Índices Generales</h3>
+    <p><strong>Objetivo</strong>: Listar capítulos, figuras y tablas automáticamente.</p>
     <pre><code>\tableofcontents % Índice de capítulos
     \listoffigures   % Lista de figuras
     \listoftables    % Lista de tablas
     \clearpage       % Comienza la siguiente sección en nueva página
     \input{abreviaturas}  % Archivo con abreviaturas (opcional)
 </code></pre>
-    <p>Estos comandos generan automáticamente los índices basándose en los <code>\chapter</code>, <code>\section</code>, <code>\figure</code> y <code>\table</code> que uses en tu documento. En Overleaf, necesitarás compilar dos veces para que los índices aparezcan correctamente (la primera compilación recopila la información, la segunda la dibuja).</p>
+    <p>Estos comandos generan automáticamente los índices basándose en los <code>\chapter</code>, <code>\section</code>, <code>\figure</code> y <code>\table</code> que uses en tu documento. Necesitarás compilar dos veces para que los índices aparezcan correctamente (la primera compilación recopila la información, la segunda la dibuja). Overleaf realiza esta doble compilación automáticamente.</p>
 
     <h3>7. Estilos de Página en Frontmatter</h3>
-    <p>Para controlar el aspecto de las páginas preliminares en Overleaf:</p>
+    <p>Para controlar el aspecto de las páginas preliminares:</p>
     <ul>
             <li><code>\pagestyle{empty}</code>: Elimina encabezados y pies de página de todas las páginas siguientes.</li>
             <li><code>\thispagestyle{empty}</code>: Aplica el estilo solo a la página actual (útil para portadas).</li>
@@ -248,8 +394,8 @@
     </ul>
 
 
-<h3>Texto en columnas en Overleaf</h3>
-<p>Overleaf soporta completamente los paquetes para crear columnas. Aquí se explican las tres principales opciones:</p>
+<h3>Texto en columnas</h3>
+<p>LaTeX ofrece varias opciones para crear columnas. Aquí se explican las tres principales:</p>
 
 <h4>Opción 1: twocolumn en la clase de documento</h4>
 <p>Para un documento completo en dos columnas, usa la opción <code>twocolumn</code>:</p>
@@ -267,7 +413,7 @@ Más texto de ejemplo se incluirá en ambas columnas, manteniendo un formato uni
 \end{document}</code></pre>
 
 <h4>Opción 2: multicol para columnas iguales</h4>
-<p>El paquete <code>multicol</code> permite dividir partes específicas del documento en varias columnas de igual ancho. En Overleaf, carga el paquete:</p>
+<p>El paquete <code>multicol</code> permite dividir partes específicas del documento en varias columnas de igual ancho:</p>
 
 <pre><code>\documentclass{article}
 \usepackage{multicol}
@@ -321,7 +467,7 @@ A & B \\
 <p>Dos <code>minipage</code> con anchos del 40% y 55% crean dos columnas personalizadas: la primera con texto, la segunda con imagen y tabla.</p>
 
 
-<h3>Elementos mixtos en múltiples columnas en Overleaf</h3>
+<h3>Elementos mixtos en múltiples columnas</h3>
 <p>Puedes combinar diferentes tipos de contenido (texto, imágenes, tablas) en múltiples columnas. Aquí se demuestra una disposición en tres columnas:</p>
 
 <pre><code>\documentclass{article}
@@ -361,102 +507,19 @@ Dos & 20 \\
 \end{document}</code></pre>
 
 <p><code>\columnbreak</code> fuerza el salto a la siguiente columna. Cada columna contiene un tipo de contenido distinto, logrando una distribución equilibrada.</p>
-<h3>Separación entre columnas en Overleaf</h3>
+<h3>Separación entre columnas</h3>
 
 <h4>Espacio entre columnas</h4>
-<p>En Overleaf, se define mediante la longitud <code>\columnsep</code>. Por ejemplo, para aumentar el espacio entre columnas:</p>
+<p>Se define mediante la longitud <code>\columnsep</code>. Por ejemplo, para aumentar el espacio entre columnas:</p>
 <pre><code>\setlength{\columnsep}{3em}</code></pre>
 <p>Coloca este comando en el preámbulo. Esto establece la distancia horizontal entre el contenido de cada columna.</p>
 
 <h4>Línea divisoria entre columnas</h4>
 <p>La presencia y grosor de una línea vertical se controla con <code>\columnseprule</code>. Por defecto, tiene valor 0pt (sin línea). Para hacerla visible:</p>
 <pre><code>\setlength{\columnseprule}{0.4pt}</code></pre>
-<p>Esto dibuja una línea de 0.4pt entre las columnas. Experimenta con valores mayores o menores en Overleaf para ver el efecto.</p>
+<p>Esto dibuja una línea de 0.4pt entre las columnas. Experimenta con valores mayores o menores para ver el efecto.</p>
 
-    <h3>Consejos Clave para Tesis en Overleaf</h3>
-    <ol>
-            <li><strong>Flexibilidad con <code>\vspace{\stretch{n}}</code></strong>: Permite ajustar el espacio vertical sin valores fijos. Muy útil para portadas.</li>
-            <li><strong>Logos con <code>\includegraphics</code></strong>: Sube las imágenes a Overleaf usando "Upload Files" y usa rutas relativas. Ajusta el ancho con <code>width=.7\textwidth</code>.</li>
-            <li><strong>Mantenimiento Modular</strong>: Separa contenido en archivos <code>.tex</code> independientes (portada, introducción, capítulos, etc.) e inclúyelos con <code>\input{}</code> en <code>main.tex</code>.</li>
-            <li><strong>Compilación múltiple</strong>: Para que índices y referencias se actualicen correctamente en Overleaf, a veces necesitas compilar dos veces (Overleaf lo hace automáticamente).</li>
-            <li><strong>Colaboración en Overleaf</strong>: Usa la función "Share" de Overleaf para que otros compañeros editen la tesis colaborativamente. Si necesitas control de versiones, sincroniza con GitHub.</li>
-    </ol>
-
-    <h3>Herramientas de IA para mejorar la escritura académica en Overleaf</h3>
-    
-    <p>Al escribir una tesis doctoral, puedes beneficiarte de herramientas de inteligencia artificial integradas en Overleaf o externas. Sin embargo, es fundamental usarlas éticamente y siguiendo las políticas de tu universidad.</p>
-
-    <h4>Writefull for Overleaf</h4>
-    <p><strong>Writefull</strong> es una herramienta de IA especializada en escritura académica que se integra directamente con Overleaf. Es especialmente útil para escribir en inglés académico.</p>
-
-    <h5>Características principales:</h5>
-    <ul>
-        <li><strong>Corrección gramatical académica:</strong> Detecta errores específicos de escritura científica que correctores genéricos no identifican</li>
-        <li><strong>Parafraseo inteligente:</strong> Reformula oraciones manteniendo el significado técnico</li>
-        <li><strong>Sugerencias de vocabulario:</strong> Propone términos más formales y apropiados para publicaciones</li>
-        <li><strong>Comprobación de tono académico:</strong> Asegura que el lenguaje sea apropiado para tesis y artículos científicos</li>
-        <li><strong>Feedback en tiempo real:</strong> Funciona mientras escribes en el editor de Overleaf</li>
-    </ul>
-
-    <h5>Cómo activar Writefull en Overleaf:</h5>
-    <ol>
-        <li>En tu proyecto de Overleaf, haz clic en el botón <strong>"Menu"</strong> (arriba a la izquierda)</li>
-        <li>Desplázate hasta la sección <strong>"Editor Settings"</strong></li>
-        <li>Busca la opción <strong>"Writefull"</strong> y actívala</li>
-        <li>Aparecerá un icono de Writefull en la barra lateral izquierda del editor</li>
-        <li>Selecciona texto en tu documento y haz clic en el icono para ver sugerencias</li>
-        <li>Puedes parafrasear, corregir gramática, o pedir alternativas de vocabulario</li>
-    </ol>
-
-    <p><strong>💡 Consejo:</strong> Writefull es particularmente útil para revisar Abstract, Introduction y Discussion, donde la claridad y precisión del inglés son críticas.</p>
-
-    <h4>ChatGPT, Claude y otras IAs generativas</h4>
-    <p>Herramientas como ChatGPT (OpenAI), Claude (Anthropic), o GitHub Copilot pueden ayudarte en diversas tareas relacionadas con LaTeX y escritura académica.</p>
-
-    <h5>Usos recomendados y éticos:</h5>
-    <ul>
-        <li><strong>Estructurar argumentos:</strong> "¿Cómo puedo organizar las ideas de este capítulo sobre [tema]?"</li>
-        <li><strong>Generar código LaTeX:</strong> "Crea una tabla de 5 columnas y 10 filas con estos encabezados..."</li>
-        <li><strong>Explicar paquetes y comandos:</strong> "Explica cómo funciona el paquete tikz para diagramas de flujo"</li>
-        <li><strong>Depurar errores de compilación:</strong> Copia el mensaje de error y pide explicación clara</li>
-        <li><strong>Mejorar redacción:</strong> "Mejora la claridad de este párrafo manteniendo el contenido técnico"</li>
-        <li><strong>Traducir terminología:</strong> "¿Cuál es el término técnico en inglés para [concepto]?"</li>
-        <li><strong>Revisar coherencia:</strong> "¿Este párrafo sigue lógicamente del anterior?"</li>
-    </ul>
-
-    <h5>⚠️ Advertencias importantes sobre uso ético de IA:</h5>
-    <ul>
-        <li><strong>❌ NO generes contenido científico completo con IA:</strong> Escribir tu tesis con IA es plagio académico y puede resultar en expulsión</li>
-        <li><strong>❌ NO confíes en referencias generadas por IA:</strong> ChatGPT inventa citas falsas frecuentemente. Verifica TODA referencia en fuentes reales</li>
-        <li><strong>❌ NO uses IA para escribir resultados o análisis:</strong> Esto debe ser tu trabajo original basado en tu investigación</li>
-        <li><strong>✅ USA IA como asistente de redacción:</strong> Para mejorar claridad, corregir gramática, estructurar ideas que TÚ ya tienes</li>
-        <li><strong>✅ CONSULTA las políticas de tu universidad:</strong> Algunas prohíben completamente el uso de IA en tesis doctorales</li>
-        <li><strong>✅ MENCIONA el uso de IA:</strong> Si usaste IA para asistencia (no para escribir), menciónalo en los agradecimientos</li>
-    </ul>
-
-    <h4>Flujo de trabajo ético recomendado:</h4>
-    <ol>
-        <li><strong>Investiga y desarrolla ideas originales:</strong> Esto es TU aporte único. IA no puede hacerlo por ti</li>
-        <li><strong>Escribe el primer borrador tú mismo:</strong> Basado en tu investigación, datos y análisis</li>
-        <li><strong>Usa Writefull para pulir el lenguaje:</strong> Corrige gramática, mejora vocabulario académico</li>
-        <li><strong>Usa ChatGPT para dudas específicas:</strong> Resolver errores LaTeX, estructurar secciones, aclarar terminología</li>
-        <li><strong>Revisa críticamente todas las sugerencias:</strong> Tú decides qué aceptar o rechazar</li>
-        <li><strong>Tu director revisa el contenido final:</strong> Usa Track Changes en Overleaf para que revise tu trabajo</li>
-        <li><strong>Documenta el uso de IA si es requerido:</strong> Transparencia académica</li>
-    </ol>
-
-    <h4>Ejemplo de mención en Agradecimientos (si usaste IA para asistencia):</h4>
-    <p><em>"Durante la redacción de esta tesis, utilicé herramientas de asistencia de escritura basadas en IA (Writefull, ChatGPT) para mejorar la claridad del texto en inglés y resolver dudas técnicas de LaTeX. Todo el contenido científico, análisis de datos y conclusiones son de mi autoría original."</em></p>
-
-    <h5>Recursos adicionales:</h5>
-    <ul>
-        <li><a href="https://www.writefull.com/" target="_blank" rel="noopener">Sitio oficial de Writefull</a></li>
-        <li><a href="https://www.overleaf.com/learn/how-to/Using_Writefull_in_Overleaf" target="_blank" rel="noopener">Documentación de Writefull en Overleaf</a></li>
-        <li><a href="https://chat.openai.com/" target="_blank" rel="noopener">ChatGPT (OpenAI)</a></li>
-        <li><a href="https://claude.ai/" target="_blank" rel="noopener">Claude (Anthropic)</a></li>
-    </ul>
-
-    <h3>Uso del paquete balance en Overleaf</h3>
+    <h3>Uso del paquete balance</h3>
     <p>Para equilibrar la última página en un documento de dos columnas, incluye el paquete <code>balance</code> en el preámbulo:</p>
 
     <pre><code>\documentclass[twocolumn]{article}
@@ -473,7 +536,68 @@ Dos & 20 \\
     \bibliography{miBibliografia}
     \end{document}</code></pre>
 
-    <p><strong>En Overleaf:</strong> El comando <code>\balance</code> indica a LaTeX que intente repartir el contenido de la última página de manera equitativa entre ambas columnas. Es importante insertar <code>\balance</code> lo suficientemente temprano en la primera columna de la última página; de lo contrario, LaTeX podría ya haber fijado el contenido y el balanceo no surtirá efecto.</p>
+    <p>El comando <code>\balance</code> indica a LaTeX que intente repartir el contenido de la última página de manera equitativa entre ambas columnas. Es importante insertar <code>\balance</code> lo suficientemente temprano en la primera columna de la última página; de lo contrario, LaTeX podría ya haber fijado el contenido y el balanceo no surtirá efecto.</p>
+
+    <h3>Consejos Clave para Tesis</h3>
+    <ol>
+            <li><strong>Flexibilidad con <code>\vspace{\stretch{n}}</code></strong>: Permite ajustar el espacio vertical sin valores fijos. Muy útil para portadas.</li>
+            <li><strong>Logos con <code>\includegraphics</code></strong>: Añade las imágenes usando "Upload Files" en Overleaf o mediante <code>git add</code> + <code>git push</code> desde tu repositorio local. Usa rutas relativas y ajusta el ancho con <code>width=.7\textwidth</code>.</li>
+            <li><strong>Mantenimiento Modular</strong>: Separa contenido en archivos <code>.tex</code> independientes (portada, introducción, capítulos, etc.) e inclúyelos con <code>\input{}</code> en <code>main.tex</code>.</li>
+            <li><strong>Compilación múltiple</strong>: Para que índices y referencias se actualicen correctamente, a veces se necesitan dos compilaciones. Overleaf lo hace automáticamente.</li>
+            <li><strong>Colaboración en Overleaf</strong>: Usa la función "Share" para que otros compañeros editen el proyecto. Ver nota sobre permisos Git más abajo.</li>
+    </ol>
+
+    <div style="background-color: #e3f2fd; padding: 15px; border-radius: 6px; margin: 15px 0;">
+        <h4 style="margin-top: 0;">📌 Permisos Git en Overleaf</h4>
+        <p>Cuando usas Overleaf como repositorio Git remoto, <strong>todos los colaboradores con acceso de edición pueden hacer push y pull</strong>, siempre que:</p>
+        <ol style="margin-bottom: 10px;">
+            <li>El proyecto esté compartido con ellos (función "Share")</li>
+            <li>Tengan una cuenta de Overleaf</li>
+            <li>Generen su propio <strong>token de autenticación Git</strong> en Account Settings</li>
+        </ol>
+        <p style="margin-bottom: 0;"><strong>⚠️ Importante:</strong> Cada colaborador debe usar su propio token. Nunca compartas tokens de autenticación.</p>
+        <p style="margin-bottom: 0;"><strong>Alternativa con GitHub:</strong> Si prefieres control de versiones más robusto (ramas, pull requests, issues), sincroniza el proyecto con GitHub y gestiona permisos desde allí.</p>
+    </div>
+
+    <h3>🎯 Ejercicio Práctico: Trabajar con la plantilla de tesis</h3>
+    
+    <p>Este ejercicio te guía para importar, explorar y modificar la plantilla de tesis de ejemplo:</p>
+    
+    <h4>Paso 1: Importar la plantilla desde GitHub</h4>
+    <ol>
+        <li>En Overleaf, ve a <strong>New Project → Import from GitHub</strong></li>
+        <li>Conecta tu cuenta de GitHub si no lo has hecho</li>
+        <li>Busca o pega la URL: <code>https://github.com/latex-git/plantilla-tesis</code></li>
+        <li>Selecciona "Import" para crear el proyecto</li>
+    </ol>
+
+    <h4>Paso 2: Explorar la estructura</h4>
+    <ol>
+        <li>Identifica el archivo principal (<code>plantilla-tesis.tex</code>)</li>
+        <li>Observa cómo se incluyen los capítulos con <code>\input{}</code></li>
+        <li>Abre <code>biblio.bib</code> y observa el formato de las referencias</li>
+        <li>Localiza <code>estilo.bst</code> y observa cómo se usa en el documento principal</li>
+    </ol>
+
+    <h4>Paso 3: Modificaciones básicas</h4>
+    <ol>
+        <li>Cambia el título y autor en las definiciones del preámbulo</li>
+        <li>Modifica el texto de <code>agradecimientos.tex</code></li>
+        <li>Añade una nueva referencia en <code>biblio.bib</code> usando la sintaxis que aprendiste en <a href="clase4.html">Clase 4</a></li>
+        <li>Cita la nueva referencia en algún capítulo</li>
+        <li>Compila y verifica que aparece en la bibliografía</li>
+    </ol>
+
+    <h4>Paso 4: Sincronización con Git</h4>
+    <ol>
+        <li>Haz un commit desde Overleaf (Menu → Git → Commit)</li>
+        <li>Si tienes permisos, haz push a GitHub</li>
+        <li>Opcionalmente, clona el repositorio en tu ordenador para trabajar con JabRef localmente</li>
+    </ol>
+
+    <div style="background-color: #e3f2fd; padding: 12px; border-radius: 6px; margin: 15px 0;">
+        <strong>📝 Entregable sugerido:</strong> Como práctica, crea una carpeta nueva <code>mi-capitulo/</code> con un archivo <code>mi-capitulo.tex</code>, añádelo al documento principal con <code>\input{mi-capitulo/mi-capitulo}</code>, e incluye al menos una figura y tres citas bibliográficas.
+    </div>
 
 
 
