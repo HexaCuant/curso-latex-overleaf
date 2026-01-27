@@ -13,9 +13,14 @@ Mi objetivo ha sido diseñar una metodología que nos permita aprovechar "lo mej
 
 A lo largo del curso aprenderemos a trabajar de forma híbrida, sincronizando nuestros proyectos locales con Overleaf. De esta forma, podrás editar tus documentos desde cualquier navegador cuando lo necesites, sin perder la capacidad de gestionar tu bibliografía o compilar localmente cuando prefieras un entorno más controlado.
 
-En las primeras clases veremos cómo configurar tu cuenta de Overleaf con la licencia institucional de la UGR y cómo integrar todo el flujo de trabajo.
+Para que podamos comenzar el curso con buen pie, es IMPORTANTE que antes de la primera clase tengas configurada tu cuenta de Overleaf con la licencia institucional y las herramientas instaladas.
 
-¡Nos vemos en el curso!
+He preparado una guía paso a paso (Quickstart) que puedes consultar aquí:
+https://a105.ugr.es/overleaf/quickstart.html
+
+Por favor, sigue las instrucciones de ese enlace para dejarlo todo listo antes del comienzo del curso.
+
+¡Nos vemos pronto!
 
 Un saludo,
 
