@@ -202,6 +202,79 @@ Como se ha demostrado \parencite{hawking1988}...   % → ... (Hawking, 1988)</co
     <h5>Imprimir bibliografía</h5>
     <pre><code>\printbibliography</code></pre>
 
+    <h5>Comandos de citación en biblatex</h5>
+    <p>biblatex ofrece muchos comandos de citación para diferentes situaciones:</p>
+    
+    <table border="1" style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+        <thead>
+            <tr style="background-color: #1976d2; color: white;">
+                <th style="padding: 10px;">Comando</th>
+                <th style="padding: 10px;">Descripción</th>
+                <th style="padding: 10px;">Resultado (authoryear)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="padding: 10px;"><code>\cite{clave}</code></td>
+                <td style="padding: 10px;">Cita básica (formato según estilo)</td>
+                <td style="padding: 10px;">Einstein 1916</td>
+            </tr>
+            <tr style="background-color: #f9f9f9;">
+                <td style="padding: 10px;"><code>\parencite{clave}</code></td>
+                <td style="padding: 10px;">Cita entre paréntesis</td>
+                <td style="padding: 10px;">(Einstein 1916)</td>
+            </tr>
+            <tr>
+                <td style="padding: 10px;"><code>\textcite{clave}</code></td>
+                <td style="padding: 10px;">Cita integrada en el texto (autor como sujeto)</td>
+                <td style="padding: 10px;">Einstein (1916)</td>
+            </tr>
+            <tr style="background-color: #f9f9f9;">
+                <td style="padding: 10px;"><code>\autocite{clave}</code></td>
+                <td style="padding: 10px;">Cita automática (se adapta al estilo)</td>
+                <td style="padding: 10px;">(Einstein 1916) o nota al pie</td>
+            </tr>
+            <tr>
+                <td style="padding: 10px;"><code>\citeauthor{clave}</code></td>
+                <td style="padding: 10px;">Solo el autor</td>
+                <td style="padding: 10px;">Einstein</td>
+            </tr>
+            <tr style="background-color: #f9f9f9;">
+                <td style="padding: 10px;"><code>\citeyear{clave}</code></td>
+                <td style="padding: 10px;">Solo el año</td>
+                <td style="padding: 10px;">1916</td>
+            </tr>
+            <tr>
+                <td style="padding: 10px;"><code>\citetitle{clave}</code></td>
+                <td style="padding: 10px;">Solo el título</td>
+                <td style="padding: 10px;"><em>Relativitätstheorie</em></td>
+            </tr>
+            <tr style="background-color: #f9f9f9;">
+                <td style="padding: 10px;"><code>\footcite{clave}</code></td>
+                <td style="padding: 10px;">Cita completa en nota al pie</td>
+                <td style="padding: 10px;"><sup>1</sup> (referencia en pie de página)</td>
+            </tr>
+            <tr>
+                <td style="padding: 10px;"><code>\fullcite{clave}</code></td>
+                <td style="padding: 10px;">Cita completa en el texto</td>
+                <td style="padding: 10px;">Albert Einstein. "Die Grundlage..." 1916</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h5>Citas con argumentos opcionales (biblatex)</h5>
+    <p>Puedes añadir texto antes (prenote) y después (postnote) de la cita:</p>
+    <pre><code>\parencite[véase][p. 45]{einstein1916}     % → (véase Einstein 1916, p. 45)
+\parencite[p. 45]{einstein1916}            % → (Einstein 1916, p. 45)
+\parencite[véase][]{einstein1916}          % → (véase Einstein 1916)
+\textcite[cap. 3]{hawking1988}             % → Hawking (1988, cap. 3)</code></pre>
+
+    <h5>Citas múltiples (biblatex)</h5>
+    <pre><code>\parencite{einstein1916,hawking1988}       % → (Einstein 1916; Hawking 1988)
+\parencites{einstein1916}{hawking1988}     % → (Einstein 1916)(Hawking 1988)
+\parencites[véase][]{einstein1916}[también][p.12]{hawking1988}
+                                           % → (véase Einstein 1916; también Hawking 1988, p.12)</code></pre>
+
     <h5>Estilos disponibles</h5>
     <ul>
         <li><code>style=authoryear</code> — (Autor, Año) - Humanidades y ciencias sociales</li>
@@ -250,6 +323,100 @@ Seguimos el enfoque de \cite{knuth1984}.
 \citep{hawking1988}           % → (Hawking, 1988) con natbib
 \citet{knuth1984}             % → Knuth (1984) con natbib</code></pre>
 
+    <h5>Comandos de citación en natbib</h5>
+    <p>El paquete <code>natbib</code> proporciona comandos flexibles para diferentes estilos de cita:</p>
+    
+    <table border="1" style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+        <thead>
+            <tr style="background-color: #388e3c; color: white;">
+                <th style="padding: 10px;">Comando</th>
+                <th style="padding: 10px;">Descripción</th>
+                <th style="padding: 10px;">Resultado (authoryear)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="padding: 10px;"><code>\cite{clave}</code></td>
+                <td style="padding: 10px;">Cita básica (según opción del paquete)</td>
+                <td style="padding: 10px;">Einstein (1916) o (Einstein, 1916)</td>
+            </tr>
+            <tr style="background-color: #f9f9f9;">
+                <td style="padding: 10px;"><code>\citet{clave}</code></td>
+                <td style="padding: 10px;">Cita textual (autor en el texto)</td>
+                <td style="padding: 10px;">Einstein (1916)</td>
+            </tr>
+            <tr>
+                <td style="padding: 10px;"><code>\citep{clave}</code></td>
+                <td style="padding: 10px;">Cita entre paréntesis</td>
+                <td style="padding: 10px;">(Einstein, 1916)</td>
+            </tr>
+            <tr style="background-color: #f9f9f9;">
+                <td style="padding: 10px;"><code>\citet*{clave}</code></td>
+                <td style="padding: 10px;">Cita textual con todos los autores</td>
+                <td style="padding: 10px;">Einstein, Podolsky y Rosen (1935)</td>
+            </tr>
+            <tr>
+                <td style="padding: 10px;"><code>\citep*{clave}</code></td>
+                <td style="padding: 10px;">Cita parentética con todos los autores</td>
+                <td style="padding: 10px;">(Einstein, Podolsky y Rosen, 1935)</td>
+            </tr>
+            <tr style="background-color: #f9f9f9;">
+                <td style="padding: 10px;"><code>\citeauthor{clave}</code></td>
+                <td style="padding: 10px;">Solo el autor</td>
+                <td style="padding: 10px;">Einstein</td>
+            </tr>
+            <tr>
+                <td style="padding: 10px;"><code>\citeauthor*{clave}</code></td>
+                <td style="padding: 10px;">Todos los autores</td>
+                <td style="padding: 10px;">Einstein, Podolsky y Rosen</td>
+            </tr>
+            <tr style="background-color: #f9f9f9;">
+                <td style="padding: 10px;"><code>\citeyear{clave}</code></td>
+                <td style="padding: 10px;">Solo el año (sin paréntesis)</td>
+                <td style="padding: 10px;">1916</td>
+            </tr>
+            <tr>
+                <td style="padding: 10px;"><code>\citeyearpar{clave}</code></td>
+                <td style="padding: 10px;">Solo el año entre paréntesis</td>
+                <td style="padding: 10px;">(1916)</td>
+            </tr>
+            <tr style="background-color: #f9f9f9;">
+                <td style="padding: 10px;"><code>\citealt{clave}</code></td>
+                <td style="padding: 10px;">Como \citet pero sin paréntesis</td>
+                <td style="padding: 10px;">Einstein 1916</td>
+            </tr>
+            <tr>
+                <td style="padding: 10px;"><code>\citealp{clave}</code></td>
+                <td style="padding: 10px;">Como \citep pero sin paréntesis</td>
+                <td style="padding: 10px;">Einstein, 1916</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h5>Citas con argumentos opcionales (natbib)</h5>
+    <p>Puedes añadir texto antes y/o después de la cita:</p>
+    <pre><code>\citep[véase][]{einstein1916}              % → (véase Einstein, 1916)
+\citep[p. 45]{einstein1916}                % → (Einstein, 1916, p. 45)
+\citep[véase][p. 45]{einstein1916}         % → (véase Einstein, 1916, p. 45)
+\citet[cap. 3]{hawking1988}                % → Hawking (1988, cap. 3)</code></pre>
+
+    <h5>Citas múltiples (natbib)</h5>
+    <pre><code>\citep{einstein1916,hawking1988}           % → (Einstein, 1916; Hawking, 1988)
+\citet{einstein1916,hawking1988}           % → Einstein (1916); Hawking (1988)
+\citep[véase][y siguientes]{einstein1916,hawking1988}
+                                           % → (véase Einstein, 1916; Hawking, 1988, y siguientes)</code></pre>
+
+    <h5>Opciones del paquete natbib</h5>
+    <pre><code>% En el preámbulo:
+\usepackage[round]{natbib}     % Paréntesis redondos: (Einstein, 1916)
+\usepackage[square]{natbib}    % Corchetes: [Einstein, 1916]
+\usepackage[curly]{natbib}     % Llaves: {Einstein, 1916}
+\usepackage[colon]{natbib}     % Dos puntos separador: Einstein: 1916
+\usepackage[comma]{natbib}     % Coma separador: Einstein, 1916
+\usepackage[authoryear]{natbib}% Estilo autor-año
+\usepackage[numbers]{natbib}   % Estilo numérico: [1]
+\usepackage[super]{natbib}     % Superíndice: ¹</code></pre>
+
     <h5>Imprimir bibliografía</h5>
     <pre><code>\bibliographystyle{plain}     % o apalike, unsrt, alpha, ieeetr...
 \bibliography{referencias}    % sin extensión .bib</code></pre>
@@ -283,6 +450,50 @@ Posteriormente, \citet{hawking1988} amplió estos conceptos.
 \bibliography{referencias}
 \end{document}</code></pre>
 
+    <h4>3.3.1 Personalización con BibTeX: custom-bib y makebst</h4>
+    <p>A diferencia de biblatex, personalizar el formato en BibTeX clásico requiere modificar o crear archivos <code>.bst</code> (BibTeX Style). Estos archivos usan un lenguaje de pila poco intuitivo, pero existe una herramienta interactiva para generarlos.</p>
+
+    <h5>makebst: generador interactivo de estilos</h5>
+    <p>El paquete <strong>custom-bib</strong> incluye <code>makebst</code>, un script que te guía con preguntas para crear un archivo <code>.bst</code> personalizado:</p>
+    
+    <pre><code># En terminal (requiere tener LaTeX instalado localmente):
+latex makebst</code></pre>
+    
+    <p>El script te preguntará interactivamente sobre:</p>
+    <ul>
+        <li>Formato de nombres de autor (completos, iniciales, "Apellido, Nombre")</li>
+        <li>Estilo de citas (numérico, autor-año, alfabético)</li>
+        <li>Formato de títulos (mayúsculas, minúsculas, cursiva)</li>
+        <li>Ordenación de la bibliografía</li>
+        <li>Formato de fechas, páginas, volúmenes</li>
+        <li>Manejo de campos como DOI, URL, ISBN</li>
+    </ul>
+    
+    <p>Al finalizar, genera un archivo <code>.bst</code> listo para usar con <code>\bibliographystyle{tuarchivo}</code>.</p>
+
+    <h5>Uso en Overleaf</h5>
+    <p>Overleaf no puede ejecutar <code>makebst</code> interactivamente, pero puedes:</p>
+    <ol>
+        <li>Generar el archivo <code>.bst</code> en tu ordenador local</li>
+        <li>Subir el archivo <code>.bst</code> a tu proyecto de Overleaf</li>
+        <li>Referenciarlo con <code>\bibliographystyle{nombre_sin_extension}</code></li>
+    </ol>
+
+    <h5>Modificar un estilo existente</h5>
+    <p>Si solo necesitas cambios menores, puedes copiar un <code>.bst</code> existente y editarlo. Los archivos <code>.bst</code> están en tu instalación de LaTeX o puedes descargarlos de CTAN.</p>
+    <pre><code>% Ejemplo: buscar dónde está apalike.bst en tu sistema
+kpsewhich apalike.bst</code></pre>
+
+    <div style="background-color: #fff3cd; padding: 15px; border-radius: 8px; margin-top: 20px;">
+        <h5 style="margin-top: 0;">📚 Recursos para BibTeX clásico</h5>
+        <ul style="margin-bottom: 0;">
+            <li><a href="https://ctan.org/pkg/custom-bib" target="_blank"><strong>custom-bib en CTAN</strong></a> — Paquete que incluye makebst y documentación</li>
+            <li><a href="https://ctan.org/pkg/natbib" target="_blank"><strong>natbib en CTAN</strong></a> — Manual completo del paquete natbib</li>
+            <li><a href="https://www.bibtex.org/" target="_blank"><strong>bibtex.org</strong></a> — Referencia general de BibTeX</li>
+            <li><a href="https://www.overleaf.com/learn/latex/Bibliography_management_with_bibtex" target="_blank"><strong>Guía de Overleaf sobre BibTeX</strong></a> — Tutorial práctico</li>
+        </ul>
+    </div>
+
     <h4>3.4 Compilación: diferencias importantes</h4>
 
     <div style="display: flex; gap: 20px; flex-wrap: wrap;">
@@ -305,18 +516,108 @@ pdflatex main.tex</code></pre>
     </div>
 
     <h4>3.5 Personalización avanzada (biblatex)</h4>
-    <p>Con biblatex puedes personalizar fácilmente desde el preámbulo:</p>
-    <pre><code>% Ocultar DOI, ISBN y URL
-\usepackage[backend=biber, style=authoryear, doi=false, isbn=false, url=false]{biblatex}
+    <p>Una de las grandes ventajas de biblatex sobre BibTeX clásico es la facilidad para personalizar el formato de las citas y la bibliografía directamente desde el preámbulo, sin necesidad de modificar archivos <code>.bst</code>.</p>
 
-% Forzar títulos en cursiva
+    <h5>Ocultar campos no deseados</h5>
+    <p>Muchas bases de datos incluyen campos como DOI, ISBN o URL que pueden no ser necesarios en tu bibliografía:</p>
+    <pre><code>% En las opciones del paquete:
+\usepackage[backend=biber, style=authoryear, 
+            doi=false,    % Oculta el DOI
+            isbn=false,   % Oculta el ISBN
+            url=false,    % Oculta la URL
+            eprint=false  % Oculta referencias arXiv/eprint
+           ]{biblatex}</code></pre>
+
+    <h5>Limpiar campos específicos de todas las entradas</h5>
+    <p>Para eliminar campos que no tienen opción directa, usa <code>\AtEveryBibitem</code>:</p>
+    <pre><code>% En el preámbulo, después de cargar biblatex:
+\AtEveryBibitem{%
+    \clearfield{issn}%      % Elimina ISSN
+    \clearfield{note}%      % Elimina notas
+    \clearfield{pagetotal}% % Elimina número total de páginas
+    \clearlist{language}%   % Elimina el campo de idioma
+}</code></pre>
+    <p><strong>Nota:</strong> Usa <code>\clearfield{}</code> para campos simples y <code>\clearlist{}</code> para campos que pueden tener múltiples valores (como <code>language</code>).</p>
+
+    <h5>Personalizar formato de campos</h5>
+    <p>Puedes redefinir cómo se muestra cada campo:</p>
+    <pre><code>% Títulos en cursiva (por defecto algunos estilos usan comillas)
 \DeclareFieldFormat{title}{\mkbibemph{#1}}
 
-% Limpiar campos específicos
-\AtEveryBibitem{%
-    \clearfield{issn}%
-    \clearfield{note}%
-}</code></pre>
+% Títulos de artículos entre comillas
+\DeclareFieldFormat[article]{title}{\mkbibquote{#1}}
+
+% Año en negrita
+\DeclareFieldFormat{year}{\textbf{#1}}
+
+% URLs en fuente pequeña
+\DeclareFieldFormat{url}{\small\url{#1}}</code></pre>
+
+    <h5>Personalizar etiquetas de cita</h5>
+    <pre><code>% Cambiar separador entre autor y año
+\renewcommand*{\nameyeardelim}{\addcomma\space}  % "Einstein, 1916" en vez de "Einstein 1916"
+
+% Cambiar "y" por "&" entre autores
+\renewcommand*{\finalnamedelim}{\addspace\&\space}
+
+% Máximo de autores antes de usar "et al."
+\usepackage[backend=biber, style=authoryear, maxcitenames=2, maxbibnames=99]{biblatex}
+% → En citas: máximo 2 autores, luego "et al."
+% → En bibliografía: mostrar todos los autores</code></pre>
+
+    <h5>Ordenación de la bibliografía</h5>
+    <pre><code>% Opciones de sorting:
+\usepackage[backend=biber, style=authoryear, sorting=nyt]{biblatex}
+% nyt = nombre, año, título (por defecto)
+% nty = nombre, título, año
+% ydnt = año descendente, nombre, título (más recientes primero)
+% none = orden de citación en el texto</code></pre>
+
+    <h5>Dividir bibliografía por tipo</h5>
+    <p>Útil para separar libros, artículos, páginas web, etc.:</p>
+    <pre><code>% En lugar de \printbibliography, usa:
+\printbibheading[title={Referencias}]
+\printbibliography[type=book, heading=subbibliography, title={Libros}]
+\printbibliography[type=article, heading=subbibliography, title={Artículos}]
+\printbibliography[type=online, heading=subbibliography, title={Recursos en línea}]</code></pre>
+
+    <h5>Añadir referencias no citadas</h5>
+    <pre><code>% Incluir una referencia específica sin citarla
+\nocite{referencia_importante}
+
+% Incluir TODAS las referencias del archivo .bib
+\nocite{*}</code></pre>
+
+    <h5>Ejemplo completo de personalización</h5>
+    <pre><code>\usepackage[
+    backend=biber,
+    style=authoryear,
+    sorting=nyt,
+    maxcitenames=2,
+    maxbibnames=99,
+    doi=false,
+    isbn=false,
+    url=false
+]{biblatex}
+
+\addbibresource{referencias.bib}
+
+% Limpieza adicional
+\AtEveryBibitem{\clearfield{issn}\clearfield{note}}
+
+% Formato personalizado
+\DeclareFieldFormat[article]{title}{\mkbibquote{#1}}
+\renewcommand*{\finalnamedelim}{\addspace\&\space}</code></pre>
+
+    <div style="background-color: #e8f5e9; padding: 15px; border-radius: 8px; margin-top: 20px;">
+        <h5 style="margin-top: 0;">📚 Recursos para profundizar</h5>
+        <ul style="margin-bottom: 0;">
+            <li><a href="https://ctan.org/pkg/biblatex" target="_blank"><strong>Manual de biblatex en CTAN</strong></a> — Documentación oficial completa (muy extenso, pero referencia definitiva)</li>
+            <li><a href="https://www.overleaf.com/learn/latex/Bibliography_management_with_biblatex" target="_blank"><strong>Guía de Overleaf sobre biblatex</strong></a> — Tutorial práctico con ejemplos</li>
+            <li><a href="https://www.overleaf.com/learn/latex/Biblatex_citation_styles" target="_blank"><strong>Estilos de citación en biblatex</strong></a> — Comparativa visual de estilos</li>
+            <li><a href="https://tex.stackexchange.com/questions/tagged/biblatex" target="_blank"><strong>TeX StackExchange (tag biblatex)</strong></a> — Preguntas frecuentes y soluciones</li>
+        </ul>
+    </div>
 
     <hr style="margin: 40px 0;">
 
