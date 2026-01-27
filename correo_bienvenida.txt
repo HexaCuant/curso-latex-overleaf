@@ -1,0 +1,24 @@
+Asunto: Bienvenida al Curso de LaTeX - Novedades y Overleaf
+
+Hola [Nombre]:
+
+Te doy la bienvenida a la nueva edición del curso de LaTeX.
+
+Te escribo para contarte las novedades de este año. Como sabes, la Universidad de Granada ha adquirido una licencia de campus para Overleaf (la plataforma de edición de LaTeX online), y he aprovechado esta oportunidad para adaptar completamente los contenidos del curso.
+
+Mi objetivo ha sido diseñar una metodología que nos permita aprovechar "lo mejor de los dos mundos":
+
+1. La potencia y privacidad de las herramientas locales (TexStudio, JabRef, Git en terminal).
+2. La facilidad de uso y colaboración en tiempo real que ofrece Overleaf.
+
+A lo largo del curso aprenderemos a trabajar de forma híbrida, sincronizando nuestros proyectos locales con Overleaf. De esta forma, podrás editar tus documentos desde cualquier navegador cuando lo necesites, sin perder la capacidad de gestionar tu bibliografía o compilar localmente cuando prefieras un entorno más controlado.
+
+En las primeras clases veremos cómo configurar tu cuenta de Overleaf con la licencia institucional de la UGR y cómo integrar todo el flujo de trabajo.
+
+¡Nos vemos en el curso!
+
+Un saludo,
+
+Manuel Burgos
+Curso de LaTeX/Overleaf 2026
+Universidad de Granada
