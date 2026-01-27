@@ -56,3 +56,10 @@ node_modules/
 build/
 dist/
 .out/
+
+# Archivos con datos personales
+*.xlsx
+*.db
+
+# Backups locales (el cifrado .enc sí se sube)
+backups/
