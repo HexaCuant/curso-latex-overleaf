@@ -158,7 +158,7 @@ function limpiar_tokens_expirados() {
  */
 function obtener_alumnos() {
     $pdo = conecta();
-    $stmt = $pdo->query('SELECT id, nombre, apellidos, email, programa FROM alumnos WHERE activo = 1 ORDER BY apellidos, nombre');
+    $stmt = $pdo->query('SELECT id, nombre, apellidos, email, programa, repositorio FROM alumnos WHERE activo = 1 ORDER BY apellidos, nombre');
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 

@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enviar correos - Curso LaTeX/Overleaf 2026</title>
+    <title>Enviar correos - Curso LaTeX/Git 2026</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="stylesheet" href="style.css">
     <style>
         .container {
@@ -231,7 +232,7 @@ if (!$acceso) {
         }
         
         $destinatarios = $_POST['destinatarios'] ?? 'todos';
-        $asunto = "[Curso LaTeX/Overleaf] " . $_POST['asunto'];
+        $asunto = "[Curso LaTeX/Git] " . $_POST['asunto'];
         $cuerpo_base = $_POST['cuerpo'];
         
         // Obtener alumnos según selección
@@ -239,6 +240,8 @@ if (!$acceso) {
         
         if ($destinatarios == "todos") {
             $stmt = $pdo->query('SELECT id, nombre, apellidos, email FROM alumnos WHERE activo = 1');
+        } elseif ($destinatarios == "sin_repositorio") {
+            $stmt = $pdo->query('SELECT id, nombre, apellidos, email FROM alumnos WHERE activo = 1 AND (repositorio IS NULL OR repositorio = "")');
         } elseif ($destinatarios == "programa") {
             $programa = $_POST['programa'] ?? '';
             $stmt = $pdo->prepare('SELECT id, nombre, apellidos, email FROM alumnos WHERE activo = 1 AND programa LIKE ?');
@@ -266,7 +269,7 @@ if (!$acceso) {
                 
                 // Personalizar mensaje
                 $saludo = "Hola " . $row['nombre'] . ":\n\n";
-                $cuerpo = $saludo . $cuerpo_base . "\n\n--\nCurso de LaTeX/Overleaf 2026\nUniversidad de Granada";
+                $cuerpo = $saludo . $cuerpo_base . "\n\n--\nCurso de LaTeX/Git 2026\nUniversidad de Granada";
                 
                 $email_destino = $prueba ? $correo_prueba : $email;
                 
@@ -295,7 +298,7 @@ if (!$acceso) {
         </div>
         
         <h1>📧 Enviar correos a alumnos</h1>
-        <p>Curso de LaTeX/Overleaf 2026 - <strong><?php echo count($alumnos); ?></strong> alumnos registrados</p>
+        <p>Curso de LaTeX/Git 2026 - <strong><?php echo count($alumnos); ?></strong> alumnos registrados</p>
         
         <form method="post" action="correos.php?k=<?php echo htmlspecialchars($clave); ?>" onsubmit="return validarFormulario()">
             
@@ -311,6 +314,15 @@ if (!$acceso) {
                     <label for="dest_todos">Todos los alumnos (<?php echo count($alumnos); ?>)</label>
                 </div>
                 <div class="radio-option">
+                    <?php 
+                    $pdo = conecta();
+                    $stmt_sin_repo = $pdo->query('SELECT COUNT(*) FROM alumnos WHERE activo = 1 AND (repositorio IS NULL OR repositorio = "")');
+                    $sin_repo_count = $stmt_sin_repo->fetchColumn();
+                    ?>
+                    <input type="radio" id="dest_sin_repo" name="destinatarios" value="sin_repositorio">
+                    <label for="dest_sin_repo">Solo alumnos sin repositorio de GitHub (<?php echo $sin_repo_count; ?>)</label>
+                </div>
+                <div class="radio-option">
                     <input type="radio" id="dest_seleccion" name="destinatarios" value="seleccion">
                     <label for="dest_seleccion">Selección manual</label>
                 </div>
@@ -318,12 +330,18 @@ if (!$acceso) {
             
             <div id="lista-seleccion" class="lista-alumnos" style="display:none;">
                 <p><strong>Selecciona los alumnos:</strong></p>
-                <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0.5rem;">
+                <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 0.5rem;">
                 <?php foreach ($alumnos as $a): ?>
+                    <?php
+                    $tiene_repo = !empty($a['repositorio']);
+                    $icono_repo = $tiene_repo ? '✓' : '✗';
+                    $color_repo = $tiene_repo ? '#28a745' : '#dc3545';
+                    ?>
                     <label style="display: flex; align-items: center; gap: 0.5rem; padding: 0.3rem; cursor: pointer; border-radius: 4px;" 
                            onmouseover="this.style.background='#e9ecef'" onmouseout="this.style.background='transparent'">
                         <input type="checkbox" name="alumnos_sel[]" value="<?php echo $a['id']; ?>" id="al_<?php echo $a['id']; ?>">
                         <span><?php echo htmlspecialchars($a['apellidos'] . ', ' . $a['nombre']); ?></span>
+                        <span style="color:<?php echo $color_repo; ?>; font-size:0.9rem; margin-left:auto;" title="<?php echo $tiene_repo ? 'Con repositorio' : 'Sin repositorio'; ?>"><?php echo $icono_repo; ?></span>
                     </label>
                 <?php endforeach; ?>
                 </div>

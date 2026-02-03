@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestión de alumnos - Curso LaTeX/Overleaf</title>
+    <title>Gestión de alumnos - Curso LaTeX/Git</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="stylesheet" href="style.css">
     <style>
         .container {
@@ -361,6 +362,19 @@ if (isset($_POST['agregar_alumno'])) {
     }
 }
 
+// Actualizar repositorio
+if (isset($_POST['actualizar_repo'])) {
+    try {
+        $id = (int)$_POST['alumno_id'];
+        $repo = trim($_POST['repositorio']);
+        $stmt = $pdo->prepare('UPDATE alumnos SET repositorio = ? WHERE id = ?');
+        $stmt->execute([$repo ?: null, $id]);
+        $mensaje = "<div class='alert alert-success'>✓ Repositorio actualizado</div>";
+    } catch (Exception $e) {
+        $mensaje = "<div class='alert alert-danger'>Error al actualizar repositorio: " . htmlspecialchars($e->getMessage()) . "</div>";
+    }
+}
+
 // Cambiar estado
 if (isset($_GET['accion']) && isset($_GET['id'])) {
     $id = (int)$_GET['id'];
@@ -592,6 +606,15 @@ $nueva_edicion_num = $ultima_edicion + 1;
         <div class="numero" style="color: #ffc107;"><?php echo $pendientes; ?></div>
         <div class="texto">Pendientes</div>
     </div>
+    <div class="stat-box">
+        <?php
+        $stmt = $pdo->prepare('SELECT COUNT(*) FROM alumnos WHERE anio = ? AND edicion = ? AND repositorio IS NOT NULL AND repositorio != ""');
+        $stmt->execute([$anio_sel, $edicion_sel]);
+        $con_repo = $stmt->fetchColumn();
+        ?>
+        <div class="numero" style="color: #17a2b8;"><?php echo $con_repo; ?></div>
+        <div class="texto">Con repo GitHub</div>
+    </div>
 </div>
 
 <!-- Acciones principales -->
@@ -657,6 +680,7 @@ $nueva_edicion_num = $ultima_edicion + 1;
             <th>Nombre</th>
             <th>Email</th>
             <th>Programa</th>
+            <th>Repositorio</th>
             <th>Estado</th>
             <th>Calificación</th>
             <th>Acciones</th>
@@ -664,7 +688,7 @@ $nueva_edicion_num = $ultima_edicion + 1;
     </thead>
     <tbody>
     <?php if (empty($alumnos)): ?>
-        <tr><td colspan="7" style="text-align:center; padding:2rem; color:#666;">No hay alumnos en esta edición</td></tr>
+        <tr><td colspan="8" style="text-align:center; padding:2rem; color:#666;">No hay alumnos en esta edición</td></tr>
     <?php else: ?>
         <?php $n = 1; foreach ($alumnos as $a): ?>
         <tr>
@@ -672,6 +696,17 @@ $nueva_edicion_num = $ultima_edicion + 1;
             <td><strong><?php echo htmlspecialchars($a['apellidos'] . ', ' . $a['nombre']); ?></strong></td>
             <td><a href="mailto:<?php echo htmlspecialchars($a['email']); ?>" class="email-link"><?php echo htmlspecialchars($a['email']); ?></a></td>
             <td style="font-size:0.85rem; max-width:200px;"><?php echo htmlspecialchars($a['programa'] ?? '-'); ?></td>
+            <td style="font-size:0.85rem;">
+                <div style="display:flex; align-items:center; gap:0.25rem;">
+                    <?php if (!empty($a['repositorio'])): ?>
+                        <a href="<?php echo htmlspecialchars($a['repositorio']); ?>" target="_blank" title="Ver repositorio" style="color:#28a745; text-decoration:none;">✓</a>
+                        <button onclick="editarRepo(<?php echo $a['id']; ?>, '<?php echo htmlspecialchars(addslashes($a['repositorio'])); ?>')" class="btn btn-sm btn-secondary" title="Editar" style="padding:0.1rem 0.3rem;">✏️</button>
+                    <?php else: ?>
+                        <span style="color:#dc3545;" title="Sin repositorio">✗</span>
+                        <button onclick="editarRepo(<?php echo $a['id']; ?>, '')" class="btn btn-sm btn-warning" title="Añadir" style="padding:0.1rem 0.3rem;">➕</button>
+                    <?php endif; ?>
+                </div>
+            </td>
             <td>
                 <?php if ($a['activo']): ?>
                     <span class="badge badge-success">Activo</span>
@@ -734,6 +769,45 @@ $nueva_edicion_num = $ultima_edicion + 1;
     <strong>Leyenda acciones:</strong> 
     ✓ Superado | ✗ No superado | ⏳ Pendiente | 🚫 Desactivar | 🗑️ Eliminar
 </p>
+
+<!-- Modal editar repositorio -->
+<div id="modal-repo" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:1000;">
+    <div style="background:#fff; max-width:600px; margin:10% auto; padding:2rem; border-radius:8px; box-shadow:0 4px 20px rgba(0,0,0,0.3);">
+        <h3 style="margin-top:0;">📝 Editar repositorio de GitHub</h3>
+        <form method="post" action="alumnos.php">
+            <input type="hidden" name="k" value="<?php echo htmlspecialchars($clave); ?>">
+            <input type="hidden" name="alumno_id" id="repo_alumno_id">
+            <div class="form-group">
+                <label for="repositorio">URL del repositorio compartido en GitHub:</label>
+                <input type="url" id="repositorio" name="repositorio" placeholder="https://github.com/usuario/repositorio" style="width:100%;">
+                <small style="color:#666; display:block; margin-top:0.25rem;">Ejemplo: https://github.com/usuario/mi-proyecto-latex</small>
+            </div>
+            <div style="margin-top:1.5rem;">
+                <button type="submit" name="actualizar_repo" class="btn btn-success">Guardar</button>
+                <button type="button" onclick="cerrarModalRepo()" class="btn btn-secondary">Cancelar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+function editarRepo(id, repoActual) {
+    document.getElementById('repo_alumno_id').value = id;
+    document.getElementById('repositorio').value = repoActual;
+    document.getElementById('modal-repo').style.display = 'block';
+}
+
+function cerrarModalRepo() {
+    document.getElementById('modal-repo').style.display = 'none';
+}
+
+// Cerrar modal al hacer clic fuera
+document.getElementById('modal-repo')?.addEventListener('click', function(e) {
+    if (e.target === this) {
+        cerrarModalRepo();
+    }
+});
+</script>
 
     </div>
 </body>
